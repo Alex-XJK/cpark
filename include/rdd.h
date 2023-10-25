@@ -13,13 +13,15 @@ namespace cpark {
 /**
  * The most basic concept of RDD.
  * An Rdd is an input_range that has been logically partitioned into several sub parts (split),
- * with a member function get_split() that takes a size_t i and returns its i-th split as an input_range.
+ * with a member function get_split() that takes a size_t i and returns its i-th split as an input_range,
+ * and a member function splits_num() to get the total number of splits.
  * @tparam R Type to be checked.
  */
 template<typename R>
 concept Rdd =
 std::ranges::input_range<R> && requires(const R &r) {
     { r.get_split(std::declval<size_t>()) } -> std::ranges::input_range;
+    { r.splits_num() } -> std::convertible_to<size_t>;
     requires std::same_as<
         std::ranges::range_value_t<decltype(r.get_split(std::declval<size_t>()))>,
         std::ranges::range_value_t<R>>;
@@ -46,6 +48,10 @@ public:
         std::ranges::advance(b, i * split_size);
         std::ranges::advance(e, std::min(size_, (i + 1) * split_size));
         return std::ranges::subrange(b, e);
+    }
+
+    constexpr size_t splits_num() const {
+        return splits_;
     }
 
     constexpr auto begin() const {
@@ -123,6 +129,10 @@ public:
         return std::ranges::subrange(b, e);
     }
 
+    constexpr size_t splits_num() const {
+        return splits_;
+    }
+
     constexpr iterator begin() const {
         return {&func_, begin_};
     }
@@ -152,7 +162,7 @@ std::convertible_to<std::invoke_result_t<Func, std::ranges::range_value_t<R>>, T
 class TransformedRdd {
 public:
     constexpr TransformedRdd(R prev, Func func) : prev_{std::move(prev)}, func_{std::move(func)},
-                                                  split_ranges_(splits_) {
+                                                  split_ranges_(splits_), splits_{prev.splits_num()} {
         static_assert(Rdd<TransformedRdd<R, Func, T>>, "Instance of TransformedRdd does not satisfy Rdd concept.");
         // Create the transformed splits.
         for (size_t i: std::views::iota(size_t{0}, splits_)) {
@@ -162,6 +172,10 @@ public:
 
     constexpr auto get_split(size_t i) const {
         return split_ranges_[i];
+    }
+
+    constexpr size_t splits_num() const {
+        return splits_;
     }
 
     constexpr auto begin() const {
@@ -175,7 +189,7 @@ public:
 private:
     R prev_;
     Func func_;
-    size_t splits_ = 8;
+    size_t splits_{};
 
     using TransformedSplitType = decltype(prev_.get_split(std::declval<size_t>()) | std::views::transform(func_));
     std::vector<TransformedSplitType> split_ranges_;
@@ -191,7 +205,7 @@ public:
              std::is_default_constructible_v<T>
     T operator()(const R &r) const {
         std::vector<std::future<T>> futures{};
-        for (size_t i: std::views::iota(size_t{0}, splits_)) {
+        for (size_t i: std::views::iota(size_t{0}, r.splits_num())) {
             futures.emplace_back(std::async([this, &r, &futures, i]() {
                 auto split = r.get_split(i);
                 return std::reduce(std::ranges::begin(split), std::ranges::end(split), T{}, func_);
@@ -205,7 +219,6 @@ public:
 
 private:
     Func func_;
-    size_t splits_{8};
 };
 
 template<typename Func, Rdd R>
