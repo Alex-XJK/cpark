@@ -17,7 +17,5 @@ int main() {
             return x * x + y * y <= 1 ? 1 : 0;
         }) | cpark::Reduce([](auto x, auto y){return x + y;})) / n * 4;
 
-    std::ranges::range auto data = std::vector{1,2,3};
-
     std::cout << "The value of pi is roughly " << pi << std::endl;
 }
