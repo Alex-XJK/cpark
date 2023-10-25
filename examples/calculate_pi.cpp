@@ -10,7 +10,7 @@ int main() {
     std::uniform_real_distribution<double> distribution(-1, 1);
 
     // Parallelly calculate the value of pi by monte carlo algorithm with n samples.
-    int n = 1'000'000'0;
+    int n = 1'000'000;
     double pi =
         (cpark::GeneratorRdd(0, n, [&](auto) -> double {
             double x = distribution(random_engine), y = distribution(random_engine);
