@@ -76,4 +76,7 @@ if(CPARK_BUILD_TESTS)
     target_sources(cpark_tests PRIVATE ${cpark_tests_sources})
     target_include_directories(cpark_tests PRIVATE ${cpark_user_include_dir} ${cpark_lib_headers_dir})
     target_link_libraries(cpark_tests PRIVATE cpark GTest::gtest_main)
+
+    add_test(NAME basic_tests COMMAND cpark_tests)
+
 endif(CPARK_BUILD_TESTS)
