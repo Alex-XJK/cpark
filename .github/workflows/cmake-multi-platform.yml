@@ -22,15 +22,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang]
+        c_compiler: [gcc]
+        cpp_compiler: [g++]
         include:
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-        exclude:
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
 
     steps:
     - uses: actions/checkout@v3
