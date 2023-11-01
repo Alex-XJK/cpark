@@ -78,5 +78,4 @@ if(CPARK_BUILD_TESTS)
     target_link_libraries(cpark_tests PRIVATE cpark GTest::gtest_main)
 
     add_test(NAME basic_tests COMMAND cpark_tests)
-
 endif(CPARK_BUILD_TESTS)
