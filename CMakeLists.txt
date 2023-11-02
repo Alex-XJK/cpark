@@ -13,6 +13,7 @@ endif(NOT CMAKE_CXX_STANDARD)
 # Options indicating whether certain components of the project should be built.
 option(CPARK_BUILD_TESTS "Build cpark's unit tests" ON)
 option(CPARK_BUILD_EXAMPLES "Build cpark's examples" ON)
+option(CPARK_BUILD_DISTRIBUTED "Build cpark with distributed computing support" ON)
 
 # Set directories in the project.
 # User should only include files in this directory.
@@ -26,6 +27,10 @@ set(cpark_tests_sources_dir tests/)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options(-fconcepts-diagnostics-depth=2)
 endif()
+
+if(CPARK_BUILD_DISTRIBUTED)
+    add_definitions(-DCPARK_DISTRIBUTED)
+endif (CPARK_BUILD_DISTRIBUTED)
 
 # The cpark main library.
 # (Perhaps we do not need a static library. This project is full of templates, so everything should be in header files.)
