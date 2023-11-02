@@ -1,9 +1,8 @@
 #include <iostream>
-#include <memory>
 #include <random>
-#include <ranges>
-#include <vector>
-#include "rdd.h"
+
+#include "generator_rdd.h"
+#include "reduce.h"
 
 int main() {
   std::random_device random_engine;

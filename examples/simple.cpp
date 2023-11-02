@@ -1,6 +1,10 @@
 #include <iostream>
 #include <ranges>
-#include "rdd.h"
+
+#include "plain_rdd.h"
+#include "generator_rdd.h"
+#include "transformed_rdd.h"
+#include "reduce.h"
 
 int main() {
   using namespace cpark;
