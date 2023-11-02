@@ -1,5 +1,5 @@
-#ifndef CPARK_RDD_H
-#define CPARK_RDD_H
+#ifndef CPARK_BASE_RDD_H
+#define CPARK_BASE_RDD_H
 
 #include <concepts>
 #include <ranges>
@@ -70,4 +70,4 @@ protected:
 
 }  // namespace cpark
 
-#endif  // CPARK_RDD_H
+#endif  // CPARK_BASE_RDD_H

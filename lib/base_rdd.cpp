@@ -1,4 +1,4 @@
-#include "rdd.h"
+#include "base_rdd.h"
 
 namespace cpark {
 // Perhaps we do not need separate implementation file.

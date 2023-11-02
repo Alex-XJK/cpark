@@ -1,7 +1,7 @@
 #ifndef CPARK_PLAIN_RDD_H
 #define CPARK_PLAIN_RDD_H
 
-#include "rdd.h"
+#include "base_rdd.h"
 
 namespace cpark {
 

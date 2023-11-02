@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "rdd.h"
+#include "base_rdd.h"
 
 namespace cpark {
 
