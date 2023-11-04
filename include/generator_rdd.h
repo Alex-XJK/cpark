@@ -96,6 +96,7 @@ private:
 private:
   Func func_;
   Num begin_, end_;
+  // A vector holding the splits for this rdd.
   std::vector<ViewSplit<std::ranges::subrange<Iterator>>> splits_{};
 };
 

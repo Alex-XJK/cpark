@@ -64,11 +64,18 @@ int main() {
   }
   std::cout << std::endl;
 
-  // Creates a transformed add which adds a " world" string to the elements in the generator rdd.
-  auto transformed_rdd = TransformedRdd(
-      generator_rdd, [](const auto& x) { return x + " world"; }, &default_context);
-  std::cout << "The elements in the fourth split of transformed rdd are ";
+  // Creates a transformed rdd which adds a " world" string to the elements in the generator rdd.
+  auto transformed_rdd = TransformedRdd(generator_rdd, [](const auto& x) { return x + " world"; });
+  std::cout << "The elements in the fourth split of transformed rdd are: ";
   for (const auto& x : transformed_rdd[3]) {
+    std::cout << x << ", ";
+  }
+  std::cout << std::endl;
+
+  // Creates a transformed rdd using pipeline operator.
+  auto transformed_rdd_2 = generator_rdd | Transform([](const auto& x) { return x + " my world"; });
+  std::cout << "The elements in the third split of another transformed rdd are: ";
+  for (const auto& x : transformed_rdd_2[2]) {
     std::cout << x << ", ";
   }
   std::cout << std::endl;

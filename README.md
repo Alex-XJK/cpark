@@ -14,3 +14,4 @@ A light-weighted, distributed computing framework for C++ that offers a fast and
 - `concepts::ConceptName<>`: upper camel case. All concepts defined by this project should be put in a namespace `concepts`.
 - `MACRO_NAME()`: snake case with all characters upper.
 ### Formatting
+Format the code with the `.clang-format` file. Currently, it uses google style.

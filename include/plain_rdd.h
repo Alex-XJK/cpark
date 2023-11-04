@@ -49,6 +49,7 @@ private:
 
 private:
   R view_;
+  // A vector holding the splits for this rdd.
   std::vector<ViewSplit<std::ranges::subrange<std::ranges::iterator_t<R>>>> splits_{};
 };
 
