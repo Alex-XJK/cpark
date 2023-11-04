@@ -9,21 +9,24 @@ namespace cpark {
 
 namespace utils {
 
-/** An ostream that eats all outputs to it.  */
-class NullStream : public std::ostream {
+/** An ostream that eats all outputs.  */
+class NullOStream : public std::ostream {
 private:
   class NullBuffer : public std::streambuf {
   public:
     int overflow(int c) override { return c; }
   };
 
-  inline static NullBuffer null_buffer_;
+  inline static NullBuffer g_null_buffer_;
 
 public:
-  NullStream() : std::ostream(&null_buffer_) {}
+  NullOStream() : std::ostream(&g_null_buffer_) {}
 };
 
-inline static NullStream g_null_stream;
+inline static NullOStream g_null_ostream;
+
+template <typename R>
+using RddElementType = std::ranges::range_value_t<std::ranges::range_value_t<R>>;
 
 }  // namespace utils
 
