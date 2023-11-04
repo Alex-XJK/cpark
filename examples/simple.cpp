@@ -1,36 +1,79 @@
 #include <iostream>
 #include <ranges>
+#include <variant>
 
-#include "plain_rdd.h"
 #include "generator_rdd.h"
-#include "transformed_rdd.h"
+#include "plain_rdd.h"
 #include "reduce.h"
+#include "transformed_rdd.h"
 
 int main() {
   using namespace cpark;
 
-  // Simple use cases.
+  // Simple use cases of cpark components.
 
-  auto transformed_iota = std::views::iota(0, 100) | std::views::transform([](auto x) { return x * x; });
+  // Creates configuration objects.
+  Config default_config;
+  Config customized_config =
+      Config().setDebugName("My CPARK!").setParallelTaskNum(16).setLogger(&std::cout);
 
-  auto plain_rdd = PlainRdd(transformed_iota);
-  for (auto x : plain_rdd) {
-    std::cout << x << std::endl;
+  // Set and get configuration fields.
+  default_config.setDebugName("My default CPARK!");
+  std::cout << "The debug name of customized config is " << customized_config.getDebugName()
+            << std::endl;
+
+  // Creates execution contexts.
+  ExecutionContext default_context{};
+  ExecutionContext configured_context{default_config};
+
+  // Creates a plain Rdd from a view, which contains the same data as the view.
+  auto transformed_iota_view =
+      std::views::iota(1, 100 + 1) | std::views::transform([](auto x) { return x * x; });
+  concepts::Rdd auto plain_rdd = PlainRdd(transformed_iota_view, &default_context);
+
+  // Get the number of splits inside the rdd.
+  std::cout << "The plain Rdd has " << plain_rdd.size() << " splits." << std::endl;
+
+  // Get the splits inside the rdd.
+  concepts::Split auto first_plain_split = plain_rdd.front();
+  concepts::Split auto second_plain_split = plain_rdd[2];
+  concepts::Split auto last_plain_split = plain_rdd.back();
+  auto iterator_to_first_plain_split = plain_rdd.begin();
+  auto iterator_past_last_plain_split = plain_rdd.end();
+
+  // Get elements inside the split.
+  auto iterator_to_first_element = first_plain_split.begin();
+  int first_element = first_plain_split.front();
+  std::cout << "The first split of plain rdd contains the following elements: ";
+  for (int x : first_plain_split) {
+    std::cout << x << ", ";
   }
-  for (auto x : plain_rdd.get_split(7)) {
-    std::cout << x << std::endl;
+  std::cout << std::endl;
+  std::cout << "The last split of plain rdd contains the following elements: ";
+  for (int x : plain_rdd.back()) {
+    std::cout << x << ", ";
   }
+  std::cout << std::endl;
 
-  auto generator = GeneratorRdd(0, 50, [](auto x) { return std::to_string(x) + " hello!\n"; });
-  for (const auto& x : generator.get_split(6)) {
-    std::cout << x;
+  // Creates a generator rdd, who holds 50 strings, each containing a number and a "hello".
+  std::cout << "The first split of the generator rdd contains the following elements: ";
+  auto generator_rdd = GeneratorRdd(
+      0, 50, [](auto x) { return std::to_string(x) + " hello"; }, &default_context);
+  for (const std::string& x : generator_rdd.front()) {
+    std::cout << x << ", ";
   }
+  std::cout << std::endl;
 
-  auto tr = TransformedRdd(generator, [](const auto& x) { return x + "world\n"; });
-  for (const auto& x : tr) {
-    std::cout << x;
+  // Creates a transformed add which adds a " world" string to the elements in the generator rdd.
+  auto transformed_rdd = TransformedRdd(
+      generator_rdd, [](const auto& x) { return x + " world"; }, &default_context);
+  std::cout << "The elements in the fourth split of transformed rdd are ";
+  for (const auto& x : transformed_rdd[3]) {
+    std::cout << x << ", ";
   }
+  std::cout << std::endl;
 
+  // Calculate the sum of the plain rdd by reduce.
   int res = plain_rdd | Reduce([](int x, int y) { return x + y; });
-  std::cout << "reduced value is " << res << std::endl;
+  std::cout << "The sum of the plain rdd is " << res << std::endl;
 }
