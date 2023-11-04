@@ -3,8 +3,8 @@
 
 #include <concepts>
 #include <ranges>
-#include <variant>
 #include <utility>
+#include <variant>
 
 #include "cpark.h"
 
@@ -30,7 +30,7 @@ concept HasId = requires(const T& t) {
  * addDependency() adds the id of a new dependency to the current object.
  */
 template <typename T>
-concept HasDependency = concepts::HasId<T> && requires(T& t) {
+concept HasDependency = concepts::HasId<T> && requires(T & t) {
   { t.dependencies() } -> std::ranges::input_range;
   t.addDependency(t.id());
 };
@@ -80,9 +80,33 @@ concept HasEndImpl = requires(const R& r) {
 template <typename DerivedSplit>
 class BaseSplit : public std::ranges::view_interface<BaseSplit<DerivedSplit>> {
 public:
+  template <typename T>
+  friend class BaseSplit;
+
+public:
   /** Initialize the split with `context` and assign a unique split id to it. */
   explicit BaseSplit<DerivedSplit>(ExecutionContext* context)
       : context_{context}, split_id_{context_->getAndIncSplitId()} {}
+
+  /**
+   * Copy from another BaseSplit (possibly with different DerivedSplit type).
+   * The new BaseSplit will have the same context.
+   * If `copy_id` is true, the new split will have the same split id, otherwise it will have a
+   * new unique split id.
+   * if `copy_dependencies` is true, the dependencies will also be copied.
+   */
+  template <typename T>
+  BaseSplit(const BaseSplit<T>& other, bool copy_id, bool copy_dependencies)
+      : context_{other.context_} {
+    if (copy_id) {
+      split_id_ = other.split_id_;
+    } else {
+      split_id_ = context_->getAndIncSplitId();
+    }
+    if (copy_dependencies) {
+      dependencies_ = other.dependencies_;
+    }
+  }
 
   /**
    * Returns the iterator pointing to the first element in the Split.
@@ -148,6 +172,10 @@ protected:
 template <typename DerivedSplit, typename IterType>
 class CachedSplit : public BaseSplit<CachedSplit<DerivedSplit, IterType>> {
 public:
+  template <typename T, typename U>
+  friend class CachedSplit;
+
+public:
   using Base = BaseSplit<CachedSplit<DerivedSplit, IterType>>;
   friend Base;
   using ValueType = std::iter_value_t<IterType>;
@@ -170,12 +198,12 @@ public:
     /**
      * If the iterator is initialized from this constructor, it will read values from cache.
      */
-    explicit Iterator(const CacheIterator& iterator): iterator_{iterator} {}
+    explicit Iterator(const CacheIterator& iterator) : iterator_{iterator} {}
 
     /**
      * If the iterator is initialized from this constructor, it will read values from DerivedSplit.
      */
-    explicit Iterator(const OriginalIterator& iterator): iterator_{iterator} {}
+    explicit Iterator(const OriginalIterator& iterator) : iterator_{iterator} {}
 
     value_type operator*() const {
       // Read the value pointed by the actual iterator inside this class.
@@ -232,6 +260,17 @@ public:
 public:
   explicit CachedSplit(ExecutionContext* context) : Base{context} {}
 
+  /**
+   * Copy from another CacheSplit (possibly with different DerivedSplit type).
+   * The new CacheSplit will have the same context.
+   * If `copy_id` is true, the new split will have the same split id, otherwise it will have a
+   * new unique split id.
+   * if `copy_dependencies` is true, the dependencies will also be copied.
+   */
+  template <typename T, typename U>
+  CachedSplit(const CachedSplit<T, U>& other, bool copy_id, bool copy_dependencies)
+      : Base{other, copy_id, copy_dependencies} {}
+
 private:
   /** Whether the current split should be cached. */
   bool shouldCache() const noexcept { return Base::context_->splitShouldCache(Base::split_id_); }
@@ -270,11 +309,18 @@ private:
 template <std::ranges::view V>
 class ViewSplit : public CachedSplit<ViewSplit<V>, std::ranges::iterator_t<const V>> {
 public:
+  template <std::ranges::view T>
+  friend class ViewSplit;
+
+public:
   using Base = CachedSplit<ViewSplit<V>, std::ranges::iterator_t<const V>>;
   friend Base;
+
 public:
-  ViewSplit(V view, ExecutionContext* context)
-      : Base{context}, view_{view} {}
+  ViewSplit(V view, ExecutionContext* context) : Base{context}, view_{view} {}
+
+  template <concepts::Split S>
+  ViewSplit(V view, const S& prev) : Base{prev, false, false}, view_{view} {}
 
 private:
   auto beginImpl() const { return std::ranges::begin(view_); }
@@ -293,18 +339,27 @@ private:
  * functions: beginImpl(), endImpl().
  */
 template <typename DerivedRdd>
-class BaseRdd: public std::ranges::view_interface<BaseRdd<DerivedRdd>> {
+class BaseRdd : public std::ranges::view_interface<BaseRdd<DerivedRdd>> {
+public:
+  template <typename T>
+  friend class BaseRdd;
+
 public:
   /**
    * Creates a BaseRdd with a previous BaseRdd.
-   * The new BaseRdd will have the same execution context and split num with the previous one,
-   * but will be assigned another unique rdd_id.
+   * The new BaseRdd will have the same execution context and split num with the previous one.
+   * If `copy_id` is true, new BaseRdd will have the same rdd id as the previous one.
+   * Otherwise it will be assigned another unique rdd_id.
    */
   template <concepts::Rdd R>
-  explicit BaseRdd(const BaseRdd<R>& prev)
-      : context_{prev.context_},
-        rdd_id_{prev.context_->getAndIncRddId()},
-        splits_num_{prev.splits_num_} {}
+  explicit BaseRdd(const BaseRdd<R>& prev, bool copy_id)
+      : context_{prev.context_}, splits_num_{prev.splits_num_} {
+    if (copy_id) {
+      rdd_id_ = prev.rdd_id_;
+    } else {
+      rdd_id_ = context_->getAndIncRddId();
+    }
+  }
 
   /**
    * Creates a new BaseRdd with an execution context.
