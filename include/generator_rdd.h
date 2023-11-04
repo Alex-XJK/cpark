@@ -19,70 +19,77 @@ requires std::is_arithmetic_v<Num>&& std::invocable<Func, Num>&&
     std::convertible_to<std::invoke_result_t<Func, Num>, T> class GeneratorRdd
     : public BaseRdd<GeneratorRdd<Num, Func, T>> {
 public:
-  friend BaseRdd<GeneratorRdd<Num, Func, T>>;
+  using Base = BaseRdd<GeneratorRdd<Num, Func, T>>;
+  friend Base;
 
-  constexpr GeneratorRdd(Num begin, Num end, Func func)
-      : func_{std::move(func)}, begin_{begin}, end_{end} {
-    static_assert(Rdd<GeneratorRdd<Num, Func, T>>,
-                  "Instance of GeneratorRdd does not satisfy Rdd concept.");
-  }
-
-  class iterator : std::forward_iterator_tag {
+  class Iterator : std::forward_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
     using value_type = T;
 
-    iterator() = default;
+    Iterator() = default;
 
-    iterator(const Func* func, Num i) : func_{func}, i_{i} {}
+    Iterator(const Func* func, Num i) : func_{func}, i_{i} {}
 
     // Not sure if returning value_type would satisfy input_range requirements.
     // Works for now.
     value_type operator*() const { return (*func_)(i_); }
 
-    iterator& operator++() {
+    Iterator& operator++() {
       ++i_;
       return *this;
     }
 
-    iterator operator++(int) {
+    Iterator operator++(int) {
       auto old = *this;
       ++i_;
       return old;
     }
 
-    bool operator==(const iterator& other) const { return func_ == other.func_ && i_ == other.i_; }
+    bool operator==(const Iterator& other) const { return func_ == other.func_ && i_ == other.i_; }
 
-    bool operator!=(const iterator& other) const { return !(*this == other); }
+    bool operator!=(const Iterator& other) const { return !(*this == other); }
 
   private:
     const Func* func_;
     Num i_{};
   };
 
-private:
-  constexpr auto get_split_impl(size_t i) const {
-    size_t size = (end_ - begin_);
-    size_t split_size = size / splits_;
-    auto b = begin(), e = begin();
-    std::ranges::advance(b, i * split_size);
-    std::ranges::advance(e, std::min(size, (i + 1) * split_size));
-    return std::ranges::subrange(b, e);
+public:
+  constexpr GeneratorRdd(Num begin, Num end, Func func, ExecutionContext* context)
+      : Base{context}, func_{std::move(func)}, begin_{begin}, end_{end} {
+    static_assert(concepts::Rdd<GeneratorRdd<Num, Func, T>>,
+                  "Instance of GeneratorRdd does not satisfy Rdd concept.");
+
+    // Creates the splits for this Rdd.
+    for (size_t i : std::views::iota(size_t{0}, Base::splits_num_)) {
+      size_t total_size = static_cast<size_t>(end_ - begin_);
+      size_t split_size = (total_size + Base::splits_num_ - 1) / Base::splits_num_;
+      auto b = Iterator{&func, begin_ + static_cast<Num>(std::min(total_size, i * split_size))};
+      auto e =
+          Iterator{&func, begin_ + static_cast<Num>(std::min(total_size, (i + 1) * split_size))};
+      splits_.emplace_back(std::ranges::subrange{b, e}, Base::context_);
+    }
   }
 
-  constexpr size_t splits_num_impl() const { return splits_; }
+  // Explicitly define default copy constrictor and assignment operator,
+  // because some linters or compilers can not define implicit copy constructors for this class,
+  // though they are supposed to do so.
+  // TODO: find out why.
+  constexpr GeneratorRdd(const GeneratorRdd&) = default;
+  GeneratorRdd& operator=(const GeneratorRdd&) = default;
 
-public:
-  constexpr iterator begin() const { return {&func_, begin_}; }
+private:
+  constexpr auto beginImpl() const { return std::ranges::begin(splits_); }
 
-  constexpr iterator end() const { return {&func_, end_}; }
+  constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
   Func func_;
   Num begin_, end_;
-  size_t splits_{8};
+  std::vector<ViewSplit<std::ranges::subrange<Iterator>>> splits_{};
 };
 
 }  // namespace cpark
 
-#endif //CPARK_GENERATOR_RDD_H
+#endif  //CPARK_GENERATOR_RDD_H

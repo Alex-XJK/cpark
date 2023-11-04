@@ -13,35 +13,42 @@ namespace cpark {
 template <std::ranges::view R>
 class PlainRdd : public BaseRdd<PlainRdd<R>> {
 public:
-  friend BaseRdd<PlainRdd<R>>;
-  using iterator = std::ranges::iterator_t<R>;
+  using Base = BaseRdd<PlainRdd<R>>;
+  friend Base;
 
 public:
-  constexpr explicit PlainRdd(R view) : view_{std::move(view)} {
-    static_assert(Rdd<PlainRdd<R>>, "Instance of PlainRdd does not satisfy Rdd concept.");
-    size_ = std::ranges::size(view_);
-  }
-
-private:
-  constexpr auto get_split_impl(size_t i) const {
-    size_t split_size = size_ / splits_;
-    auto b = begin(), e = begin();
-    std::ranges::advance(b, i * split_size);
-    std::ranges::advance(e, std::min(size_, (i + 1) * split_size));
-    return std::ranges::subrange(b, e);
-  }
-
-  constexpr size_t splits_num_impl() const { return splits_; }
-
 public:
-  constexpr auto begin() const { return std::ranges::begin(view_); }
+  constexpr explicit PlainRdd(R view, ExecutionContext* context)
+      : BaseRdd<PlainRdd<R>>{context}, view_{std::move(view)} {
+    static_assert(concepts::Rdd<PlainRdd<R>>, "Instance of PlainRdd does not satisfy Rdd concept.");
+    splits_.reserve(Base::splits_num_);
 
-  constexpr auto end() const { return std::ranges::end(view_); }
+    // Creates the splits for this Rdd.
+    for (size_t i : std::views::iota(size_t{0}, Base::splits_num_)) {
+      size_t total_size = std::ranges::size(view_);
+      size_t split_size = (total_size + Base::splits_num_ - 1) / Base::splits_num_;
+      auto b = std::ranges::begin(view_), e = std::ranges::begin(view_);
+      std::ranges::advance(b, std::min(total_size, i * split_size));
+      std::ranges::advance(e, std::min(total_size, (i + 1) * split_size));
+      splits_.emplace_back(std::ranges::subrange{b, e}, Base::context_);
+    }
+  }
+
+  // Explicitly define default copy constrictor and assignment operator,
+  // because some linters or compilers can not define implicit copy constructors for this class,
+  // though they are supposed to do so.
+  // TODO: find out why.
+  constexpr PlainRdd(const PlainRdd&) = default;
+  PlainRdd& operator=(const PlainRdd&) = default;
 
 private:
-  size_t splits_{8};
-  size_t size_;
+  constexpr auto beginImpl() const { return std::ranges::begin(splits_); }
+
+  constexpr auto endImpl() const { return std::ranges::end(splits_); }
+
+private:
   R view_;
+  std::vector<ViewSplit<std::ranges::subrange<std::ranges::iterator_t<R>>>> splits_{};
 };
 
 }  // namespace cpark

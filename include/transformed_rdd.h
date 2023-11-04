@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "base_rdd.h"
+#include "utils.h"
 
 namespace cpark {
 
@@ -13,45 +14,40 @@ namespace cpark {
 * @tparam Func Type of the transformation function.
 * @tparam T Type of the data hold in this Rdd.
 */
-template <Rdd R, typename Func,
-          typename T = std::invoke_result_t<Func, std::ranges::range_value_t<R>>>
-requires std::invocable<Func, std::ranges::range_value_t<R>>&& std::convertible_to<
-    std::invoke_result_t<Func, std::ranges::range_value_t<R>>, T> class TransformedRdd
+template <concepts::Rdd R, typename Func,
+          typename T = std::invoke_result_t<Func, utils::RddElementType<R>>>
+requires std::invocable<Func, utils::RddElementType<R>>&& std::convertible_to<
+    std::invoke_result_t<Func, utils::RddElementType<R>>, T> class TransformedRdd
     : public BaseRdd<TransformedRdd<R, Func, T>> {
 public:
-  friend BaseRdd<TransformedRdd<R, Func, T>>;
+  using Base = BaseRdd<TransformedRdd<R, Func, T>>;
+  friend Base;
 
-  constexpr TransformedRdd(R prev, Func func)
-      : prev_{std::move(prev)},
-        func_{std::move(func)},
-        split_ranges_(splits_),
-        splits_{prev.splits_num()} {
-    static_assert(Rdd<TransformedRdd<R, Func, T>>,
+  constexpr TransformedRdd(const R& prev, Func func, ExecutionContext* context) : Base{context} {
+    static_assert(concepts::Rdd<TransformedRdd<R, Func, T>>,
                   "Instance of TransformedRdd does not satisfy Rdd concept.");
     // Create the transformed splits.
-    for (size_t i : std::views::iota(size_t{0}, splits_)) {
-      split_ranges_[i] = prev_.get_split(i) | std::views::transform(func_);
+    for (const auto& prev_split : prev) {
+      splits_.emplace_back(prev_split | std::views::transform(func), context);
     }
   }
 
-private:
-  constexpr auto get_split_impl(size_t i) const { return split_ranges_[i]; }
-
-  constexpr size_t splits_num_impl() const { return splits_; }
-
-public:
-  constexpr auto begin() const { return std::ranges::begin(split_ranges_.front()); }
-
-  constexpr auto end() const { return std::ranges::end(split_ranges_.back()); }
+  // Explicitly define default copy constrictor and assignment operator,
+  // because some linters or compilers can not define implicit copy constructors for this class,
+  // though they are supposed to do so.
+  // TODO: find out why.
+  constexpr TransformedRdd(const TransformedRdd&) = default;
+  TransformedRdd& operator=(const TransformedRdd&) = default;
 
 private:
-  R prev_;
-  Func func_;
-  size_t splits_{};
+  constexpr auto beginImpl() const { return std::ranges::begin(splits_); }
 
-  using TransformedSplitType =
-      decltype(prev_.get_split(std::declval<size_t>()) | std::views::transform(func_));
-  std::vector<TransformedSplitType> split_ranges_;
+  constexpr auto endImpl() const { return std::ranges::end(splits_); }
+
+private:
+  using TransformedViewype =
+      decltype(std::declval<R>().front() | std::views::transform(std::declval<Func>()));
+  std::vector<ViewSplit<TransformedViewype>> splits_{};
 };
 
 }  // namespace cpark
