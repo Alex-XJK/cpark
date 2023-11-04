@@ -25,12 +25,12 @@ public:
   using Base = BaseRdd<TransformedRdd<R, Func, T>>;
   friend Base;
 
-  constexpr TransformedRdd(const R& prev, Func func, ExecutionContext* context) : Base{context} {
+  constexpr TransformedRdd(const R& prev, Func func) : Base{prev, false} {
     static_assert(concepts::Rdd<TransformedRdd<R, Func, T>>,
                   "Instance of TransformedRdd does not satisfy Rdd concept.");
     // Create the transformed splits.
     for (const concepts::Split auto& prev_split : prev) {
-      splits_.emplace_back(prev_split | std::views::transform(func), context);
+      splits_.emplace_back(prev_split | std::views::transform(func), prev_split);
       splits_.back().addDependency(prev_split);
     }
   }
@@ -50,8 +50,36 @@ private:
 private:
   using TransformedViewype =
       decltype(std::declval<R>().front() | std::views::transform(std::declval<Func>()));
+  // A vector holding the splits for this rdd.
   std::vector<ViewSplit<TransformedViewype>> splits_{};
 };
+
+/**
+ * Helper class to create Transformed Rdd with pipeline operator `|`.
+ */
+template <typename Func>
+class Transform {
+public:
+  explicit Transform(Func func) : func_{std::move(func)} {}
+
+  template <concepts::Rdd R, typename T = utils::RddElementType<R>,
+            typename U = std::invoke_result_t<Func, T>>
+  requires std::invocable<Func, T>&& std::convertible_to<std::invoke_result_t<Func, T>, U> auto
+  operator()(const R& r) const {
+    return TransformedRdd(r, func_);
+  }
+
+private:
+  Func func_;
+};
+
+/**
+ * Helper function to create Transformed Rdd with pipeline operator `|`.
+ */
+template <typename Func, concepts::Rdd R>
+auto operator|(const R& r, const Transform<Func>& transform) {
+  return transform(r);
+}
 
 }  // namespace cpark
 
