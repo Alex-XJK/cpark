@@ -13,6 +13,8 @@ namespace cpark {
 * @tparam R Type of the old Rdd.
 * @tparam Func Type of the transformation function.
 * @tparam T Type of the data hold in this Rdd.
+* The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
+* and the result type should be able to convert to type `T`.
 */
 template <concepts::Rdd R, typename Func,
           typename T = std::invoke_result_t<Func, utils::RddElementType<R>>>
@@ -27,8 +29,9 @@ public:
     static_assert(concepts::Rdd<TransformedRdd<R, Func, T>>,
                   "Instance of TransformedRdd does not satisfy Rdd concept.");
     // Create the transformed splits.
-    for (const auto& prev_split : prev) {
+    for (const concepts::Split auto& prev_split : prev) {
       splits_.emplace_back(prev_split | std::views::transform(func), context);
+      splits_.back().addDependency(prev_split);
     }
   }
 

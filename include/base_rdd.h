@@ -178,6 +178,9 @@ public:
     explicit Iterator(const OriginalIterator& iterator): iterator_{iterator} {}
 
     value_type operator*() const {
+      // Read the value pointed by the actual iterator inside this class.
+      // First check which type of iterator is actually held by `iterator_`,
+      // then get the right type from it and read the value.
       if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
         return *std::get<CacheIterator>(iterator_);
       } else {
@@ -200,6 +203,11 @@ public:
       return old;
     }
 
+    /**
+     * Two Iterator-s are equal if and only if they read the elements from the same source (both
+     * are reading from cache, or both are reading from original iterator), and
+     * they also point to the same value.
+     */
     bool operator==(const Iterator& other) const {
       if (std::holds_alternative<CacheIterator>(iterator_) &&
           std::holds_alternative<CacheIterator>(other.iterator_)) [[unlikely]] {

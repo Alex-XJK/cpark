@@ -23,7 +23,8 @@ public:
     static_assert(concepts::Rdd<PlainRdd<R>>, "Instance of PlainRdd does not satisfy Rdd concept.");
     splits_.reserve(Base::splits_num_);
 
-    // Creates the splits for this Rdd.
+    // Creates the splits for this Rdd. Each split contains two iterators that points to the values
+    // that this split has.
     for (size_t i : std::views::iota(size_t{0}, Base::splits_num_)) {
       size_t total_size = std::ranges::size(view_);
       size_t split_size = (total_size + Base::splits_num_ - 1) / Base::splits_num_;
