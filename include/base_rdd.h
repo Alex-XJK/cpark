@@ -4,6 +4,7 @@
 #include <concepts>
 #include <ranges>
 #include <variant>
+#include <utility>
 
 #include "cpark.h"
 
@@ -29,7 +30,7 @@ concept HasId = requires(const T& t) {
  * addDependency() adds the id of a new dependency to the current object.
  */
 template <typename T>
-concept HasDependency = concepts::HasId<T> && requires(const T& t) {
+concept HasDependency = concepts::HasId<T> && requires(T& t) {
   { t.dependencies() } -> std::ranges::input_range;
   t.addDependency(t.id());
 };
@@ -77,7 +78,7 @@ concept HasEndImpl = requires(const R& r) {
  * functions: beginImpl(), endImpl().
  */
 template <typename DerivedSplit>
-class BaseSplit : public std::ranges::view_interface<DerivedSplit> {
+class BaseSplit : public std::ranges::view_interface<BaseSplit<DerivedSplit>> {
 public:
   /** Initialize the split with `context` and assign a unique split id to it. */
   explicit BaseSplit<DerivedSplit>(ExecutionContext* context)
@@ -123,11 +124,12 @@ public:
     addDependency(split.split_id_);
   }
 
-  auto id() const noexcept { return split_id_; }
+  /** Returns the split id. */
+  ExecutionContext::SplitId id() const noexcept { return split_id_; }
 
 protected:
-  ExecutionContext* const context_{};
-  const ExecutionContext::SplitId split_id_{};
+  ExecutionContext* context_{};
+  ExecutionContext::SplitId split_id_{};
   std::vector<ExecutionContext::SplitId> dependencies_{};
 };
 
@@ -136,30 +138,44 @@ protected:
  * iterator from DerivedSplit, or read the data from the execution context's cache, depending on the
  * caching information from the execution context.
  * @tparam DerivedSplit The original split to be added with a cache.
+ * @tparam IterType The const iterator type of DerivedSplit. Limited by C++ template resolution
+ *                  details, this type can not be deduced from DerivedSplit, so we pass it
+ *                  explicitly here.
+ *                  The IterType should be convertable from the type returned by
+ *                  `DerivedSplit::beginImpl() const`.
+ *                  Be *EXTREMELY CAREFUL* about the const-ness!
  */
-template <typename DerivedSplit>
-class CachedSplit : public BaseSplit<CachedSplit<DerivedSplit>> {
+template <typename DerivedSplit, typename IterType>
+class CachedSplit : public BaseSplit<CachedSplit<DerivedSplit, IterType>> {
 public:
-  using Base = BaseSplit<CachedSplit<DerivedSplit>>;
+  using Base = BaseSplit<CachedSplit<DerivedSplit, IterType>>;
   friend Base;
-  using CacheType = std::vector<std::ranges::range_value_t<DerivedSplit>>;
+  using ValueType = std::iter_value_t<IterType>;
+  using CacheType = std::vector<ValueType>;
 
   /**
-   * A special kind of iterator, who will possibly read the data by using the iterator from
-   * DerivedSplit, or read the data from the execution context's cache.
+   * A special kind of iterator, who will possibly read the data using the iterator from
+   * DerivedSplit, or read the data from the execution context's cache, depending on how
+   * this iterator is initialized.
    */
   class Iterator : std::forward_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
-    using value_type = std::ranges::range_value_t<DerivedSplit>;
-    using CacheIterator = std::ranges::iterator_t<CacheType>;
-    using OriginalIterator = std::ranges::iterator_t<DerivedSplit>;
+    using value_type = ValueType;
+    using CacheIterator = std::ranges::iterator_t<const CacheType>;
+    using OriginalIterator = IterType;
 
     Iterator() = default;
 
-    template <typename Iter>
-        explicit Iterator(Iter iterator) requires std::same_as<Iter, CacheIterator> ||
-        std::same_as<Iter, OriginalIterator> : iterator_{iterator} {}
+    /**
+     * If the iterator is initialized from this constructor, it will read values from cache.
+     */
+    explicit Iterator(const CacheIterator& iterator): iterator_{iterator} {}
+
+    /**
+     * If the iterator is initialized from this constructor, it will read values from DerivedSplit.
+     */
+    explicit Iterator(const OriginalIterator& iterator): iterator_{iterator} {}
 
     value_type operator*() const {
       if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
@@ -198,26 +214,31 @@ public:
 
     bool operator!=(const Iterator& other) const { return !(*this == other); }
 
+    // TODO: implement more iterator member functions based on what OriginalIterator supports.
+
   private:
     // A variant holds either an iterator from the original split, or an iterator of the cache.
     std::variant<CacheIterator, OriginalIterator> iterator_;
   };
 
 public:
-  explicit CachedSplit(ExecutionContext* context) : BaseSplit<CachedSplit<DerivedSplit>>{context} {}
+  explicit CachedSplit(ExecutionContext* context) : Base{context} {}
 
 private:
+  /** Whether the current split should be cached. */
   bool shouldCache() const noexcept { return Base::context_->splitShouldCache(Base::split_id_); }
 
+  /** Has the current split been cached? */
   bool hasCached() const noexcept { return Base::context_->splitCached(Base::split_id_); }
 
+  /** Returns the cached data of the current split, if it has already been cached. */
   const CacheType& getCache() const {
     return std::any_cast<const CacheType&>(Base::context_->getSplitCache(Base::split_id_));
   }
 
   /** Returns the iterator pointing to the first element in the Split. */
   auto beginImpl() const requires concepts::HasBeginImpl<DerivedSplit> {
-    if (shouldCache() && hasCached()) {
+    if (shouldCache() && hasCached()) [[unlikely]] {
       return Iterator{std::ranges::begin(getCache())};
     } else {
       return Iterator{static_cast<const DerivedSplit&>(*this).beginImpl()};
@@ -226,7 +247,7 @@ private:
 
   /** Returns an iterator sentinel that marks the end of the split's element iterator. */
   auto endImpl() const requires concepts::HasEndImpl<DerivedSplit> {
-    if (shouldCache() && hasCached()) {
+    if (shouldCache() && hasCached()) [[unlikely]] {
       return Iterator{std::ranges::end(getCache())};
     } else {
       return Iterator{static_cast<const DerivedSplit&>(*this).endImpl()};
@@ -234,12 +255,20 @@ private:
   }
 };
 
+/**
+ * A split whose elements come from a view. It might be very useful in this project.
+ * Every split that can be computed by a pair of iterators can be represented by a ViewSplit.
+ */
 template <std::ranges::view V>
-class ViewSplit : public CachedSplit<ViewSplit<V>> {
+class ViewSplit : public CachedSplit<ViewSplit<V>, std::ranges::iterator_t<const V>> {
+public:
+  using Base = CachedSplit<ViewSplit<V>, std::ranges::iterator_t<const V>>;
+  friend Base;
 public:
   ViewSplit(V view, ExecutionContext* context)
-      : CachedSplit<ViewSplit<V>>{context}, view_{std::move(view)} {}
+      : Base{context}, view_{view} {}
 
+private:
   auto beginImpl() const { return std::ranges::begin(view_); }
 
   auto endImpl() const { return std::ranges::end(view_); }
@@ -256,10 +285,8 @@ private:
  * functions: beginImpl(), endImpl().
  */
 template <typename DerivedRdd>
-class BaseRdd : public std::ranges::view_interface<BaseRdd<DerivedRdd>> {
+class BaseRdd: public std::ranges::view_interface<BaseRdd<DerivedRdd>> {
 public:
-  BaseRdd() = default;
-
   /**
    * Creates a BaseRdd with a previous BaseRdd.
    * The new BaseRdd will have the same execution context and split num with the previous one,
@@ -298,11 +325,11 @@ public:
   }
 
   /** Returns the rdd id. */
-  auto id() const noexcept { return rdd_id_; }
+  ExecutionContext::RddId id() const noexcept { return rdd_id_; }
 
 protected:
-  ExecutionContext* const context_{};
-  const ExecutionContext::RddId rdd_id_{};
+  ExecutionContext* context_{};
+  ExecutionContext::RddId rdd_id_{};
   size_t splits_num_{};
 };
 
