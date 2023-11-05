@@ -8,12 +8,12 @@
 
 namespace cpark {
 
-/**
-* An Rdd holding the data filtered from an old rdd by some function.
-* @tparam R Type of the old Rdd.
-* @tparam Func Type of the transformation function.
-* The type of the old Rdd `R`'s elements should be able to invoke function `Func`.
-*/
+    /**
+    * An Rdd holding the data filtered from an old rdd by some function.
+    * @tparam R Type of the old Rdd.
+    * @tparam Func Type of the transformation function.
+    * The type of the old Rdd `R`'s elements should be able to invoke function `Func`.
+    */
     template <concepts::Rdd R, typename Func>
     requires
         std::invocable<Func, utils::RddElementType<R> > &&
@@ -50,9 +50,9 @@ namespace cpark {
         std::vector<ViewSplit<FilterViewype>> splits_{};
     };
 
-/**
- * Helper class to create Transformed Rdd with pipeline operator `|`.
- */
+    /**
+     * Helper class to create Transformed Rdd with pipeline operator `|`.
+     */
     template <typename Func>
     class Filter {
     public:
@@ -68,9 +68,9 @@ namespace cpark {
         Func func_;
     };
 
-/**
- * Helper function to create Filter Rdd with pipeline operator `|`.
- */
+    /**
+     * Helper function to create Filter Rdd with pipeline operator `|`.
+     */
     template <typename Func, concepts::Rdd R>
     auto operator|(const R& r, const Filter<Func>& filter) {
         return filter(r);
