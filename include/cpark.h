@@ -62,10 +62,18 @@ public:
     return *this;
   }
 
-  /** Sets parallel task number. */
-  Config& setParallelTaskNum(size_t num) noexcept {
-    parallel_task_num_ = num;
-    return *this;
+  /** Sets parallel task number. If no parameter, default to physical supported thread number. */
+  Config& setParallelTaskNum(size_t num = 0) noexcept {
+      if(num == 0) {
+          unsigned int n = std::thread::hardware_concurrency();
+          if(n != 0) {
+              parallel_task_num_ = n;
+          }
+      }
+      else {
+          parallel_task_num_ = num;
+      }
+      return *this;
   }
 
   /** Sets parallel policy. */
