@@ -25,7 +25,10 @@ set(cpark_tests_sources_dir tests/)
 
 # Set concepts diagnostics depth for GCC.
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(-fconcepts-diagnostics-depth=2 -ftemplate-backtrace-limit=0)
+    add_compile_options(-fconcepts-diagnostics-depth=3 -ftemplate-backtrace-limit=0)
+    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options($<$<CONFIG:DEBUG>:-gdwarf-3>)
+    endif (CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 
 if(CPARK_BUILD_DISTRIBUTED)
