@@ -12,11 +12,12 @@ namespace cpark {
     * An Rdd holding the data filtered from an old rdd by some function.
     * @tparam R Type of the old Rdd.
     * @tparam Func Type of the transformation function.
-    * The type of the old Rdd `R`'s elements should be able to invoke function `Func`.
+    * The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
+    * and the type shouldn't change after filter.
     */
     template <concepts::Rdd R, typename Func>
     requires
-        std::invocable<Func, utils::RddElementType<R> > &&
+        std::invocable<Func, utils::RddElementType<R>>&&
         std::is_same_v<std::invoke_result_t<Func, utils::RddElementType<R>>, bool>
     class FilterRdd : public BaseRdd<FilterRdd<R, Func>> {
     public:
@@ -25,7 +26,7 @@ namespace cpark {
 
         constexpr FilterRdd(const R& prev, Func func) : Base{prev, false} {
             static_assert(concepts::Rdd<FilterRdd<R, Func>>, "Instance of FilterRdd does not satisfy Rdd concept.");
-            // Create the transformed splits.
+            // Create the filtered splits.
             for (const concepts::Split auto& prev_split : prev) {
                 splits_.emplace_back(prev_split | std::views::filter(func), prev_split);
                 splits_.back().addDependency(prev_split);
@@ -45,9 +46,9 @@ namespace cpark {
         constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
     private:
-        using FilterViewype = decltype(std::declval<R>().front() | std::views::filter(std::declval<Func>()));
+        using FilterViewtype = decltype(std::declval<R>().front() | std::views::filter(std::declval<Func>()));
         // A vector holding the splits for this rdd.
-        std::vector<ViewSplit<FilterViewype>> splits_{};
+        std::vector<ViewSplit<FilterViewtype>> splits_{};
     };
 
     /**
@@ -58,7 +59,7 @@ namespace cpark {
     public:
         explicit Filter(Func func) : func_{std::move(func)} {}
 
-        template <concepts::Rdd R, typename T = utils::RddElementType<R> >
+        template <concepts::Rdd R, typename T = utils::RddElementType<R>>
         requires std::invocable<Func, T>&& std::is_same_v<std::invoke_result_t<Func, T>, bool> auto
         operator()(const R& r) const {
             return FilterRdd(r, func_);

@@ -3,9 +3,6 @@
 #include <variant>
 
 #include "generator_rdd.h"
-#include "plain_rdd.h"
-#include "reduce.h"
-#include "transformed_rdd.h"
 #include "filter_rdd.h"
 
 int main() {
@@ -35,17 +32,19 @@ int main() {
     }
     std::cout << std::endl;
 
-    // Creates a transformed rdd which adds a " world" string to the elements in the generator rdd.
-    auto filter_rdd_1 = FilterRdd(generator_rdd, [](const auto& x) { return true; });
+    bool even = [](int i) { return 0 == i % 2; };
+
+    // Test for FilterRdd(const R& prev, Func func) constructor
+    auto filter_rdd_1 = FilterRdd(generator_rdd, even);
     for (const auto& x : filter_rdd_1.front()) {
         std::cout << x << ", ";
     }
     std::cout << std::endl;
 
-    // Creates a transformed rdd using pipeline operator.
-    auto filter_rdd_2 = generator_rdd | Filter([](const auto& x) { return true; });
-    for (const auto& x : filter_rdd_2.front()) {
-        std::cout << x << ", ";
-    }
-    std::cout << std::endl;
+//    // Test for pipeline and Filter(Func func) operators
+//    auto filter_rdd_2 = generator_rdd | Filter(even);
+//    for (const auto& x : filter_rdd_2.front()) {
+//        std::cout << x << ", ";
+//    }
+//    std::cout << std::endl;
 }
