@@ -5,12 +5,12 @@
 
 template <cpark::concepts::Rdd R>
 void printRdd(R rdd) {
-    for (const cpark::concepts::Split auto& split : rdd) {
-        for (const auto &x: split)
-            std::cout << x << "\t";
-        std::cout << std::endl;
-    }
+  for (const cpark::concepts::Split auto& split : rdd) {
+    for (const auto& x : split)
+      std::cout << x << "\t";
     std::cout << std::endl;
+  }
+  std::cout << std::endl;
 }
 
 int main() {
@@ -23,21 +23,21 @@ int main() {
   std::cout << "Generator rdd : " << std::endl;
   auto generator_rdd = GeneratorRdd(
       0, 50 + 1, [](auto x) { return x; }, &default_context);
-    printRdd(generator_rdd);
+  printRdd(generator_rdd);
 
   auto even = [](int i) {
     return 0 == i % 2;
   };
 
   // Test for FilterRdd(const R& prev, Func func) constructor
-    std::cout << "Filter rdd (basic): " << std::endl;
-    auto filter_rdd_1 = FilterRdd(generator_rdd, even);
-    printRdd(filter_rdd_1);
+  std::cout << "Filter rdd (basic): " << std::endl;
+  auto filter_rdd_1 = FilterRdd(generator_rdd, even);
+  printRdd(filter_rdd_1);
 
   // Test for pipeline and Filter(Func func) operators
-    std::cout << "Filter rdd (operators): " << std::endl;
-    auto filter_rdd_2 = generator_rdd | Filter(even);
-    printRdd(filter_rdd_2);
+  std::cout << "Filter rdd (operators): " << std::endl;
+  auto filter_rdd_2 = generator_rdd | Filter(even);
+  printRdd(filter_rdd_2);
 
-    return 0;
+  return 0;
 }
