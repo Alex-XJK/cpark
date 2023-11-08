@@ -1,7 +1,9 @@
 #ifndef CPARK_COUNT_H
 #define CPARK_COUNT_H
 
-#include <iostream>
+#include <future>
+#include <vector>
+#include <numeric>
 
 #include "base_rdd.h"
 #include "utils.h"
@@ -17,20 +19,24 @@ public:
   explicit Count() = default;
 
   /** Compute the count of the Rdd elements. */
-  template <concepts::Rdd R, typename T = utils::RddElementType<R>>
+  template <concepts::Rdd R>
   unsigned long long operator()(const R& rdd) const {
+    // Parallel compute the result.
+    std::vector<std::future<unsigned long long>> futures{};
+    for (const concepts::Split auto& split : rdd)
+      futures.emplace_back(std::async([this, &split]() {
+        // TODO: use size() things, instead of manually count the size.
+        unsigned long long sCount_ = 0;
+        for (const auto& s : split)
+          sCount_ += 1;
+        return sCount_;
+      }));
 
-    unsigned long long count_ = 0;
+    auto results =
+        std::ranges::subrange(futures) |
+        std::views::transform([](std::future<unsigned long long>& fut) { return fut.get(); });
 
-    // Assign to different thread
-    for (const auto& split : rdd) {
-      // count_ += split.size();
-      for (const auto& elem : split)
-        count_ += 1;
-      std::cout << "Total : " << count_ << std::endl;
-    }
-
-    return count_;
+    return std::accumulate(results.begin(), results.end(), 0);
   }
 };
 
