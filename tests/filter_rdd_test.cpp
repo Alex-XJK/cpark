@@ -1,12 +1,11 @@
-
-#include "gtest/gtest.h"
-#include "cpark.h"
 #include "filter_rdd.h"
+#include "cpark.h"
 #include "generator_rdd.h"
+#include "gtest/gtest.h"
 
 using namespace cpark;
 
-TEST(rdd_suite, filter_rdd_correctness) {
+TEST(FilterRdd, FilterRddCorrectness) {
   ExecutionContext default_context{};
   auto even = [](int i) {
     return 0 == i % 2;
