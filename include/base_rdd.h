@@ -88,6 +88,19 @@ public:
   explicit BaseSplit<DerivedSplit>(ExecutionContext* context)
       : context_{context}, split_id_{context_->getAndIncSplitId()} {}
 
+  /** Copy constructor for each kind of BaseSplit class. */
+  template <concepts::Split S>
+  explicit BaseSplit(const BaseSplit<S>& prev)
+      : context_{prev.context_}, split_id_{prev.split_id_}, dependencies_{prev.dependencies_} {}
+
+  /** Assignment operator for each kind of BaseSplit class. */
+  template <concepts::Split S>
+  BaseSplit& operator=(const BaseSplit<S>& prev) {
+    context_ = prev.context_;
+    split_id_ = prev.split_id_;
+    dependencies_ = prev.dependencies_;
+  }
+
   /**
    * Copy from another BaseSplit (possibly with different DerivedSplit type).
    * The new BaseSplit will have the same context.
@@ -162,48 +175,69 @@ protected:
  * iterator from DerivedSplit, or read the data from the execution context's cache, depending on the
  * caching information from the execution context.
  * @tparam DerivedSplit The original split to be added with a cache.
- * @tparam IterType The const iterator type of DerivedSplit. Limited by C++ template resolution
+ * @tparam DerivedSplitIterator The const iterator type of DerivedSplit. Limited by C++ template resolution
  *                  details, this type can not be deduced from DerivedSplit, so we pass it
  *                  explicitly here.
- *                  The IterType should be convertable from the type returned by
+ *                  The DerivedSplitIterator should be convertable from the type returned by
  *                  `DerivedSplit::beginImpl() const`.
  *                  Be *EXTREMELY CAREFUL* about the const-ness!
+ *
+ * CachedSplit is always a random_access_range, even if the `DerivedSplitIterator` is not a
+ * random_access_iterator. It at lease requires the `DerivedSplitIterator` to be a forward_iterator.
+ *
+ * When the cache of the split is not calculated, and some operation that `DerivedSplit` and
+ * `DerivedSplitIterator` does not support is called, it will immediately start to calculate the
+ * cache using the `DerivedSplitIterator`, and use the cache's iterator afterwards. This is why
+ * CachedSplit always supports all random_access_range's operations.
+ * For convenience, we call this behavior `calculate-cache-on-miss`.
  */
-template <typename DerivedSplit, typename IterType>
-class CachedSplit : public BaseSplit<CachedSplit<DerivedSplit, IterType>> {
+template <typename DerivedSplit, typename DerivedSplitIterator>
+requires std::forward_iterator<DerivedSplitIterator> class CachedSplit
+    : public BaseSplit<CachedSplit<DerivedSplit, DerivedSplitIterator>> {
 public:
   template <typename T, typename U>
   friend class CachedSplit;
 
 public:
-  using Base = BaseSplit<CachedSplit<DerivedSplit, IterType>>;
+  using Base = BaseSplit<CachedSplit<DerivedSplit, DerivedSplitIterator>>;
   friend Base;
-  using ValueType = std::iter_value_t<IterType>;
+  using ValueType = std::iter_value_t<DerivedSplitIterator>;
   using CacheType = std::vector<ValueType>;
 
   /**
    * A special kind of iterator, who will possibly read the data using the iterator from
    * DerivedSplit, or read the data from the execution context's cache, depending on how
    * this iterator is initialized.
+   * This iterator is a random_access_iterator.
    */
-  class Iterator : std::forward_iterator_tag {
+  class Iterator : public std::random_access_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
     using value_type = ValueType;
     using CacheIterator = std::ranges::iterator_t<const CacheType>;
-    using OriginalIterator = IterType;
+    using OriginalIterator = DerivedSplitIterator;
 
     Iterator() = default;
 
     /**
      * If the iterator is initialized from this constructor, it will read values from cache.
      */
-    explicit Iterator(const CacheIterator& iterator) : iterator_{iterator} {}
+    explicit Iterator(const CacheIterator& iterator) : iterator_{iterator} {
+      static_assert(std::random_access_iterator<Iterator>,
+                    "CachedSplit::Iterator does not satisfy random_access_iterator, please check "
+                    "the implementation of the DerivedSplit.");
+    }
 
     /**
      * If the iterator is initialized from this constructor, it will read values from DerivedSplit.
      */
-    explicit Iterator(const OriginalIterator& iterator) : iterator_{iterator} {}
+    explicit Iterator(const OriginalIterator& iterator) : iterator_{iterator} {
+      static_assert(std::random_access_iterator<Iterator>,
+                    "CachedSplit::Iterator does not satisfy random_access_iterator, please check "
+                    "the implementation of the DerivedSplit.");
+    }
+
+    // Member functions to implement a forward_iterator.
 
     value_type operator*() const {
       // Read the value pointed by the actual iterator inside this class.
@@ -216,6 +250,7 @@ public:
       }
     }
 
+    /** Moves the iterator to point to the next element, returns the incremented iterator. */
     Iterator& operator++() {
       if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
         ++std::get<CacheIterator>(iterator_);
@@ -225,6 +260,7 @@ public:
       return *this;
     }
 
+    /** Moves the iterator to point to the next element, returns the original iterator. */
     Iterator operator++(int) {
       auto old = *this;
       ++(*this);
@@ -250,7 +286,118 @@ public:
 
     bool operator!=(const Iterator& other) const { return !(*this == other); }
 
-    // TODO: implement more iterator member functions based on what OriginalIterator supports.
+    // Member functions to implement bidirectional_iterator.
+
+    /**
+     * Moves the iterator to point to the previous element, returns the decremented iterator.
+     * It has a calculate-cache-on-miss behavior. See `CacheSplit`'s docs for more details.
+     */
+    Iterator& operator--() {
+      if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
+        --std::get<CacheIterator>(iterator_);
+      } else {
+        if constexpr (std::bidirectional_iterator<OriginalIterator>) {
+          --std::get<OriginalIterator>(iterator_);
+        } else {
+          throw std::runtime_error("calculate-cache-on-miss not implemented yet");
+        }
+      }
+      return *this;
+    }
+
+    /**
+     * Moves the iterator to point to the previous element, returns the old iterator.
+     * It has a calculate-cache-on-miss behavior. See `CacheSplit`'s docs for more details.
+     */
+    Iterator operator--(int) {
+      auto old = *this;
+      ++(*this);
+      return old;
+    }
+
+    // Member functions to implement random_access_iterator.
+
+    /**
+     * Forward the iterator to the next n-th element.
+     * It has a calculate-cache-on-miss behavior. See `CacheSplit`'s docs for more details.
+     * */
+    Iterator& operator+=(const difference_type& n) {
+      if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
+        std::get<CacheIterator>(iterator_) += n;
+      } else {
+        if constexpr (std::random_access_iterator<OriginalIterator>) {
+          std::get<OriginalIterator>(iterator_) += n;
+        } else {
+          throw std::runtime_error("Not implemented");
+        }
+      }
+      return *this;
+    }
+
+    /**
+     * Move the iterator to the previous n-th element.
+     * It has a calculate-cache-on-miss behavior. See `CacheSplit`'s docs for more details.
+     */
+    Iterator& operator-=(const difference_type& n) {
+      if (std::holds_alternative<CacheIterator>(iterator_)) [[unlikely]] {
+        std::get<CacheIterator>(iterator_) -= n;
+      } else {
+        if constexpr (std::random_access_iterator<OriginalIterator>) {
+          std::get<OriginalIterator>(iterator_) -= n;
+        } else {
+          throw std::runtime_error("Not implemented");
+        }
+      }
+      return *this;
+    }
+
+    /** See operator+=(). */
+    Iterator operator+(const difference_type& n) const {
+      auto res = *this;
+      return res += n;
+    }
+
+    /** See operator+(). */
+    friend Iterator operator+(const difference_type& n, const Iterator& iter) { return iter + n; }
+
+    Iterator operator-(const difference_type& n) const {
+      auto res = *this;
+      return res -= n;
+    }
+
+    /** Get the next n-th element. calculate-cache-on-miss. */
+    value_type operator[](const difference_type& n) const { return *(*this + n); }
+
+    /**
+     * Get the difference between iterators. calculate-cache-on-miss behavior.
+     * Throws if two iterators are not of the same actual type (cached or original).
+     */
+    difference_type operator-(const Iterator& other) const {
+      if (std::holds_alternative<CacheIterator>(iterator_) &&
+          std::holds_alternative<CacheIterator>(other.iterator_)) {
+        return std::get<CacheIterator>(iterator_) - std::get<CacheIterator>(other.iterator_);
+      } else if (std::holds_alternative<OriginalIterator>(iterator_) &&
+                 std::holds_alternative<OriginalIterator>(other.iterator_)) {
+        if constexpr (requires(const OriginalIterator& a, const OriginalIterator& b) { a - b; }) {
+          return std::get<OriginalIterator>(iterator_) -
+                 std::get<OriginalIterator>(other.iterator_);
+        } else {
+          throw std::runtime_error("Not Implemented");
+        }
+      } else {
+        throw std::runtime_error("Bad Compare");
+      }
+    }
+
+    // Functions to implement totally_ordered.
+
+    bool operator<(const Iterator& other) const { return *this - other < 0; }
+
+    bool operator>(const Iterator& other) const { return *this - other > 0; }
+
+    bool operator<=(const Iterator& other) const { return *this - other <= 0; }
+
+    bool operator>=(const Iterator& other) const { return *this - other >= 0; }
 
   private:
     // A variant holds either an iterator from the original split, or an iterator of the cache.
@@ -258,7 +405,11 @@ public:
   };
 
 public:
-  explicit CachedSplit(ExecutionContext* context) : Base{context} {}
+  explicit CachedSplit(ExecutionContext* context) : Base{context} {
+    static_assert(std::ranges::random_access_range<CachedSplit>,
+                  "CachedSplit instance does not satisfy random_access_range, please check the "
+                  "DerivedSplit.");
+  }
 
   /**
    * Copy from another CacheSplit (possibly with different DerivedSplit type).
@@ -269,7 +420,11 @@ public:
    */
   template <typename T, typename U>
   CachedSplit(const CachedSplit<T, U>& other, bool copy_id, bool copy_dependencies)
-      : Base{other, copy_id, copy_dependencies} {}
+      : Base{other, copy_id, copy_dependencies} {
+    static_assert(std::ranges::random_access_range<CachedSplit>,
+                  "CachedSplit instance does not satisfy random_access_range, please check the "
+                  "DerivedSplit.");
+  }
 
 private:
   /** Whether the current split should be cached. */
@@ -359,6 +514,19 @@ public:
     } else {
       rdd_id_ = context_->getAndIncRddId();
     }
+  }
+
+  /** Copy constructor for each kind of BaseRdd class. */
+  template <concepts::Rdd R>
+  explicit BaseRdd(const BaseRdd<R>& prev)
+      : context_{prev.context_}, rdd_id_{prev.rdd_id_}, splits_num_{prev.splits_num_} {}
+
+  /** Assignment operator for each kind of BaseRdd class. */
+  template <concepts::Rdd R>
+  BaseRdd& operator=(const BaseRdd<R>& prev) {
+    context_ = prev.context_;
+    rdd_id_ = prev.rdd_id_;
+    splits_num_ = prev.splits_num_;
   }
 
   /**
