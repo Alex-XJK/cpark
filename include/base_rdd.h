@@ -192,8 +192,7 @@ protected:
  * For convenience, we call this behavior `calculate-cache-on-miss`.
  */
 template <typename DerivedSplit, typename DerivedSplitIterator>
-requires std::forward_iterator<DerivedSplitIterator> class CachedSplit
-    : public BaseSplit<CachedSplit<DerivedSplit, DerivedSplitIterator>> {
+class CachedSplit : public BaseSplit<CachedSplit<DerivedSplit, DerivedSplitIterator>> {
 public:
   template <typename T, typename U>
   friend class CachedSplit;
