@@ -151,6 +151,9 @@ public:
   /** Creates execution context from a config. */
   explicit ExecutionContext(Config config) : config_{std::move(config)} {}
 
+  /** Sets configuration. */
+  void setConfig(Config config) { config_ = std::move(config); }
+
   /** Returns the config of the execution context. */
   const Config& getConfig() const noexcept { return config_; }
 
@@ -185,7 +188,7 @@ public:
   }
 
 private:
-  const Config config_{};
+  Config config_{};
 
   // Using them to create incremental unique id for Rdd and Split.
   std::atomic<RddId> next_rdd_id_{};
