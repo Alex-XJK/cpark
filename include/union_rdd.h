@@ -9,70 +9,65 @@
 namespace cpark {
 
 /**
-* An Rdd holding the data transformed from an old rdd by some function.
+* An Rdd holding the union rdd.
 * @tparam R Type of the old Rdd.
 */
-template <concepts::Rdd R>
-class UnionRdd : public BaseRdd<UnionRdd<R>> {
+template <concepts::Rdd R, concepts::Rdd T>
+class UnionRdd : public BaseRdd<UnionRdd<R, T>> {
 public:
-  using Base = BaseRdd<UnionRdd<R>>;
+  using Base = BaseRdd<UnionRdd<R, T>>;
   friend Base;
 
-  constexpr UnionRdd(const R& prev1, const R& prev2) : Base{prev1, false} {
-    static_assert(concepts::Rdd<UnionRdd<R>>,
+  constexpr UnionRdd(const R& prev1, const T& prev2) : Base{prev1, false} {
+    static_assert(concepts::Rdd<UnionRdd<R, T>>,
                   "Instance of UnionRdd does not satisfy Rdd concept.");
-    // Create the union splits.
+    // Push the splits from RDD1.
     for (const concepts::Split auto& prev_split : prev1) {
       splits_.emplace_back(prev_split, prev_split);
       splits_.back().addDependency(prev_split);
     }
+    // Push the splits from RDD2.
     for (const concepts::Split auto& prev_split : prev2) {
       splits_.emplace_back(prev_split, prev_split);
       splits_.back().addDependency(prev_split);
     }
   }
 
-  // Explicitly define default copy constrictor and assignment operator,
-  // because some linters or compilers can not define implicit copy constructors for this class,
-  // though they are supposed to do so.
-  // TODO: find out why.
   constexpr UnionRdd(const UnionRdd&) = default;
   UnionRdd& operator=(const UnionRdd&) = default;
 
 private:
   constexpr auto beginImpl() const { return std::ranges::begin(splits_); }
-
   constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
   using UnionViewtype = decltype(std::declval<R>().front());
-  // A vector holding the splits for this rdd.
   std::vector<ViewSplit<UnionViewtype>> splits_{};
 };
 
-/**
- * Helper class to create Union Rdd with pipeline operator `|`.
- */
-template <concepts::Rdd R>
-class Union {
-public:
-  explicit Union(R prev1) : prev1_{prev1} {}
-
-  auto operator()(const R& prev2) const {
-    return UnionRdd(prev1_, prev2);
-  }
-
-private:
-  R prev1_;
-};
-
-/**
- * Helper function to create Union Rdd with pipeline operator `|`.
- */
-template <concepts::Rdd R>
-auto operator|(const R& r, const Union<R>& union_c) {
-  return union_c(r);
-}
+///**
+// * Helper class to create Union Rdd with pipeline operator `|`.
+// */
+//template <concepts::Rdd R>
+//class Union {
+//public:
+//  explicit Union(R prev1) : prev1_{prev1} {}
+//
+//  auto operator()(const R& prev2) const {
+//    return UnionRdd(prev1_, prev2);
+//  }
+//
+//private:
+//  R prev1_;
+//};
+//
+///**
+// * Helper function to create Union Rdd with pipeline operator `|`.
+// */
+//template <concepts::Rdd R>
+//auto operator|(const R& r, const Union<R>& union_c) {
+//  return union_c(r);
+//}
 
 }  // namespace cpark
 

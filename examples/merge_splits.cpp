@@ -3,7 +3,6 @@
 
 #include "plain_rdd.h"
 #include "union_rdd.h"
-#include "merge_rdd.h"
 
 template <cpark::concepts::Rdd R>
 void printRdd(R rdd) {
