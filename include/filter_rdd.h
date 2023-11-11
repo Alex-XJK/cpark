@@ -88,6 +88,7 @@ public:
               Iterator{std::ranges::begin(prev_split), std::ranges::end(prev_split), &func_},
               Iterator{std::ranges::end(prev_split), std::ranges::end(prev_split), &func_}},
           prev_split);
+      splits_.back().addDependency(prev_split);
     }
   }
 
