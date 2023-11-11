@@ -19,10 +19,10 @@ public:
   friend Base;
 
 public:
-  class Iterator : std::forward_iterator_tag {
+  class Iterator : std::random_access_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
-    using iterator_category = std::forward_iterator_tag;
+    using iterator_category = std::random_access_iterator_tag;
     using value_type = utils::RddElementType<R>;
     using OriginalIterator = std::ranges::iterator_t<std::ranges::range_value_t<R>>;
     using OriginalSentinel = std::ranges::sentinel_t<std::ranges::range_value_t<R>>;
@@ -44,6 +44,9 @@ public:
     /** Computes the current value. */
     value_type operator*() const { return *current_; }
 
+    /** Arrow operator. */
+    value_type* operator->() const { return &(*current_); }
+
     /** Increments the iterator to the next element. */
     Iterator& operator++() {
       ++current_;
@@ -61,9 +64,75 @@ public:
       return old;
     }
 
-    /** Two iterators equal each other if and only if they have the same position. */
+    /** Compound addition operator. */
+    Iterator& operator+=(difference_type n) {
+      if (n >= 0)
+        while (n > 0) {
+          ++(*this);
+          --n;
+        }
+      else
+        while (n < 0) {
+          --(*this);
+          ++n;
+        }
+      return *this;
+    }
+
+    /** Compound subtraction operator. */
+    Iterator& operator-=(difference_type n) {
+      return *this += -n;
+    }
+
+    /** Addition operator. */
+    Iterator operator+(difference_type n) const {
+      Iterator temp = *this;
+      temp += n;
+      return temp;
+    }
+
+    /** Subtraction operator. */
+    Iterator operator-(difference_type n) const {
+      Iterator temp = *this;
+      temp -= n;
+      return temp;
+    }
+
+    /** Subscript operator. */
+    value_type& operator[](difference_type n) const {
+      return *(*this + n);
+    }
+
+    /** Equality operator. */
     bool operator==(const Iterator& other) const { return current_ == other.current_; }
+
+    /** Inequality operator. */
     bool operator!=(const Iterator& other) const { return !(*this == other); }
+
+    /** Less than operator. */
+    bool operator<(const Iterator& other) const {
+      return current_ < other.current_;
+    }
+
+    /** Greater than operator. */
+    bool operator>(const Iterator& other) const {
+      return current_ > other.current_;
+    }
+
+    /** Less than or equal to operator. */
+    bool operator<=(const Iterator& other) const {
+      return current_ <= other.current_;
+    }
+
+    /** Greater than or equal to operator. */
+    bool operator>=(const Iterator& other) const {
+      return current_ >= other.current_;
+    }
+
+    /** Difference operator. */
+    difference_type operator-(const Iterator& other) const {
+      return current_ - other.current_;
+    }
 
   private:
     std::vector<OriginalIterator> begins_;
