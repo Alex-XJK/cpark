@@ -30,7 +30,7 @@ public:
     Iterator() = default;
 
     Iterator(std::vector<OriginalIterator> begins, std::vector<OriginalIterator> ends, bool isEnd = false)
-        : begins_(begins), ends_(ends), isEnd_(isEnd) {
+        : begins_(std::move(begins)), ends_(std::move(ends)), isEnd_(isEnd) {
       if (!isEnd_) {
         row_ = 0;
         current_ = begins_.size() > 0 ? begins_[row_] : OriginalIterator();
