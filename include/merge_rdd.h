@@ -24,23 +24,32 @@ public:
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
     using value_type = utils::RddElementType<R>;
-    using split_type = BaseSplit<std::ranges::range_value_t<R>>;
     using OriginalIterator = std::ranges::iterator_t<std::ranges::range_value_t<R>>;
     using OriginalSentinel = std::ranges::sentinel_t<std::ranges::range_value_t<R>>;
 
     Iterator() = default;
 
-    Iterator(std::vector<split_type>& data, size_t row = 0, size_t col = 0)
-        : prev_splits_(data), row_(row), col_(col) {}
+    Iterator(std::vector<OriginalIterator> begins, std::vector<OriginalIterator> ends, bool isEnd = false)
+        : begins_(begins), ends_(ends), isEnd_(isEnd) {
+      if (!isEnd_) {
+        row_ = 0;
+        current_ = begins_.size() > 0 ? begins_[row_] : OriginalIterator();
+      }
+      else {
+        row_ = ends_.size() > 0 ? ends_.size() - 1 : 0;
+        current_ = ends_.size() > 0 ? ends_[row_] : OriginalIterator();
+      }
+    }
 
     /** Computes the current value. */
-    value_type operator*() const { return *prev_splits_[row_][col_]; }
+    value_type operator*() const { return *current_; }
 
     /** Increments the iterator to the next element. */
     Iterator& operator++() {
-      if (++col_ == prev_splits_[row_].size()) {
-        col_ = 0;
+      ++current_;
+      while (current_ == ends_[row_] && row_ + 1 < begins_.size()) {
         ++row_;
+        current_ = begins_[row_];
       }
       return *this;
     }
@@ -53,31 +62,35 @@ public:
     }
 
     /** Two iterators equal each other if and only if they have the same position. */
-    bool operator==(const Iterator& other) const { return iterator_ == other.iterator_; }
-
+    bool operator==(const Iterator& other) const { return current_ == other.current_; }
     bool operator!=(const Iterator& other) const { return !(*this == other); }
 
   private:
-    OriginalIterator iterator_;
-    std::vector<split_type> prev_splits_;
-    size_t row_;
-    size_t col_;
+    std::vector<OriginalIterator> begins_;
+    std::vector<OriginalIterator> ends_;
+    OriginalIterator current_;
+    bool isEnd_;
+    size_t row_ = 0;
   };
 
   constexpr MergeRdd(const R& prev) : Base{prev, false} {
     static_assert(concepts::Rdd<MergeRdd<R>>,
                   "Instance of MergeRdd does not satisfy Rdd concept.");
     // Prepare nested splits vector
-    using split_type = BaseSplit<std::ranges::range_value_t<R>>;
-    std::vector<split_type> all_prev_splits;
-    for (const concepts::Split auto& prev_split : prev)
-      all_prev_splits.emplace_back(prev_split);
+    using OriginalIterator = std::ranges::iterator_t<std::ranges::range_value_t<R>>;
+    std::vector<OriginalIterator> all_prev_splits_begins;
+    std::vector<OriginalIterator> all_prev_splits_ends;
+    for (const concepts::Split auto& prev_split : prev) {
+      all_prev_splits_begins.emplace_back(std::ranges::begin(prev_split));
+      all_prev_splits_ends.emplace_back(std::ranges::end(prev_split));
+    }
 
     // Create the single splits_ element
     splits_.emplace_back(
       std::ranges::subrange{
-        Iterator{all_prev_splits, 0, 0},
-        Iterator{all_prev_splits, all_prev_splits.size(), 0}},
+        Iterator{all_prev_splits_begins, all_prev_splits_ends, false},
+        Iterator{all_prev_splits_begins, all_prev_splits_ends, true},
+      },
       prev.front());
     for (const concepts::Split auto& prev_split : prev)
       splits_.back().addDependency(prev_split);
