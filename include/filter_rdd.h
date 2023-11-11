@@ -30,7 +30,7 @@ public:
    * we can not safely rely on it to implement FilterRdd without breaking const-correctness.
    * So we define our own filter iterator here.
    */
-  class Iterator : std::random_access_iterator_tag {
+  class Iterator : std::forward_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
     using value_type = utils::RddElementType<R>;
@@ -67,75 +67,11 @@ public:
       return old;
     }
 
-    /** Compound addition operator. */
-    Iterator& operator+=(difference_type n) {
-      if (n >= 0)
-        while (n > 0) {
-          ++(*this);
-          --n;
-        }
-      else
-        while (n < 0) {
-          --(*this);
-          ++n;
-        }
-      return *this;
-    }
-
-    /** Compound subtraction operator. */
-    Iterator& operator-=(difference_type n) {
-      return *this += -n;
-    }
-
-    /** Addition operator. */
-    Iterator operator+(difference_type n) const {
-      Iterator temp = *this;
-      temp += n;
-      return temp;
-    }
-
-    /** Subtraction operator. */
-    Iterator operator-(difference_type n) const {
-      Iterator temp = *this;
-      temp -= n;
-      return temp;
-    }
-
-    /** Subscript operator. */
-    value_type& operator[](difference_type n) const {
-      return *(*this + n);
-    }
-
     /** Equality operator. */
     bool operator==(const Iterator& other) const { return iterator_ == other.iterator_; }
 
     /** Inequality operator. */
     bool operator!=(const Iterator& other) const { return !(*this == other); }
-
-    /** Less than operator. */
-    bool operator<(const Iterator& other) const {
-      return iterator_ < other.iterator_;
-    }
-
-    /** Greater than operator. */
-    bool operator>(const Iterator& other) const {
-      return iterator_ > other.iterator_;
-    }
-
-    /** Less than or equal to operator. */
-    bool operator<=(const Iterator& other) const {
-      return iterator_ <= other.iterator_;
-    }
-
-    /** Greater than or equal to operator. */
-    bool operator>=(const Iterator& other) const {
-      return iterator_ >= other.iterator_;
-    }
-
-    /** Difference operator. */
-    difference_type operator-(const Iterator& other) const {
-      return iterator_ - other.iterator_;
-    }
 
   private:
     OriginalIterator iterator_;

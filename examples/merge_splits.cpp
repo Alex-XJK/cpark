@@ -10,7 +10,7 @@ template <cpark::concepts::Rdd R>
 void printRdd(R rdd) {
   for (const cpark::concepts::Split auto& split : rdd) {
     std::cout << "Split #" << split.id() << " :\t";
-    std::cout << "(len: " << split.size() << ")\t";
+    // std::cout << "(len: " << split.size() << ")\t";
     for (const auto& x : split)
       std::cout << x << "\t";
     std::cout << std::endl;
