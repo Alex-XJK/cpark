@@ -13,6 +13,7 @@ namespace cpark {
 * @tparam R Type of the old Rdd.
 */
 template <concepts::Rdd R, concepts::Rdd T>
+requires std::is_convertible_v<std::ranges::range_value_t<R>, std::ranges::range_value_t<T>>
 class UnionRdd : public BaseRdd<UnionRdd<R, T>> {
 public:
   using Base = BaseRdd<UnionRdd<R, T>>;
@@ -41,33 +42,9 @@ private:
   constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
-  using UnionViewtype = decltype(std::declval<R>().front());
+  using UnionViewtype = std::ranges::range_value_t<R>;
   std::vector<ViewSplit<UnionViewtype>> splits_{};
 };
-
-///**
-// * Helper class to create Union Rdd with pipeline operator `|`.
-// */
-//template <concepts::Rdd R>
-//class Union {
-//public:
-//  explicit Union(R prev1) : prev1_{prev1} {}
-//
-//  auto operator()(const R& prev2) const {
-//    return UnionRdd(prev1_, prev2);
-//  }
-//
-//private:
-//  R prev1_;
-//};
-//
-///**
-// * Helper function to create Union Rdd with pipeline operator `|`.
-// */
-//template <concepts::Rdd R>
-//auto operator|(const R& r, const Union<R>& union_c) {
-//  return union_c(r);
-//}
 
 }  // namespace cpark
 
