@@ -19,10 +19,11 @@ public:
   friend Base;
 
 public:
-  class Iterator : std::random_access_iterator_tag {
+  class Iterator : std::forward_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
-    using iterator_category = std::random_access_iterator_tag;
+    // using iterator_category = std::random_access_iterator_tag;
+    using iterator_category = std::forward_iterator_tag;
     using value_type = utils::RddElementType<R>;
     using OriginalIterator = std::ranges::iterator_t<std::ranges::range_value_t<R>>;
     using OriginalSentinel = std::ranges::sentinel_t<std::ranges::range_value_t<R>>;
@@ -45,7 +46,7 @@ public:
     value_type operator*() const { return *current_; }
 
     /** Arrow operator. */
-    value_type* operator->() const { return &(*current_); }
+    value_type* operator->() const { return current_; }
 
     /** Increments the iterator to the next element. */
     Iterator& operator++() {
@@ -64,8 +65,11 @@ public:
       return old;
     }
 
+    // TODO: Consider extend to random_access_iterator. Still need -- operator.
+
     /** Compound addition operator. */
     Iterator& operator+=(difference_type n) {
+      // TODO: This does not have constant time complexity!
       if (n >= 0)
         while (n > 0) {
           ++(*this);
