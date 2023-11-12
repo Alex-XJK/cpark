@@ -25,11 +25,7 @@ public:
     std::vector<std::future<unsigned long long>> futures{};
     for (const concepts::Split auto& split : rdd)
       futures.emplace_back(std::async([this, &split]() {
-        // TODO: use size() things, instead of manually count the size.
-        unsigned long long sCount_ = 0;
-        for (const auto& s : split)
-          sCount_ += 1;
-        return sCount_;
+         return static_cast<unsigned long long>(split.size());
       }));
 
     auto results =

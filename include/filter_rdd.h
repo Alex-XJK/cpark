@@ -60,16 +60,17 @@ public:
       return *this;
     }
 
-    /** Increments the iterator to the next element satisfying `func_`. */
+    /** Increments the iterator to the next element. */
     Iterator operator++(int) {
       auto old = *this;
       ++(*this);
       return old;
     }
 
-    /** Two iterators equal each other if and only if they have the same function and argument. */
+    /** Equality operator. */
     bool operator==(const Iterator& other) const { return iterator_ == other.iterator_; }
 
+    /** Inequality operator. */
     bool operator!=(const Iterator& other) const { return !(*this == other); }
 
   private:
@@ -88,6 +89,7 @@ public:
               Iterator{std::ranges::begin(prev_split), std::ranges::end(prev_split), &func_},
               Iterator{std::ranges::end(prev_split), std::ranges::end(prev_split), &func_}},
           prev_split);
+      splits_.back().addDependency(prev_split);
     }
   }
 
