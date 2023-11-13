@@ -68,6 +68,19 @@ concept HasEndImpl = requires(const R& r) {
   { r.endImpl() } -> std::sentinel_for<decltype(r.beginImpl())>;
 };
 
+template <class P>
+concept Pair = requires(P p) {
+  typename P::first_type;
+  typename P::second_type;
+  p.first;
+  p.second;
+  requires std::same_as<decltype(p.first), typename P::first_type>;
+  requires std::same_as<decltype(p.second), typename P::second_type>;
+};
+
+template <typename R>
+concept KeyValueRdd = concepts::Rdd<R> && concepts::Pair<utils::RddElementType<R>>;
+
 }  // namespace concepts
 
 /**

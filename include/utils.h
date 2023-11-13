@@ -29,7 +29,6 @@ inline static NullOStream g_null_ostream;
 template <typename R>
 using RddElementType = std::ranges::range_value_t<std::ranges::range_value_t<R>>;
 
-
 namespace {
 
 template <typename Iterator>
