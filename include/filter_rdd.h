@@ -9,21 +9,18 @@
 namespace cpark {
 
 /**
- * An Rdd holding the data filtered from an old rdd by some function.
- * @tparam R Type of the old Rdd.
- * @tparam Func Type of the transformation function.
- * The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
- * and the type shouldn't change after filter.
+ * A new view created from an original view (V) filtered by some predication function (Func).
+ * It has almost the same usage as std::ranges::filter_view, except that it provides
+ * `begin() const` and `end() const`.
  */
-template <concepts::Rdd R, typename Func>
-requires std::invocable<Func, utils::RddElementType<R>>&& std::is_convertible_v<
-    std::invoke_result_t<Func, utils::RddElementType<R>>, bool> class FilterRdd
-    : public BaseRdd<FilterRdd<R, Func>> {
+template <std::ranges::view V, typename Func>
+requires std::invocable<Func, std::ranges::range_value_t<V>>&& std::is_convertible_v<
+    std::invoke_result_t<Func, std::ranges::range_value_t<V>>, bool> class FilterView
+    : public std::ranges::view_interface<FilterView<V, Func>> {
 public:
-  using Base = BaseRdd<FilterRdd<R, Func>>;
-  friend Base;
+  using OriginalIterator = std::ranges::iterator_t<V>;
+  using OriginalSentinel = std::ranges::sentinel_t<V>;
 
-public:
   /**
    * A lazily evaluated iterator that can filter values from some original iterator.
    * Because std::ranges::filter_view does not provide `begin() const` and `end() const`,
@@ -33,10 +30,10 @@ public:
   class Iterator : std::forward_iterator_tag {
   public:
     using difference_type = std::ptrdiff_t;
-    using value_type = utils::RddElementType<R>;
+    using value_type = std::ranges::range_value_t<V>;
 
-    using OriginalIterator = std::ranges::iterator_t<std::ranges::range_value_t<R>>;
-    using OriginalSentinel = std::ranges::sentinel_t<std::ranges::range_value_t<R>>;
+    using OriginalIterator = std::ranges::iterator_t<V>;
+    using OriginalSentinel = std::ranges::sentinel_t<V>;
 
     Iterator() = default;
 
@@ -79,16 +76,50 @@ public:
     Func* func_;
   };
 
-  constexpr FilterRdd(const R& prev, Func func) : Base{prev, false}, func_{std::move(func)} {
+public:
+  /** Creates a new view created from an original `view` filtered by some predication function `Func`. */
+  constexpr FilterView(V view, Func func)
+      : original_view_{std::move(view)}, func_{std::move(func)} {}
+
+  /** Returns the begin iterator of FilterView. */
+  constexpr auto begin() const {
+    return Iterator{std::ranges::begin(original_view_), std::ranges::end(original_view_),
+                    const_cast<Func*>(&func_)};
+  }
+
+  /** Returns the end sentinel of FilterView. */
+  constexpr auto end() const {
+    return Iterator{std::ranges::end(original_view_), std::ranges::end(original_view_),
+                    const_cast<Func*>(&func_)};
+  }
+
+private:
+  V original_view_;
+  Func func_;
+};
+
+/**
+ * An Rdd holding the data filtered from an old rdd by some function.
+ * @tparam R Type of the old Rdd.
+ * @tparam Func Type of the transformation function.
+ * The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
+ * and the type shouldn't change after filter.
+ */
+template <concepts::Rdd R, typename Func>
+requires std::invocable<Func, utils::RddElementType<R>>&& std::is_convertible_v<
+    std::invoke_result_t<Func, utils::RddElementType<R>>, bool> class FilterRdd
+    : public BaseRdd<FilterRdd<R, Func>> {
+public:
+  using Base = BaseRdd<FilterRdd<R, Func>>;
+  friend Base;
+
+public:
+  constexpr FilterRdd(const R& prev, Func func) : Base{prev, false} /*, func_{std::move(func)}*/ {
     static_assert(concepts::Rdd<FilterRdd<R, Func>>,
                   "Instance of FilterRdd does not satisfy Rdd concept.");
     // Create the filtered splits.
     for (const concepts::Split auto& prev_split : prev) {
-      splits_.emplace_back(
-          std::ranges::subrange{
-              Iterator{std::ranges::begin(prev_split), std::ranges::end(prev_split), &func_},
-              Iterator{std::ranges::end(prev_split), std::ranges::end(prev_split), &func_}},
-          prev_split);
+      splits_.emplace_back(FilterView(prev_split, func), prev_split);
       splits_.back().addDependency(prev_split);
     }
   }
@@ -106,8 +137,7 @@ private:
   constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
-  std::vector<ViewSplit<std::ranges::subrange<Iterator>>> splits_{};
-  Func func_;
+  std::vector<ViewSplit<FilterView<std::ranges::range_value_t<R>, Func>>> splits_{};
 };
 
 /**
