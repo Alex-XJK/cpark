@@ -81,16 +81,16 @@ TEST(MergedViewTest, MergedTwoDiffStringDifferentType) {
   EXPECT_EQ(i, 20);
 }
 
-//TEST(MergedViewTest, MergedVariousDiffIntDifferentType) {
-//  auto test_original_view1 = std::views::iota(0, 10);
-//  std::vector<int> test_original_data2{10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-//  auto test_original_view2 = std::ranges::subrange(test_original_data2);
-//  auto test_original_view3 = std::views::iota(20, 30);
-//  auto merged_view = MergedDiffView(test_original_view1);
-//  int i = 0;
-//  for (int x : merged_view) {
-//    EXPECT_EQ(x, i);
-//    i++;
-//  }
-//  EXPECT_EQ(i, 30);
-//}
+TEST(MergedViewTest, MergedVariousDiffIntDifferentType) {
+  auto test_original_view1 = std::views::iota(0, 10);
+  std::vector<int> test_original_data2{10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+  auto test_original_view2 = std::ranges::subrange(test_original_data2);
+  auto test_original_view3 = std::views::iota(20, 30);
+  auto merged_view = MergedDiffView(test_original_view1, test_original_view2, test_original_view3);
+  int i = 0;
+  for (int x : merged_view) {
+    EXPECT_EQ(x, i);
+    i++;
+  }
+  EXPECT_EQ(i, 30);
+}

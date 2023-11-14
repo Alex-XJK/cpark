@@ -29,6 +29,12 @@ inline static NullOStream g_null_ostream;
 template <typename R>
 using RddElementType = std::ranges::range_value_t<std::ranges::range_value_t<R>>;
 
+template <typename R>
+using RddKeyType = decltype(std::declval<RddElementType<R>>().first);
+
+template <typename R>
+using RddValueType = decltype(std::declval<RddElementType<R>>().second);
+
 namespace {
 
 template <typename Iterator>
