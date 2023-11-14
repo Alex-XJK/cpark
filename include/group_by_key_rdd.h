@@ -2,6 +2,7 @@
 #include <memory>
 #include <ranges>
 #include <shared_mutex>
+#include <mutex>
 
 #include "base_rdd.h"
 #include "utils.h"
