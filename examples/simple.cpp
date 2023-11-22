@@ -6,7 +6,7 @@
 #include "plain_rdd.h"
 #include "reduce.h"
 #include "transformed_rdd.h"
-
+#include "zipped_rdd.h"
 int main() {
   using namespace cpark;
 
@@ -68,6 +68,14 @@ int main() {
   auto transformed_rdd = TransformedRdd(generator_rdd, [](const auto& x) { return x + " world"; });
   std::cout << "The elements in the fourth split of transformed rdd are: ";
   for (const auto& x : transformed_rdd[3]) {
+    std::cout << x << ", ";
+  }
+  std::cout << std::endl;
+
+
+  auto zippped_rdd = ZippedRdd(plain_rdd, plain_rdd);
+  std::cout << "The elements in the fourth split of transformed rdd are: ";
+  for (const auto& x : zippped_rdd[3]) {
     std::cout << x << ", ";
   }
   std::cout << std::endl;
