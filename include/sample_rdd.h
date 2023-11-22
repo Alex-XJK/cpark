@@ -7,25 +7,36 @@
 namespace cpark {
 
 template <concepts::Rdd R>
-class SampleRdd {
+class SampleRdd : public BaseRdd<SampleRdd<R1>>{
 public:
-    using ElementType = std::ranges::range_value_t<R>;
+    using Base = BaseRdd<SampleRdd<R>>;
+    friend Base;
+    SampleRdd(const R& prev, double probability) : Base{prev, false} {
 
-    SampleRdd(const R& prev, double probability) 
-        : sampled_rdd_(FilterRdd(prev, [probability](const ElementType&) {
-            static std::random_device rd;
-            static std::mt19937 gen(rd());
-            std::bernoulli_distribution d(probability);
-            return d(gen);
-        })) {}
+    auto sample = [double possibility](){
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::bernoulli_distribution d(probability);
+        return d(gen);
+    } 
+    auto filter_rdd = FilterRdd(prev, sample);
 
-    auto begin() const { return sampled_rdd_.begin(); }
-    auto end() const { return sampled_rdd_.end(); }
+    for (const concepts::Split auto& prev_split : filter_rdd) {
+      splits_.emplace_back(prev_split, prev_split);
+      splits_.back().addDependency(prev_split);
+    }
+    
+    }
+
+    auto begin() const { return  splits_.begin(); }
+    auto end() const { return splits_.end(); }
 
 private:
-    FilterRdd<R, std::function<bool(const ElementType&)>> sampled_rdd_;
+    using SampleViewType = std::ranges::range_value_t<R>;
+    std::vector<ViewSplit<SampledViewType>> splits_{};
 };
 
 }  // namespace cpark
 
 #endif  // CPARK_SAMPLE_RDD_H
+
