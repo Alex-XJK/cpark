@@ -82,8 +82,9 @@ $(function() {
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> R&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptcpark_1_1concepts_1_1_has_end_impl.html">cpark::concepts::HasEndImpl</a> =  <span class="keyword">requires</span>(<span class="keyword">const</span> R&amp; r) {</div>
-<div class="line">  { r.endImpl() } -&gt; std::sentinel_for&lt;<span class="keyword">decltype</span>(r.beginImpl())&gt;;</div>
+<div class="line">  { r.endImpl() } -&gt; std::sentinel_for&lt;<span class="keyword">decltype</span>(<a class="code hl_class" href="classcpark_1_1_base_split.html">r</a>.beginImpl())&gt;;</div>
 <div class="line">}</div>
+<div class="ttc" id="aclasscpark_1_1_base_split_html"><div class="ttname"><a href="classcpark_1_1_base_split.html">cpark::BaseSplit</a></div><div class="ttdef"><b>Definition</b> base_rdd.h:94</div></div>
 <div class="ttc" id="aconceptcpark_1_1concepts_1_1_has_end_impl_html"><div class="ttname"><a href="conceptcpark_1_1concepts_1_1_has_end_impl.html">cpark::concepts::HasEndImpl</a></div><div class="ttdef"><b>Definition</b> base_rdd.h:67</div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Concept of classes that have a member function <code>endImpl()</code> returning an iterator sentinel. </p>

@@ -86,16 +86,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b6438d5e03413360ad3c1357f054a2f" id="r_a7b6438d5e03413360ad3c1357f054a2f"><td class="memItemLeft" align="right" valign="top"><a id="a7b6438d5e03413360ad3c1357f054a2f" name="a7b6438d5e03413360ad3c1357f054a2f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Transform</b> (Func func)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Transform</b> (<a class="el" href="classcpark_1_1_base_split.html">Func</a> <a class="el" href="classcpark_1_1_base_split.html">func</a>)</td></tr>
 <tr class="separator:a7b6438d5e03413360ad3c1357f054a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a487690d9f930d8d7688ada0ca363a625" id="r_a487690d9f930d8d7688ada0ca363a625"><td class="memTemplParams" colspan="2"><a id="a487690d9f930d8d7688ada0ca363a625" name="a487690d9f930d8d7688ada0ca363a625"></a>
-template&lt;concepts::Rdd R, typename T  = utils::RddElementType&lt;R&gt;, typename U  = std::invoke_result_t&lt;Func, T&gt;&gt; <br />
-requires std::invocable&lt;Func, T&gt;&amp;&amp; std::convertible_to&lt;std::invoke_result_t&lt;Func, T&gt;, U&gt;</td></tr>
-<tr class="memitem:a487690d9f930d8d7688ada0ca363a625"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const R &amp;r) const</td></tr>
+template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">T</a>  = utils::RddElementType&lt;R&gt;, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">U</a>  = std::invoke_result_t&lt;Func, T&gt;&gt; <br />
+requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;&amp;&amp; std::convertible_to&lt;std::invoke_result_t&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;, <a class="el" href="classcpark_1_1_base_split.html">U</a>&gt;</td></tr>
+<tr class="memitem:a487690d9f930d8d7688ada0ca363a625"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">r</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
 <tr class="separator:a487690d9f930d8d7688ada0ca363a625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Func&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a>&gt;<br />
 class cpark::Transform&lt; Func &gt;</div><p>Helper class to create Transformed Rdd with pipeline operator <code>|</code>. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="transformed__rdd_8h_source.html">transformed_rdd.h</a></li>

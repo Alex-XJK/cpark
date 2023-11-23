@@ -86,16 +86,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8498951561ee7f40fe80b22893c9162" id="r_ad8498951561ee7f40fe80b22893c9162"><td class="memItemLeft" align="right" valign="top"><a id="ad8498951561ee7f40fe80b22893c9162" name="ad8498951561ee7f40fe80b22893c9162"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PartitionBy</b> (Partitioner partitioner)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PartitionBy</b> (<a class="el" href="classcpark_1_1_base_split.html">Partitioner</a> <a class="el" href="classcpark_1_1_base_split.html">partitioner</a>)</td></tr>
 <tr class="separator:ad8498951561ee7f40fe80b22893c9162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a330c5c4320c08374737655cc7b7d1480" id="r_a330c5c4320c08374737655cc7b7d1480"><td class="memTemplParams" colspan="2"><a id="a330c5c4320c08374737655cc7b7d1480" name="a330c5c4320c08374737655cc7b7d1480"></a>
-template&lt;concepts::Rdd R, typename K  = utils::RddKeyType&lt;R&gt;&gt; <br />
-requires std::invocable&lt;Partitioner, K&gt; &amp;&amp; std::convertible_to&lt;std::invoke_result_t&lt;Partitioner, K&gt;, size_t&gt;</td></tr>
-<tr class="memitem:a330c5c4320c08374737655cc7b7d1480"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const R &amp;r) const</td></tr>
+template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">K</a>  = utils::RddKeyType&lt;R&gt;&gt; <br />
+requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">Partitioner</a>, <a class="el" href="classcpark_1_1_base_split.html">K</a>&gt; &amp;&amp; std::convertible_to&lt;std::invoke_result_t&lt;<a class="el" href="classcpark_1_1_base_split.html">Partitioner</a>, <a class="el" href="classcpark_1_1_base_split.html">K</a>&gt;, <a class="el" href="classcpark_1_1_base_split.html">size_t</a>&gt;</td></tr>
+<tr class="memitem:a330c5c4320c08374737655cc7b7d1480"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">r</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
 <tr class="separator:a330c5c4320c08374737655cc7b7d1480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Partitioner&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Partitioner</a>&gt;<br />
 class cpark::PartitionBy&lt; Partitioner &gt;</div><p>A helper class to create partition by rdd with user specified partitioner. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="partition__by__rdd_8h_source.html">partition_by_rdd.h</a></li>

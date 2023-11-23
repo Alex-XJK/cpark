@@ -98,7 +98,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">class </span>NullBuffer : <span class="keyword">public</span> std::streambuf {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">int</span> overflow(<span class="keywordtype">int</span> c)<span class="keyword"> override </span>{ <span class="keywordflow">return</span> c; }</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">int</span> overflow(<span class="keywordtype">int</span> <a class="code hl_class" href="classcpark_1_1_base_split.html">c</a>)<span class="keyword"> override </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="classcpark_1_1_base_split.html">c</a>; }</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  };</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">inline</span> <span class="keyword">static</span> NullBuffer g_null_buffer_;</div>
@@ -114,10 +114,10 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">using </span>RddElementType = std::ranges::range_value_t&lt;std::ranges::range_value_t&lt;R&gt;&gt;;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">using </span>RddKeyType = <span class="keyword">decltype</span>(std::declval&lt;RddElementType&lt;R&gt;&gt;().first);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">using </span>RddKeyType = <span class="keyword">decltype</span>(std::declval&lt;RddElementType&lt;R&gt;&gt;().<a class="code hl_class" href="classcpark_1_1_base_split.html">first</a>);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">using </span>RddValueType = <span class="keyword">decltype</span>(std::declval&lt;RddElementType&lt;R&gt;&gt;().second);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">using </span>RddValueType = <span class="keyword">decltype</span>(std::declval&lt;RddElementType&lt;R&gt;&gt;().<a class="code hl_class" href="classcpark_1_1_base_split.html">second</a>);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">namespace </span>{</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
@@ -149,6 +149,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}  <span class="comment">// namespace cpark</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#endif  </span><span class="comment">// CPARK_UTILS_H</span></div>
+<div class="ttc" id="aclasscpark_1_1_base_split_html"><div class="ttname"><a href="classcpark_1_1_base_split.html">cpark::BaseSplit</a></div><div class="ttdef"><b>Definition</b> base_rdd.h:94</div></div>
 <div class="ttc" id="aclasscpark_1_1utils_1_1_null_o_stream_html"><div class="ttname"><a href="classcpark_1_1utils_1_1_null_o_stream.html">cpark::utils::NullOStream</a></div><div class="ttdef"><b>Definition</b> utils.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

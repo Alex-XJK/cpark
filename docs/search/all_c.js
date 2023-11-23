@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['joined_0',['joined',['../md_cmake-build-debug_2__deps_2googletest-src_2docs_2faq.html#autotoc_md102',1,'Why does ASSERT_DEATH complain about previous threads that were already joined?'],['../md_cmake-build-release_2__deps_2googletest-src_2docs_2faq.html#autotoc_md519',1,'Why does ASSERT_DEATH complain about previous threads that were already joined?']]],
-  ['json_20report_1',['json report',['../md_cmake-build-debug_2__deps_2googletest-src_2docs_2advanced.html#autotoc_md75',1,'Generating a JSON Report'],['../md_cmake-build-release_2__deps_2googletest-src_2docs_2advanced.html#autotoc_md492',1,'Generating a JSON Report']]]
+  ['rddid_0',['RddId',['../classcpark_1_1_execution_context.html#a836ffd6d70849d14ead3ff6595abd9ca',1,'cpark::ExecutionContext']]],
+  ['reduce_1',['reduce',['../classcpark_1_1_reduce.html',1,'cpark::Reduce&lt; Func &gt;'],['../classcpark_1_1_reduce.html#acbc7a43fb4deb664656af56f2aae1d2c',1,'cpark::Reduce::Reduce()']]]
 ];

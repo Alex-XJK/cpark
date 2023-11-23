@@ -86,16 +86,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a893f43472717ec091b1e0bf3b3e8c6fe" id="r_a893f43472717ec091b1e0bf3b3e8c6fe"><td class="memItemLeft" align="right" valign="top"><a id="a893f43472717ec091b1e0bf3b3e8c6fe" name="a893f43472717ec091b1e0bf3b3e8c6fe"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (Func func)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (<a class="el" href="classcpark_1_1_base_split.html">Func</a> <a class="el" href="classcpark_1_1_base_split.html">func</a>)</td></tr>
 <tr class="separator:a893f43472717ec091b1e0bf3b3e8c6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e8750932a635640f5841eb292bf4ef0" id="r_a1e8750932a635640f5841eb292bf4ef0"><td class="memTemplParams" colspan="2"><a id="a1e8750932a635640f5841eb292bf4ef0" name="a1e8750932a635640f5841eb292bf4ef0"></a>
-template&lt;concepts::Rdd R, typename T  = utils::RddElementType&lt;R&gt;&gt; <br />
-requires std::invocable&lt;Func, T&gt;&amp;&amp; std::is_same_v&lt;std::invoke_result_t&lt;Func, T&gt;, bool&gt;</td></tr>
-<tr class="memitem:a1e8750932a635640f5841eb292bf4ef0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (const R &amp;r) const</td></tr>
+template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">T</a>  = utils::RddElementType&lt;R&gt;&gt; <br />
+requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;&amp;&amp; std::is_same_v&lt;std::invoke_result_t&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;, <a class="el" href="classcpark_1_1_base_split.html">bool</a>&gt;</td></tr>
+<tr class="memitem:a1e8750932a635640f5841eb292bf4ef0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">r</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
 <tr class="separator:a1e8750932a635640f5841eb292bf4ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Func&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a>&gt;<br />
 class cpark::Filter&lt; Func &gt;</div><p>Helper class to create Transformed Rdd with pipeline operator <code>|</code>. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a></li>

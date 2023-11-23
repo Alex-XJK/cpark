@@ -1,22 +1,5 @@
 var searchData=
 [
-  ['getandincrddid_0',['getAndIncRddId',['../classcpark_1_1_execution_context.html#a49ef5dee1c558f5f62da38c9751ed01e',1,'cpark::ExecutionContext']]],
-  ['getandincsplitid_1',['getAndIncSplitId',['../classcpark_1_1_execution_context.html#a0bd7f646e611d248444c345010550827',1,'cpark::ExecutionContext']]],
-  ['getbuilddir_2',['GetBuildDir',['../namespacegtest__test__utils.html#af46f8ca4df90d588a4a09a7cf7d4b127',1,'gtest_test_utils']]],
-  ['getconfig_3',['getConfig',['../classcpark_1_1_execution_context.html#af663b8d958bec127408608219f28a95f',1,'cpark::ExecutionContext']]],
-  ['getdebugname_4',['getDebugName',['../classcpark_1_1_config.html#a8c266dcc3faf18a30514b28c123af334',1,'cpark::Config']]],
-  ['getexitstatus_5',['getexitstatus',['../namespacegmock__test__utils.html#a50a969d22467b37ee1a10bc2a9033b59',1,'gmock_test_utils.GetExitStatus()'],['../namespacegtest__test__utils.html#a9b3c1dd4c39d3b98ea2436ed0f76539b',1,'gtest_test_utils.GetExitStatus(exit_code)']]],
-  ['getflag_6',['GetFlag',['../namespacegtest__test__utils.html#a1143f97a7906db7e90c5df6d80bae323',1,'gtest_test_utils']]],
-  ['getleakytests_7',['GetLeakyTests',['../namespacegmock__output__test.html#a42d198b5237caec55b5ba56db8e34b6c',1,'gmock_output_test']]],
-  ['getloggerornullstream_8',['getLoggerOrNullStream',['../classcpark_1_1_config.html#a8d715332c1dbd109950e0e06ceeb5fd0',1,'cpark::Config']]],
-  ['getloggerptr_9',['getLoggerPtr',['../classcpark_1_1_config.html#a039cc9dbad67987f768a1f0323a2f481',1,'cpark::Config']]],
-  ['getnormalizedcommandoutputandleakytests_10',['GetNormalizedCommandOutputAndLeakyTests',['../namespacegmock__output__test.html#afca364bf884ed29d7031f40f93e35acb',1,'gmock_output_test']]],
-  ['getnormalizedoutputandleakytests_11',['GetNormalizedOutputAndLeakyTests',['../namespacegmock__output__test.html#af02113abf5e9fce206b8f0660f66de02',1,'gmock_output_test']]],
-  ['getparallelpolicy_12',['getParallelPolicy',['../classcpark_1_1_config.html#ae02e53d89f1f20e046b4c82fe06f1484',1,'cpark::Config']]],
-  ['getparalleltasknum_13',['getParallelTaskNum',['../classcpark_1_1_config.html#a9f67f3db1f7575fe56d767a148f23bd1',1,'cpark::Config']]],
-  ['getshellcommandoutput_14',['GetShellCommandOutput',['../namespacegmock__output__test.html#ab4760875789fe66c8c47b50b6e7b61a1',1,'gmock_output_test']]],
-  ['getsourcedir_15',['getsourcedir',['../namespacegmock__test__utils.html#a02a2cf54e2808e29aaba6712a368432f',1,'gmock_test_utils.GetSourceDir()'],['../namespacegtest__test__utils.html#a0133fb47826733e3f2245c588d3f70a7',1,'gtest_test_utils.GetSourceDir()']]],
-  ['getsplitcache_16',['getSplitCache',['../classcpark_1_1_execution_context.html#a0f81d58784fbaeced0c79a50e6a5ff9b',1,'cpark::ExecutionContext']]],
-  ['gettestexecutablepath_17',['gettestexecutablepath',['../namespacegtest__test__utils.html#ae7a8ef352b6b64ef8ec893f79874a1cd',1,'gtest_test_utils.GetTestExecutablePath()'],['../namespacegmock__test__utils.html#a7cef788e502f48e04bccf07abfa3d246',1,'gmock_test_utils.GetTestExecutablePath()']]],
-  ['groupbykeyrdd_18',['GroupByKeyRdd',['../classcpark_1_1_group_by_key_rdd.html#a6cdefc39725d3711b4f73833cf3c0f9a',1,'cpark::GroupByKeyRdd']]]
+  ['id_0',['id',['../classcpark_1_1_base_split.html#abdd0d616a28057809cf9d62ea89494cf',1,'cpark::BaseSplit::id()'],['../classcpark_1_1_base_rdd.html#a2ccccb3b4086026f9c4bb1d15619369c',1,'cpark::BaseRdd::id()']]],
+  ['iterator_1',['iterator',['../classcpark_1_1_cached_split_1_1_iterator.html#a3ae54af6b9b95877476939a17ed0f5c9',1,'cpark::CachedSplit::Iterator::Iterator(const CacheIterator &amp;iterator)'],['../classcpark_1_1_cached_split_1_1_iterator.html#a846300a518ad069d8eebe268a0cc8f09',1,'cpark::CachedSplit::Iterator::Iterator(const OriginalIterator &amp;iterator)'],['../classcpark_1_1_filter_view_1_1_iterator.html#a4c7387e68834f3468b748c604bb9e7d0',1,'cpark::FilterView::Iterator::Iterator()'],['../classcpark_1_1_generator_rdd_1_1_iterator.html#a58c264bec796d449948d4eeaafa38ce5',1,'cpark::GeneratorRdd::Iterator::Iterator()'],['../classcpark_1_1_group_by_key_rdd_1_1_iterator.html#a3c4634e25ac9c6d45b6f20628e3186ed',1,'cpark::GroupByKeyRdd::Iterator::Iterator(std::ranges::subrange&lt; std::ranges::iterator_t&lt; std::ranges::range_value_t&lt; R &gt; &gt; &gt; original_data, bool is_end)'],['../classcpark_1_1_group_by_key_rdd_1_1_iterator.html#a77cd74644caf6a85ea9066081be55b43',1,'cpark::GroupByKeyRdd::Iterator::Iterator(bool is_end)'],['../class_merged_same_view_1_1_iterator.html#acd5dcc3ff37121c7372aabe59d20e5a7',1,'MergedSameView::Iterator::Iterator()'],['../class_merged_two_diff_view_1_1_iterator.html#a0666461ab5d02e8531f184b232747fed',1,'MergedTwoDiffView::Iterator::Iterator()']]]
 ];

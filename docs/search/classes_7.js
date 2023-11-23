@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hasdebugstringandshortdebugstring_0',['HasDebugStringAndShortDebugString',['../classtesting_1_1internal_1_1_has_debug_string_and_short_debug_string.html',1,'testing::internal']]],
-  ['holder_1',['Holder',['../structtesting_1_1internal_1_1_impl_base_1_1_holder.html',1,'testing::internal::ImplBase']]]
+  ['nullostream_0',['NullOStream',['../classcpark_1_1utils_1_1_null_o_stream.html',1,'cpark::utils']]]
 ];
