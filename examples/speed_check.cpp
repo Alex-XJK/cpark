@@ -2,10 +2,11 @@
 #include <ranges>
 #include <chrono>
 
-#include "plain_rdd.h"
+#include "generator_rdd.h"
 #include "transformed_rdd.h"
 #include "filter_rdd.h"
 #include "merge_rdd.h"
+#include "reduce.h"
 
 inline std::chrono::time_point<std::chrono::high_resolution_clock> getCurrentTime() {
   return std::chrono::high_resolution_clock::now();
@@ -18,7 +19,8 @@ inline long getTimeDifference(
 }
 
 int main() {
-  int N = 10000;
+  int N = 30000;
+  auto reduce_func = [](auto x, auto y) { return x + y; };
 
   /*
    * Using the ranges and views in standard C++,
@@ -36,12 +38,11 @@ int main() {
       std::views::filter([](auto x) { return x % 5 == 0; }) |
       std::views::transform([](auto x) { return x + 2; }) |
       std::views::filter([](auto x) { return x % 3 == 0; });
-
-  for (auto x: cpp_std_view)
-    std::cout << x << " ";
-  std::cout << std::endl;
+  auto cpp_result = std::reduce(cpp_std_view.begin(), cpp_std_view.end(), 0, reduce_func);
 
   auto std_end_ts = getCurrentTime();
+
+  std::cout << cpp_result << std::endl;
 
   /*
    * Using our CPARK method to repeat everything again.
@@ -54,21 +55,17 @@ int main() {
 
   auto cpark_begin_ts = getCurrentTime();
 
-  auto base_view =
-      std::views::iota(1, N + 1);
-  auto cpark_view =
-      cpark::PlainRdd(base_view, &default_context) |
+  auto cpark_result =
+      cpark::GeneratorRdd(1, N + 1, [&](int i) -> int { return i; }, &default_context) |
       cpark::Transform([](auto x) { return x * x; }) |
       cpark::Filter([](auto x) { return x % 5 == 0; }) |
       cpark::Transform([](auto x) { return x + 2; }) |
-      cpark::Filter([](auto x) { return x % 3 == 0; });
-
-  for (const auto& s: cpark_view)
-    for (auto x: s)
-      std::cout << x << " ";
-  std::cout << std::endl;
+      cpark::Filter([](auto x) { return x % 3 == 0; }) |
+      cpark::Reduce(reduce_func);
 
   auto cpark_end_ts = getCurrentTime();
+
+  std::cout << cpark_result << std::endl;
 
   /*
    * Compare running time.
