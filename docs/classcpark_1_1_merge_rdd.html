@@ -108,8 +108,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aecb13959bad44f8f816b22b6a49129d3" id="r_aecb13959bad44f8f816b22b6a49129d3"><td class="memItemLeft" align="right" valign="top"><a id="aecb13959bad44f8f816b22b6a49129d3" name="aecb13959bad44f8f816b22b6a49129d3"></a>
-<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MergeRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>)</td></tr>
+<tr class="memitem:aecb13959bad44f8f816b22b6a49129d3" id="r_aecb13959bad44f8f816b22b6a49129d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_merge_rdd.html#aecb13959bad44f8f816b22b6a49129d3">MergeRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>)</td></tr>
 <tr class="separator:aecb13959bad44f8f816b22b6a49129d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0128dcf1832b647b7f8c67e2948f66c1" id="r_a0128dcf1832b647b7f8c67e2948f66c1"><td class="memItemLeft" align="right" valign="top"><a id="a0128dcf1832b647b7f8c67e2948f66c1" name="a0128dcf1832b647b7f8c67e2948f66c1"></a>
 <a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>MergeRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_merge_rdd.html">MergeRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
@@ -154,13 +153,48 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;concepts::Rdd R&gt;<br />
-class cpark::MergeRdd&lt; R &gt;</div><p>An Rdd holding the data merged from an old rdd by some function. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+class cpark::MergeRdd&lt; R &gt;</div><p>An Rdd holding the data merged from an old rdd by some function. This Rdd will result in only one large split contains all the element in previous Rdd's splits. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">R</td><td>Type of the old Rdd. </td></tr>
   </table>
   </dd>
 </dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aecb13959bad44f8f816b22b6a49129d3" name="aecb13959bad44f8f816b22b6a49129d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb13959bad44f8f816b22b6a49129d3">&#9670;&#160;</a></span>MergeRdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;concepts::Rdd R&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a> <a class="el" href="classcpark_1_1_merge_rdd.html">cpark::MergeRdd</a>&lt; R &gt;::MergeRdd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;&#160;</td>
+          <td class="paramname"><em>prev</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Main constructor of <a class="el" href="classcpark_1_1_merge_rdd.html">MergeRdd</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prev</td><td>Reference to previous Rdd of type R </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="merge__rdd_8h_source.html">merge_rdd.h</a></li>
 </ul>
 </div><!-- contents -->

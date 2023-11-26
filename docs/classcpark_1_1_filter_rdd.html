@@ -102,8 +102,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acbe79f6f22f9806a94117c26c18614db" id="r_acbe79f6f22f9806a94117c26c18614db"><td class="memItemLeft" align="right" valign="top"><a id="acbe79f6f22f9806a94117c26c18614db" name="acbe79f6f22f9806a94117c26c18614db"></a>
-<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FilterRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>, <a class="el" href="classcpark_1_1_base_split.html">Func</a> <a class="el" href="classcpark_1_1_base_split.html">func</a>)</td></tr>
+<tr class="memitem:acbe79f6f22f9806a94117c26c18614db" id="r_acbe79f6f22f9806a94117c26c18614db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_filter_rdd.html#acbe79f6f22f9806a94117c26c18614db">FilterRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>, <a class="el" href="classcpark_1_1_base_split.html">Func</a> <a class="el" href="classcpark_1_1_base_split.html">func</a>)</td></tr>
 <tr class="separator:acbe79f6f22f9806a94117c26c18614db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac79eedd270b66fc78c1372b19e6debbe" id="r_ac79eedd270b66fc78c1372b19e6debbe"><td class="memItemLeft" align="right" valign="top"><a id="ac79eedd270b66fc78c1372b19e6debbe" name="ac79eedd270b66fc78c1372b19e6debbe"></a>
 <a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FilterRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
@@ -152,11 +151,57 @@ requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">F
 class cpark::FilterRdd&lt; R, Func &gt;</div><p>An Rdd holding the data filtered from an old rdd by some function. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">R</td><td>Type of the old Rdd. </td></tr>
-    <tr><td class="paramname">Func</td><td>Type of the transformation function. The type of the old Rdd <code>R</code>'s elements should be able to invoke function <code>Func</code>, and the type shouldn't change after filter. </td></tr>
+    <tr><td class="paramname">Func</td><td>Type of the filter function. The type of the old Rdd <code>R</code>'s elements should be able to invoke function <code>Func</code>, the invoke result must be in boolean, and the element type shouldn't change after filter. </td></tr>
   </table>
   </dd>
 </dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="acbe79f6f22f9806a94117c26c18614db" name="acbe79f6f22f9806a94117c26c18614db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe79f6f22f9806a94117c26c18614db">&#9670;&#160;</a></span>FilterRdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a> <a class="el" href="classcpark_1_1_filter_rdd.html">cpark::FilterRdd</a>&lt; R, <a class="el" href="classcpark_1_1_base_split.html">Func</a> &gt;::FilterRdd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;&#160;</td>
+          <td class="paramname"><em>prev</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">Func</a>&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Main constructor of <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prev</td><td>Reference to previous Rdd of type R </td></tr>
+    <tr><td class="paramname">func</td><td>The filter function which takes an element from prev and returns a boolean value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a></li>
 </ul>
 </div><!-- contents -->

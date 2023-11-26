@@ -102,8 +102,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac0c2eaa108a56d1d3e5137fed3a26375" id="r_ac0c2eaa108a56d1d3e5137fed3a26375"><td class="memItemLeft" align="right" valign="top"><a id="ac0c2eaa108a56d1d3e5137fed3a26375" name="ac0c2eaa108a56d1d3e5137fed3a26375"></a>
-<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UnionRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev1</a>, <a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">T</a> &amp;<a class="el" href="classcpark_1_1_base_split.html">prev2</a>)</td></tr>
+<tr class="memitem:ac0c2eaa108a56d1d3e5137fed3a26375" id="r_ac0c2eaa108a56d1d3e5137fed3a26375"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_union_rdd.html#ac0c2eaa108a56d1d3e5137fed3a26375">UnionRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev1</a>, <a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">T</a> &amp;<a class="el" href="classcpark_1_1_base_split.html">prev2</a>)</td></tr>
 <tr class="separator:ac0c2eaa108a56d1d3e5137fed3a26375"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4db386c5cf439717f3c594adb51d396b" id="r_a4db386c5cf439717f3c594adb51d396b"><td class="memItemLeft" align="right" valign="top"><a id="a4db386c5cf439717f3c594adb51d396b" name="a4db386c5cf439717f3c594adb51d396b"></a>
 <a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UnionRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_union_rdd.html">UnionRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
@@ -149,13 +148,60 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;concepts::Rdd R, concepts::Rdd T&gt;<br />
 requires std::is_convertible_v&lt;std::ranges::range_value_t&lt;R&gt;, std::ranges::range_value_t&lt;<a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;&gt;<br />
-class cpark::UnionRdd&lt; R, T &gt;</div><p>An Rdd holding the union rdd. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+class cpark::UnionRdd&lt; R, T &gt;</div><p>An Rdd holding the data union from an old rdd. This Rdd will hold splits of the sum of its predecessors. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">R</td><td>Type of the old Rdd. </td></tr>
+    <tr><td class="paramname">T</td><td>Type of another old Rdd. The elements in the two types of Rdd should be convertible. </td></tr>
   </table>
   </dd>
 </dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac0c2eaa108a56d1d3e5137fed3a26375" name="ac0c2eaa108a56d1d3e5137fed3a26375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0c2eaa108a56d1d3e5137fed3a26375">&#9670;&#160;</a></span>UnionRdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;concepts::Rdd R, concepts::Rdd T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a> <a class="el" href="classcpark_1_1_union_rdd.html">cpark::UnionRdd</a>&lt; R, <a class="el" href="classcpark_1_1_base_split.html">T</a> &gt;::UnionRdd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;&#160;</td>
+          <td class="paramname"><em>prev1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">T</a> &amp;&#160;</td>
+          <td class="paramname"><em>prev2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Main constructor of <a class="el" href="classcpark_1_1_union_rdd.html">UnionRdd</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prev1</td><td>Reference to previous Rdd of type R </td></tr>
+    <tr><td class="paramname">prev2</td><td>Reference to previous Rdd of type T </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/<a class="el" href="union__rdd_8h_source.html">union_rdd.h</a></li>
 </ul>
 </div><!-- contents -->
