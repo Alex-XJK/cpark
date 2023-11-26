@@ -10,6 +10,7 @@ namespace cpark {
 
 /**
  * An Rdd holding the data merged from an old rdd by some function.
+ * This Rdd will result in only one large split contains all the element in previous Rdd's splits.
  * @tparam R Type of the old Rdd.
  */
 template <concepts::Rdd R>
@@ -146,6 +147,10 @@ public:
     size_t row_ = 0;
   };
 
+  /**
+   * Main constructor of MergeRdd.
+   * @param prev Reference to previous Rdd of type R
+   */
   constexpr MergeRdd(const R& prev) : Base{prev, false} {
     static_assert(concepts::Rdd<MergeRdd<R>>,
                   "Instance of MergeRdd does not satisfy Rdd concept.");
@@ -186,7 +191,7 @@ private:
 };
 
 /**
- * Helper class to create Union Rdd with pipeline operator `|`.
+ * Helper class to create Merge Rdd with pipeline operator `|`.
  */
 class Merge {
 public:
@@ -199,7 +204,7 @@ public:
 };
 
 /**
- * Helper function to create Union Rdd with pipeline operator `|`.
+ * Helper function to create Merge Rdd with pipeline operator `|`.
  */
 template <concepts::Rdd R>
 auto operator|(const R& r, const Merge& merge) {

@@ -9,8 +9,11 @@
 namespace cpark {
 
 /**
-* An Rdd holding the union rdd.
+* An Rdd holding the data union from an old rdd.
+* This Rdd will hold splits of the sum of its predecessors.
 * @tparam R Type of the old Rdd.
+* @tparam T Type of another old Rdd.
+* The elements in the two types of Rdd should be convertible.
 */
 template <concepts::Rdd R, concepts::Rdd T>
 requires std::is_convertible_v<std::ranges::range_value_t<R>, std::ranges::range_value_t<T>>
@@ -19,6 +22,11 @@ public:
   using Base = BaseRdd<UnionRdd<R, T>>;
   friend Base;
 
+  /**
+   * Main constructor of UnionRdd.
+   * @param prev1 Reference to previous Rdd of type R
+   * @param prev2 Reference to previous Rdd of type T
+   */
   constexpr UnionRdd(const R& prev1, const T& prev2) : Base{prev1, false} {
     static_assert(concepts::Rdd<UnionRdd<R, T>>,
                   "Instance of UnionRdd does not satisfy Rdd concept.");
