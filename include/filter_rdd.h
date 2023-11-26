@@ -101,9 +101,9 @@ private:
 /**
  * An Rdd holding the data filtered from an old rdd by some function.
  * @tparam R Type of the old Rdd.
- * @tparam Func Type of the transformation function.
+ * @tparam Func Type of the filter function.
  * The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
- * and the type shouldn't change after filter.
+ * the invoke result must be in boolean, and the element type shouldn't change after filter.
  */
 template <concepts::Rdd R, typename Func>
 requires std::invocable<Func, utils::RddElementType<R>>&& std::is_convertible_v<
@@ -114,6 +114,11 @@ public:
   friend Base;
 
 public:
+  /**
+   * Main constructor of FilterRdd.
+   * @param prev Reference to previous Rdd of type R
+   * @param func The filter function which takes an element from prev and returns a boolean value
+   */
   constexpr FilterRdd(const R& prev, Func func) : Base{prev, false} /*, func_{std::move(func)}*/ {
     static_assert(concepts::Rdd<FilterRdd<R, Func>>,
                   "Instance of FilterRdd does not satisfy Rdd concept.");
@@ -141,7 +146,7 @@ private:
 };
 
 /**
- * Helper class to create Transformed Rdd with pipeline operator `|`.
+ * Helper class to create Filter Rdd with pipeline operator `|`.
  */
 template <typename Func>
 class Filter {

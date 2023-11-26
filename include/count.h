@@ -11,7 +11,7 @@
 namespace cpark {
 
 /**
- * A class who calculate the total count of Rdd.
+ * A class who counts the total number of elements in parallel.
  */
 class Count {
 public:
