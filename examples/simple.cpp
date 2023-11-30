@@ -75,9 +75,9 @@ int main() {
 
    // Creates a zipped rdd.
   auto zipped_rdd = ZippedRdd(generator_rdd, transformed_rdd);
-  std::cout << "The elements in the fourth split of zipped rdd are: ";
-  for (const auto& x : zipped_rdd[3]) {
-    std::cout << x.first << ", ";
+  std::cout << "The elements in the first split of zipped rdd are: ";
+  for (const auto& x : zipped_rdd[0]) {
+    std::cout << "(" << x.first << ", " << x.second << ")" << ", ";
   }
   std::cout << std::endl;
 

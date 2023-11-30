@@ -25,7 +25,8 @@ public:
     int cnt = 0;
     for (const concepts::Split auto& prev_split : prev1) {
       int i = 0;
-      std::function<std::pair<V1, V2>(const V1&)> func = [cnt,&prev2,&i](const V1& x)mutable{return std::make_pair(x, prev2[cnt][i++]);};
+      auto targeted_split = prev2[cnt].begin();
+      std::function<std::pair<V1, V2>(const V1&)> func = [cnt,targeted_split](const V1& x)mutable{return std::make_pair(x, *(targeted_split++));};
       auto zippedView = prev_split | std::views::transform(func);
       splits_.emplace_back(zippedView, prev_split);
       splits_.back().addDependency(prev_split);
