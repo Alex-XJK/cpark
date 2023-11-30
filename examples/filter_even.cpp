@@ -29,7 +29,7 @@ int main() {
     return 0 == i % 2;
   };
 
-  // Test for FilterRdd(const R& prev, Func func) constructor
+  // Test for FilterRdd(const R1& prev, Func func) constructor
   std::cout << "Filter rdd (basic): " << std::endl;
   auto filter_rdd_1 = FilterRdd(generator_rdd, even);
   printRdd(filter_rdd_1);

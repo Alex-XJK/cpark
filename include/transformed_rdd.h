@@ -13,8 +13,8 @@ namespace cpark {
 * @tparam R Type of the old Rdd.
 * @tparam Func Type of the transformation function.
 * @tparam T Type of the data hold in this Rdd.
-* The type of the old Rdd `R`'s elements should be able to invoke function `Func`,
-* and the result type should be able to convert to type `T`.
+* The type of the old Rdd `R1`'s elements should be able to invoke function `Func`,
+* and the result type should be able to convert to type `R2`.
 */
 template <concepts::Rdd R, typename Func,
           typename T = std::invoke_result_t<Func, utils::RddElementType<R>>>

@@ -2,6 +2,8 @@
 #include <ranges>
 #include <vector>
 
+namespace cpark {
+
 namespace concepts {
 template <typename R>
 concept RangeOfView =
@@ -85,9 +87,7 @@ public:
 
     bool operator!=(const Iterator& other) const { return !(*this == other); }
 
-    Iterator& operator--()
-      requires std::ranges::bidirectional_range<ViewType>
-    {}
+    Iterator& operator--() requires std::ranges::bidirectional_range<ViewType> {}
 
   private:
     bool isEnd() const { return !(index_of_view_ < std::ranges::size(*views_)); }
@@ -131,8 +131,9 @@ private:
  * Their element types must be the same.
  */
 template <std::ranges::view V1, std::ranges::view V2>
-  requires std::same_as<std::ranges::range_value_t<V1>, std::ranges::range_value_t<V2>>
-class MergedTwoDiffView : public std::ranges::view_interface<MergedTwoDiffView<V1, V2>> {
+requires std::same_as<std::ranges::range_value_t<V1>,
+                      std::ranges::range_value_t<V2>> class MergedTwoDiffView
+    : public std::ranges::view_interface<MergedTwoDiffView<V1, V2>> {
 public:
   /**
    * A lazily evaluated iterator that read elements combined from two different views.
@@ -174,6 +175,11 @@ public:
         } else {
           get2() = iterator;
         }
+      }
+
+      if (hold1() && get1() == std::ranges::end(*view1_)) {
+        get2() = std::ranges::begin(*view2_);
+        hold1_ = false;
       }
     }
 
@@ -230,6 +236,8 @@ public:
    */
   MergedTwoDiffView(V1 view1, V2 view2) : view1_{std::move(view1)}, view2_{std::move(view2)} {}
 
+  MergedTwoDiffView() = default;
+
   /** The iterator to the first element of the combined views. */
   constexpr auto begin() const {
     return Iterator{std::ranges::begin(view1_), const_cast<V1*>(&view1_), const_cast<V2*>(&view2_),
@@ -257,3 +265,5 @@ template <std::ranges::view FirstView, std::ranges::view... OtherViews>
 auto MergedDiffView(const FirstView& first_view, const OtherViews&... other_views) {
   return MergedTwoDiffView{first_view, MergedDiffView(other_views...)};
 }
+
+} // namespace cpark

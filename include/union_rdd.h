@@ -5,39 +5,44 @@
 
 #include "base_rdd.h"
 #include "utils.h"
+#include "cassert"
+#include "merged_view.h"
 
 namespace cpark {
 
 /**
 * An Rdd holding the data union from an old rdd.
 * This Rdd will hold splits of the sum of its predecessors.
-* @tparam R Type of the old Rdd.
-* @tparam T Type of another old Rdd.
+* @tparam R1 Type of the old Rdd.
+* @tparam R2 Type of another old Rdd.
 * The elements in the two types of Rdd should be convertible.
 */
-template <concepts::Rdd R, concepts::Rdd T>
-requires std::is_convertible_v<std::ranges::range_value_t<R>, std::ranges::range_value_t<T>>
-class UnionRdd : public BaseRdd<UnionRdd<R, T>> {
+template <concepts::Rdd R1, concepts::Rdd R2>
+requires std::is_same_v<utils::RddElementType<R1>, utils::RddElementType<R2>>
+class UnionRdd : public BaseRdd<UnionRdd<R1, R2>> {
 public:
-  using Base = BaseRdd<UnionRdd<R, T>>;
+  using Base = BaseRdd<UnionRdd<R1, R2>>;
   friend Base;
 
   /**
    * Main constructor of UnionRdd.
-   * @param prev1 Reference to previous Rdd of type R
-   * @param prev2 Reference to previous Rdd of type T
+   * @param prev1 Reference to previous Rdd of type R1
+   * @param prev2 Reference to previous Rdd of type R2
    */
-  constexpr UnionRdd(const R& prev1, const T& prev2) : Base{prev1, false} {
-    static_assert(concepts::Rdd<UnionRdd<R, T>>,
+  constexpr UnionRdd(const R1& prev1, const R2& prev2) : Base{prev1, false} {
+    static_assert(concepts::Rdd<UnionRdd<R1, R2>>,
                   "Instance of UnionRdd does not satisfy Rdd concept.");
+    auto empty_split_1 = std::ranges::subrange{prev1.front().end(), prev1.front().end()};
+    auto empty_split_2 = std::ranges::subrange{prev2.front().end(), prev2.front().end()};
+
     // Push the splits from RDD1.
     for (const concepts::Split auto& prev_split : prev1) {
-      splits_.emplace_back(prev_split, prev_split);
+      splits_.emplace_back(MergedTwoDiffView(std::ranges::subrange(prev_split), empty_split_2), prev_split);
       splits_.back().addDependency(prev_split);
     }
     // Push the splits from RDD2.
     for (const concepts::Split auto& prev_split : prev2) {
-      splits_.emplace_back(prev_split, prev_split);
+      splits_.emplace_back(MergedTwoDiffView(empty_split_1, std::ranges::subrange(prev_split)), prev_split);
       splits_.back().addDependency(prev_split);
     }
   }
@@ -50,8 +55,12 @@ private:
   constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
-  using UnionViewtype = std::ranges::range_value_t<R>;
-  std::vector<ViewSplit<UnionViewtype>> splits_{};
+  using SplitType1 = std::ranges::range_value_t<R1>;
+  using SplitType2 = std::ranges::range_value_t<R2>;
+  using SubrangeSplitType1 = std::ranges::subrange<std::ranges::iterator_t<SplitType1>>;
+  using SubrangeSplitType2 = std::ranges::subrange<std::ranges::iterator_t<SplitType2>>;
+  using UnionViewType = MergedTwoDiffView<SubrangeSplitType1, SubrangeSplitType2>;
+  std::vector<ViewSplit<UnionViewType>> splits_;
 };
 
 }  // namespace cpark
