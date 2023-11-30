@@ -1,3 +1,6 @@
+#ifndef CPARK_PARTITION_BY_RDD_H
+#define CPARK_PARTITION_BY_RDD_H
+
 #include <concepts>
 #include <ranges>
 
@@ -128,3 +131,5 @@ auto operator|(const R& r, const P& p) {
 }
 
 }  // namespace cpark
+
+#endif  // CPARK_PARTITION_BY_RDD_H

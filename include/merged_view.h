@@ -1,3 +1,6 @@
+#ifndef CPARK_MERGED_VIEW_H
+#define CPARK_MERGED_VIEW_H
+
 #include <concepts>
 #include <ranges>
 #include <vector>
@@ -267,3 +270,5 @@ auto MergedDiffView(const FirstView& first_view, const OtherViews&... other_view
 }
 
 } // namespace cpark
+
+#endif // CPARK_MERGED_VIEW_H
