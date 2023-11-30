@@ -34,6 +34,10 @@ int main() {
   auto filter_rdd_1 = FilterRdd(generator_rdd, even);
   printRdd(filter_rdd_1);
 
+  std::cout<< "Sample rdd: " <<std::endl;
+  auto sample_rdd = FilterRdd(generator_rdd, sample);
+  printRdd(sample_rdd);
+  
   // Test for pipeline and Filter(Func func) operators
   std::cout << "Filter rdd (operators): " << std::endl;
   auto filter_rdd_2 = generator_rdd | Filter(even);

@@ -2,7 +2,7 @@
 #define CPARK_FILTER_RDD_H
 
 #include <vector>
-
+#include <random>
 #include "base_rdd.h"
 #include "utils.h"
 
