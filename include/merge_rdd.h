@@ -8,6 +8,14 @@
 
 namespace cpark {
 
+/** @defgroup t_Merge The Merge Transformation
+ *  This forms the Merge Transformation of our cpark library
+ *  @image html merge.drawio.png "MergeRdd diagram" width=50%
+ *  @see MergeRdd
+ *  @see Merge
+ *  @{
+ */
+
 /**
  * An Rdd holding the data merged from an old rdd by some function.
  * This Rdd will result in only one large split contains all the element in previous Rdd's splits.
@@ -191,7 +199,7 @@ private:
 };
 
 /**
- * Helper class to create Merge Rdd with pipeline operator `|`.
+ * Helper class to create MergeRdd with pipeline operator `|`.
  */
 class Merge {
 public:
@@ -204,12 +212,20 @@ public:
 };
 
 /**
- * Helper function to create Merge Rdd with pipeline operator `|`.
+ * Helper function to create MergeRdd with pipeline operator `|`.
  */
 template <concepts::Rdd R>
 auto operator|(const R& r, const Merge& merge) {
   return merge(r);
 }
+
+/**
+ * @example merge_splits.cpp
+ * This is an example use case of merge the splits of different Rdds into one,
+ * and union different Rdds together.
+ */
+
+/** @} */ // end of t_Merge
 
 }  // namespace cpark
 

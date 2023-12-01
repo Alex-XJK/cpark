@@ -1,17 +1,46 @@
-# cpark
-A light-weighted, distributed computing framework for C++ that offers a fast and general-purpose large data processing solution.
+# Welcome to cpark: Supercharge Your Parallel Computing in C++
 
-## Code Style Agreements
-### Naming Style
-- `non_member_local_variable`: snake case without tailing underscore.
-- `member_variable_`: snake case with a tailing underscore.
-- `g_static_non_member_variable`: snake case with a heading `g_`.
-- `g_static_member_variable_`: snake case with a heading `g_` and a tailing underscore.
-- `memberFunction()`: lower camel case.
-- `nonMemberFunction()`: lower camel case.
-- `ClassName`: upper camel case.
-- `TemplateName<>`: upper camel case.
-- `concepts::ConceptName<>`: upper camel case. All concepts defined by this project should be put in a namespace `concepts`.
-- `MACRO_NAME()`: snake case with all characters upper.
-### Formatting
-Format the code with the `.clang-format` file. Currently, it uses google style.
+## About cpark
+
+**cpark** 
+is a high-performance, parallel computing library for C++ developed by passionate students at Columbia University. 
+Inspired by Apache Spark, our goal is to empower developers with a lightning-fast, easy-to-use framework for fast and general-purpose large data computing in C++.
+
+## Authors
+**Mr. Shichen Xu** ([link](https://www.linkedin.com/in/shichen-xu-9b50a8179/))  
+**Mr. Jiakai Xu** ([link](https://www.alexxu.tech/))  
+**Mr. Xintong Zhan** ([link](https://www.linkedin.com/in/xintong-zhan-060035250/))
+
+## Features
+
+- **Blazing Fast:** Benchmark-proven to be 50% faster than the standard C++ ranges library.
+- **Local Multi-threading:** Harness the power of parallel computing on your local machine with multi-threading support.
+- **Ease of Use:** Simple and intuitive API, making parallel computing accessible to all developers.
+- **Scalability:** Designed to scale effortlessly on a single machine.
+
+## Getting Started
+
+1. **Check our Documentation:**  
+  [www.alexxu.tech/cpark](https://www.alexxu.tech/cpark/)
+
+2. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Alex-XJK/cpark.git
+   ```
+
+3. **Example Usage:**
+   ```cpp
+   // TODO ?????
+   ```
+
+
+## Community and Support
+- **Issue Tracker:** Found a bug or have a feature request? [Create an issue](https://github.com/Alex-XJK/cpark/issues) and let us know.
+- **Contact:** You can also contact us by e-mail: [public@alexxu.tech](mailto:public@alexxu.tech) ?????
+
+## Acknowledgments
+
+We would like to express our gratitude to our project supervisor and designer of C++ 
+[Prof. Bjarne Stroustrup](https://www.stroustrup.com/)
+and everyone who has contributed to making **cpark** a reality.
+
