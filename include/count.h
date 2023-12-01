@@ -10,6 +10,12 @@
 
 namespace cpark {
 
+/** @defgroup a_Count The Count Action
+ *  This works as the Count Action of our cpark library
+ *  @see Count
+ *  @{
+ */
+
 /**
  * A class who counts the total number of elements in parallel.
  */
@@ -43,6 +49,8 @@ template <concepts::Rdd R>
 auto operator|(const R& r, const Count& count) {
   return count(r);
 }
+
+/** @} */ // end of a_Count
 
 }  // namespace cpark
 

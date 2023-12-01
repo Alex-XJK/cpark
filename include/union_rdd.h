@@ -8,6 +8,13 @@
 
 namespace cpark {
 
+/** @defgroup t_Union The Union Transformation
+ *  This forms the Union Transformation of our cpark library
+ *  @image html union.drawio.png "UnionRdd diagram" width=50%
+ *  @see UnionRdd
+ *  @{
+ */
+
 /**
 * An Rdd holding the data union from an old rdd.
 * This Rdd will hold splits of the sum of its predecessors.
@@ -53,6 +60,8 @@ private:
   using UnionViewtype = std::ranges::range_value_t<R>;
   std::vector<ViewSplit<UnionViewtype>> splits_{};
 };
+
+/** @} */ // end of t_Union
 
 }  // namespace cpark
 
