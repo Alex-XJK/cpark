@@ -10,5 +10,6 @@ var searchData=
   ['getparallelpolicy_7',['getParallelPolicy',['../classcpark_1_1_config.html#ae02e53d89f1f20e046b4c82fe06f1484',1,'cpark::Config']]],
   ['getparalleltasknum_8',['getParallelTaskNum',['../classcpark_1_1_config.html#a9f67f3db1f7575fe56d767a148f23bd1',1,'cpark::Config']]],
   ['getsplitcache_9',['getSplitCache',['../classcpark_1_1_execution_context.html#a0f81d58784fbaeced0c79a50e6a5ff9b',1,'cpark::ExecutionContext']]],
-  ['groupbykeyrdd_10',['groupbykeyrdd',['../classcpark_1_1_group_by_key_rdd.html',1,'cpark::GroupByKeyRdd&lt; R &gt;'],['../classcpark_1_1_group_by_key_rdd.html#a6cdefc39725d3711b4f73833cf3c0f9a',1,'cpark::GroupByKeyRdd::GroupByKeyRdd()']]]
+  ['getting_20started_10',['Getting Started',['../index.html#autotoc_md4',1,'']]],
+  ['groupbykeyrdd_11',['groupbykeyrdd',['../classcpark_1_1_group_by_key_rdd.html#a6cdefc39725d3711b4f73833cf3c0f9a',1,'cpark::GroupByKeyRdd::GroupByKeyRdd()'],['../classcpark_1_1_group_by_key_rdd.html',1,'cpark::GroupByKeyRdd&lt; R &gt;']]]
 ];

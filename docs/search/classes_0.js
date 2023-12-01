@@ -7,8 +7,7 @@ var searchData=
   ['baserdd_3c_20mergerdd_3c_20r_20_3e_20_3e_4',['BaseRdd&lt; MergeRdd&lt; R &gt; &gt;',['../classcpark_1_1_base_rdd.html',1,'cpark']]],
   ['baserdd_3c_20plainrdd_3c_20r_20_3e_20_3e_5',['BaseRdd&lt; PlainRdd&lt; R &gt; &gt;',['../classcpark_1_1_base_rdd.html',1,'cpark']]],
   ['baserdd_3c_20unionrdd_3c_20r_2c_20t_20_3e_20_3e_6',['BaseRdd&lt; UnionRdd&lt; R, T &gt; &gt;',['../classcpark_1_1_base_rdd.html',1,'cpark']]],
-  ['baserddtest_7',['BaseRddTest',['../class_base_rdd_test.html',1,'']]],
-  ['basesplit_8',['BaseSplit',['../classcpark_1_1_base_split.html',1,'cpark']]],
-  ['basesplit_3c_20cachedsplit_3c_20derivedsplit_2c_20derivedsplititerator_20_3e_20_3e_9',['BaseSplit&lt; CachedSplit&lt; DerivedSplit, DerivedSplitIterator &gt; &gt;',['../classcpark_1_1_base_split.html',1,'cpark']]],
-  ['basesplit_3c_20cachedsplit_3c_20viewsplit_3c_20v_20_3e_2c_20std_3a_3aranges_3a_3aiterator_5ft_3c_20const_20v_20_3e_20_3e_20_3e_10',['BaseSplit&lt; CachedSplit&lt; ViewSplit&lt; V &gt;, std::ranges::iterator_t&lt; const V &gt; &gt; &gt;',['../classcpark_1_1_base_split.html',1,'cpark']]]
+  ['basesplit_7',['BaseSplit',['../classcpark_1_1_base_split.html',1,'cpark']]],
+  ['basesplit_3c_20cachedsplit_3c_20derivedsplit_2c_20derivedsplititerator_20_3e_20_3e_8',['BaseSplit&lt; CachedSplit&lt; DerivedSplit, DerivedSplitIterator &gt; &gt;',['../classcpark_1_1_base_split.html',1,'cpark']]],
+  ['basesplit_3c_20cachedsplit_3c_20viewsplit_3c_20v_20_3e_2c_20std_3a_3aranges_3a_3aiterator_5ft_3c_20const_20v_20_3e_20_3e_20_3e_9',['BaseSplit&lt; CachedSplit&lt; ViewSplit&lt; V &gt;, std::ranges::iterator_t&lt; const V &gt; &gt; &gt;',['../classcpark_1_1_base_split.html',1,'cpark']]]
 ];

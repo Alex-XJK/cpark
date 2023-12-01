@@ -117,6 +117,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An execution context (or environment) for a set of cpark tasks to run. It contains the information needed to evaluate the Rdd-s and run the cpark tasks, including the id information of Rdd-s and Splits, the cache information, the thread synchronization information, and the scheduler information. Each Rdd and Split will be included in one and only one execution context.</p>
 <p>Users should be responsible to make sure the execution context is not out-of-lifetime when executing the cpark tasks. TODO: Consider whether to use smart pointers. As a fundamental library, smart pointers might not be a good choice. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="filter_even_8cpp-example.html#_a0">filter_even.cpp</a>, and <a class="el" href="merge_splits_8cpp-example.html#_a2">merge_splits.cpp</a>.</dd>
+</dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a836ffd6d70849d14ead3ff6595abd9ca" name="a836ffd6d70849d14ead3ff6595abd9ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a836ffd6d70849d14ead3ff6595abd9ca">&#9670;&#160;</a></span>RddId</h2>
