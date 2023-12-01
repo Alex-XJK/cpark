@@ -2,7 +2,7 @@
 
 #include "filter_rdd.h"
 #include "generator_rdd.h"
-
+#include "sample_rdd.h"
 template <cpark::concepts::Rdd R>
 void printRdd(R rdd) {
   for (const cpark::concepts::Split auto& split : rdd) {
@@ -35,8 +35,12 @@ int main() {
   printRdd(filter_rdd_1);
 
   std::cout<< "Sample rdd: " <<std::endl;
-  auto sample_rdd = FilterRdd(generator_rdd, sample);
+  auto sample_rdd = FilterRdd(generator_rdd, sampleFunction);
   printRdd(sample_rdd);
+
+  std::cout<< "Sample rdd 2: " <<std::endl;
+  auto sample_rdd2 = SampleRdd(generator_rdd, 0.1);
+  printRdd(sample_rdd2);
   
   // Test for pipeline and Filter(Func func) operators
   std::cout << "Filter rdd (operators): " << std::endl;
