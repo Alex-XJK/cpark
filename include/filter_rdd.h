@@ -8,6 +8,14 @@
 
 namespace cpark {
 
+/** @defgroup t_Filter The Filter Transformation
+ *  This forms the Filter Transformation of our cpark library
+ *  @image html filter.drawio.png "FilterRdd diagram" width=50%
+ *  @see FilterRdd
+ *  @see Filter
+ *  @{
+ */
+
 /**
  * A new view created from an original view (V) filtered by some predication function (Func).
  * It has almost the same usage as std::ranges::filter_view, except that it provides
@@ -146,7 +154,7 @@ private:
 };
 
 /**
- * Helper class to create Filter Rdd with pipeline operator `|`.
+ * Helper class to create FilterRdd with pipeline operator `|`.
  */
 template <typename Func>
 class Filter {
@@ -164,12 +172,19 @@ private:
 };
 
 /**
- * Helper function to create Filter Rdd with pipeline operator `|`.
+ * Helper function to create FilterRdd with pipeline operator `|`.
  */
 template <typename Func, concepts::Rdd R>
 auto operator|(const R& r, const Filter<Func>& filter) {
   return filter(r);
 }
+
+/**
+ * @example filter_even.cpp
+ * Get all the even numbers from 0 to 50.
+ */
+
+/** @} */ // end of t_Filter
 
 }  // namespace cpark
 
