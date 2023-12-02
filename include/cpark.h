@@ -4,14 +4,14 @@
 #include <any>
 #include <future>
 #include <ostream>
+#include <queue>
+#include <set>
 #include <shared_mutex>
 #include <string>
 #include <thread>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <queue>
-#include <set>
 
 #include "utils.h"
 
@@ -176,8 +176,7 @@ public:
   bool splitCached(SplitId split_id) const noexcept {
     std::shared_lock guard(cache_mutex_);
     return cache_done_.contains(split_id) &&
-           cache_done_[split_id].wait_for(std::chrono::seconds(0)) ==
-               std::future_status::ready;
+           cache_done_[split_id].wait_for(std::chrono::seconds(0)) == std::future_status::ready;
   }
 
   void markDependency(SplitId from, SplitId to) noexcept {
@@ -193,7 +192,7 @@ public:
 
   template <typename CacheType, typename OriginalIterator>
   std::shared_future<void> startCalculationOrGetFuture(SplitId split_id, OriginalIterator begin,
-                                                OriginalIterator end) {
+                                                       OriginalIterator end) {
     {
       std::shared_lock guard(cache_mutex_);
       if (cache_done_.contains(split_id)) {

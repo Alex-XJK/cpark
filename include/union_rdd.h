@@ -4,9 +4,9 @@
 #include <vector>
 
 #include "base_rdd.h"
-#include "utils.h"
 #include "cassert"
 #include "merged_view.h"
+#include "utils.h"
 
 namespace cpark {
 
@@ -18,8 +18,8 @@ namespace cpark {
 * The elements in the two types of Rdd should be convertible.
 */
 template <concepts::Rdd R1, concepts::Rdd R2>
-requires std::is_same_v<utils::RddElementType<R1>, utils::RddElementType<R2>>
-class UnionRdd : public BaseRdd<UnionRdd<R1, R2>> {
+requires std::is_same_v<utils::RddElementType<R1>, utils::RddElementType<R2>> class UnionRdd
+    : public BaseRdd<UnionRdd<R1, R2>> {
 public:
   using Base = BaseRdd<UnionRdd<R1, R2>>;
   friend Base;
@@ -37,12 +37,14 @@ public:
 
     // Push the splits from RDD1.
     for (const concepts::Split auto& prev_split : prev1) {
-      splits_.emplace_back(MergedTwoDiffView(std::ranges::subrange(prev_split), empty_split_2), prev_split);
+      splits_.emplace_back(MergedTwoDiffView(std::ranges::subrange(prev_split), empty_split_2),
+                           prev_split);
       splits_.back().addDependency(prev_split);
     }
     // Push the splits from RDD2.
     for (const concepts::Split auto& prev_split : prev2) {
-      splits_.emplace_back(MergedTwoDiffView(empty_split_1, std::ranges::subrange(prev_split)), prev_split);
+      splits_.emplace_back(MergedTwoDiffView(empty_split_1, std::ranges::subrange(prev_split)),
+                           prev_split);
       splits_.back().addDependency(prev_split);
     }
   }
