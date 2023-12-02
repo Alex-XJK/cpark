@@ -149,7 +149,7 @@ public:
 
   /**
    * Main constructor of MergeRdd.
-   * @param prev Reference to previous Rdd of type R1
+   * @param prev Reference to previous Rdd of type R
    */
   constexpr MergeRdd(const R& prev) : Base{prev, false} {
     static_assert(concepts::Rdd<MergeRdd<R>>,
