@@ -34,11 +34,7 @@ int main() {
 
   auto cpp_std_view =
       std::views::iota(1, N + 1) |
-      std::views::transform([](auto x) {
-        int res = 1;
-        for (int i = 0; i < 1000; ++i) res *= x;
-        return res;
-      }) |
+      std::views::transform([](auto x) { return x * x; }) |
       std::views::filter([](auto x) { return x % 5 == 0; }) |
       std::views::transform([](auto x) { return x + 2; }) |
       std::views::filter([](auto x) { return x % 3 == 0; });
@@ -67,11 +63,7 @@ int main() {
 
     auto cpark_result =
         cpark::GeneratorRdd(1, N + 1, [&](auto i) -> auto { return i; }, &default_context) |
-        cpark::Transform([](auto x) {
-          int res = 1;
-          for (int i = 0; i < 1000; ++i) res *= x;
-          return res;
-        }) |
+        cpark::Transform([](auto x) { return x * x; }) |
         cpark::Filter([](auto x) { return x % 5 == 0; }) |
         cpark::Transform([](auto x) { return x + 2; }) |
         cpark::Filter([](auto x) { return x % 3 == 0; }) |
