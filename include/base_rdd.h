@@ -164,7 +164,10 @@ public:
   /**
    * Adds `split_id` to the dependencies of the current split.
    */
-  void addDependency(ExecutionContext::SplitId split_id) { dependencies_.push_back(split_id); }
+  void addDependency(ExecutionContext::SplitId split_id) {
+    dependencies_.push_back(split_id);
+    context_->markDependency(split_id_, split_id);
+  }
 
   /**
    * Adds `split`'s id to the dependencies of the current split.
@@ -412,6 +415,7 @@ public:
     bool operator>=(const Iterator& other) const { return *this - other >= 0; }
 
   private:
+  private:
     // A variant holds either an iterator from the original split, or an iterator of the cache.
     std::variant<CacheIterator, OriginalIterator> iterator_;
   };
@@ -450,9 +454,17 @@ private:
     return std::any_cast<const CacheType&>(Base::context_->getSplitCache(Base::split_id_));
   }
 
+  void waitOrCalculate() const {
+    auto future = Base::context_->template startCalculationOrGetFuture<CacheType>(
+        Base::split_id_, static_cast<const DerivedSplit&>(*this).beginImpl(),
+        static_cast<const DerivedSplit&>(*this).endImpl());
+    future.wait();
+  }
+
   /** Returns the iterator pointing to the first element in the Split. */
   auto beginImpl() const requires concepts::HasBeginImpl<DerivedSplit> {
-    if (shouldCache() && hasCached()) [[unlikely]] {
+    if (shouldCache()) [[unlikely]] {
+      waitOrCalculate();
       return Iterator{std::ranges::begin(getCache())};
     } else {
       return Iterator{static_cast<const DerivedSplit&>(*this).beginImpl()};
@@ -461,7 +473,8 @@ private:
 
   /** Returns an iterator sentinel that marks the end of the split's element iterator. */
   auto endImpl() const requires concepts::HasEndImpl<DerivedSplit> {
-    if (shouldCache() && hasCached()) [[unlikely]] {
+    if (shouldCache()) [[unlikely]] {
+      waitOrCalculate();
       return Iterator{std::ranges::end(getCache())};
     } else {
       return Iterator{static_cast<const DerivedSplit&>(*this).endImpl()};
