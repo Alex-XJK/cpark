@@ -39,7 +39,7 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
 ## Community and Support
 
 - **Issue Tracker:** Found a bug or have a feature request? [Create an issue](https://github.com/Alex-XJK/cpark/issues) and let us know.
-- **Contact:** You can also contact us by e-mail: [public@alexxu.tech](mailto:public@alexxu.tech) ?????
+- **Contact:** You can also contact us by e-mail: [cpark@alexxu.tech](mailto:cpark@alexxu.tech)
 
 ## Current Status
 
