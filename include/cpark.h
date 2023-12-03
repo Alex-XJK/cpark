@@ -228,7 +228,7 @@ private:
   std::atomic<RddId> next_rdd_id_{};
   std::atomic<SplitId> next_split_id_{};
 
-  // Which splits are replying on this one.
+  // Which splits are relying on this one.
   std::unordered_map<SplitId, std::unordered_set<SplitId>> dependent_by_{};
 
   // Cache information for the Splits.
