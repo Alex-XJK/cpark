@@ -4,6 +4,9 @@
 #include "merged_view.h"
 
 using std::operator"" s;
+using cpark::MergedSameView;
+using cpark::MergedTwoDiffView;
+using cpark::MergedDiffView;
 
 TEST(MergedViewTest, MergedSameViewInt) {
   const int view_num = 10;
