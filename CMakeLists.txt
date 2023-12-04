@@ -57,6 +57,9 @@ endif(CPARK_BUILD_EXAMPLES)
 
 # Build unit tests if its option is set.
 if(CPARK_BUILD_TESTS)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    
     enable_testing()
 
     # Fetch googletest from its github repository.

@@ -1,3 +1,6 @@
+#ifndef CPARK_GROUP_BY_KEY_RDD_H
+#define CPARK_GROUP_BY_KEY_RDD_H
+
 #include <concepts>
 #include <memory>
 #include <ranges>
@@ -178,3 +181,5 @@ private:
 // TODO: Helper classes to be added later.
 
 }  // namespace cpark
+
+#endif // CPARK_GROUP_BY_KEY_RDD_H

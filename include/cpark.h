@@ -2,7 +2,11 @@
 #define CPARK_CPARK_H
 
 #include <any>
+#include <future>
 #include <ostream>
+#include <queue>
+#include <set>
+#include <shared_mutex>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -64,16 +68,15 @@ public:
 
   /** Sets parallel task number. If no parameter, default to physical supported thread number. */
   Config& setParallelTaskNum(size_t num = 0) noexcept {
-      if(num == 0) {
-          unsigned int n = std::thread::hardware_concurrency();
-          if(n != 0) {
-              parallel_task_num_ = n;
-          }
+    if (num == 0) {
+      unsigned int n = std::thread::hardware_concurrency();
+      if (n != 0) {
+        parallel_task_num_ = n;
       }
-      else {
-          parallel_task_num_ = num;
-      }
-      return *this;
+    } else {
+      parallel_task_num_ = num;
+    }
+    return *this;
   }
 
   /** Sets parallel policy. */
@@ -165,26 +168,57 @@ public:
 
   /** Returns whether the split should be cached. */
   bool splitShouldCache(SplitId split_id) const noexcept {
-    std::lock_guard guard(cache_mutex_);
-    return should_cache_.contains(split_id);
+    std::shared_lock guard(cache_mutex_);
+    return dependent_by_.contains(split_id) && dependent_by_.at(split_id).size() >= 2;
   }
 
   /** Checks whether the split has already been cached. */
   bool splitCached(SplitId split_id) const noexcept {
-    std::lock_guard guard(cache_mutex_);
-    return has_cached_.contains(split_id);
+    std::shared_lock guard(cache_mutex_);
+    return cache_done_.contains(split_id) &&
+           cache_done_[split_id].wait_for(std::chrono::seconds(0)) == std::future_status::ready;
   }
 
-  /** Tells the execution context that a split should be cached. */
-  void markSplitToCache(SplitId split_id) {
-    std::lock_guard guard(cache_mutex_);
-    should_cache_.insert(split_id);
+  void markDependency(SplitId from, SplitId to) noexcept {
+    std::shared_lock guard(cache_mutex_);
+    dependent_by_[to].insert(from);
   }
 
   /** Returns the cache for the split, if it has already been cached. */
   const std::any& getSplitCache(SplitId split_id) const {
-    std::lock_guard guard(cache_mutex_);
+    std::shared_lock guard(cache_mutex_);
     return cache_.at(split_id);
+  }
+
+  template <typename CacheType, typename OriginalIterator>
+  std::shared_future<void> startCalculationOrGetFuture(SplitId split_id, OriginalIterator begin,
+                                                       OriginalIterator end) {
+    {
+      std::shared_lock guard(cache_mutex_);
+      if (cache_done_.contains(split_id)) {
+        return cache_done_[split_id];
+      }
+    }
+
+    std::promise<void> promise{};
+
+    {
+      std::unique_lock guard(cache_mutex_);
+      if (cache_done_.contains(split_id)) {
+        return cache_done_[split_id];
+      }
+      cache_done_[split_id] = promise.get_future();
+    }
+
+    CacheType cache;
+    std::copy(begin, end, std::back_inserter(cache));
+
+    {
+      std::unique_lock guard(cache_mutex_);
+      cache_[split_id] = std::move(cache);
+      promise.set_value();
+      return cache_done_[split_id];
+    }
   }
 
 private:
@@ -194,11 +228,13 @@ private:
   std::atomic<RddId> next_rdd_id_{};
   std::atomic<SplitId> next_split_id_{};
 
+  // Which splits are relying on this one.
+  std::unordered_map<SplitId, std::unordered_set<SplitId>> dependent_by_{};
+
   // Cache information for the Splits.
-  std::unordered_set<SplitId> should_cache_{};
-  std::unordered_set<SplitId> has_cached_{};
   std::unordered_map<SplitId, std::any> cache_{};
-  mutable std::mutex cache_mutex_{};
+  mutable std::unordered_map<SplitId, std::shared_future<void>> cache_done_{};
+  mutable std::shared_mutex cache_mutex_{};
 
   // Thread synchronization information.
 

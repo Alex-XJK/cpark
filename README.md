@@ -1,5 +1,8 @@
 # Welcome to cpark: Supercharge Your Parallel Computing in C++
 
+[![CMake on multiple platforms](https://github.com/Alex-XJK/cpark/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Alex-XJK/cpark/actions/workflows/cmake-multi-platform.yml)
+[![codecov](https://codecov.io/gh/Alex-XJK/cpark/graph/badge.svg?token=L0FVLL29MN)](https://codecov.io/gh/Alex-XJK/cpark)
+
 ## About cpark
 
 **cpark** 
@@ -33,10 +36,15 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
    // TODO ?????
    ```
 
-
 ## Community and Support
+
 - **Issue Tracker:** Found a bug or have a feature request? [Create an issue](https://github.com/Alex-XJK/cpark/issues) and let us know.
-- **Contact:** You can also contact us by e-mail: [public@alexxu.tech](mailto:public@alexxu.tech) ?????
+- **Contact:** You can also contact us by e-mail: [cpark@alexxu.tech](mailto:cpark@alexxu.tech)
+
+## Current Status
+
+### Code Coverage
+![Coverage](https://codecov.io/gh/Alex-XJK/cpark/graphs/icicle.svg?token=L0FVLL29MN)
 
 ## Acknowledgments
 
