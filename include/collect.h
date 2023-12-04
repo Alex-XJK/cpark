@@ -10,7 +10,7 @@
 namespace cpark {
 
 /** @ingroup g_acts
- *  @defgroup a_Collect Action >> Collect
+ *  @defgroup a_Collect Collect
  *  This works as the Collect Action of our cpark library
  *  @see Collect
  *  @{
