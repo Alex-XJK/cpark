@@ -109,10 +109,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae3fe6f7e1e87eb9732b6f2f08e2b5a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b1642118dcb073e95a85c46b5fbcc1a" id="r_a4b1642118dcb073e95a85c46b5fbcc1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_execution_context.html#a4b1642118dcb073e95a85c46b5fbcc1a">splitCached</a> (<a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">split_id</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">noexcept</a></td></tr>
 <tr class="separator:a4b1642118dcb073e95a85c46b5fbcc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a393d0d70553f2bbce4e4c844a94a9199" id="r_a393d0d70553f2bbce4e4c844a94a9199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_execution_context.html#a393d0d70553f2bbce4e4c844a94a9199">markSplitToCache</a> (<a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">split_id</a>)</td></tr>
-<tr class="separator:a393d0d70553f2bbce4e4c844a94a9199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb528fa676bbe2e841b6c5e9bd8f16ff" id="r_abb528fa676bbe2e841b6c5e9bd8f16ff"><td class="memItemLeft" align="right" valign="top"><a id="abb528fa676bbe2e841b6c5e9bd8f16ff" name="abb528fa676bbe2e841b6c5e9bd8f16ff"></a>
+<a class="el" href="classcpark_1_1_base_split.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>markDependency</b> (<a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">from</a>, <a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">to</a>) <a class="el" href="classcpark_1_1_base_split.html">noexcept</a></td></tr>
+<tr class="separator:abb528fa676bbe2e841b6c5e9bd8f16ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f81d58784fbaeced0c79a50e6a5ff9b" id="r_a0f81d58784fbaeced0c79a50e6a5ff9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">const</a> std::any &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_execution_context.html#a0f81d58784fbaeced0c79a50e6a5ff9b">getSplitCache</a> (<a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">split_id</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
 <tr class="separator:a0f81d58784fbaeced0c79a50e6a5ff9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd53bbf756b06f4d1a5e56e2d6e0e3a" id="r_a9cd53bbf756b06f4d1a5e56e2d6e0e3a"><td class="memTemplParams" colspan="2"><a id="a9cd53bbf756b06f4d1a5e56e2d6e0e3a" name="a9cd53bbf756b06f4d1a5e56e2d6e0e3a"></a>
+template&lt;<a class="el" href="classcpark_1_1_base_split.html">typename</a> CacheType , <a class="el" href="classcpark_1_1_base_split.html">typename</a> OriginalIterator &gt; </td></tr>
+<tr class="memitem:a9cd53bbf756b06f4d1a5e56e2d6e0e3a"><td class="memTemplItemLeft" align="right" valign="top">std::shared_future&lt; <a class="el" href="classcpark_1_1_base_split.html">void</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>startCalculationOrGetFuture</b> (<a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a> <a class="el" href="classcpark_1_1_base_split.html">split_id</a>, OriginalIterator begin, OriginalIterator end)</td></tr>
+<tr class="separator:a9cd53bbf756b06f4d1a5e56e2d6e0e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An execution context (or environment) for a set of cpark tasks to run. It contains the information needed to evaluate the Rdd-s and run the cpark tasks, including the id information of Rdd-s and Splits, the cache information, the thread synchronization information, and the scheduler information. Each Rdd and Split will be included in one and only one execution context.</p>
@@ -307,33 +312,6 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Returns the cache for the split, if it has already been cached. </p>
-
-</div>
-</div>
-<a id="a393d0d70553f2bbce4e4c844a94a9199" name="a393d0d70553f2bbce4e4c844a94a9199"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a393d0d70553f2bbce4e4c844a94a9199">&#9670;&#160;</a></span>markSplitToCache()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcpark_1_1_base_split.html">void</a> cpark::ExecutionContext::markSplitToCache </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8">SplitId</a>&#160;</td>
-          <td class="paramname"><em>split_id</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Tells the execution context that a split should be cached. </p>
 
 </div>
 </div>
