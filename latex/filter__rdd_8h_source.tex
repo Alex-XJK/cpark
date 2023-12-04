@@ -12,134 +12,134 @@
 \DoxyCodeLine{00008\ }
 \DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }cpark\ \{}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{template}\ <std::ranges::view\ V,\ \textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00026\ \textcolor{keyword}{requires}\ std::invocable<Func,\ std::ranges::range\_value\_t<V>>\&\&\ std::is\_convertible\_v<}
-\DoxyCodeLine{00027\ \ \ \ \ std::invoke\_result\_t<Func,\ std::ranges::range\_value\_t<V>>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}}
-\DoxyCodeLine{00028\ \ \ \ \ :\ \textcolor{keyword}{public}\ std::ranges::view\_interface<FilterView<V,\ Func>>\ \{}
-\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<V>;}
-\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<V>;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\ :\ std::forward\_iterator\_tag\ \{}
-\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::ranges::range\_value\_t<V>;}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<V>;}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<V>;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a4c7387e68834f3468b748c604bb9e7d0}{Iterator}}(OriginalIterator\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}},\ OriginalSentinel\ \mbox{\hyperlink{classcpark_1_1_base_split}{sentinel}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ :\ iterator\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{iterator}})\},\ sentinel\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{sentinel}})\},\ func\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{func}}\}\ \{}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ next\ element\ that\ satisfy\ the\ predication\ by\ \`{}func\_`.}}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ iterator\_\ =\ std::ranges::find\_if(iterator\_,\ sentinel\_,\ *func\_);}
-\DoxyCodeLine{00054\ \ \ \ \ \}}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Not\ sure\ if\ returning\ value\_type\ would\ satisfy\ input\_range\ requirements.}}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Works\ for\ now.}}
-\DoxyCodeLine{00059\ \ \ \ \ value\_type\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a3ca1b951eec8cdd10e36d9b04c93aacc}{operator*}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *iterator\_;\ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a274c14f4d31c7943a8921aa144f34cc9}{operator++}}()\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ ++iterator\_;}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ next\ element\ that\ satisfy\ the\ predication\ by\ \`{}func\_`.}}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ iterator\_\ =\ std::ranges::find\_if(iterator\_,\ sentinel\_,\ *func\_);}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00067\ \ \ \ \ \}}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_af71e15a0cd4e16c99a2ffcda12c91626}{operator++}}(\textcolor{keywordtype}{int})\ \{}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}}\ =\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ ++(*this);}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}};}
-\DoxyCodeLine{00074\ \ \ \ \ \}}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a3704d9110c17b9db6775d049ddeb32be}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ iterator\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.iterator\_;\ \}}
-\DoxyCodeLine{00078\ }
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a386eecb1002e742d66c42d5e13f1ae93}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00083\ \ \ \ \ OriginalIterator\ iterator\_;}
-\DoxyCodeLine{00084\ \ \ \ \ OriginalSentinel\ sentinel\_;}
-\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ func\_;}
-\DoxyCodeLine{00086\ \ \ \};}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_view_a4abd8fcd4e1794753223ab2104d67c38}{FilterView}}(V\ \mbox{\hyperlink{classcpark_1_1_base_split}{view}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ :\ original\_view\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{view}})\},\ func\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00094\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98}{begin}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\{std::ranges::begin(original\_view\_),\ std::ranges::end(original\_view\_),}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\textcolor{keyword}{>}(\&func\_)\};}
-\DoxyCodeLine{00097\ \ \ \}}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539}{end}}()\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\{std::ranges::end(original\_view\_),\ std::ranges::end(original\_view\_),}
-\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\textcolor{keyword}{>}(\&func\_)\};}
-\DoxyCodeLine{00103\ \ \ \}}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00106\ \ \ V\ original\_view\_;}
-\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
-\DoxyCodeLine{00108\ \};}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00117\ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00118\ \textcolor{keyword}{requires}\ std::invocable<Func,\ utils::RddElementType<R>>\&\&\ std::is\_convertible\_v<}
-\DoxyCodeLine{00119\ \ \ \ \ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}}
-\DoxyCodeLine{00120\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<FilterRdd<R,\ Func>>\ \{}
-\DoxyCodeLine{00121\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<FilterRdd<R,\ Func>}}>;}
-\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00125\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd_acbe79f6f22f9806a94117c26c18614db}{FilterRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\}\ \textcolor{comment}{/*,\ func\_\{std::move(func)\}*/}\ \{}
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<FilterRdd<R,\ Func>}}>,}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ FilterRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
-\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ filtered\ splits.}}
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
-\DoxyCodeLine{00136\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
-\DoxyCodeLine{00137\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
-\DoxyCodeLine{00138\ \ \ \ \ \}}
-\DoxyCodeLine{00139\ \ \ \}}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
-\DoxyCodeLine{00142\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
-\DoxyCodeLine{00143\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
-\DoxyCodeLine{00144\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
-\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00146\ \ \ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00154\ \ \ std::vector<ViewSplit<FilterView<std::ranges::range\_value\_t<R>,\ Func>>>\ splits\_\{\};}
-\DoxyCodeLine{00155\ \};}
-\DoxyCodeLine{00156\ }
-\DoxyCodeLine{00160\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00161\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter}{Filter}}\ \{}
-\DoxyCodeLine{00162\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
-\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T>\&\&\ std::is\_same\_v<std::invoke\_result\_t<Func,\ T>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{auto}}
-\DoxyCodeLine{00167\ \ \ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ func\_);}
-\DoxyCodeLine{00169\ \ \ \}}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00171\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00172\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
-\DoxyCodeLine{00173\ \};}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00178\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ concepts::Rdd\ R>}
-\DoxyCodeLine{00179\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Filter<Func>}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{filter}})\ \{}
-\DoxyCodeLine{00180\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{filter}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
-\DoxyCodeLine{00181\ \}}
-\DoxyCodeLine{00182\ }
- \textcolor{comment}{// end of t\_Filter}\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00190\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_FILTER\_RDD\_H}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <std::ranges::view\ V,\ \textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{requires}\ std::invocable<Func,\ std::ranges::range\_value\_t<V>>\&\&\ std::is\_convertible\_v<}
+\DoxyCodeLine{00028\ \ \ \ \ std::invoke\_result\_t<Func,\ std::ranges::range\_value\_t<V>>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}}
+\DoxyCodeLine{00029\ \ \ \ \ :\ \textcolor{keyword}{public}\ std::ranges::view\_interface<FilterView<V,\ Func>>\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<V>;}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<V>;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\ :\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::ranges::range\_value\_t<V>;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<V>;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<V>;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a4c7387e68834f3468b748c604bb9e7d0}{Iterator}}(OriginalIterator\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}},\ OriginalSentinel\ \mbox{\hyperlink{classcpark_1_1_base_split}{sentinel}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ :\ iterator\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{iterator}})\},\ sentinel\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{sentinel}})\},\ func\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{func}}\}\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ next\ element\ that\ satisfy\ the\ predication\ by\ \`{}func\_`.}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ iterator\_\ =\ std::ranges::find\_if(iterator\_,\ sentinel\_,\ *func\_);}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Not\ sure\ if\ returning\ value\_type\ would\ satisfy\ input\_range\ requirements.}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Works\ for\ now.}}
+\DoxyCodeLine{00060\ \ \ \ \ value\_type\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a3ca1b951eec8cdd10e36d9b04c93aacc}{operator*}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *iterator\_;\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a274c14f4d31c7943a8921aa144f34cc9}{operator++}}()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ ++iterator\_;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ next\ element\ that\ satisfy\ the\ predication\ by\ \`{}func\_`.}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ iterator\_\ =\ std::ranges::find\_if(iterator\_,\ sentinel\_,\ *func\_);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_af71e15a0cd4e16c99a2ffcda12c91626}{operator++}}(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}}\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a3704d9110c17b9db6775d049ddeb32be}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ iterator\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.iterator\_;\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator_a386eecb1002e742d66c42d5e13f1ae93}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ OriginalIterator\ iterator\_;}
+\DoxyCodeLine{00085\ \ \ \ \ OriginalSentinel\ sentinel\_;}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ func\_;}
+\DoxyCodeLine{00087\ \ \ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_view_a4abd8fcd4e1794753223ab2104d67c38}{FilterView}}(V\ \mbox{\hyperlink{classcpark_1_1_base_split}{view}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ :\ original\_view\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{view}})\},\ func\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98}{begin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\{std::ranges::begin(original\_view\_),\ std::ranges::end(original\_view\_),}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\textcolor{keyword}{>}(\&func\_)\};}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539}{end}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}\{std::ranges::end(original\_view\_),\ std::ranges::end(original\_view\_),}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const\_cast<}\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\textcolor{keyword}{>}(\&func\_)\};}
+\DoxyCodeLine{00104\ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00107\ \ \ V\ original\_view\_;}
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
+\DoxyCodeLine{00109\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00119\ \textcolor{keyword}{requires}\ std::invocable<Func,\ utils::RddElementType<R>>\&\&\ std::is\_convertible\_v<}
+\DoxyCodeLine{00120\ \ \ \ \ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}}
+\DoxyCodeLine{00121\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<FilterRdd<R,\ Func>>\ \{}
+\DoxyCodeLine{00122\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<FilterRdd<R,\ Func>}}>;}
+\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00132\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd_acbe79f6f22f9806a94117c26c18614db}{FilterRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\}\ \textcolor{comment}{/*,\ func\_\{std::move(func)\}*/}\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<FilterRdd<R,\ Func>}}>,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ FilterRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ filtered\ splits.}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00143\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00144\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00145\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00155\ \ \ std::vector<ViewSplit<FilterView<std::ranges::range\_value\_t<R>,\ Func>>>\ splits\_\{\};}
+\DoxyCodeLine{00156\ \};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_filter}{Filter}}\ \{}
+\DoxyCodeLine{00163\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T>\&\&\ std::is\_same\_v<std::invoke\_result\_t<Func,\ T>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{auto}}
+\DoxyCodeLine{00168\ \ \ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ func\_);}
+\DoxyCodeLine{00170\ \ \ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00173\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ concepts::Rdd\ R>}
+\DoxyCodeLine{00180\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Filter<Func>}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{filter}})\ \{}
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{filter}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+ \textcolor{comment}{// end of t\_Filter}\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_FILTER\_RDD\_H}}
 
 \end{DoxyCode}

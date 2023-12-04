@@ -12,181 +12,181 @@
 \DoxyCodeLine{00008\ }
 \DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }cpark\ \{}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
-\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<MergeRdd<R>>\ \{}
-\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<MergeRdd<R>}}>;}
-\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ :\ std::forward\_iterator\_tag\ \{}
-\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ using\ iterator\_category\ =\ std::random\_access\_iterator\_tag;}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{using\ }iterator\_category\ =\ std::forward\_iterator\_tag;}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ utils::RddElementType<R>;}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>;}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<std::ranges::range\_value\_t<R>>;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}(std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{begins}},\ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{ends}},\ \textcolor{keywordtype}{bool}\ isEnd\ =\ \textcolor{keyword}{false})}
-\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ :\ begins\_(std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{begins}})),\ ends\_(std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{ends}})),\ isEnd\_(isEnd)\ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isEnd\_)\ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ row\_\ =\ 0;}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ current\_\ =\ begins\_.size()\ >\ 0\ ?\ begins\_[row\_]\ :\ OriginalIterator();}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
-\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ row\_\ =\ ends\_.size()\ >\ 0\ ?\ ends\_.size()\ -\/\ 1\ :\ 0;}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ current\_\ =\ ends\_.size()\ >\ 0\ ?\ ends\_[row\_]\ :\ OriginalIterator();}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00053\ \ \ \ \ \}}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00056\ \ \ \ \ value\_type\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab085f8aa035670b8da0ab21d9f4aa6e4}{operator*}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *current\_;\ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00059\ \ \ \ \ value\_type*\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a02eb5095fb201ddce1a26a4e5866ddf1}{operator-\/>}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ current\_;\ \}}
-\DoxyCodeLine{00060\ }
-\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a0600f80c90b982020ecbff7179baae4b}{operator++}}()\ \{}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ ++current\_;}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (current\_\ ==\ ends\_[row\_]\ \&\&\ row\_\ +\ 1\ <\ begins\_.size())\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ ++row\_;}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ current\_\ =\ begins\_[row\_];}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00069\ \ \ \ \ \}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aa2932c5c13ee0ebebae1f0698dfe0adc}{operator++}}(\textcolor{keywordtype}{int})\ \{}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}}\ =\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ ++(*this);}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}};}
-\DoxyCodeLine{00076\ \ \ \ \ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Consider\ extend\ to\ random\_access\_iterator.\ Still\ need\ -\/-\/\ operator.}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aaba86aef62790031d736725c5f6d70f7}{operator+=}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\ \{}
-\DoxyCodeLine{00082\ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ This\ does\ not\ have\ constant\ time\ complexity!}}
-\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ >=\ 0)}
-\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ >\ 0)\ \{}
-\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ ++(*this);}
-\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ -\/-\/\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
-\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ <\ 0)\ \{}
-\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ -\/-\/(*this);}
-\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
-\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00094\ \ \ \ \ \}}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a704d4b61ca1f906156644fe099733b80}{operator-\/=}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\ \{}
-\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ +=\ -\/\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
-\DoxyCodeLine{00099\ \ \ \ \ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_abdfff2a13646ef3b10863b44b0ec5799}{operator+}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ =\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ +=\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}};}
-\DoxyCodeLine{00106\ \ \ \ \ \}}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab8f5b84401439e18f40cc48a7cc867e5}{operator-\/}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ =\ *\textcolor{keyword}{this};}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ -\/=\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}};}
-\DoxyCodeLine{00113\ \ \ \ \ \}}
-\DoxyCodeLine{00114\ }
-\DoxyCodeLine{00116\ \ \ \ \ value\_type\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ad7854084db2dcf8dca72ef232ef0c0e2}{operator[]}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(*\textcolor{keyword}{this}\ +\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}});}
-\DoxyCodeLine{00118\ \ \ \ \ \}}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a2c1c4c393c4d063f26690947c916a094}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ current\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;\ \}}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a69ec94db84bf10f6fb216a268e4df66d}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a15777196ec9ded0abcc54309bb2cecf0}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00128\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ <\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
-\DoxyCodeLine{00129\ \ \ \ \ \}}
-\DoxyCodeLine{00130\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_afdb09153401aa4a554d0344c7cbc3759}{operator>}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00133\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ >\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
-\DoxyCodeLine{00134\ \ \ \ \ \}}
-\DoxyCodeLine{00135\ }
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a9ec2ac972e069cda1849f7aed1cab133}{operator<=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00138\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ <=\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
-\DoxyCodeLine{00139\ \ \ \ \ \}}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a6d5ce76fb04460557fd99d5073e699ba}{operator>=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ >=\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
-\DoxyCodeLine{00144\ \ \ \ \ \}}
-\DoxyCodeLine{00145\ }
-\DoxyCodeLine{00147\ \ \ \ \ difference\_type\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a1d6fcd3faf62cb8c08ff6d45c2ca8542}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00148\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ -\/\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
-\DoxyCodeLine{00149\ \ \ \ \ \}}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00152\ \ \ \ \ std::vector<OriginalIterator>\ begins\_;}
-\DoxyCodeLine{00153\ \ \ \ \ std::vector<OriginalIterator>\ ends\_;}
-\DoxyCodeLine{00154\ \ \ \ \ OriginalIterator\ current\_;}
-\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnd\_;}
-\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ row\_\ =\ 0;}
-\DoxyCodeLine{00157\ \ \ \};}
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_aecb13959bad44f8f816b22b6a49129d3}{MergeRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\}\ \{}
-\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<MergeRdd<R>}}>,}
-\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ MergeRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
-\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ Prepare\ nested\ splits\ vector}}
-\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>;}
-\DoxyCodeLine{00168\ \ \ \ \ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}};}
-\DoxyCodeLine{00169\ \ \ \ \ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}};}
-\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
-\DoxyCodeLine{00171\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}}.emplace\_back(std::ranges::begin(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}));}
-\DoxyCodeLine{00172\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}}.emplace\_back(std::ranges::end(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}));}
-\DoxyCodeLine{00173\ \ \ \ \ \}}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ single\ splits\_\ element}}
-\DoxyCodeLine{00176\ \ \ \ \ splits\_.emplace\_back(}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ std::ranges::subrange\{}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}},\ \textcolor{keyword}{false}\},}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}},\ \textcolor{keyword}{true}\},}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \},}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}}.front());}
-\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})}
-\DoxyCodeLine{00183\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
-\DoxyCodeLine{00184\ \ \ \}}
-\DoxyCodeLine{00185\ }
-\DoxyCodeLine{00186\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
-\DoxyCodeLine{00187\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
-\DoxyCodeLine{00188\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
-\DoxyCodeLine{00189\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
-\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00192\ }
-\DoxyCodeLine{00193\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00194\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
-\DoxyCodeLine{00195\ }
-\DoxyCodeLine{00196\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
-\DoxyCodeLine{00197\ }
-\DoxyCodeLine{00198\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00199\ \ \ std::vector<ViewSplit<std::ranges::subrange<Iterator>>>\ splits\_\{\};}
-\DoxyCodeLine{00200\ \};}
-\DoxyCodeLine{00201\ }
-\DoxyCodeLine{00205\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge}{Merge}}\ \{}
-\DoxyCodeLine{00206\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00207\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_merge}{Merge}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00209\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
-\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
-\DoxyCodeLine{00212\ \ \ \}}
-\DoxyCodeLine{00213\ \};}
-\DoxyCodeLine{00214\ }
-\DoxyCodeLine{00218\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
-\DoxyCodeLine{00219\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge}{Merge}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{merge}})\ \{}
-\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{merge}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
-\DoxyCodeLine{00221\ \}}
-\DoxyCodeLine{00222\ }
- \textcolor{comment}{// end of t\_Merge}\DoxyCodeLine{00230\ }
-\DoxyCodeLine{00231\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
-\DoxyCodeLine{00232\ }
-\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_MERGE\_RDD\_H}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<MergeRdd<R>>\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<MergeRdd<R>}}>;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ :\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ using\ iterator\_category\ =\ std::random\_access\_iterator\_tag;}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }iterator\_category\ =\ std::forward\_iterator\_tag;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ utils::RddElementType<R>;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{using\ }OriginalSentinel\ =\ std::ranges::sentinel\_t<std::ranges::range\_value\_t<R>>;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}(std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{begins}},\ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{ends}},\ \textcolor{keywordtype}{bool}\ isEnd\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ :\ begins\_(std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{begins}})),\ ends\_(std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{ends}})),\ isEnd\_(isEnd)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isEnd\_)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ row\_\ =\ 0;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ current\_\ =\ begins\_.size()\ >\ 0\ ?\ begins\_[row\_]\ :\ OriginalIterator();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ row\_\ =\ ends\_.size()\ >\ 0\ ?\ ends\_.size()\ -\/\ 1\ :\ 0;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ current\_\ =\ ends\_.size()\ >\ 0\ ?\ ends\_[row\_]\ :\ OriginalIterator();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ value\_type\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab085f8aa035670b8da0ab21d9f4aa6e4}{operator*}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *current\_;\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ value\_type*\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a02eb5095fb201ddce1a26a4e5866ddf1}{operator-\/>}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ current\_;\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a0600f80c90b982020ecbff7179baae4b}{operator++}}()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ ++current\_;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (current\_\ ==\ ends\_[row\_]\ \&\&\ row\_\ +\ 1\ <\ begins\_.size())\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ ++row\_;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ current\_\ =\ begins\_[row\_];}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aa2932c5c13ee0ebebae1f0698dfe0adc}{operator++}}(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}}\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}};}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ TODO:\ Consider\ extend\ to\ random\_access\_iterator.\ Still\ need\ -\/-\/\ operator.}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aaba86aef62790031d736725c5f6d70f7}{operator+=}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ This\ does\ not\ have\ constant\ time\ complexity!}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ >=\ 0)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ >\ 0)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ -\/-\/\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ <\ 0)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ -\/-\/(*this);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a704d4b61ca1f906156644fe099733b80}{operator-\/=}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ +=\ -\/\mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_abdfff2a13646ef3b10863b44b0ec5799}{operator+}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ +=\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}};}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab8f5b84401439e18f40cc48a7cc867e5}{operator-\/}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}}\ -\/=\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{temp}};}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00117\ \ \ \ \ value\_type\&\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ad7854084db2dcf8dca72ef232ef0c0e2}{operator[]}}(difference\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(*\textcolor{keyword}{this}\ +\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}});}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a2c1c4c393c4d063f26690947c916a094}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ current\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a69ec94db84bf10f6fb216a268e4df66d}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a15777196ec9ded0abcc54309bb2cecf0}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ <\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_afdb09153401aa4a554d0344c7cbc3759}{operator>}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ >\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a9ec2ac972e069cda1849f7aed1cab133}{operator<=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ <=\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a6d5ce76fb04460557fd99d5073e699ba}{operator>=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ >=\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ \ \ \ \ difference\_type\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a1d6fcd3faf62cb8c08ff6d45c2ca8542}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_\ -\/\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.current\_;}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00153\ \ \ \ \ std::vector<OriginalIterator>\ begins\_;}
+\DoxyCodeLine{00154\ \ \ \ \ std::vector<OriginalIterator>\ ends\_;}
+\DoxyCodeLine{00155\ \ \ \ \ OriginalIterator\ current\_;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnd\_;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ row\_\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd_aecb13959bad44f8f816b22b6a49129d3}{MergeRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\}\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<MergeRdd<R>}}>,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ MergeRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ Prepare\ nested\ splits\ vector}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator\ =\ std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>;}
+\DoxyCodeLine{00169\ \ \ \ \ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}};}
+\DoxyCodeLine{00170\ \ \ \ \ std::vector<OriginalIterator>\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}};}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}}.emplace\_back(std::ranges::begin(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}));}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}}.emplace\_back(std::ranges::end(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}));}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ single\ splits\_\ element}}
+\DoxyCodeLine{00177\ \ \ \ \ splits\_.emplace\_back(}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ std::ranges::subrange\{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}},\ \textcolor{keyword}{false}\},}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_begins}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{all\_prev\_splits\_ends}},\ \textcolor{keyword}{true}\},}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}}.front());}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00185\ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00188\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00189\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00190\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00191\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00195\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ \ \ std::vector<ViewSplit<std::ranges::subrange<Iterator>>>\ splits\_\{\};}
+\DoxyCodeLine{00201\ \};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00206\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merge}{Merge}}\ \{}
+\DoxyCodeLine{00207\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_merge}{Merge}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merge_rdd}{MergeRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ \};}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00219\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00220\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merge}{Merge}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{merge}})\ \{}
+\DoxyCodeLine{00221\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{merge}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+ \textcolor{comment}{// end of t\_Merge}\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_MERGE\_RDD\_H}}
 
 \end{DoxyCode}

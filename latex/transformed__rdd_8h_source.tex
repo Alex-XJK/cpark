@@ -12,68 +12,68 @@
 \DoxyCodeLine{00008\ }
 \DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }cpark\ \{}
 \DoxyCodeLine{00010\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ Func,}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>>}
-\DoxyCodeLine{00030\ \textcolor{keyword}{requires}\ std::invocable<Func,\ utils::RddElementType<R>>\&\&\ std::convertible\_to<}
-\DoxyCodeLine{00031\ \ \ \ \ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}}
-\DoxyCodeLine{00032\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<TransformedRdd<R,\ Func,\ T>>\ \{}
-\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<TransformedRdd<R,\ Func,\ T>}}>;}
-\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}};}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \textcolor{keyword}{false}\}\ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<TransformedRdd<R,\ Func,\ T>}}>,}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ TransformedRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ transformed\ splits.}}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ |\ std::views::transform(\mbox{\hyperlink{classcpark_1_1_base_split}{func}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
-\DoxyCodeLine{00044\ \ \ \ \ \}}
-\DoxyCodeLine{00045\ \ \ \}}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
-\DoxyCodeLine{00048\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
-\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
-\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
-\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{using\ }TransformedViewype\ =}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{keyword}{decltype}(std::declval<R>().front()\ |\ std::views::transform(std::declval<Func>()));}
-\DoxyCodeLine{00062\ \ \ \textcolor{comment}{//\ A\ vector\ holding\ the\ splits\ for\ this\ rdd.}}
-\DoxyCodeLine{00063\ \ \ std::vector<ViewSplit<TransformedViewype>>\ splits\_\{\};}
-\DoxyCodeLine{00064\ \};}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
-\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_transform}{Transform}}\ \{}
-\DoxyCodeLine{00071\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_transform}{Transform}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>,}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ U\ =\ std::invoke\_result\_t<Func,\ T>>}
-\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T>\&\&\ std::convertible\_to<std::invoke\_result\_t<Func,\ T>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{U}}>\ \textcolor{keyword}{auto}}
-\DoxyCodeLine{00077\ \ \ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ func\_);}
-\DoxyCodeLine{00079\ \ \ \}}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
-\DoxyCodeLine{00083\ \};}
-\DoxyCodeLine{00084\ }
-\DoxyCodeLine{00088\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ concepts::Rdd\ R>}
-\DoxyCodeLine{00089\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Transform<Func>}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{transform}})\ \{}
-\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{transform}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
-\DoxyCodeLine{00091\ \}}
-\DoxyCodeLine{00092\ }
- \textcolor{comment}{// end of t\_Transform}\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
-\DoxyCodeLine{00109\ }
-\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_TRANSFORMED\_RDD\_H}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ Func,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ T\ =\ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{requires}\ std::invocable<Func,\ utils::RddElementType<R>>\&\&\ std::convertible\_to<}
+\DoxyCodeLine{00032\ \ \ \ \ std::invoke\_result\_t<Func,\ utils::RddElementType<R>>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}}
+\DoxyCodeLine{00033\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<TransformedRdd<R,\ Func,\ T>>\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<TransformedRdd<R,\ Func,\ T>}}>;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \textcolor{keyword}{false}\}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<TransformedRdd<R,\ Func,\ T>}}>,}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ TransformedRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ transformed\ splits.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ |\ std::views::transform(\mbox{\hyperlink{classcpark_1_1_base_split}{func}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{using\ }TransformedViewype\ =}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keyword}{decltype}(std::declval<R>().front()\ |\ std::views::transform(std::declval<Func>()));}
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ A\ vector\ holding\ the\ splits\ for\ this\ rdd.}}
+\DoxyCodeLine{00064\ \ \ std::vector<ViewSplit<TransformedViewype>>\ splits\_\{\};}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_transform}{Transform}}\ \{}
+\DoxyCodeLine{00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_transform}{Transform}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ U\ =\ std::invoke\_result\_t<Func,\ T>>}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T>\&\&\ std::convertible\_to<std::invoke\_result\_t<Func,\ T>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{U}}>\ \textcolor{keyword}{auto}}
+\DoxyCodeLine{00078\ \ \ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ func\_);}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ concepts::Rdd\ R>}
+\DoxyCodeLine{00090\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Transform<Func>}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{transform}})\ \{}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{transform}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+ \textcolor{comment}{// end of t\_Transform}\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_TRANSFORMED\_RDD\_H}}
 
 \end{DoxyCode}
