@@ -11,6 +11,14 @@
 
 namespace cpark {
 
+/** @ingroup g_trans
+ *  @defgroup t_PartitionBy Partition-By
+ *  This forms the Partition By Transformation of our cpark library
+ *  @see PartitionByRdd
+ *  @see PartitionBy
+ *  @{
+ */
+
 /**
  * Re-partition an Rdd of key-value pairs using a partitioner function into new splits.
  * @tparam R Original Rdd. Its elements must be of key-value type (pair-like).
@@ -129,6 +137,8 @@ template <cpark::concepts::Rdd R, typename P>
 auto operator|(const R& r, const P& p) {
   return p(r);
 }
+
+/** @} */ // end of t_PartitionBy
 
 }  // namespace cpark
 

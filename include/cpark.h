@@ -15,6 +15,18 @@
 
 #include "utils.h"
 
+/** @defgroup g_creates Creations
+ *  Creations generate a new cpark Rdd from program.
+ */
+
+/** @defgroup g_trans Transformations
+ *  Transformations are lazy operations that define a new cpark Rdd.
+ */
+
+/** @defgroup g_acts Actions
+ *  Actions launch a computation on the cpark Rdds and return a value to the program.
+ */
+
 namespace cpark {
 
 /**

@@ -9,6 +9,13 @@
 
 namespace cpark {
 
+/** @ingroup g_acts
+ *  @defgroup a_Reduce Reduce
+ *  This works as the Reduce Action of our cpark library
+ *  @see Reduce
+ *  @{
+ */
+
 /**
  * A class who receives a function (callable object) and calculate the reduced result of Rdd using
  * the function.
@@ -48,6 +55,14 @@ template <typename Func, concepts::Rdd R>
 auto operator|(const R& r, const Reduce<Func>& reduce) {
   return reduce(r);
 }
+
+/**
+ * @example calculate_pi.cpp
+ * This is an example use case of
+ * calculate the value of pi by series with n terms.
+ */
+
+/** @} */ // end of a_Reduce
 
 }  // namespace cpark
 
