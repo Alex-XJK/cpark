@@ -10,9 +10,9 @@ is a high-performance, parallel computing library for C++ developed by passionat
 Inspired by Apache Spark, our goal is to empower developers with a lightning-fast, easy-to-use framework for fast and general-purpose large data computing in C++.
 
 ## Authors
-**Mr. Shichen Xu** ([link](https://www.linkedin.com/in/shichen-xu-9b50a8179/))  
-**Mr. Jiakai Xu** ([link](https://www.alexxu.tech/))  
-**Mr. Xintong Zhan** ([link](https://www.linkedin.com/in/xintong-zhan-060035250/))
+- **Mr. Shichen Xu** ([link](https://www.linkedin.com/in/shichen-xu-9b50a8179/))  
+- **Mr. Jiakai Xu** ([link](https://www.alexxu.tech/))  
+- **Mr. Xintong Zhan** ([link](https://www.linkedin.com/in/xintong-zhan-060035250/))
 
 ## Features
 
@@ -23,7 +23,7 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
 
 ## Getting Started
 
-1. **Check our Documentation:**  
+1. **Check Documentation:**  
   [www.alexxu.tech/cpark](https://www.alexxu.tech/cpark/)
 
 2. **Clone the Repository:**
@@ -33,7 +33,28 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
 
 3. **Example Usage:**
    ```cpp
-   // TODO ?????
+    #include <iostream>
+   
+    #include "generator_rdd.h"
+    #include "transformed_rdd.h"
+    #include "filter_rdd.h"
+    #include "reduce.h"
+    
+    int main() {
+        cpark::Config default_config;
+        default_config.setParallelTaskNum(8);
+        cpark::ExecutionContext default_context{default_config};
+        
+        auto result =
+            cpark::GeneratorRdd(1, 1000, [&](auto i) -> auto { return i; }, &default_context) |
+            cpark::Transform([](auto x) { return x * x; }) |
+            cpark::Filter([](auto x) { return x % 3 == 0; }) |
+            cpark::Reduce([](auto x, auto y) { return x + y; });
+        
+        std::cout << "The computation result is " << result << std::endl;
+        
+        return 0;
+    }
    ```
 
 ## Community and Support

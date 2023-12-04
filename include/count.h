@@ -10,7 +10,8 @@
 
 namespace cpark {
 
-/** @defgroup a_Count The Count Action
+/** @ingroup g_acts
+ *  @defgroup a_Count Count
  *  This works as the Count Action of our cpark library
  *  @see Count
  *  @{

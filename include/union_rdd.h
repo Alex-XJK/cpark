@@ -10,7 +10,8 @@
 
 namespace cpark {
 
-/** @defgroup t_Union The Union Transformation
+/** @ingroup g_trans
+ *  @defgroup t_Union Union
  *  This forms the Union Transformation of our cpark library
  *  @image html union.drawio.png "UnionRdd diagram" width=50%
  *  @see UnionRdd

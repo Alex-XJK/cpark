@@ -8,7 +8,8 @@
 
 namespace cpark {
 
-/** @defgroup t_Merge The Merge Transformation
+/** @ingroup g_trans
+ *  @defgroup t_Merge Merge
  *  This forms the Merge Transformation of our cpark library
  *  @image html merge.drawio.png "MergeRdd diagram" width=50%
  *  @see MergeRdd

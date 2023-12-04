@@ -8,6 +8,15 @@
 
 namespace cpark {
 
+/** @ingroup g_trans
+ *  @defgroup t_Transform Map(Transform)
+ *  This forms the Map(Transform) Transformation of our cpark library
+ *  @image html transform.drawio.png "TransformedRdd diagram" width=50%
+ *  @see TransformedRdd
+ *  @see Transform
+ *  @{
+ */
+
 /**
 * An Rdd holding the data transformed from an old rdd by some function.
 * @tparam R Type of the old Rdd.
@@ -80,6 +89,21 @@ template <typename Func, concepts::Rdd R>
 auto operator|(const R& r, const Transform<Func>& transform) {
   return transform(r);
 }
+
+/**
+ * @example simple.cpp
+ * This is an simple use case of cpark basic operations.
+ */
+
+/**
+ * @example speed_check.cpp
+ * This is an example program to compare
+ * the running speed and code complexity difference
+ * between C++ standard ranges operations and
+ * cpark operations with different execution cores.
+ */
+
+/** @} */ // end of t_Transform
 
 }  // namespace cpark
 

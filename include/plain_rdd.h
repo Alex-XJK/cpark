@@ -5,6 +5,13 @@
 
 namespace cpark {
 
+/** @ingroup g_creates
+ *  @defgroup c_Plain Plain
+ *  This works as a Creation Method to generate cpark Rdd from std::ranges::view
+ *  @see PlainRdd
+ *  @{
+ */
+
 /**
 * A plain RDD holding the same data from a std::ranges::view without any
 * changes.
@@ -52,6 +59,8 @@ private:
   // A vector holding the splits for this rdd.
   std::vector<ViewSplit<std::ranges::subrange<std::ranges::iterator_t<R>>>> splits_{};
 };
+
+/** @} */ // end of c_Plain
 
 }  // namespace cpark
 
