@@ -1,15 +1,20 @@
 #ifndef CPARK_ZIPPED_RDD_H
 #define CPARK_ZIPPED_RDD_H
 
-#include <vector>
-#include <ranges>
 #include <iterator>
+#include <ranges>
+#include <vector>
 
 #include "base_rdd.h"
 #include "utils.h"
 
 namespace cpark {
 
+/**
+ * An Rdd holding the zipped data from two old rdds
+ * @tparam R1 Type of the first old Rdd.
+ * @tparam R2 Type of the second old Rdd.
+ */
 template <concepts::Rdd R1, concepts::Rdd R2>
 class ZippedRdd : public BaseRdd<ZippedRdd<R1, R2>> {
 public:
@@ -24,9 +29,11 @@ public:
                   "Instance of ZippedRdd does not satisfy Rdd concept.");
     int cnt = 0;
     for (const concepts::Split auto& prev_split : prev1) {
-      int i = 0;
       auto targeted_split = prev2[cnt].begin();
-      std::function<std::pair<V1, V2>(const V1&)> func = [cnt,targeted_split](const V1& x)mutable{return std::make_pair(x, *(targeted_split++));};
+      std::function<std::pair<V1, V2>(const V1&)> func = [cnt,
+                                                          targeted_split](const V1& x) mutable {
+        return std::make_pair(x, *(targeted_split++));
+      };
       auto zippedView = prev_split | std::views::transform(func);
       splits_.emplace_back(zippedView, prev_split);
       splits_.back().addDependency(prev_split);
@@ -43,12 +50,11 @@ private:
   constexpr auto endImpl() const { return std::ranges::end(splits_); }
 
 private:
-    using ZippedViewType = decltype( std::declval<R1>().front() | std::views::transform(std::declval<std::function<std::pair<V1, V2>(const V1&)>>()));
-  
-  //std::function<std::pair<V1, V2>(const V1&)>;
-  //using ZippedViewType = std::ranges::range_value_t<R1>;
+  using ZippedViewType =
+      decltype(std::declval<R1>().front() |
+               std::views::transform(std::declval<std::function<std::pair<V1, V2>(const V1&)>>()));
   std::vector<ViewSplit<ZippedViewType>> splits_{};
 };
-}
+}  // namespace cpark
 
-#endif // CPARK_TRANSFORMED_RDD_H
+#endif  // CPARK_TRANSFORMED_RDD_H

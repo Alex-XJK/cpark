@@ -64,20 +64,11 @@ int main() {
   }
   std::cout << std::endl;
 
- 
   // Creates a transformed rdd which adds a " world" string to the elements in the generator rdd.
   auto transformed_rdd = TransformedRdd(generator_rdd, [](const auto& x) { return x + " world"; });
   std::cout << "The elements in the fourth split of transformed rdd are: ";
   for (const auto& x : transformed_rdd[3]) {
     std::cout << x << ", ";
-  }
-  std::cout << std::endl;
-
-   // Creates a zipped rdd.
-  auto zipped_rdd = ZippedRdd(generator_rdd, transformed_rdd);
-  std::cout << "The elements in the first split of zipped rdd are: ";
-  for (const auto& x : zipped_rdd[0]) {
-    std::cout << "(" << x.first << ", " << x.second << ")" << ", ";
   }
   std::cout << std::endl;
 
@@ -92,4 +83,13 @@ int main() {
   // Calculate the sum of the plain rdd by reduce.
   int res = plain_rdd | Reduce([](int x, int y) { return x + y; });
   std::cout << "The sum of the plain rdd is " << res << std::endl;
+
+  // Creates a zipped rdd.
+  auto zipped_rdd = ZippedRdd(generator_rdd, transformed_rdd);
+  std::cout << "The elements in the first split of zipped rdd are: ";
+  for (const auto& x : zipped_rdd[0]) {
+    std::cout << "(" << x.first << ", " << x.second << ")"
+              << ", ";
+  }
+  std::cout << std::endl;
 }

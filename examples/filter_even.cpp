@@ -29,23 +29,25 @@ int main() {
     return 0 == i % 2;
   };
 
-  // Test for FilterRdd(const R1& prev, Func func) constructor
+  // Test for FilterRdd(const R& prev, Func func) constructor
   std::cout << "Filter rdd (basic): " << std::endl;
   auto filter_rdd_1 = FilterRdd(generator_rdd, even);
   printRdd(filter_rdd_1);
 
-  std::cout<< "Sample rdd: " <<std::endl;
-  auto sample_rdd = FilterRdd(generator_rdd, sampleFunction);
-  printRdd(sample_rdd);
-
-  std::cout<< "Sample rdd 2: " <<std::endl;
-  auto sample_rdd2 = SampleRdd(generator_rdd, 0.1);
-  printRdd(sample_rdd2);
-  
   // Test for pipeline and Filter(Func func) operators
   std::cout << "Filter rdd (operators): " << std::endl;
   auto filter_rdd_2 = generator_rdd | Filter(even);
   printRdd(filter_rdd_2);
+
+  // Creates a sample rdd with sample ratio of 0.5 using class constructor style
+  std::cout << "Sample rdd: " << std::endl;
+  auto sample_rdd = SampleRdd(generator_rdd, 0.5);
+  printRdd(sample_rdd);
+
+  // Creates a sample rdd with sample ratio of 0.5 using pipeline style
+  std::cout << "Sample rdd (operators): " << std::endl;
+  auto sample_rdd_2 = generator_rdd | Sample(0.5);
+  printRdd(sample_rdd_2);
 
   return 0;
 }
