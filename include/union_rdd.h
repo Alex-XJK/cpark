@@ -14,6 +14,7 @@ namespace cpark {
  *  @defgroup t_Union Union
  *  This forms the Union Transformation of our cpark library
  *  @image html union.drawio.png "UnionRdd diagram" width=50%
+ *  @image latex union.drawio.png "UnionRdd diagram" width=10cm
  *  @see UnionRdd
  *  @{
  */

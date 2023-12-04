@@ -12,6 +12,7 @@ namespace cpark {
  *  @defgroup t_Filter Filter
  *  This forms the Filter Transformation of our cpark library
  *  @image html filter.drawio.png "FilterRdd diagram" width=50%
+ *  @image latex filter.drawio.png "FilterRdd diagram" width=10cm
  *  @see FilterRdd
  *  @see Filter
  *  @{
