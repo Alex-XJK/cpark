@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['merge_20transformation_0',['The Merge Transformation',['../group__t___merge.html',1,'']]]
+  ['filter_0',['Filter',['../group__t___filter.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['union_20transformation_0',['The Union Transformation',['../group__t___union.html',1,'']]]
+  ['key_0',['Group-By-Key',['../group__t___group_by_key.html',1,'']]]
 ];
