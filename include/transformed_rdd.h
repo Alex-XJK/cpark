@@ -12,6 +12,7 @@ namespace cpark {
  *  @defgroup t_Transform Map(Transform)
  *  This forms the Map(Transform) Transformation of our cpark library
  *  @image html transform.drawio.png "TransformedRdd diagram" width=50%
+ *  @image latex transform.drawio.png "TransformedRdd diagram" width=10cm
  *  @see TransformedRdd
  *  @see Transform
  *  @{

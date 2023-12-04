@@ -12,6 +12,7 @@ namespace cpark {
  *  @defgroup t_Merge Merge
  *  This forms the Merge Transformation of our cpark library
  *  @image html merge.drawio.png "MergeRdd diagram" width=50%
+ *  @image latex merge.drawio.png "MergeRdd diagram" width=10cm
  *  @see MergeRdd
  *  @see Merge
  *  @{
