@@ -12,6 +12,13 @@
 
 namespace cpark {
 
+/** @ingroup g_trans
+ *  @defgroup t_GroupByKey Group-By-Key
+ *  This forms the Group-By-Key Transformation of our cpark library
+ *  @see GroupByKeyRdd
+ *  @{
+ */
+
 /**
  * An Rdd that performs group-by-key operation to a previous key-value typed Rdd.
  * The values that have the same key will be grouped into a sequence, and the sequence will be the
@@ -179,6 +186,8 @@ private:
 };
 
 // TODO: Helper classes to be added later.
+
+/** @} */ // end of t_GroupByKey
 
 }  // namespace cpark
 

@@ -5,6 +5,13 @@
 
 namespace cpark {
 
+/** @ingroup g_creates
+ *  @defgroup c_Generator Generator
+ *  This works as a sequential Creation Method to generate Rdd
+ *  @see GeneratorRdd
+ *  @{
+ */
+
 /**
  * An Rdd that generates a sequence of data from a number range.
  * @tparam Num The type of the number composing the range. It must be arithmetic
@@ -99,6 +106,8 @@ private:
   // A vector holding the splits for this rdd.
   std::vector<ViewSplit<std::ranges::subrange<Iterator>>> splits_{};
 };
+
+/** @} */ // end of c_Generator
 
 }  // namespace cpark
 

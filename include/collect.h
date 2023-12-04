@@ -9,6 +9,13 @@
 
 namespace cpark {
 
+/** @ingroup g_acts
+ *  @defgroup a_Collect Action >> Collect
+ *  This works as the Collect Action of our cpark library
+ *  @see Collect
+ *  @{
+ */
+
 /**
  * A class that collects all the partitions in an Rdd into a single vector.
  */
@@ -41,6 +48,14 @@ template <concepts::Rdd R>
 auto operator|(const R& r, const Collect& collect) {
   return collect(r);
 }
+
+/**
+ * @example collect_partitions.cpp
+ * This is an example use case of
+ * collecting all the elements into a vector data structure in the end.
+ */
+
+/** @} */ // end of a_Collect
 
 }  // namespace cpark
 

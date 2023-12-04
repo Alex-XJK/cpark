@@ -8,7 +8,8 @@
 
 namespace cpark {
 
-/** @defgroup t_Filter The Filter Transformation
+/** @ingroup g_trans
+ *  @defgroup t_Filter Filter
  *  This forms the Filter Transformation of our cpark library
  *  @image html filter.drawio.png "FilterRdd diagram" width=50%
  *  @see FilterRdd
