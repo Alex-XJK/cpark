@@ -1,0 +1,115 @@
+\doxysection{cpark\+::Config Class Reference}
+\hypertarget{classcpark_1_1_config}{}\label{classcpark_1_1_config}\index{cpark::Config@{cpark::Config}}
+
+
+{\ttfamily \#include $<$cpark.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_config_a56798fe0de2862272b65b3f7ecfc1fde}\label{classcpark_1_1_config_a56798fe0de2862272b65b3f7ecfc1fde} 
+enum class {\bfseries Parallel\+Policy} \{ {\bfseries Sequential}
+, {\bfseries Thread}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{const}} std\+::string \& \mbox{\hyperlink{classcpark_1_1_config_a8c266dcc3faf18a30514b28c123af334}{get\+Debug\+Name}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} \mbox{\hyperlink{classcpark_1_1_config_a9f67f3db1f7575fe56d767a148f23bd1}{get\+Parallel\+Task\+Num}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} Parallel\+Policy \mbox{\hyperlink{classcpark_1_1_config_ae02e53d89f1f20e046b4c82fe06f1484}{get\+Parallel\+Policy}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcpark_1_1_config_a039cc9dbad67987f768a1f0323a2f481}{get\+Logger\+Ptr}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} std\+::ostream \& \mbox{\hyperlink{classcpark_1_1_config_a8d715332c1dbd109950e0e06ceeb5fd0}{get\+Logger\+Or\+Null\+Stream}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_config}{Config}} \& \mbox{\hyperlink{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}{set\+Debug\+Name}} (std\+::string \mbox{\hyperlink{classcpark_1_1_base_split}{name}}) \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_config}{Config}} \& \mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{set\+Parallel\+Task\+Num}} (\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} \mbox{\hyperlink{classcpark_1_1_base_split}{num}}=0) \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_config}{Config}} \& \mbox{\hyperlink{classcpark_1_1_config_a24b32467194d3d2de8d478b991e62679}{set\+Parallel\+Policy}} (Parallel\+Policy \mbox{\hyperlink{classcpark_1_1_base_split}{policy}}) \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_config}{Config}} \& \mbox{\hyperlink{classcpark_1_1_config_acff9b4e90789780e4f7dff6aa887ffea}{set\+Logger}} (std\+::ostream \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{logger}}) \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration class for cpark. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{calculate_pi_8cpp-example}{calculate\+\_\+pi.\+cpp}}, \mbox{\hyperlink{collect_partitions_8cpp-example}{collect\+\_\+partitions.\+cpp}}, \mbox{\hyperlink{merge_splits_8cpp-example}{merge\+\_\+splits.\+cpp}}, \mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}, and \mbox{\hyperlink{speed_check_8cpp-example}{speed\+\_\+check.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_config_a8c266dcc3faf18a30514b28c123af334}\label{classcpark_1_1_config_a8c266dcc3faf18a30514b28c123af334} 
+\index{cpark::Config@{cpark::Config}!getDebugName@{getDebugName}}
+\index{getDebugName@{getDebugName}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{getDebugName()}{getDebugName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{const}} std\+::string \& cpark\+::\+Config\+::get\+Debug\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Returns the debug name, a name that will be shown in the log message of the cpark tasks created with this configuration \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}.\end{Desc}
+\Hypertarget{classcpark_1_1_config_a8d715332c1dbd109950e0e06ceeb5fd0}\label{classcpark_1_1_config_a8d715332c1dbd109950e0e06ceeb5fd0} 
+\index{cpark::Config@{cpark::Config}!getLoggerOrNullStream@{getLoggerOrNullStream}}
+\index{getLoggerOrNullStream@{getLoggerOrNullStream}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{getLoggerOrNullStream()}{getLoggerOrNullStream()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} std\+::ostream \& cpark\+::\+Config\+::get\+Logger\+Or\+Null\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Returns an ostream that will be used as a logger. If the logger is not set by user, it returns an ostream that eats everything put to it. \Hypertarget{classcpark_1_1_config_a039cc9dbad67987f768a1f0323a2f481}\label{classcpark_1_1_config_a039cc9dbad67987f768a1f0323a2f481} 
+\index{cpark::Config@{cpark::Config}!getLoggerPtr@{getLoggerPtr}}
+\index{getLoggerPtr@{getLoggerPtr}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{getLoggerPtr()}{getLoggerPtr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} std\+::ostream \texorpdfstring{$\ast$}{*} cpark\+::\+Config\+::get\+Logger\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Returns a pointer to an ostream that will be used as a logger. \Hypertarget{classcpark_1_1_config_ae02e53d89f1f20e046b4c82fe06f1484}\label{classcpark_1_1_config_ae02e53d89f1f20e046b4c82fe06f1484} 
+\index{cpark::Config@{cpark::Config}!getParallelPolicy@{getParallelPolicy}}
+\index{getParallelPolicy@{getParallelPolicy}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{getParallelPolicy()}{getParallelPolicy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} Parallel\+Policy cpark\+::\+Config\+::get\+Parallel\+Policy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Returns the parallel policy of the cpark tasks. \Hypertarget{classcpark_1_1_config_a9f67f3db1f7575fe56d767a148f23bd1}\label{classcpark_1_1_config_a9f67f3db1f7575fe56d767a148f23bd1} 
+\index{cpark::Config@{cpark::Config}!getParallelTaskNum@{getParallelTaskNum}}
+\index{getParallelTaskNum@{getParallelTaskNum}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{getParallelTaskNum()}{getParallelTaskNum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} cpark\+::\+Config\+::get\+Parallel\+Task\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+Returns the parallel task number of the cpark task, which typically means the number of splits in an Rdd. \Hypertarget{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}\label{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75} 
+\index{cpark::Config@{cpark::Config}!setDebugName@{setDebugName}}
+\index{setDebugName@{setDebugName}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{setDebugName()}{setDebugName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& cpark\+::\+Config\+::set\+Debug\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Sets debug name. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{collect_partitions_8cpp-example}{collect\+\_\+partitions.\+cpp}}, and \mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}.\end{Desc}
+\Hypertarget{classcpark_1_1_config_acff9b4e90789780e4f7dff6aa887ffea}\label{classcpark_1_1_config_acff9b4e90789780e4f7dff6aa887ffea} 
+\index{cpark::Config@{cpark::Config}!setLogger@{setLogger}}
+\index{setLogger@{setLogger}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{setLogger()}{setLogger()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& cpark\+::\+Config\+::set\+Logger (\begin{DoxyParamCaption}\item[{std\+::ostream \texorpdfstring{$\ast$}{*}}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Sets logger. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}.\end{Desc}
+\Hypertarget{classcpark_1_1_config_a24b32467194d3d2de8d478b991e62679}\label{classcpark_1_1_config_a24b32467194d3d2de8d478b991e62679} 
+\index{cpark::Config@{cpark::Config}!setParallelPolicy@{setParallelPolicy}}
+\index{setParallelPolicy@{setParallelPolicy}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{setParallelPolicy()}{setParallelPolicy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& cpark\+::\+Config\+::set\+Parallel\+Policy (\begin{DoxyParamCaption}\item[{Parallel\+Policy}]{policy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Sets parallel policy. \Hypertarget{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}\label{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f} 
+\index{cpark::Config@{cpark::Config}!setParallelTaskNum@{setParallelTaskNum}}
+\index{setParallelTaskNum@{setParallelTaskNum}!cpark::Config@{cpark::Config}}
+\doxysubsubsection{\texorpdfstring{setParallelTaskNum()}{setParallelTaskNum()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& cpark\+::\+Config\+::set\+Parallel\+Task\+Num (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}}}]{num = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Sets parallel task number. If no parameter, default to physical supported thread number. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{merge_splits_8cpp-example}{merge\+\_\+splits.\+cpp}}, \mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}, and \mbox{\hyperlink{speed_check_8cpp-example}{speed\+\_\+check.\+cpp}}.\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/cpark.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,48 @@
+\doxysection{count.\+h}
+\hypertarget{count_8h_source}{}\label{count_8h_source}\index{include/count.h@{include/count.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_COUNT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_COUNT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_count}{Count}}\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_count_a0ea87d5d7041a1fb3ae112337b7a9df0}{Count}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classcpark_1_1_count_a98c27751a03e33da3e818d16094e41ff}{operator()}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Parallel\ compute\ the\ result.}}
+\DoxyCodeLine{00032\ \ \ \ \ std::vector<std::future<unsigned\ long\ long>>\ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}\{\};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}.emplace\_back(std::async([\textcolor{keyword}{this},\ \&\mbox{\hyperlink{classcpark_1_1_base_split}{split}}]()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ return\ static\_cast<unsigned\ long\ long>(split.size());}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{results}}\ =}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::ranges::subrange(\mbox{\hyperlink{classcpark_1_1_base_split}{futures}})\ |}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::views::transform([](std::future<unsigned\ long\ long>\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}}.get();\ \});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ std::accumulate(\mbox{\hyperlink{classcpark_1_1_base_split}{results}}.\mbox{\hyperlink{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}{begin}}(),\ \mbox{\hyperlink{classcpark_1_1_base_split}{results}}.\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}(),\ 0);}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_count}{Count}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{count}})\ \{}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{count}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+ \textcolor{comment}{// end of a\_Count}\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_COUNT\_H}}
+
+\end{DoxyCode}

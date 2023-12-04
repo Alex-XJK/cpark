@@ -1,0 +1,16 @@
+\doxysection{cpark\+::concepts\+::Pair Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_pair}{}\label{conceptcpark_1_1concepts_1_1_pair}\index{cpark::concepts::Pair@{cpark::concepts::Pair}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ P>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_pair}{cpark::concepts::Pair}}\ =\ \ \textcolor{keyword}{requires}(P\ p)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ P::first\_type;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{typename}\ P::second\_type;}
+\DoxyCodeLine{\ \ p.first;}
+\DoxyCodeLine{\ \ p.second;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ std::same\_as<\textcolor{keyword}{decltype}(p.first),\ \textcolor{keyword}{typename}\ P::first\_type>;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ std::same\_as<\textcolor{keyword}{decltype}(p.second),\ \textcolor{keyword}{typename}\ P::second\_type>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

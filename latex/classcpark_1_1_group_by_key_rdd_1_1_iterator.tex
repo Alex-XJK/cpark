@@ -1,0 +1,91 @@
+\doxysection{cpark\+::Group\+By\+Key\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator}{}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator}\index{cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}}
+
+
+{\ttfamily \#include $<$group\+\_\+by\+\_\+key\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Group\+By\+Key\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_group_by_key_rdd_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a78778211bb8d01ec6a469f949a77bbec}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a78778211bb8d01ec6a469f949a77bbec} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = std\+::pair$<$ Key\+Type, std\+::ranges\+::subrange$<$ std\+::ranges\+::iterator\+\_\+t$<$ std\+::vector$<$ Value\+Type $>$ $>$ $>$ $>$
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_ab8f8f53b4dc43335be72578eee0faf65}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_ab8f8f53b4dc43335be72578eee0faf65} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a3c4634e25ac9c6d45b6f20628e3186ed}{Iterator}} (std\+::ranges\+::subrange$<$ std\+::ranges\+::iterator\+\_\+t$<$ std\+::ranges\+::range\+\_\+value\+\_\+t$<$ R $>$ $>$ $>$ \mbox{\hyperlink{classcpark_1_1_base_split}{original\+\_\+data}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{is\+\_\+end}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a77cd74644caf6a85ea9066081be55b43}{Iterator}} (\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{is\+\_\+end}})
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_ab980fdab30cc04a9dff7a49dfdd754cc}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_ab980fdab30cc04a9dff7a49dfdd754cc} 
+value\+\_\+type {\bfseries operator\texorpdfstring{$\ast$}{*}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a4f2e2fd4bc5c72f8982deec289977c82}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a4f2e2fd4bc5c72f8982deec289977c82} 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}} \& {\bfseries operator++} ()
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_ad051b272d718dbd339a5bd8a3479cf04}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_ad051b272d718dbd339a5bd8a3479cf04} 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}} {\bfseries operator++} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a5336869c52d40951105ddbb5cac0d758}{operator==}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a0686f25de0b6a11e695cf1adaed662cd}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a0686f25de0b6a11e695cf1adaed662cd} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator!=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Key\+Value\+Rdd R$>$\newline
+class cpark\+::\+Group\+By\+Key\+Rdd$<$ R $>$\+::\+Iterator}
+An \doxylink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator} that will calculate and store the group-\/by-\/key results in a shared state. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a3c4634e25ac9c6d45b6f20628e3186ed}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a3c4634e25ac9c6d45b6f20628e3186ed} 
+\index{cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{cpark\+::\+Group\+By\+Key\+Rdd}}$<$ R $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{std\+::ranges\+::subrange$<$ std\+::ranges\+::iterator\+\_\+t$<$ std\+::ranges\+::range\+\_\+value\+\_\+t$<$ R $>$ $>$ $>$}]{original\+\_\+data,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{is\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates the iterator with 
+\begin{DoxyParams}{Parameters}
+{\em original\+\_\+data} & A subrange representing the original key-\/value data to be grouped. \\
+\hline
+{\em is\+\_\+end} & Whether this iterator is an end sentinel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a77cd74644caf6a85ea9066081be55b43}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a77cd74644caf6a85ea9066081be55b43} 
+\index{cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{cpark\+::\+Group\+By\+Key\+Rdd}}$<$ R $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{is\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates the iterator of empty data with 
+\begin{DoxyParams}{Parameters}
+{\em is\+\_\+end} & Whether this iterator is an end sentinel. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_group_by_key_rdd_1_1_iterator_a5336869c52d40951105ddbb5cac0d758}\label{classcpark_1_1_group_by_key_rdd_1_1_iterator_a5336869c52d40951105ddbb5cac0d758} 
+\index{cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!cpark::GroupByKeyRdd$<$ R $>$::Iterator@{cpark::GroupByKeyRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{cpark\+::\+Group\+By\+Key\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Two iterators are equal iff\+: they are both end sentinels, or they have the same shared data and point to the same element. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/group\+\_\+by\+\_\+key\+\_\+rdd.\+h\end{DoxyCompactItemize}

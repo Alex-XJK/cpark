@@ -1,0 +1,26 @@
+\doxysection{cpark\+::Partition\+By\texorpdfstring{$<$}{<} Partitioner \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_partition_by_3_01_partitioner_01_4}{}\label{classcpark_1_1_partition_by_3_01_partitioner_01_4}\index{cpark::PartitionBy$<$ Partitioner $>$@{cpark::PartitionBy$<$ Partitioner $>$}}
+
+
+{\ttfamily \#include $<$partition\+\_\+by\+\_\+rdd.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_partition_by_3_01_partitioner_01_4_ad8498951561ee7f40fe80b22893c9162}\label{classcpark_1_1_partition_by_3_01_partitioner_01_4_ad8498951561ee7f40fe80b22893c9162} 
+{\bfseries Partition\+By} (\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} \mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})
+\item 
+\Hypertarget{classcpark_1_1_partition_by_3_01_partitioner_01_4_a330c5c4320c08374737655cc7b7d1480}\label{classcpark_1_1_partition_by_3_01_partitioner_01_4_a330c5c4320c08374737655cc7b7d1480} 
+{\footnotesize template$<$concepts\+::\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{K}}  = utils\+::\+Rdd\+Key\+Type$<$\+R$>$$>$ \newline
+requires std\+::invocable$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}, \mbox{\hyperlink{classcpark_1_1_base_split}{K}}$>$ \&\& std\+::convertible\+\_\+to$<$std\+::invoke\+\_\+result\+\_\+t$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}, \mbox{\hyperlink{classcpark_1_1_base_split}{K}}$>$, \mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}}$>$}\\\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} {\bfseries operator()} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{r}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}$>$\newline
+class cpark\+::\+Partition\+By$<$ Partitioner $>$}
+A helper class to create partition by rdd with user specified partitioner. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/partition\+\_\+by\+\_\+rdd.\+h\end{DoxyCompactItemize}

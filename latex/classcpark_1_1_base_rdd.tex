@@ -1,0 +1,114 @@
+\doxysection{cpark\+::Base\+Rdd\texorpdfstring{$<$}{<} Derived\+Rdd \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_base_rdd}{}\label{classcpark_1_1_base_rdd}\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Base\+Rdd\texorpdfstring{$<$}{<} Derived\+Rdd \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcpark_1_1_base_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}})
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}} \& \mbox{\hyperlink{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_base_rdd_a739799b4dd8f7c8bdd24a2f45773b4f6}\label{classcpark_1_1_base_rdd_a739799b4dd8f7c8bdd24a2f45773b4f6} 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+} \{\}
+\item 
+\Hypertarget{classcpark_1_1_base_rdd_a8c8f3bfd01bdf642e8243badd1b1e491}\label{classcpark_1_1_base_rdd_a8c8f3bfd01bdf642e8243badd1b1e491} 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} {\bfseries rdd\+\_\+id\+\_\+} \{\}
+\item 
+\Hypertarget{classcpark_1_1_base_rdd_aa573d25118ac779e6d5a14a1b6ba40dc}\label{classcpark_1_1_base_rdd_aa573d25118ac779e6d5a14a1b6ba40dc} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} {\bfseries splits\+\_\+num\+\_\+} \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}}$>$\newline
+class cpark\+::\+Base\+Rdd$<$ Derived\+Rdd $>$}
+A base class that holds common interfaces, operations and variables for all different Rdd-\/s. This class uses CRTP to achieve compile-\/time polymorphism to avoid the run-\/time cost of virtual functions. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived\+Rdd} & The type of the derived Rdd. Derived Rdd class should implement these functions\+: begin\+Impl(), end\+Impl(). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194}\label{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!BaseRdd@{BaseRdd}}
+\index{BaseRdd@{BaseRdd}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{BaseRdd()}{BaseRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::\+Base\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&}]{prev,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{copy\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates a \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} with a previous \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd}. The new \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} will have the same execution context and split num with the previous one. If {\ttfamily copy\+\_\+id} is true, new \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} will have the same rdd id as the previous one. Otherwise it will be assigned another unique rdd\+\_\+id. \Hypertarget{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba}\label{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!BaseRdd@{BaseRdd}}
+\index{BaseRdd@{BaseRdd}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{BaseRdd()}{BaseRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::\+Base\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor for each kind of \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} class. \Hypertarget{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24}\label{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!BaseRdd@{BaseRdd}}
+\index{BaseRdd@{BaseRdd}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{BaseRdd()}{BaseRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::\+Base\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates a new \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} with an execution context. The new \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} will have this execution context and have the same number of splits as configured in the execution context. It will be assigned a unique rdd\+\_\+id. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}\label{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!begin@{begin}}
+\index{begin@{begin}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an forward Iterator that points to the first split contained in this Rdd. \Hypertarget{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}\label{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!end@{end}}
+\index{end@{end}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an iterator sentinel which marks the end for the iterators pointing to the splits in this Rdd. \Hypertarget{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c}\label{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!id@{id}}
+\index{id@{id}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{id()}{id()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns the rdd id. \Hypertarget{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0}\label{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0} 
+\index{cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!cpark::BaseRdd$<$ DerivedRdd $>$@{cpark::BaseRdd$<$ DerivedRdd $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$ \\
+template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}} \& \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Rdd}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assignment operator for each kind of \doxylink{classcpark_1_1_base_rdd}{Base\+Rdd} class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/base\+\_\+rdd.\+h\end{DoxyCompactItemize}

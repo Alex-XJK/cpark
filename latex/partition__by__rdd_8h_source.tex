@@ -1,0 +1,105 @@
+\doxysection{partition\+\_\+by\+\_\+rdd.\+h}
+\hypertarget{partition__by__rdd_8h_source}{}\label{partition__by__rdd_8h_source}\index{include/partition\_by\_rdd.h@{include/partition\_by\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_PARTITION\_BY\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_PARTITION\_BY\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}merged\_view.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <concepts::KeyValueRdd\ R,\ \textcolor{keyword}{typename}\ Partitioner\ =\ std::hash<utils::RddKeyType<R>>>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<PartitionByRdd<R,\ Partitioner>>\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<PartitionByRdd<R,\ Partitioner>}}>;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a8016377bcad5d3edf0610a594ce6b5e7}{PartitionByRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}\},\ partitioner\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})\}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_base_split}{i}}\ :\ std::views::iota(0\mbox{\hyperlink{classcpark_1_1_base_split}{u}},\ Base::splits\_num\_))\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_view}}\ =}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}(\mbox{\hyperlink{classcpark_1_1_merged_same_view}{MergedSameView}}(\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}),\ PartitionerHelper\{\mbox{\hyperlink{classcpark_1_1_base_split}{i}},\ Base::splits\_num\_,\ \&partitioner\_\});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ splits\_.emplace\_back(std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_view}}),\ Base::context\_);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{split}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a5cc0aec8dc4d51de22ba3aaf087f85bb}{PartitionByRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ :\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}\{\}\}\ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a43fa5ecc27d312fab94609fa25117252}{PartitionByRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{class\ }PartitionerHelper\ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00081\ \ \ \ \ PartitionerHelper(\textcolor{keywordtype}{size\_t}\ split\_index,\ \textcolor{keywordtype}{size\_t}\ splits\_num,\ Partitioner*\ partitioner)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ :\ split\_index\_\{split\_index\},\ splits\_num\_\{splits\_num\},\ partitioner\_\{partitioner\}\ \{\}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator()(\textcolor{keyword}{const}\ utils::RddElementType<R>\&\ x)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*partitioner\_)(x.first)\ \%\ splits\_num\_\ ==\ split\_index\_;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ split\_index\_,\ splits\_num\_;}
+\DoxyCodeLine{00093\ \ \ \ \ Partitioner*\ partitioner\_;}
+\DoxyCodeLine{00094\ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00097\ \ \ std::vector<ViewSplit<FilterView<MergedSameView<R>,\ PartitionerHelper>>>\ splits\_;}
+\DoxyCodeLine{00098\ \ \ Partitioner\ partitioner\_;}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_partition_by}{PartitionBy}};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Partitioner>}
+\DoxyCodeLine{00108\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_partition_by}{PartitionBy}}<\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}>\ \{}
+\DoxyCodeLine{00109\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00110\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_partition_by}{PartitionBy}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})\ :\ partitioner\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})\}\ \{\}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ K\ =\ utils::RddKeyType<R>>}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{requires}\ std::invocable<Partitioner,\ K>\ \&\&}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ std::convertible\_to<std::invoke\_result\_t<Partitioner,\ K>,\ \textcolor{keywordtype}{size\_t}>}
+\DoxyCodeLine{00115\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ partitioner\_);}
+\DoxyCodeLine{00117\ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00120\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}\ partitioner\_;}
+\DoxyCodeLine{00121\ \};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00127\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_partition_by}{PartitionBy}}<>\ \{}
+\DoxyCodeLine{00128\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{auto}\ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{PartitionByRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00132\ \ \ \}}
+\DoxyCodeLine{00133\ \};}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}\ <cpark::concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ P>}
+\DoxyCodeLine{00137\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{P}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{p}})\ \{}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{p}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+ \textcolor{comment}{// end of t\_PartitionBy}\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CPARK\_PARTITION\_BY\_RDD\_H}}
+
+\end{DoxyCode}

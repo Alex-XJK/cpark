@@ -1,0 +1,29 @@
+\doxysection{cpark\+::Filter\texorpdfstring{$<$}{<} Func \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_filter}{}\label{classcpark_1_1_filter}\index{cpark::Filter$<$ Func $>$@{cpark::Filter$<$ Func $>$}}
+
+
+{\ttfamily \#include $<$filter\+\_\+rdd.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_filter_a893f43472717ec091b1e0bf3b3e8c6fe}\label{classcpark_1_1_filter_a893f43472717ec091b1e0bf3b3e8c6fe} 
+{\bfseries Filter} (\mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \mbox{\hyperlink{classcpark_1_1_base_split}{func}})
+\item 
+\Hypertarget{classcpark_1_1_filter_a1e8750932a635640f5841eb292bf4ef0}\label{classcpark_1_1_filter_a1e8750932a635640f5841eb292bf4ef0} 
+{\footnotesize template$<$concepts\+::\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = utils\+::\+Rdd\+Element\+Type$<$\+R$>$$>$ \newline
+requires std\+::invocable$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}}$>$\&\& std\+::is\+\_\+same\+\_\+v$<$std\+::invoke\+\_\+result\+\_\+t$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}}$>$, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}}$>$}\\\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} {\bfseries operator()} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{r}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}$>$\newline
+class cpark\+::\+Filter$<$ Func $>$}
+Helper class to create \doxylink{classcpark_1_1_filter_rdd}{Filter\+Rdd} with pipeline operator {\ttfamily \texorpdfstring{$\vert$}{|}}. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{filter_even_8cpp-example}{filter\+\_\+even.\+cpp}}, \mbox{\hyperlink{merge_splits_8cpp-example}{merge\+\_\+splits.\+cpp}}, and \mbox{\hyperlink{speed_check_8cpp-example}{speed\+\_\+check.\+cpp}}.\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/filter\+\_\+rdd.\+h\end{DoxyCompactItemize}

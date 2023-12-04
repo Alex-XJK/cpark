@@ -1,0 +1,60 @@
+\doxysection{plain\+\_\+rdd.\+h}
+\hypertarget{plain__rdd_8h_source}{}\label{plain__rdd_8h_source}\index{include/plain\_rdd.h@{include/plain\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_PLAIN\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_PLAIN\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{template}\ <std::ranges::view\ R>}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<PlainRdd<R>>\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<PlainRdd<R>}}>;}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(R\ \mbox{\hyperlink{classcpark_1_1_base_split}{view}},\ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}*\ \mbox{\hyperlink{classcpark_1_1_base_split}{context}})}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<PlainRdd<R>}}>\{\mbox{\hyperlink{classcpark_1_1_base_split}{context}}\},\ view\_\{std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{view}})\}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<PlainRdd<R>}}>,\ \textcolor{stringliteral}{"{}Instance\ of\ PlainRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00031\ \ \ \ \ splits\_.reserve(Base::splits\_num\_);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Creates\ the\ splits\ for\ this\ Rdd.\ Each\ split\ contains\ two\ iterators\ that\ points\ to\ the\ values}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ that\ this\ split\ has.}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_base_split}{i}}\ :\ std::views::iota(\textcolor{keywordtype}{size\_t}\{0\},\ Base::splits\_num\_))\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_base_split}{total\_size}}\ =\ std::ranges::size(view\_);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_size}}\ =\ (\mbox{\hyperlink{classcpark_1_1_base_split}{total\_size}}\ +\ Base::splits\_num\_\ -\/\ 1)\ /\ Base::splits\_num\_;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{b}}\ =\ std::ranges::begin(view\_),\ \mbox{\hyperlink{classcpark_1_1_base_split}{e}}\ =\ std::ranges::begin(view\_);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ std::ranges::advance(\mbox{\hyperlink{classcpark_1_1_base_split}{b}},\ std::min(\mbox{\hyperlink{classcpark_1_1_base_split}{total\_size}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{i}}\ *\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_size}}));}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ std::ranges::advance(\mbox{\hyperlink{classcpark_1_1_base_split}{e}},\ std::min(\mbox{\hyperlink{classcpark_1_1_base_split}{total\_size}},\ (\mbox{\hyperlink{classcpark_1_1_base_split}{i}}\ +\ 1)\ *\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_size}}));}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ splits\_.emplace\_back(std::ranges::subrange\{\mbox{\hyperlink{classcpark_1_1_base_split}{b}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{e}}\},\ Base::context\_);}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00046\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00047\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00048\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ R\ view\_;}
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ A\ vector\ holding\ the\ splits\ for\ this\ rdd.}}
+\DoxyCodeLine{00060\ \ \ std::vector<ViewSplit<std::ranges::subrange<std::ranges::iterator\_t<R>>>>\ splits\_\{\};}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+ \textcolor{comment}{// end of c\_Plain}\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_PLAIN\_RDD\_H}}
+
+\end{DoxyCode}

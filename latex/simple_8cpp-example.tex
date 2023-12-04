@@ -1,0 +1,94 @@
+\doxysection{simple.\+cpp}
+\hypertarget{simple_8cpp-example}{}\label{simple_8cpp-example}This is an simple use case of cpark basic operations.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}plain\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}transformed\_rdd.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{using\ namespace\ }cpark;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Simple\ use\ cases\ of\ cpark\ components.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ configuration\ objects.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\ default\_config;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\ customized\_config\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}().\mbox{\hyperlink{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}{setDebugName}}(\textcolor{stringliteral}{"{}My\ CPARK!"{}}).\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}(16).\mbox{\hyperlink{classcpark_1_1_config_acff9b4e90789780e4f7dff6aa887ffea}{setLogger}}(\&std::cout);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Set\ and\ get\ configuration\ fields.}}
+\DoxyCodeLine{\ \ default\_config.\mbox{\hyperlink{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}{setDebugName}}(\textcolor{stringliteral}{"{}My\ default\ CPARK!"{}});}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ debug\ name\ of\ customized\ config\ is\ "{}}\ <<\ customized\_config.\mbox{\hyperlink{classcpark_1_1_config_a8c266dcc3faf18a30514b28c123af334}{getDebugName}}()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ execution\ contexts.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ default\_context\{\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ configured\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ plain\ Rdd\ from\ a\ view,\ which\ contains\ the\ same\ data\ as\ the\ view.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ transformed\_iota\_view\ =}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::iota(1,\ 100\ +\ 1)\ |\ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \});}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ plain\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(transformed\_iota\_view,\ \&default\_context);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ the\ number\ of\ splits\ inside\ the\ rdd.}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ plain\ Rdd\ has\ "{}}\ <<\ plain\_rdd.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ the\ splits\ inside\ the\ rdd.}}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ first\_plain\_split\ =\ plain\_rdd.front();}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ second\_plain\_split\ =\ plain\_rdd[2];}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ last\_plain\_split\ =\ plain\_rdd.back();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_to\_first\_plain\_split\ =\ plain\_rdd.begin();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_past\_last\_plain\_split\ =\ plain\_rdd.end();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ elements\ inside\ the\ split.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_to\_first\_element\ =\ first\_plain\_split.begin();}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ first\_element\ =\ first\_plain\_split.front();}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ first\ split\ of\ plain\ rdd\ contains\ the\ following\ elements:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ first\_plain\_split)\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ last\ split\ of\ plain\ rdd\ contains\ the\ following\ elements:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ plain\_rdd.back())\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ generator\ rdd,\ who\ holds\ 50\ strings,\ each\ containing\ a\ number\ and\ a\ "{}hello"{}.}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ first\ split\ of\ the\ generator\ rdd\ contains\ the\ following\ elements:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ generator\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{GeneratorRdd}}(}
+\DoxyCodeLine{\ \ \ \ \ \ 0,\ 50,\ [](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ std::to\_string(x)\ +\ \textcolor{stringliteral}{"{}\ hello"{}};\ \},\ \&default\_context);}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ std::string\&\ x\ :\ generator\_rdd.front())\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ transformed\ rdd\ which\ adds\ a\ "{}\ world"{}\ string\ to\ the\ elements\ in\ the\ generator\ rdd.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ transformed\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{TransformedRdd}}(generator\_rdd,\ [](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ \textcolor{stringliteral}{"{}\ world"{}};\ \});}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ elements\ in\ the\ fourth\ split\ of\ transformed\ rdd\ are:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x\ :\ transformed\_rdd[3])\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ transformed\ rdd\ using\ pipeline\ operator.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ transformed\_rdd\_2\ =\ generator\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_transform}{Transform}}([](\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ \textcolor{stringliteral}{"{}\ my\ world"{}};\ \});}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ elements\ in\ the\ third\ split\ of\ another\ transformed\ rdd\ are:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x\ :\ transformed\_rdd\_2[2])\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Calculate\ the\ sum\ of\ the\ plain\ rdd\ by\ reduce.}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ res\ =\ plain\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_reduce}{Reduce}}([](\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ sum\ of\ the\ plain\ rdd\ is\ "{}}\ <<\ res\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,99 @@
+\doxysection{cpark\+::Group\+By\+Key\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_group_by_key_rdd}{}\label{classcpark_1_1_group_by_key_rdd}\index{cpark::GroupByKeyRdd$<$ R $>$@{cpark::GroupByKeyRdd$<$ R $>$}}
+
+
+{\ttfamily \#include $<$group\+\_\+by\+\_\+key\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Group\+By\+Key\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcpark_1_1_group_by_key_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_aafba30428caaf319fb42e9e147aa0d1f}\label{classcpark_1_1_group_by_key_rdd_aafba30428caaf319fb42e9e147aa0d1f} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{Group\+By\+Key\+Rdd}}$<$ R $>$ $>$
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_a61022854a3e1fe7a10ea181ea73b7d5b}\label{classcpark_1_1_group_by_key_rdd_a61022854a3e1fe7a10ea181ea73b7d5b} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Key\+Type} = utils\+::\+Rdd\+Key\+Type$<$ R $>$
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_a940c1ba0f881e87cd6789b66e70c9498}\label{classcpark_1_1_group_by_key_rdd_a940c1ba0f881e87cd6789b66e70c9498} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Value\+Type} = utils\+::\+Rdd\+Value\+Type$<$ R $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_a6cdefc39725d3711b4f73833cf3c0f9a}{Group\+By\+Key\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_a343f347962fa8b36c4d4616c0cbf58ac}\label{classcpark_1_1_group_by_key_rdd_a343f347962fa8b36c4d4616c0cbf58ac} 
+{\bfseries Group\+By\+Key\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{Group\+By\+Key\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_a68c983c39b75e46f3b380ee27802d209}\label{classcpark_1_1_group_by_key_rdd_a68c983c39b75e46f3b380ee27802d209} 
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{Group\+By\+Key\+Rdd}} \& {\bfseries operator=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{Group\+By\+Key\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Group\+By\+Key\+Rdd$<$ R $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}} \& \mbox{\hyperlink{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_group_by_key_rdd_ae70920c104d46cf495dc58a9ce2ea470}\label{classcpark_1_1_group_by_key_rdd_ae70920c104d46cf495dc58a9ce2ea470} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Group\+By\+Key\+Rdd$<$ R $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} {\bfseries rdd\+\_\+id\+\_\+}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} {\bfseries splits\+\_\+num\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Key\+Value\+Rdd R$>$\newline
+requires concepts\+::\+Key\+Value\+Rdd$<$R$>$\newline
+class cpark\+::\+Group\+By\+Key\+Rdd$<$ R $>$}
+An Rdd that performs group-\/by-\/key operation to a previous key-\/value typed Rdd. The values that have the same key will be grouped into a sequence, and the sequence will be the value of this key in the new Rdd. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R} & The previous Rdd. Must be of key-\/value type. Must be already partitioned. TODO\+: Add support for un-\/partition-\/ed Rdd-\/s with an extra partition. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_group_by_key_rdd_a6cdefc39725d3711b4f73833cf3c0f9a}\label{classcpark_1_1_group_by_key_rdd_a6cdefc39725d3711b4f73833cf3c0f9a} 
+\index{cpark::GroupByKeyRdd$<$ R $>$@{cpark::GroupByKeyRdd$<$ R $>$}!GroupByKeyRdd@{GroupByKeyRdd}}
+\index{GroupByKeyRdd@{GroupByKeyRdd}!cpark::GroupByKeyRdd$<$ R $>$@{cpark::GroupByKeyRdd$<$ R $>$}}
+\doxysubsubsection{\texorpdfstring{GroupByKeyRdd()}{GroupByKeyRdd()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{cpark\+::\+Group\+By\+Key\+Rdd}}$<$ R $>$\+::\+Group\+By\+Key\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates \doxylink{classcpark_1_1_group_by_key_rdd}{Group\+By\+Key\+Rdd} from a previous Rdd. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/group\+\_\+by\+\_\+key\+\_\+rdd.\+h\end{DoxyCompactItemize}

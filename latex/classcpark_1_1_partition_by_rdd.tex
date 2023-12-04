@@ -1,0 +1,77 @@
+\doxysection{cpark\+::Partition\+By\+Rdd\texorpdfstring{$<$}{<} R, Partitioner \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_partition_by_rdd}{}\label{classcpark_1_1_partition_by_rdd}\index{cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}}
+
+
+{\ttfamily \#include $<$partition\+\_\+by\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Partition\+By\+Rdd\texorpdfstring{$<$}{<} R, Partitioner \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_partition_by_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_partition_by_rdd_aaea67e7ebed823dc7ee9ac0f5404144b}\label{classcpark_1_1_partition_by_rdd_aaea67e7ebed823dc7ee9ac0f5404144b} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a8016377bcad5d3edf0610a594ce6b5e7}{Partition\+By\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} \mbox{\hyperlink{classcpark_1_1_base_split}{partitioner}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a5cc0aec8dc4d51de22ba3aaf087f85bb}{Partition\+By\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd_a43fa5ecc27d312fab94609fa25117252}{Partition\+By\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\Hypertarget{classcpark_1_1_partition_by_rdd_aa6ee6a833acc74ea1570e37b3161dc5f}\label{classcpark_1_1_partition_by_rdd_aa6ee6a833acc74ea1570e37b3161dc5f} 
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd}} \& {\bfseries operator=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_partition_by_rdd_a659bcdea6c80165586f46c59a54313bf}\label{classcpark_1_1_partition_by_rdd_a659bcdea6c80165586f46c59a54313bf} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Key\+Value\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} = std\+::hash$<$utils\+::\+Rdd\+Key\+Type$<$\+R$>$$>$$>$\newline
+class cpark\+::\+Partition\+By\+Rdd$<$ R, Partitioner $>$}
+Re-\/partition an Rdd of key-\/value pairs using a partitioner function into new splits. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R} & Original Rdd. Its elements must be of key-\/value type (pair-\/like). \\
+\hline
+{\em Partitioner} & A partitioner function mapping the key-\/type to a size\+\_\+t. Each element in the Rdd whose key is mapped to {\ttfamily i} will be assigned to the {\ttfamily i \% split\+\_\+num}-\/th split in the new Rdd. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_partition_by_rdd_a8016377bcad5d3edf0610a594ce6b5e7}\label{classcpark_1_1_partition_by_rdd_a8016377bcad5d3edf0610a594ce6b5e7} 
+\index{cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}!PartitionByRdd@{PartitionByRdd}}
+\index{PartitionByRdd@{PartitionByRdd}!cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}}
+\doxysubsubsection{\texorpdfstring{PartitionByRdd()}{PartitionByRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}  = std\+::hash$<$utils\+::\+Rdd\+Key\+Type$<$\+R$>$$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{cpark\+::\+Partition\+By\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} $>$\+::\+Partition\+By\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&}]{prev,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}}]{partitioner }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates a \doxylink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd} based on an old Rdd {\ttfamily prev}, using the partition function {\ttfamily partitioner}. \Hypertarget{classcpark_1_1_partition_by_rdd_a5cc0aec8dc4d51de22ba3aaf087f85bb}\label{classcpark_1_1_partition_by_rdd_a5cc0aec8dc4d51de22ba3aaf087f85bb} 
+\index{cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}!PartitionByRdd@{PartitionByRdd}}
+\index{PartitionByRdd@{PartitionByRdd}!cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}}
+\doxysubsubsection{\texorpdfstring{PartitionByRdd()}{PartitionByRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}  = std\+::hash$<$utils\+::\+Rdd\+Key\+Type$<$\+R$>$$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{cpark\+::\+Partition\+By\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} $>$\+::\+Partition\+By\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates a \doxylink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd} based on an old Rdd {\ttfamily prev}, using the default partitioner function std\+::hash\{\}. \Hypertarget{classcpark_1_1_partition_by_rdd_a43fa5ecc27d312fab94609fa25117252}\label{classcpark_1_1_partition_by_rdd_a43fa5ecc27d312fab94609fa25117252} 
+\index{cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}!PartitionByRdd@{PartitionByRdd}}
+\index{PartitionByRdd@{PartitionByRdd}!cpark::PartitionByRdd$<$ R, Partitioner $>$@{cpark::PartitionByRdd$<$ R, Partitioner $>$}}
+\doxysubsubsection{\texorpdfstring{PartitionByRdd()}{PartitionByRdd()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Key\+Value\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}}  = std\+::hash$<$utils\+::\+Rdd\+Key\+Type$<$\+R$>$$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{cpark\+::\+Partition\+By\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} $>$\+::\+Partition\+By\+Rdd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_partition_by_rdd}{Partition\+By\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Partitioner}} $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Add default constructors to avoid some liter errors. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/partition\+\_\+by\+\_\+rdd.\+h\end{DoxyCompactItemize}

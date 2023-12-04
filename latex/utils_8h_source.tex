@@ -1,0 +1,71 @@
+\doxysection{utils.\+h}
+\hypertarget{utils_8h_source}{}\label{utils_8h_source}\index{include/utils.h@{include/utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Contains\ small\ utility\ classes\ and\ functions\ for\ cpark.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ CPARK\_UTILS\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ CPARK\_UTILS\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }utils\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1utils_1_1_null_o_stream}{NullOStream}}\ :\ \textcolor{keyword}{public}\ std::ostream\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{class\ }NullBuffer\ :\ \textcolor{keyword}{public}\ std::streambuf\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ overflow(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcpark_1_1_base_split}{c}})\textcolor{keyword}{\ override\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{c}};\ \}}
+\DoxyCodeLine{00018\ \ \ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ NullBuffer\ g\_null\_buffer\_;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classcpark_1_1utils_1_1_null_o_stream}{NullOStream}}()\ :\ std::ostream(\&g\_null\_buffer\_)\ \{\}}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classcpark_1_1utils_1_1_null_o_stream}{NullOStream}}\ g\_null\_ostream;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{using\ }RddElementType\ =\ std::ranges::range\_value\_t<std::ranges::range\_value\_t<R>>;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00033\ \textcolor{keyword}{using\ }RddKeyType\ =\ \textcolor{keyword}{decltype}(std::declval<RddElementType<R>>().\mbox{\hyperlink{classcpark_1_1_base_split}{first}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{using\ }RddValueType\ =\ \textcolor{keyword}{decltype}(std::declval<RddElementType<R>>().\mbox{\hyperlink{classcpark_1_1_base_split}{second}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{namespace\ }\{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }GetIteratorTagImpl\ \{\};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{requires}\ std::forward\_iterator<Iterator>\ \textcolor{keyword}{struct\ }GetIteratorTagImpl<Iterator>\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{using\ }type\ =\ std::forward\_iterator\_tag;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00049\ \textcolor{keyword}{requires}\ std::bidirectional\_iterator<Iterator>\ \textcolor{keyword}{struct\ }GetIteratorTagImpl<Iterator>\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{using\ }type\ =\ std::bidirectional\_iterator\_tag;}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00054\ \textcolor{keyword}{requires}\ std::random\_access\_iterator<Iterator>\ \textcolor{keyword}{struct\ }GetIteratorTagImpl<Iterator>\ \{}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{using\ }type\ =\ std::random\_access\_iterator\_tag;}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \}\ \textcolor{comment}{//\ namespace}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iterator>}
+\DoxyCodeLine{00062\ \textcolor{keyword}{using\ }GetIteratorTagType\ =\ \textcolor{keyword}{typename}\ GetIteratorTagImpl<Iterator>::type;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \}\ \ \textcolor{comment}{//\ namespace\ utils}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CPARK\_UTILS\_H}}
+
+\end{DoxyCode}

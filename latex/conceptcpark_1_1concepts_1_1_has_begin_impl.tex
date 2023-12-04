@@ -1,0 +1,19 @@
+\doxysection{cpark\+::concepts\+::Has\+Begin\+Impl Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_has_begin_impl}{}\label{conceptcpark_1_1concepts_1_1_has_begin_impl}\index{cpark::concepts::HasBeginImpl@{cpark::concepts::HasBeginImpl}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_has_begin_impl}{cpark::concepts::HasBeginImpl}}\ =\ \ \textcolor{keyword}{requires}(\textcolor{keyword}{const}\ R\&\ r)\ \{}
+\DoxyCodeLine{\ \ \{\ r.beginImpl()\ \}\ -\/>\ std::input\_iterator;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Concept of classes that have a member function {\ttfamily begin\+Impl()} returning an input\+\_\+iterator. 

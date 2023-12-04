@@ -1,0 +1,27 @@
+\doxysection{calculate\+\_\+pi.\+cpp}
+\hypertarget{calculate_pi_8cpp-example}{}\label{calculate_pi_8cpp-example}This is an example use case of calculate the value of pi by series with n terms.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}cpark.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Parallelly\ calculate\ the\ value\ of\ pi\ by\ series\ with\ n\ terms.}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ n\ =\ 100000000;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{cpark::ExecutionContext}}\ context(\mbox{\hyperlink{classcpark_1_1_config}{cpark::Config}}().setParallelTaskNum(8));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{double}\ pi\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark::GeneratorRdd}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 0,\ n,\ [\&](\textcolor{keywordtype}{int}\ i)\ -\/>\ \textcolor{keywordtype}{double}\ \{\ \textcolor{keywordflow}{return}\ 4.0\ /\ (2\ *\ i\ +\ 1)\ *\ ((i\ \&\ 1)\ ?\ -\/1\ :\ 1);\ \},\ \&context)\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_reduce}{cpark::Reduce}}([](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ value\ of\ pi\ is\ roughly\ "{}}\ <<\ pi\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

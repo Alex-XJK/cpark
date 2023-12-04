@@ -1,0 +1,52 @@
+\doxysection{reduce.\+h}
+\hypertarget{reduce_8h_source}{}\label{reduce_8h_source}\index{include/reduce.h@{include/reduce.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_REDUCE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_REDUCE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <numeric>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_reduce}{Reduce}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_reduce_acbc7a43fb4deb664656af56f2aae1d2c}{Reduce}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T,\ T>\&\&\ std::convertible\_to<std::invoke\_result\_t<Func,\ T,\ T>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\&\&}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ std::is\_default\_constructible\_v<T>}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}\ \mbox{\hyperlink{classcpark_1_1_reduce_af95bf2c71c892a553094b9cd4a362ac7}{operator()}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ Parallelly\ compute\ the\ result.}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ TODO:\ add\ complete\ parallel\ control\ and\ sync\ logic.}}
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::future<T>>\ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}\{\};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}.emplace\_back(std::async([\textcolor{keyword}{this},\ \&\mbox{\hyperlink{classcpark_1_1_base_split}{split}}]()\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::reduce(std::ranges::begin(\mbox{\hyperlink{classcpark_1_1_base_split}{split}}),\ std::ranges::end(\mbox{\hyperlink{classcpark_1_1_base_split}{split}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}\{\},\ func\_);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{results}}\ =\ std::ranges::subrange(\mbox{\hyperlink{classcpark_1_1_base_split}{futures}})\ |}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::views::transform([](std::future<T>\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}})\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}}.get();\ \});}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ std::reduce(std::ranges::begin(\mbox{\hyperlink{classcpark_1_1_base_split}{results}}),\ std::ranges::end(\mbox{\hyperlink{classcpark_1_1_base_split}{results}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}\{\},\ func\_);}
+\DoxyCodeLine{00045\ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func\_;}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ concepts::Rdd\ R>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Reduce<Func>}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{reduce}})\ \{}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{reduce}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+ \textcolor{comment}{// end of a\_Reduce}\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_REDUCE\_H}}
+
+\end{DoxyCode}

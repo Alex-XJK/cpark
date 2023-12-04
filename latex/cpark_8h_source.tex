@@ -1,0 +1,201 @@
+\doxysection{cpark.\+h}
+\hypertarget{cpark_8h_source}{}\label{cpark_8h_source}\index{include/cpark.h@{include/cpark.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_CPARK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_CPARK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <any>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <shared\_mutex>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_config}{Config}}\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{enum\ class}\ ParallelPolicy\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ Sequential,}
+\DoxyCodeLine{00039\ \ \ \ \ Thread,}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifdef\ CPARK\_DISTRIBUTED}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Distributed}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CPARK\_DISTRIBUTED}}
+\DoxyCodeLine{00043\ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ [[\mbox{\hyperlink{classcpark_1_1_base_split}{nodiscard}}]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classcpark_1_1_config_a8c266dcc3faf18a30514b28c123af334}{getDebugName}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{\ \textcolor{keywordflow}{return}\ debug\_name\_;\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ [[\mbox{\hyperlink{classcpark_1_1_base_split}{nodiscard}}]]\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_config_a9f67f3db1f7575fe56d767a148f23bd1}{getParallelTaskNum}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{\ \textcolor{keywordflow}{return}\ parallel\_task\_num\_;\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ [[\mbox{\hyperlink{classcpark_1_1_base_split}{nodiscard}}]]\ \textcolor{keyword}{constexpr}\ ParallelPolicy\ \mbox{\hyperlink{classcpark_1_1_config_ae02e53d89f1f20e046b4c82fe06f1484}{getParallelPolicy}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ parallel\_policy\_;}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ [[\mbox{\hyperlink{classcpark_1_1_base_split}{nodiscard}}]]\ \textcolor{keyword}{constexpr}\ std::ostream*\ \mbox{\hyperlink{classcpark_1_1_config_a039cc9dbad67987f768a1f0323a2f481}{getLoggerPtr}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{\ \textcolor{keywordflow}{return}\ logger\_;\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \ \ [[\mbox{\hyperlink{classcpark_1_1_base_split}{nodiscard}}]]\ \textcolor{keyword}{constexpr}\ std::ostream\&\ \mbox{\hyperlink{classcpark_1_1_config_a8d715332c1dbd109950e0e06ceeb5fd0}{getLoggerOrNullStream}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ logger\_\ ?\ *logger\_\ :\ utils::g\_null\_ostream;}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\&\ \mbox{\hyperlink{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}{setDebugName}}(std::string\ \mbox{\hyperlink{classcpark_1_1_base_split}{name}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ debug\_name\_\ =\ std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{name}});}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\&\ \mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}(\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classcpark_1_1_base_split}{num}}\ =\ 0)\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{num}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ =\ std::thread::hardware\_concurrency();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classcpark_1_1_base_split}{n}}\ !=\ 0)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ parallel\_task\_num\_\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{n}};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ parallel\_task\_num\_\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{num}};}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00092\ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\&\ \mbox{\hyperlink{classcpark_1_1_config_a24b32467194d3d2de8d478b991e62679}{setParallelPolicy}}(ParallelPolicy\ \mbox{\hyperlink{classcpark_1_1_base_split}{policy}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ parallel\_policy\_\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{policy}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00098\ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\&\ \mbox{\hyperlink{classcpark_1_1_config_acff9b4e90789780e4f7dff6aa887ffea}{setLogger}}(std::ostream*\ \mbox{\hyperlink{classcpark_1_1_base_split}{logger}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ logger\_\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{logger}};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00104\ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00107\ \ \ std::string\ debug\_name\_\{\};}
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{size\_t}\ parallel\_task\_num\_\{8\};}
+\DoxyCodeLine{00109\ \ \ ParallelPolicy\ parallel\_policy\_\{ParallelPolicy::Thread\};}
+\DoxyCodeLine{00110\ \ \ std::ostream*\ logger\_\{\textcolor{keyword}{nullptr}\};\ \ \textcolor{comment}{//\ Should\ this\ be\ here?}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#ifdef\ CPARK\_DISTRIBUTED}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00114\ \ \ \textcolor{keyword}{struct\ }Address\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ uint32\_t\ ip\_;}
+\DoxyCodeLine{00116\ \ \ \ \ uint16\_t\ port\_;}
+\DoxyCodeLine{00117\ \ \ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00120\ \ \ Config\&\ addWorker(\textcolor{keyword}{const}\ Address\&\ address)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ workers\_.push\_back(address);}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00123\ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ Config\&\ setMaster(\textcolor{keyword}{const}\ Address\&\ address)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ master\_\ =\ address;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00128\ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00131\ \ \ std::vector<Address>\ workers\_;}
+\DoxyCodeLine{00132\ \ \ Address\ master\_;}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_DISTRIBUTED}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00148\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ \{}
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{RddId}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\_t}};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\_t}};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00164\ \ \ \mbox{\hyperlink{classcpark_1_1_execution_context_a8ec688216568d897253b7fc819f5fb2e}{ExecutionContext}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_execution_context_a65c10e5e6556e7e9156cac309b4f7746}{ExecutionContext}}(\mbox{\hyperlink{classcpark_1_1_config}{Config}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{config}})\ :\ config\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{config}})\}\ \{\}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcpark_1_1_execution_context_a625fbac1305c63aecba295182a64b1c6}{setConfig}}(\mbox{\hyperlink{classcpark_1_1_config}{Config}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{config}})\ \{\ config\_\ =\ std::move(\mbox{\hyperlink{classcpark_1_1_base_split}{config}});\ \}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\&\ \mbox{\hyperlink{classcpark_1_1_execution_context_af663b8d958bec127408608219f28a95f}{getConfig}}()\ \mbox{\hyperlink{classcpark_1_1_base_split}{const}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}\ \{\ \textcolor{keywordflow}{return}\ config\_;\ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{RddId}}\ \mbox{\hyperlink{classcpark_1_1_execution_context_a49ef5dee1c558f5f62da38c9751ed01e}{getAndIncRddId}}()\ \{\ \textcolor{keywordflow}{return}\ next\_rdd\_id\_++;\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \ \ \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_execution_context_a0bd7f646e611d248444c345010550827}{getAndIncSplitId}}()\ \{\ \textcolor{keywordflow}{return}\ next\_split\_id\_++;\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_execution_context_ae3fe6f7e1e87eb9732b6f2f08e2b5a23}{splitShouldCache}}(\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ std::shared\_lock\ \mbox{\hyperlink{classcpark_1_1_base_split}{guard}}(cache\_mutex\_);}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{return}\ dependent\_by\_.contains(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}})\ \&\&\ dependent\_by\_.at(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}}).size()\ >=\ 2;}
+\DoxyCodeLine{00185\ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_execution_context_a4b1642118dcb073e95a85c46b5fbcc1a}{splitCached}}(\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}})\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ std::shared\_lock\ \mbox{\hyperlink{classcpark_1_1_base_split}{guard}}(cache\_mutex\_);}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ cache\_done\_.contains(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}})\ \&\&}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ cache\_done\_[\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}}].wait\_for(std::chrono::seconds(0))\ ==\ std::future\_status::ready;}
+\DoxyCodeLine{00192\ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \textcolor{keywordtype}{void}\ markDependency(\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{from}},\ \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{to}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00195\ \ \ \ \ std::shared\_lock\ \mbox{\hyperlink{classcpark_1_1_base_split}{guard}}(cache\_mutex\_);}
+\DoxyCodeLine{00196\ \ \ \ \ dependent\_by\_[\mbox{\hyperlink{classcpark_1_1_base_split}{to}}].insert(\mbox{\hyperlink{classcpark_1_1_base_split}{from}});}
+\DoxyCodeLine{00197\ \ \ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ \ \ \textcolor{keyword}{const}\ std::any\&\ \mbox{\hyperlink{classcpark_1_1_execution_context_a0f81d58784fbaeced0c79a50e6a5ff9b}{getSplitCache}}(\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00201\ \ \ \ \ std::shared\_lock\ \mbox{\hyperlink{classcpark_1_1_base_split}{guard}}(cache\_mutex\_);}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ cache\_.at(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}});}
+\DoxyCodeLine{00203\ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ CacheType,\ \textcolor{keyword}{typename}\ OriginalIterator>}
+\DoxyCodeLine{00206\ \ \ std::shared\_future<void>\ startCalculationOrGetFuture(\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{SplitId}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}},\ OriginalIterator\ begin,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OriginalIterator\ end)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ std::shared\_lock\ \mbox{\hyperlink{classcpark_1_1_base_split}{guard}}(cache\_mutex\_);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cache\_done\_.contains(\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}}))\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache\_done\_[\mbox{\hyperlink{classcpark_1_1_base_split}{split\_id}}];}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ std::promise<void>\ promise\{\};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ std::unique\_lock\ guard(cache\_mutex\_);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cache\_done\_.contains(split\_id))\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache\_done\_[split\_id];}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ cache\_done\_[split\_id]\ =\ promise.get\_future();}
+\DoxyCodeLine{00223\ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ CacheType\ cache;}
+\DoxyCodeLine{00226\ \ \ \ \ std::copy(begin,\ end,\ std::back\_inserter(cache));}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ std::unique\_lock\ guard(cache\_mutex\_);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ cache\_[split\_id]\ =\ std::move(cache);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ promise.set\_value();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cache\_done\_[split\_id];}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00237\ \ \ Config\ config\_\{\};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \textcolor{comment}{//\ Using\ them\ to\ create\ incremental\ unique\ id\ for\ Rdd\ and\ Split.}}
+\DoxyCodeLine{00240\ \ \ std::atomic<RddId>\ next\_rdd\_id\_\{\};}
+\DoxyCodeLine{00241\ \ \ std::atomic<SplitId>\ next\_split\_id\_\{\};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{comment}{//\ Which\ splits\ are\ relying\ on\ this\ one.}}
+\DoxyCodeLine{00244\ \ \ std::unordered\_map<SplitId,\ std::unordered\_set<SplitId>>\ dependent\_by\_\{\};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{comment}{//\ Cache\ information\ for\ the\ Splits.}}
+\DoxyCodeLine{00247\ \ \ std::unordered\_map<SplitId,\ std::any>\ cache\_\{\};}
+\DoxyCodeLine{00248\ \ \ \textcolor{keyword}{mutable}\ std::unordered\_map<SplitId,\ std::shared\_future<void>>\ cache\_done\_\{\};}
+\DoxyCodeLine{00249\ \ \ \textcolor{keyword}{mutable}\ std::shared\_mutex\ cache\_mutex\_\{\};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \textcolor{comment}{//\ Thread\ synchronization\ information.}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \textcolor{comment}{//\ Scheduler.}}
+\DoxyCodeLine{00254\ \};}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_CPARK\_H}}
+
+\end{DoxyCode}

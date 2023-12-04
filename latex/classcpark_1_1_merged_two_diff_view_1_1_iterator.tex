@@ -1,0 +1,78 @@
+\doxysection{cpark\+::Merged\+Two\+Diff\+View\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator}{}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator}\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator@{cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator}}
+
+
+{\ttfamily \#include $<$merged\+\_\+view.\+h$>$}
+
+Inheritance diagram for cpark\+::Merged\+Two\+Diff\+View\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_merged_two_diff_view_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a444323b88bae16b885acf8f3f8d33e3d}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a444323b88bae16b885acf8f3f8d33e3d} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a4db2fc0cd88917bc11d61356c2b44333}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a4db2fc0cd88917bc11d61356c2b44333} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = std\+::ranges\+::range\+\_\+value\+\_\+t$<$ V1 $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Iter}} $>$ }\\\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator_a8e6cf644749f56ce0bf00b28f80ad2d9}{Iterator}} (\mbox{\hyperlink{classcpark_1_1_base_split}{Iter}} \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}}, V1 \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{view1}}, V2 \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{view2}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{if\+\_\+hold1}})
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a19a30f011d9b5f7eaf0b11dd20929b39}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a19a30f011d9b5f7eaf0b11dd20929b39} 
+value\+\_\+type {\bfseries operator\texorpdfstring{$\ast$}{*}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a4c9714ebedb62f05494266cb7ebfcc14}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a4c9714ebedb62f05494266cb7ebfcc14} 
+\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}} \& {\bfseries operator++} ()
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a36bd2c9604b84b47bf186dcc983c7f83}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a36bd2c9604b84b47bf186dcc983c7f83} 
+\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}} {\bfseries operator++} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a3ee0e80867aa31f55ff6b025c816bc9f}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a3ee0e80867aa31f55ff6b025c816bc9f} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator==} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a93495c3ed388a856d8c1461a8efe2505}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a93495c3ed388a856d8c1461a8efe2505} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator!=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$\newline
+class cpark\+::\+Merged\+Two\+Diff\+View$<$ V1, V2 $>$\+::\+Iterator}
+A lazily evaluated iterator that read elements combined from two different views. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_merged_two_diff_view_1_1_iterator_a8e6cf644749f56ce0bf00b28f80ad2d9}\label{classcpark_1_1_merged_two_diff_view_1_1_iterator_a8e6cf644749f56ce0bf00b28f80ad2d9} 
+\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator@{cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator@{cpark::MergedTwoDiffView$<$ V1, V2 $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$ \\
+template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Iter}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{cpark\+::\+Merged\+Two\+Diff\+View}}$<$ V1, V2 $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{Iter}}}]{iterator,  }\item[{V1 \texorpdfstring{$\ast$}{*}}]{view1,  }\item[{V2 \texorpdfstring{$\ast$}{*}}]{view2,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{if\+\_\+hold1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates \doxylink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator} with\+: 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Iter} & Type of the start iterator. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em iterator} & The start iterator points to the first element. \\
+\hline
+{\em view1} & The first view. \\
+\hline
+{\em view2} & The second view. \\
+\hline
+{\em if\+\_\+hold1} & Whether the start iterator is from view1 or view2. Note that {\ttfamily if\+\_\+hold1} must be consistent with the type of {\ttfamily Iter}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/merged\+\_\+view.\+h\end{DoxyCompactItemize}

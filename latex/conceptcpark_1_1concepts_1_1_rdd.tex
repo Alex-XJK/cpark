@@ -1,0 +1,17 @@
+\doxysection{cpark\+::concepts\+::Rdd Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_rdd}{}\label{conceptcpark_1_1concepts_1_1_rdd}\index{cpark::concepts::Rdd@{cpark::concepts::Rdd}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{cpark::concepts::Rdd}}\ =\ \ std::ranges::input\_range<R>\ \&\&\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split<std::ranges::range\_value\_t<R>}}>}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+The most basic concept of RDD. An Rdd is an abstraction of a data set that has been logically partitioned into several sub parts (split). An Rdd should be an input\+\_\+range of the splits. 

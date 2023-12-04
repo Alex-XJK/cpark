@@ -1,0 +1,19 @@
+\chapter{Code Style Agreements}
+\hypertarget{md_style__agreements}{}\label{md_style__agreements}\index{Code Style Agreements@{Code Style Agreements}}
+\label{md_style__agreements_autotoc_md9}%
+\Hypertarget{md_style__agreements_autotoc_md9}%
+\hypertarget{md_style__agreements_autotoc_md10}{}\doxysection{\texorpdfstring{Naming Style}{Naming Style}}\label{md_style__agreements_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\ttfamily non\+\_\+member\+\_\+local\+\_\+variable}\+: snake case without tailing underscore.
+\item {\ttfamily member\+\_\+variable\+\_\+}\+: snake case with a tailing underscore.
+\item {\ttfamily g\+\_\+static\+\_\+non\+\_\+member\+\_\+variable}\+: snake case with a heading {\ttfamily g\+\_\+}.
+\item {\ttfamily g\+\_\+static\+\_\+member\+\_\+variable\+\_\+}\+: snake case with a heading {\ttfamily g\+\_\+} and a tailing underscore.
+\item {\ttfamily member\+Function()}\+: lower camel case.
+\item {\ttfamily non\+Member\+Function()}\+: lower camel case.
+\item {\ttfamily Class\+Name}\+: upper camel case.
+\item {\ttfamily Template\+Name\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}}\+: upper camel case.
+\item {\ttfamily concepts\+::\+Concept\+Name\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}}\+: upper camel case. All concepts defined by this project should be put in a namespace {\ttfamily concepts}.
+\item {\ttfamily MACRO\+\_\+\+NAME()}\+: snake case with all characters upper. 
+\end{DoxyItemize}\hypertarget{md_style__agreements_autotoc_md11}{}\doxysection{\texorpdfstring{Formatting}{Formatting}}\label{md_style__agreements_autotoc_md11}
+Format the code with the {\ttfamily .clang-\/format} file. Currently, it uses google style. 

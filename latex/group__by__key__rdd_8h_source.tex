@@ -1,0 +1,161 @@
+\doxysection{group\+\_\+by\+\_\+key\+\_\+rdd.\+h}
+\hypertarget{group__by__key__rdd_8h_source}{}\label{group__by__key__rdd_8h_source}\index{include/group\_by\_key\_rdd.h@{include/group\_by\_key\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_GROUP\_BY\_KEY\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_GROUP\_BY\_KEY\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <shared\_mutex>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <concepts::KeyValueRdd\ R>}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{requires}\ concepts::KeyValueRdd<R>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{GroupByKeyRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<GroupByKeyRdd<R>>\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<GroupByKeyRdd<R>}}>;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{using\ }KeyType\ =\ utils::RddKeyType<R>;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{using\ }ValueType\ =\ utils::RddValueType<R>;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}\ :\ \textcolor{keyword}{public}\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ std::pair<KeyType,\ std::ranges::subrange<std::ranges::iterator\_t<std::vector<ValueType>>>>;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a3c4634e25ac9c6d45b6f20628e3186ed}{Iterator}}(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ std::ranges::subrange<std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>>\ \mbox{\hyperlink{classcpark_1_1_base_split}{original\_data}},}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_base_split}{is\_end}})}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ :\ original\_data\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{original\_data}})\},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ inner\_data\_mutex\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{make\_shared}}<std::\mbox{\hyperlink{classcpark_1_1_base_split}{shared\_mutex}}>()\},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ is\_end\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{is\_end}}\}\ \{\}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a77cd74644caf6a85ea9066081be55b43}{Iterator}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_base_split}{is\_end}})\ :\ is\_end\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{is\_end}}\}\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ value\_type\ operator*()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ waitOrEvaluate();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ all\ operations\ to\ the\ shared\ data\ after\ any\ call\ of\ waitOrEvaluate()\ are\ read\ operations,}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{comment}{//\ so\ mutex\ is\ no\ longer\ needed.}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ checkOrInitInnerIterator();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{inner\_iterator\_-\/>first,\ std::ranges::subrange(inner\_iterator\_-\/>second)\};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ Iterator\&\ operator++()\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ waitOrEvaluate();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ all\ operations\ to\ the\ shared\ data\ after\ any\ call\ of\ waitOrEvaluate()\ are\ read\ operations,}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \textcolor{comment}{//\ so\ mutex\ is\ no\ longer\ needed.}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ checkOrInitInnerIterator();}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ ++inner\_iterator\_;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a3c4634e25ac9c6d45b6f20628e3186ed}{Iterator}}\ operator++(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ old\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ old;}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator_a5336869c52d40951105ddbb5cac0d758}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isEnd()\ \&\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.isEnd())\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isEnd()\ ||\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.isEnd())\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ inner\_data\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.inner\_data\_\ \&\&\ inner\_iterator\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.inner\_iterator\_;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ evaluate()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ inner\_data\_\ =\ std::make\_shared<std::unordered\_map<KeyType,\ std::vector<ValueType>>>();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ [\mbox{\hyperlink{classcpark_1_1_base_split}{key}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{value}}]\ :\ original\_data\_)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ (*inner\_data\_)[\mbox{\hyperlink{classcpark_1_1_base_split}{key}}].push\_back(\mbox{\hyperlink{classcpark_1_1_base_split}{value}});}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ waitOrEvaluate()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ std::shared\_lock\ the\_shared\_lock(*inner\_data\_mutex\_);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inner\_data\_)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ std::unique\_lock\ the\_unique\_lock(*inner\_data\_mutex\_);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inner\_data\_)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ evaluate();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ checkOrInitInnerIterator()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inner\_iterator\_init\_)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ inner\_iterator\_\ =\ std::ranges::begin(*inner\_data\_);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ inner\_iterator\_init\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnd()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ is\_end\_\ ||\ (inner\_iterator\_init\_\ \&\&\ inner\_iterator\_\ ==\ std::ranges::end(*inner\_data\_));}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ The\ shared\ state\ that\ stores\ the\ results\ of\ the\ group\ operation.}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{mutable}\ std::shared\_ptr<std::unordered\_map<KeyType,\ std::vector<ValueType>>>\ inner\_data\_\{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ An\ iterator\ pointing\ tho\ the\ current\ element\ in\ the\ shared\ state.}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{mutable}\ std::ranges::iterator\_t<std::unordered\_map<KeyType,\ std::vector<ValueType>>>}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ inner\_iterator\_\{\};}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ Whether\ \`{}inner\_iterator\_`\ is\ initialized.}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ inner\_iterator\_init\_\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ The\ mutex\ to\ protect\ the\ shared\ state.}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{mutable}\ std::shared\_ptr<std::shared\_mutex>\ inner\_data\_mutex\_\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00160\ \ \ \ \ std::ranges::subrange<std::ranges::iterator\_t<std::ranges::range\_value\_t<R>>>\ original\_data\_;}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_end\_\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{00162\ \ \ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00166\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_a6cdefc39725d3711b4f73833cf3c0f9a}{GroupByKeyRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}\}\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{cpark::concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ splits\_.emplace\_back(std::ranges::subrange(\mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{split}},\ \textcolor{keyword}{false}\},\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd_1_1_iterator}{Iterator}}\{\textcolor{keyword}{true}\}),}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Base::context\_);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{split}});}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{GroupByKeyRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{GroupByKeyRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00175\ \ \ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{GroupByKeyRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_group_by_key_rdd}{GroupByKeyRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00185\ \ \ std::vector<ViewSplit<std::ranges::subrange<Iterator>>>\ splits\_;}
+\DoxyCodeLine{00186\ \};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ TODO:\ Helper\ classes\ to\ be\ added\ later.}}
+\DoxyCodeLine{00189\ }
+ \textcolor{comment}{// end of t\_GroupByKey}\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CPARK\_GROUP\_BY\_KEY\_RDD\_H}}
+
+\end{DoxyCode}

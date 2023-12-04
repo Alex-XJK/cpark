@@ -1,0 +1,46 @@
+\doxysection{collect.\+h}
+\hypertarget{collect_8h_source}{}\label{collect_8h_source}\index{include/collect.h@{include/collect.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_COLLECT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_COLLECT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <future>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_collect}{Collect}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_collect_ae5f83cd5fb8ecc1ce4227d9740c94ea1}{Collect}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{classcpark_1_1_collect_a06576f07622f244e598e1c58c87205f8}{operator()}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00029\ \ \ \ \ std::vector<std::future<std::vector<T>>>\ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}\{\};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{rdd}})\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}}.emplace\_back(std::async([\textcolor{keyword}{this},\ \&\mbox{\hyperlink{classcpark_1_1_base_split}{split}}]()\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::vector<T>(std::ranges::begin(\mbox{\hyperlink{classcpark_1_1_base_split}{split}}),\ std::ranges::end(\mbox{\hyperlink{classcpark_1_1_base_split}{split}}));}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{classcpark_1_1_base_split}{result}}\{\};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{futures}})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_result}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{fut}}.get();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{result}}.insert(\mbox{\hyperlink{classcpark_1_1_base_split}{result}}.\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}(),\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_result}}.\mbox{\hyperlink{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}{begin}}(),\ \mbox{\hyperlink{classcpark_1_1_base_split}{split\_result}}.\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}());}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{result}};}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00048\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_collect}{Collect}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{collect}})\ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{collect}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+ \textcolor{comment}{// end of a\_Collect}\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CPARK\_COLLECT\_H}}
+
+\end{DoxyCode}

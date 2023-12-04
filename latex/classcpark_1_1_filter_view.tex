@@ -1,0 +1,73 @@
+\doxysection{cpark\+::Filter\+View\texorpdfstring{$<$}{<} V, Func \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_filter_view}{}\label{classcpark_1_1_filter_view}\index{cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}}
+
+
+{\ttfamily \#include $<$filter\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Filter\+View\texorpdfstring{$<$}{<} V, Func \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_filter_view}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcpark_1_1_filter_view_1_1_iterator}{Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_filter_view_aea94b91a5764d0bb528819a9dc2dd398}\label{classcpark_1_1_filter_view_aea94b91a5764d0bb528819a9dc2dd398} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Original\+Iterator} = std\+::ranges\+::iterator\+\_\+t$<$ V $>$
+\item 
+\Hypertarget{classcpark_1_1_filter_view_a651b13f3675124471f7d514c488a5e4d}\label{classcpark_1_1_filter_view_a651b13f3675124471f7d514c488a5e4d} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Original\+Sentinel} = std\+::ranges\+::sentinel\+\_\+t$<$ V $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_filter_view_a4abd8fcd4e1794753223ab2104d67c38}{Filter\+View}} (V \mbox{\hyperlink{classcpark_1_1_base_split}{view}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \mbox{\hyperlink{classcpark_1_1_base_split}{func}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::ranges\+::view V, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}$>$\newline
+requires std\+::invocable$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, std\+::ranges\+::range\+\_\+value\+\_\+t$<$V$>$$>$\&\& std\+::is\+\_\+convertible\+\_\+v$<$ std\+::invoke\+\_\+result\+\_\+t$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, std\+::ranges\+::range\+\_\+value\+\_\+t$<$V$>$$>$, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}}$>$\newline
+class cpark\+::\+Filter\+View$<$ V, Func $>$}
+A new view created from an original view (V) filtered by some predication function (Func). It has almost the same usage as std\+::ranges\+::filter\+\_\+view, except that it provides {\ttfamily \doxylink{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98}{begin() const}} and {\ttfamily \doxylink{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539}{end() const}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_filter_view_a4abd8fcd4e1794753223ab2104d67c38}\label{classcpark_1_1_filter_view_a4abd8fcd4e1794753223ab2104d67c38} 
+\index{cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}!FilterView@{FilterView}}
+\index{FilterView@{FilterView}!cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}}
+\doxysubsubsection{\texorpdfstring{FilterView()}{FilterView()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_filter_view}{cpark\+::\+Filter\+View}}$<$ V, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$\+::\+Filter\+View (\begin{DoxyParamCaption}\item[{V}]{view,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}}]{func }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+Creates a new view created from an original {\ttfamily view} filtered by some predication function {\ttfamily Func}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98}\label{classcpark_1_1_filter_view_a6d54e309bc10d85cc41669bbb788dc98} 
+\index{cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}!begin@{begin}}
+\index{begin@{begin}!cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_filter_view}{cpark\+::\+Filter\+View}}$<$ V, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+Returns the begin iterator of \doxylink{classcpark_1_1_filter_view}{Filter\+View}. \Hypertarget{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539}\label{classcpark_1_1_filter_view_af52ebb94634dd9d42b0b45ba1013a539} 
+\index{cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}!end@{end}}
+\index{end@{end}!cpark::FilterView$<$ V, Func $>$@{cpark::FilterView$<$ V, Func $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_filter_view}{cpark\+::\+Filter\+View}}$<$ V, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+Returns the end sentinel of \doxylink{classcpark_1_1_filter_view}{Filter\+View}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/filter\+\_\+rdd.\+h\end{DoxyCompactItemize}

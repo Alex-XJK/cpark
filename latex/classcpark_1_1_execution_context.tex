@@ -1,0 +1,128 @@
+\doxysection{cpark\+::Execution\+Context Class Reference}
+\hypertarget{classcpark_1_1_execution_context}{}\label{classcpark_1_1_execution_context}\index{cpark::ExecutionContext@{cpark::ExecutionContext}}
+
+
+{\ttfamily \#include $<$cpark.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} \mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Rdd\+Id}} = \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\+\_\+t}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} = \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a8ec688216568d897253b7fc819f5fb2e}{Execution\+Context}} ()=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a65c10e5e6556e7e9156cac309b4f7746}{Execution\+Context}} (\mbox{\hyperlink{classcpark_1_1_config}{Config}} \mbox{\hyperlink{classcpark_1_1_base_split}{config}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_execution_context_a625fbac1305c63aecba295182a64b1c6}{set\+Config}} (\mbox{\hyperlink{classcpark_1_1_config}{Config}} \mbox{\hyperlink{classcpark_1_1_base_split}{config}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& \mbox{\hyperlink{classcpark_1_1_execution_context_af663b8d958bec127408608219f28a95f}{get\+Config}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_execution_context_a49ef5dee1c558f5f62da38c9751ed01e}{get\+And\+Inc\+Rdd\+Id}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_execution_context_a0bd7f646e611d248444c345010550827}{get\+And\+Inc\+Split\+Id}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_execution_context_ae3fe6f7e1e87eb9732b6f2f08e2b5a23}{split\+Should\+Cache}} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_execution_context_a4b1642118dcb073e95a85c46b5fbcc1a}{split\+Cached}} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\Hypertarget{classcpark_1_1_execution_context_abb528fa676bbe2e841b6c5e9bd8f16ff}\label{classcpark_1_1_execution_context_abb528fa676bbe2e841b6c5e9bd8f16ff} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} {\bfseries mark\+Dependency} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{from}}, \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{to}}) \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{const}} std\+::any \& \mbox{\hyperlink{classcpark_1_1_execution_context_a0f81d58784fbaeced0c79a50e6a5ff9b}{get\+Split\+Cache}} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_execution_context_a9cd53bbf756b06f4d1a5e56e2d6e0e3a}\label{classcpark_1_1_execution_context_a9cd53bbf756b06f4d1a5e56e2d6e0e3a} 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} Cache\+Type , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} Original\+Iterator $>$ }\\std\+::shared\+\_\+future$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{void}} $>$ {\bfseries start\+Calculation\+Or\+Get\+Future} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}}, Original\+Iterator begin, Original\+Iterator end)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An execution context (or environment) for a set of cpark tasks to run. It contains the information needed to evaluate the Rdd-\/s and run the cpark tasks, including the id information of Rdd-\/s and Splits, the cache information, the thread synchronization information, and the scheduler information. Each Rdd and Split will be included in one and only one execution context.
+
+Users should be responsible to make sure the execution context is not out-\/of-\/lifetime when executing the cpark tasks. TODO\+: Consider whether to use smart pointers. As a fundamental library, smart pointers might not be a good choice. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{calculate_pi_8cpp-example}{calculate\+\_\+pi.\+cpp}}, \mbox{\hyperlink{collect_partitions_8cpp-example}{collect\+\_\+partitions.\+cpp}}, \mbox{\hyperlink{filter_even_8cpp-example}{filter\+\_\+even.\+cpp}}, \mbox{\hyperlink{merge_splits_8cpp-example}{merge\+\_\+splits.\+cpp}}, \mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}, and \mbox{\hyperlink{speed_check_8cpp-example}{speed\+\_\+check.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}\label{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!RddId@{RddId}}
+\index{RddId@{RddId}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{RddId}{RddId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{using}} \mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{cpark\+::\+Execution\+Context\+::\+Rdd\+Id}} =  \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\+\_\+t}}}
+
+Represents a unique id for each Rdd inside this execution context. Note that Rdd-\/s are copyable. Copied Rdd will have a same id. \Hypertarget{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}\label{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!SplitId@{SplitId}}
+\index{SplitId@{SplitId}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{SplitId}{SplitId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{using}} \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{cpark\+::\+Execution\+Context\+::\+Split\+Id}} =  \mbox{\hyperlink{classcpark_1_1_base_split}{uint32\+\_\+t}}}
+
+Represents a unique id for each Split inside this execution context. Note that Splits are copyable. Copied Split will have a same id. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_execution_context_a8ec688216568d897253b7fc819f5fb2e}\label{classcpark_1_1_execution_context_a8ec688216568d897253b7fc819f5fb2e} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!ExecutionContext@{ExecutionContext}}
+\index{ExecutionContext@{ExecutionContext}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{ExecutionContext()}{ExecutionContext()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily cpark\+::\+Execution\+Context\+::\+Execution\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Creates execution context with default config. \Hypertarget{classcpark_1_1_execution_context_a65c10e5e6556e7e9156cac309b4f7746}\label{classcpark_1_1_execution_context_a65c10e5e6556e7e9156cac309b4f7746} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!ExecutionContext@{ExecutionContext}}
+\index{ExecutionContext@{ExecutionContext}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{ExecutionContext()}{ExecutionContext()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily cpark\+::\+Execution\+Context\+::\+Execution\+Context (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates execution context from a config. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_execution_context_a49ef5dee1c558f5f62da38c9751ed01e}\label{classcpark_1_1_execution_context_a49ef5dee1c558f5f62da38c9751ed01e} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!getAndIncRddId@{getAndIncRddId}}
+\index{getAndIncRddId@{getAndIncRddId}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{getAndIncRddId()}{getAndIncRddId()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Rdd\+Id}} cpark\+::\+Execution\+Context\+::get\+And\+Inc\+Rdd\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the next unique Rdd id. \Hypertarget{classcpark_1_1_execution_context_a0bd7f646e611d248444c345010550827}\label{classcpark_1_1_execution_context_a0bd7f646e611d248444c345010550827} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!getAndIncSplitId@{getAndIncSplitId}}
+\index{getAndIncSplitId@{getAndIncSplitId}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{getAndIncSplitId()}{getAndIncSplitId()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}} cpark\+::\+Execution\+Context\+::get\+And\+Inc\+Split\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the next unique Split id. \Hypertarget{classcpark_1_1_execution_context_af663b8d958bec127408608219f28a95f}\label{classcpark_1_1_execution_context_af663b8d958bec127408608219f28a95f} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!getConfig@{getConfig}}
+\index{getConfig@{getConfig}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{getConfig()}{getConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_config}{Config}} \& cpark\+::\+Execution\+Context\+::get\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns the config of the execution context. \Hypertarget{classcpark_1_1_execution_context_a0f81d58784fbaeced0c79a50e6a5ff9b}\label{classcpark_1_1_execution_context_a0f81d58784fbaeced0c79a50e6a5ff9b} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!getSplitCache@{getSplitCache}}
+\index{getSplitCache@{getSplitCache}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{getSplitCache()}{getSplitCache()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{const}} std\+::any \& cpark\+::\+Execution\+Context\+::get\+Split\+Cache (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}}}]{split\+\_\+id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the cache for the split, if it has already been cached. \Hypertarget{classcpark_1_1_execution_context_a625fbac1305c63aecba295182a64b1c6}\label{classcpark_1_1_execution_context_a625fbac1305c63aecba295182a64b1c6} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{setConfig()}{setConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{void}} cpark\+::\+Execution\+Context\+::set\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_config}{Config}}}]{config }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets configuration. \Hypertarget{classcpark_1_1_execution_context_a4b1642118dcb073e95a85c46b5fbcc1a}\label{classcpark_1_1_execution_context_a4b1642118dcb073e95a85c46b5fbcc1a} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!splitCached@{splitCached}}
+\index{splitCached@{splitCached}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{splitCached()}{splitCached()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} cpark\+::\+Execution\+Context\+::split\+Cached (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}}}]{split\+\_\+id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Checks whether the split has already been cached. \Hypertarget{classcpark_1_1_execution_context_ae3fe6f7e1e87eb9732b6f2f08e2b5a23}\label{classcpark_1_1_execution_context_ae3fe6f7e1e87eb9732b6f2f08e2b5a23} 
+\index{cpark::ExecutionContext@{cpark::ExecutionContext}!splitShouldCache@{splitShouldCache}}
+\index{splitShouldCache@{splitShouldCache}!cpark::ExecutionContext@{cpark::ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{splitShouldCache()}{splitShouldCache()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} cpark\+::\+Execution\+Context\+::split\+Should\+Cache (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Split\+Id}}}]{split\+\_\+id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns whether the split should be cached. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/cpark.\+h\end{DoxyCompactItemize}

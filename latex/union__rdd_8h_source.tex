@@ -1,0 +1,65 @@
+\doxysection{union\+\_\+rdd.\+h}
+\hypertarget{union__rdd_8h_source}{}\label{union__rdd_8h_source}\index{include/union\_rdd.h@{include/union\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_UNION\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_UNION\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}cassert"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}merged\_view.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <concepts::Rdd\ R1,\ concepts::Rdd\ R2>}
+\DoxyCodeLine{00029\ \textcolor{keyword}{requires}\ std::is\_same\_v<utils::RddElementType<R1>,\ utils::RddElementType<R2>>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}}
+\DoxyCodeLine{00030\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<UnionRdd<R1,\ R2>>\ \{}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<UnionRdd<R1,\ R2>}}>;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_union_rdd_abd1747566c2d21ad0204473ac24b8cc4}{UnionRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{R1}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev1}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{R2}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev2}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev1}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<UnionRdd<R1,\ R2>}}>,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ UnionRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{empty\_split\_1}}\ =\ std::ranges::subrange\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev1}}.front().\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}(),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev1}}.front().\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}()\};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{empty\_split\_2}}\ =\ std::ranges::subrange\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev2}}.front().\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}(),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev2}}.front().\mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}}()\};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Push\ the\ splits\ from\ RDD1.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev1}})\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{MergedTwoDiffView}}(std::ranges::subrange(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}),\ \mbox{\hyperlink{classcpark_1_1_base_split}{empty\_split\_2}}),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Push\ the\ splits\ from\ RDD2.}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev2}})\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{MergedTwoDiffView}}(\mbox{\hyperlink{classcpark_1_1_base_split}{empty\_split\_1}},\ std::ranges::subrange(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}})),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{using\ }SplitType1\ =\ std::ranges::range\_value\_t<R1>;}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{using\ }SplitType2\ =\ std::ranges::range\_value\_t<R2>;}
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{using\ }SubrangeSplitType1\ =\ std::ranges::subrange<std::ranges::iterator\_t<SplitType1>>;}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{using\ }SubrangeSplitType2\ =\ std::ranges::subrange<std::ranges::iterator\_t<SplitType2>>;}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{using\ }UnionViewType\ =\ MergedTwoDiffView<SubrangeSplitType1,\ SubrangeSplitType2>;}
+\DoxyCodeLine{00073\ \ \ std::vector<ViewSplit<UnionViewType>>\ splits\_;}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+ \textcolor{comment}{// end of t\_Union}\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_UNION\_RDD\_H}}
+
+\end{DoxyCode}

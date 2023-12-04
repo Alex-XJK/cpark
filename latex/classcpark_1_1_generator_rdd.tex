@@ -1,0 +1,91 @@
+\doxysection{cpark\+::Generator\+Rdd\texorpdfstring{$<$}{<} Num, Func, T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_generator_rdd}{}\label{classcpark_1_1_generator_rdd}\index{cpark::GeneratorRdd$<$ Num, Func, T $>$@{cpark::GeneratorRdd$<$ Num, Func, T $>$}}
+
+
+{\ttfamily \#include $<$generator\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Generator\+Rdd\texorpdfstring{$<$}{<} Num, Func, T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcpark_1_1_generator_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_a2ec9990438c2edfa999a870d76dcc535}\label{classcpark_1_1_generator_rdd_a2ec9990438c2edfa999a870d76dcc535} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_a0e575155bea3d8a4f98b4d5fc21b5753}\label{classcpark_1_1_generator_rdd_a0e575155bea3d8a4f98b4d5fc21b5753} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Generator\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{Num}} \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \mbox{\hyperlink{classcpark_1_1_base_split}{func}}, \mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_a9109f8705b9f5dc281de572fc1eacb4e}\label{classcpark_1_1_generator_rdd_a9109f8705b9f5dc281de572fc1eacb4e} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Generator\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_generator_rdd}{Generator\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_a4e3e03f9b64895133afa478490970f40}\label{classcpark_1_1_generator_rdd_a4e3e03f9b64895133afa478490970f40} 
+\mbox{\hyperlink{classcpark_1_1_generator_rdd}{Generator\+Rdd}} \& {\bfseries operator=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_generator_rdd}{Generator\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Derived\+Rdd $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}})
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}} \& \mbox{\hyperlink{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_a511f77273f4479887d725fd4c8cfb9a1}\label{classcpark_1_1_generator_rdd_a511f77273f4479887d725fd4c8cfb9a1} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Derived\+Rdd $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+} \{\}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} {\bfseries rdd\+\_\+id\+\_\+} \{\}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} {\bfseries splits\+\_\+num\+\_\+} \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$\newline
+requires std\+::is\+\_\+arithmetic\+\_\+v$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Num}}$>$\&\& std\+::invocable$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}$>$\&\& std\+::convertible\+\_\+to$<$std\+::invoke\+\_\+result\+\_\+t$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}$>$, \mbox{\hyperlink{classcpark_1_1_base_split}{T}}$>$\newline
+class cpark\+::\+Generator\+Rdd$<$ Num, Func, T $>$}
+An Rdd that generates a sequence of data from a number range. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Num} & The type of the number composing the range. It must be arithmetic types. \\
+\hline
+{\em Func} & The function that maps the number into some data. Must be invokable from Num. \\
+\hline
+{\em T} & The data type of the Rdd. Must be convertible from the result of Func. \\
+\hline
+\end{DoxyTemplParams}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{calculate_pi_8cpp-example}{calculate\+\_\+pi.\+cpp}}, \mbox{\hyperlink{filter_even_8cpp-example}{filter\+\_\+even.\+cpp}}, \mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}, and \mbox{\hyperlink{speed_check_8cpp-example}{speed\+\_\+check.\+cpp}}.\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/generator\+\_\+rdd.\+h\end{DoxyCompactItemize}

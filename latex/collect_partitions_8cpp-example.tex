@@ -1,0 +1,67 @@
+\doxysection{collect\+\_\+partitions.\+cpp}
+\hypertarget{collect_partitions_8cpp-example}{}\label{collect_partitions_8cpp-example}This is an example use case of collecting all the elements into a vector data structure in the end.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}collect.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}plain\_rdd.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{using\ namespace\ }cpark;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Simple\ use\ cases\ of\ cpark\ components.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ configuration\ objects.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\ default\_config;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Set\ and\ get\ configuration\ fields.}}
+\DoxyCodeLine{\ \ default\_config.\mbox{\hyperlink{classcpark_1_1_config_ac54efb7365f92bcf0f903d69e3f60b75}{setDebugName}}(\textcolor{stringliteral}{"{}My\ default\ CPARK!"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ execution\ contexts.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ default\_context\{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ plain\ Rdd\ from\ a\ view,\ which\ contains\ the\ same\ data\ as\ the\ view.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ transformed\_iota\_view\ =}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::iota(1,\ 100\ +\ 1)\ |\ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \});}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ plain\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(transformed\_iota\_view,\ \&default\_context);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ the\ number\ of\ splits\ inside\ the\ rdd.}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ plain\ Rdd\ has\ "{}}\ <<\ plain\_rdd.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ the\ splits\ inside\ the\ rdd.}}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ first\_plain\_split\ =\ plain\_rdd.front();}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ second\_plain\_split\ =\ plain\_rdd[2];}
+\DoxyCodeLine{\ \ concepts::Split\ \textcolor{keyword}{auto}\ last\_plain\_split\ =\ plain\_rdd.back();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_to\_first\_plain\_split\ =\ plain\_rdd.begin();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_past\_last\_plain\_split\ =\ plain\_rdd.end();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Get\ elements\ inside\ the\ split.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iterator\_to\_first\_element\ =\ first\_plain\_split.begin();}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ first\_element\ =\ first\_plain\_split.front();}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ first\ split\ of\ plain\ rdd\ contains\ the\ following\ elements:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ first\_plain\_split)\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ last\ split\ of\ plain\ rdd\ contains\ the\ following\ elements:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ :\ plain\_rdd.back())\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \textcolor{comment}{//\ Test\ for\ Collect\ Rdd\ constructor}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Collect\ rdd\ (basic):\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ collect\_rdd\_1\ =\ plain\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_collect}{Collect}}(\ );}
+\DoxyCodeLine{\ \ std::cout\ <<\textcolor{stringliteral}{"{}element\ in\ collection:\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ c\ :\ collect\_rdd\_1)\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ c\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

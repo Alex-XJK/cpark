@@ -1,0 +1,82 @@
+\doxysection{cpark\+::Merged\+Same\+View\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_merged_same_view_1_1_iterator}{}\label{classcpark_1_1_merged_same_view_1_1_iterator}\index{cpark::MergedSameView$<$ R $>$::Iterator@{cpark::MergedSameView$<$ R $>$::Iterator}}
+
+
+{\ttfamily \#include $<$merged\+\_\+view.\+h$>$}
+
+Inheritance diagram for cpark\+::Merged\+Same\+View\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_merged_same_view_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_af41a9f03df4ca358c2df731a21ca146f}\label{classcpark_1_1_merged_same_view_1_1_iterator_af41a9f03df4ca358c2df731a21ca146f} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_a9f6dbbac6fb99b63d766910b1aaff1bc}\label{classcpark_1_1_merged_same_view_1_1_iterator_a9f6dbbac6fb99b63d766910b1aaff1bc} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = std\+::ranges\+::range\+\_\+value\+\_\+t$<$ View\+Type $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator_a582a36777bf253293e8ff9d02dffd6ac}{Iterator}} (std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} View\+Type $>$ \mbox{\hyperlink{classcpark_1_1_base_split}{start\+\_\+iterator}}, std\+::vector$<$ View\+Type $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{views}}, std\+::vector$<$ View\+Type $>$\+::size\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{start\+\_\+index}})
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_aad2ae29dd6ad4dbb1e3332837152c26b}\label{classcpark_1_1_merged_same_view_1_1_iterator_aad2ae29dd6ad4dbb1e3332837152c26b} 
+value\+\_\+type {\bfseries operator\texorpdfstring{$\ast$}{*}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_acc42988d086fdff34176c88c7420417c}\label{classcpark_1_1_merged_same_view_1_1_iterator_acc42988d086fdff34176c88c7420417c} 
+\mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} \& {\bfseries operator++} ()
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_a9de9a21198ce8628fa215e99d3ef89b3}\label{classcpark_1_1_merged_same_view_1_1_iterator_a9de9a21198ce8628fa215e99d3ef89b3} 
+\mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} {\bfseries operator++} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator_a88846acb6b8b7a18a58b73333cb207d5}{operator==}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_a63d7d3beaf3c908516182163475d4271}\label{classcpark_1_1_merged_same_view_1_1_iterator_a63d7d3beaf3c908516182163475d4271} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator!=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_ac6a34d02c6e97e7ed36daffefdb8bba4}\label{classcpark_1_1_merged_same_view_1_1_iterator_ac6a34d02c6e97e7ed36daffefdb8bba4} 
+\mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} \& {\bfseries operator-\/-\/} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Range\+Of\+View R$>$\newline
+class cpark\+::\+Merged\+Same\+View$<$ R $>$\+::\+Iterator}
+An lazily evaluated iterator that sequentially reads the elements in a sequence of views. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_a582a36777bf253293e8ff9d02dffd6ac}\label{classcpark_1_1_merged_same_view_1_1_iterator_a582a36777bf253293e8ff9d02dffd6ac} 
+\index{cpark::MergedSameView$<$ R $>$::Iterator@{cpark::MergedSameView$<$ R $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::MergedSameView$<$ R $>$::Iterator@{cpark::MergedSameView$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Range\+Of\+View R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merged_same_view}{cpark\+::\+Merged\+Same\+View}}$<$ R $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} View\+Type $>$}]{start\+\_\+iterator,  }\item[{std\+::vector$<$ View\+Type $>$ \texorpdfstring{$\ast$}{*}}]{views,  }\item[{std\+::vector$<$ View\+Type $>$\+::size\+\_\+type}]{start\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize the \doxylink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator} with\+: 
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+iterator} & The iterator to the first element. \\
+\hline
+{\em views} & A pointer to a vector of of views to be combined. \\
+\hline
+{\em start\+\_\+index} & The index of the first view. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_merged_same_view_1_1_iterator_a88846acb6b8b7a18a58b73333cb207d5}\label{classcpark_1_1_merged_same_view_1_1_iterator_a88846acb6b8b7a18a58b73333cb207d5} 
+\index{cpark::MergedSameView$<$ R $>$::Iterator@{cpark::MergedSameView$<$ R $>$::Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!cpark::MergedSameView$<$ R $>$::Iterator@{cpark::MergedSameView$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Range\+Of\+View R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merged_same_view}{cpark\+::\+Merged\+Same\+View}}$<$ R $>$\+::\+Iterator\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Two Iterator-\/s are equal iff\+: They are both \textquotesingle{}end\textquotesingle{} iterators, or if they have the same view sequence and point to the same element. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/merged\+\_\+view.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,51 @@
+\doxysection{filter\+\_\+even.\+cpp}
+\hypertarget{filter_even_8cpp-example}{}\label{filter_even_8cpp-example}Get all the even numbers from 0 to 50.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}\ <cpark::concepts::Rdd\ R>}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ printRdd(R\ rdd)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{cpark::concepts::Split}}\ \textcolor{keyword}{auto}\&\ split\ :\ rdd)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x\ :\ split)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{using\ namespace\ }cpark;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ execution\ contexts.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ default\_context\{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ generator\ rdd,\ who\ holds\ 50\ strings,\ each\ containing\ a\ number\ and\ a\ "{}hello"{}.}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Generator\ rdd\ :\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ generator\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{GeneratorRdd}}(}
+\DoxyCodeLine{\ \ \ \ \ \ 0,\ 50\ +\ 1,\ [](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x;\ \},\ \&default\_context);}
+\DoxyCodeLine{\ \ printRdd(generator\_rdd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ even\ =\ [](\textcolor{keywordtype}{int}\ i)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0\ ==\ i\ \%\ 2;}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Test\ for\ FilterRdd(const\ R1\&\ prev,\ Func\ func)\ constructor}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Filter\ rdd\ (basic):\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ filter\_rdd\_1\ =\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(generator\_rdd,\ even);}
+\DoxyCodeLine{\ \ printRdd(filter\_rdd\_1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Test\ for\ pipeline\ and\ Filter(Func\ func)\ operators}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Filter\ rdd\ (operators):\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ filter\_rdd\_2\ =\ generator\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(even);}
+\DoxyCodeLine{\ \ printRdd(filter\_rdd\_2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

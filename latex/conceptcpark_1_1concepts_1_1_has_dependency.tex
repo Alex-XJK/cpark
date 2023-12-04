@@ -1,0 +1,20 @@
+\doxysection{cpark\+::concepts\+::Has\+Dependency Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_has_dependency}{}\label{conceptcpark_1_1concepts_1_1_has_dependency}\index{cpark::concepts::HasDependency@{cpark::concepts::HasDependency}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_has_dependency}{cpark::concepts::HasDependency}}\ =\ \ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_has_id}{concepts::HasId<T>}}\ \&\&\ \textcolor{keyword}{requires}(T\ \&\ t)\ \{}
+\DoxyCodeLine{\ \ \{\ t.dependencies()\ \}\ -\/>\ std::ranges::input\_range;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_base_split}{t}}.\mbox{\hyperlink{classcpark_1_1_base_split_a89ba13953d1435212f7fff77c1db4801}{addDependency}}(\mbox{\hyperlink{classcpark_1_1_base_split}{t}}.\mbox{\hyperlink{classcpark_1_1_base_split_abdd0d616a28057809cf9d62ea89494cf}{id}}());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept that requires its objects have some dependency relationship between each other. A {\ttfamily Has\+Dependency} must be {\ttfamily Has\+Id}, with the following member functions\+: dependencies() returns a list of the id-\/s of the dependencies of the current object. add\+Dependency() adds the id of a new dependency to the current object. 

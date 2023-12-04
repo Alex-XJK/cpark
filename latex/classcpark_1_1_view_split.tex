@@ -1,0 +1,97 @@
+\doxysection{cpark\+::View\+Split\texorpdfstring{$<$}{<} V \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_view_split}{}\label{classcpark_1_1_view_split}\index{cpark::ViewSplit$<$ V $>$@{cpark::ViewSplit$<$ V $>$}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::View\+Split\texorpdfstring{$<$}{<} V \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classcpark_1_1_view_split}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_view_split_a9b06057100f241c6241ab5d78bef4653}\label{classcpark_1_1_view_split_a9b06057100f241c6241ab5d78bef4653} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_cached_split}{Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_view_split}{View\+Split}}$<$ V $>$, std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} V $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split$<$ View\+Split$<$ V $>$, std\+::ranges\+::iterator\+\_\+t$<$ const V $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_cached_split}{Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_view_split}{View\+Split}}$<$ V $>$, std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} V $>$ $>$ $>$
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Value\+Type} = std\+::iter\+\_\+value\+\_\+t$<$ std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} V $>$ $>$
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Cache\+Type} = std\+::vector$<$ Value\+Type $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_view_split_a56a595d591503bb6a812ac6337cb0a15}\label{classcpark_1_1_view_split_a56a595d591503bb6a812ac6337cb0a15} 
+{\bfseries View\+Split} (V \mbox{\hyperlink{classcpark_1_1_base_split}{view}}, \mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\Hypertarget{classcpark_1_1_view_split_af3de8a2aae5e6ae0f736023d39df4fb8}\label{classcpark_1_1_view_split_af3de8a2aae5e6ae0f736023d39df4fb8} 
+{\footnotesize template$<$concepts\+::\+Split S$>$ }\\{\bfseries View\+Split} (V \mbox{\hyperlink{classcpark_1_1_base_split}{view}}, \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{S}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split$<$ View\+Split$<$ V $>$, std\+::ranges\+::iterator\+\_\+t$<$ const V $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Cached\+Split} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_adbc786c2cb5213c2323a11b60b3db97e}{Cached\+Split}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split}{Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}, \mbox{\hyperlink{classcpark_1_1_base_split}{U}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+dependencies}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split$<$ Derived\+Split $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split_a1b6e205d459b14d5afca16f2d1d6d29c}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+{\footnotesize template$<$concepts\+::\+Split S$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split_a8b3c4da2714228facaae9ee472852826}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$concepts\+::\+Split S$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}} \& \mbox{\hyperlink{classcpark_1_1_base_split_a2b0aa4e868814c7c5886d1817ca26ac9}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split_a735d6769c05ac267ef284033a9f4a09c}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+dependencies}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_ac94272217a3011cd50691c405d539e2c}{dependencies}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split_a89ba13953d1435212f7fff77c1db4801}{add\+Dependency}} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split_ab062630b68f7d96f966f5f30f32b14f1}{add\+Dependency}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{split}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split_abdd0d616a28057809cf9d62ea89494cf}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_view_split_a029a5f557bae58a9952eae96d228fba0}\label{classcpark_1_1_view_split_a029a5f557bae58a9952eae96d228fba0} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split$<$ View\+Split$<$ V $>$, std\+::ranges\+::iterator\+\_\+t$<$ const V $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split$<$ Derived\+Split $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+} \{\}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} {\bfseries split\+\_\+id\+\_\+} \{\}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} $>$ {\bfseries dependencies\+\_\+} \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::ranges\+::view V$>$\newline
+class cpark\+::\+View\+Split$<$ V $>$}
+A split whose elements come from a view. It might be very useful in this project. Every split that can be computed by a pair of iterators can be represented by a \doxylink{classcpark_1_1_view_split}{View\+Split}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/base\+\_\+rdd.\+h\end{DoxyCompactItemize}

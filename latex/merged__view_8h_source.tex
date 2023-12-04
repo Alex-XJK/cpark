@@ -1,0 +1,233 @@
+\doxysection{merged\+\_\+view.\+h}
+\hypertarget{merged__view_8h_source}{}\label{merged__view_8h_source}\index{include/merged\_view.h@{include/merged\_view.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_MERGED\_VIEW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_MERGED\_VIEW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }concepts\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{00012\ \textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_range_of_view}{RangeOfView}}\ =}
+\DoxyCodeLine{00013\ \ \ \ \ std::ranges::forward\_range<R>\ \&\&\ std::ranges::view<std::ranges::range\_value\_t<R>>;}
+\DoxyCodeLine{00014\ \}\ \ \textcolor{comment}{//\ namespace\ concepts}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{template}\ <concepts::RangeOfView\ R>}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merged_same_view}{MergedSameView}}\ :\ \textcolor{keyword}{public}\ std::ranges::view\_interface<MergedSameView<R>>\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{using\ }ViewType\ =\ std::ranges::range\_value\_t<R>;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}\ :\ \textcolor{keyword}{public}\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::ranges::range\_value\_t<ViewType>;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator_a582a36777bf253293e8ff9d02dffd6ac}{Iterator}}(std::ranges::iterator\_t<const\ ViewType>\ \mbox{\hyperlink{classcpark_1_1_base_split}{start\_iterator}},\ std::vector<ViewType>*\ \mbox{\hyperlink{classcpark_1_1_base_split}{views}},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<ViewType>::size\_type\ \mbox{\hyperlink{classcpark_1_1_base_split}{start\_index}})}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ :\ inner\_iterator\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{start\_iterator}})\},\ views\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{views}}\},\ index\_of\_view\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{start\_index}}\}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ the\ inner\ iterator\ to\ the\ first\ element\ which\ is\ not\ an\ 'end'.}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (index\_of\_view\_\ <\ std::ranges::size(*views\_)\ \&\&}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ inner\_iterator\_\ ==\ std::ranges::end((*views\_)[index\_of\_view\_]))\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ ++index\_of\_view\_;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\_of\_view\_\ <\ std::ranges::size(*views\_))\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ inner\_iterator\_\ =\ std::ranges::begin((*views\_)[index\_of\_view\_]);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ value\_type\ operator*()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ *inner\_iterator\_;\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ Iterator\&\ operator++()\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ ++inner\_iterator\_;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{comment}{//\ Move\ the\ inner\ iterator\ to\ the\ first\ element\ which\ is\ not\ an\ 'end'.}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (index\_of\_view\_\ <\ std::ranges::size(*views\_)\ \&\&}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ inner\_iterator\_\ ==\ std::ranges::end((*views\_)[index\_of\_view\_]))\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ ++index\_of\_view\_;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\_of\_view\_\ <\ std::ranges::size(*views\_))\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ inner\_iterator\_\ =\ std::ranges::begin((*views\_)[index\_of\_view\_]);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator_a582a36777bf253293e8ff9d02dffd6ac}{Iterator}}\ operator++(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ old\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ old;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator_a88846acb6b8b7a18a58b73333cb207d5}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isEnd()\ \&\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.isEnd())\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ views\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.views\_\ \&\&\ inner\_iterator\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.inner\_iterator\_\ \&\&}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ index\_of\_view\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.index\_of\_view\_;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ Iterator\&\ operator-\/-\/()\ \textcolor{keyword}{requires}\ std::ranges::\mbox{\hyperlink{classcpark_1_1_base_split}{bidirectional\_range}}<ViewType>\ \{\}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnd()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(index\_of\_view\_\ <\ std::ranges::size(*views\_));\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ Iterator\ pointing\ to\ the\ current\ element.}}
+\DoxyCodeLine{00100\ \ \ \ \ std::ranges::iterator\_t<const\ ViewType>\ inner\_iterator\_\{\};}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ The\ sequence\ of\ views\ to\ be\ combined.}}
+\DoxyCodeLine{00102\ \ \ \ \ std::vector<ViewType>*\ views\_\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ Index\ of\ the\ view\ that\ has\ the\ current\ \`{}inner\_iterator\_`.}}
+\DoxyCodeLine{00104\ \ \ \ \ std::vector<ViewType>::size\_type\ index\_of\_view\_\{0\};}
+\DoxyCodeLine{00105\ \ \ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_a7160d8ef8137278918d6d8f15246c583}{MergedSameView}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{views}})}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ :\ views\_\{std::ranges::\mbox{\hyperlink{classcpark_1_1_merged_same_view_a565538ea63b00f8498bd853223e5fa9c}{begin}}(\mbox{\hyperlink{classcpark_1_1_base_split}{views}}),\ std::ranges::\mbox{\hyperlink{classcpark_1_1_merged_same_view_a4dc854ef2520bf436c7ad48a26338379}{end}}(\mbox{\hyperlink{classcpark_1_1_base_split}{views}})\}\ \{\}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_a565538ea63b00f8498bd853223e5fa9c}{begin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{start\_iterator}}\ =\ std::ranges::empty(views\_)\ ?\ std::ranges::iterator\_t<ViewType>\{\}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::ranges::begin(views\_.front());}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{start\_iterator}},\ \textcolor{keyword}{const\_cast<}std::vector<ViewType>*\textcolor{keyword}{>}(\&views\_),}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}std::vector<ViewType>::size\_type\textcolor{keyword}{>}(0)\};}
+\DoxyCodeLine{00120\ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_a4dc854ef2520bf436c7ad48a26338379}{end}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}\{std::ranges::iterator\_t<ViewType>\{\},}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const\_cast<}std::vector<ViewType>*\textcolor{keyword}{>}(\&views\_),\ std::ranges::size(views\_)\};}
+\DoxyCodeLine{00126\ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00129\ \ \ std::vector<ViewType>\ views\_;}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{template}\ <std::ranges::view\ V1,\ std::ranges::view\ V2>}
+\DoxyCodeLine{00137\ \textcolor{keyword}{requires}\ std::same\_as<std::ranges::range\_value\_t<V1>,}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ranges::range\_value\_t<V2>>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{MergedTwoDiffView}}}
+\DoxyCodeLine{00139\ \ \ \ \ :\ \textcolor{keyword}{public}\ std::ranges::view\_interface<MergedTwoDiffView<V1,\ V2>>\ \{}
+\DoxyCodeLine{00140\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}}\ :\ \textcolor{keyword}{public}\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{using\ }value\_type\ =\ std::ranges::range\_value\_t<V1>;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Types\ of\ the\ iterators\ of\ the\ two\ original\ views.}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator1\ =\ std::ranges::iterator\_t<const\ V1>;}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{using\ }OriginalIterator2\ =\ std::ranges::iterator\_t<const\ V2>;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Iter>}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator_a8e6cf644749f56ce0bf00b28f80ad2d9}{Iterator}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Iter}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}},\ V1*\ \mbox{\hyperlink{classcpark_1_1_base_split}{view1}},\ V2*\ \mbox{\hyperlink{classcpark_1_1_base_split}{view2}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_base_split}{if\_hold1}})}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ :\ hold1\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{if\_hold1}}\},\ view1\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{view1}}\},\ view2\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{view2}}\}\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \textcolor{comment}{//\ If\ two\ inner\ iterator\ types\ are\ the\ same,\ use\ hold1()\ to\ determine\ which\ iterator\ to\ be}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{comment}{//\ assigned.}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::same\_as<OriginalIterator1,\ OriginalIterator2>)\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hold1())\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ get1()\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ get2()\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::convertible\_to<Iter,\ OriginalIterator1>)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ get1()\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ get2()\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{iterator}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hold1()\ \&\&\ get1()\ ==\ std::ranges::end(*view1\_))\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ get2()\ =\ std::ranges::begin(*view2\_);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ hold1\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ value\_type\ operator*()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ hold1()\ ?\ *get1()\ :\ *get2();\ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ Iterator\&\ operator++()\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hold1())}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ ++get1();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ ++get2();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hold1()\ \&\&\ get1()\ ==\ std::ranges::end(*view1\_))\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ get2()\ =\ std::ranges::begin(*view2\_);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ hold1\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator_a8e6cf644749f56ce0bf00b28f80ad2d9}{Iterator}}\ operator++(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ old\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ ++(*this);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ old;}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ Iterator\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (hold1()\ \&\&\ other.hold1()\ \&\&\ get1()\ ==\ other.get1())\ ||}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ (hold2()\ \&\&\ other.hold2()\ \&\&\ get2()\ ==\ other.get2());}
+\DoxyCodeLine{00214\ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ Iterator\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{bool}\ hold1()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ hold1\_;\ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get1()\ \{\ \textcolor{keywordflow}{return}\ (inner\_iterator1\_);\ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get1()\ \textcolor{keyword}{const}\ \{\ \textcolor{keywordflow}{return}\ (inner\_iterator1\_);\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{bool}\ hold2()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !hold1\_;\ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get2()\ \{\ \textcolor{keywordflow}{return}\ (inner\_iterator2\_);\ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keyword}{decltype}(\textcolor{keyword}{auto})\ get2()\ \textcolor{keyword}{const}\ \{\ \textcolor{keywordflow}{return}\ (inner\_iterator2\_);\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ In\ case\ OriginalIterator1\ and\ OriginalIterator2\ are\ same\ type,\ std::variant\ can\ not\ be\ used.}}
+\DoxyCodeLine{00229\ \ \ \ \ OriginalIterator1\ inner\_iterator1\_;}
+\DoxyCodeLine{00230\ \ \ \ \ OriginalIterator2\ inner\_iterator2\_;}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{bool}\ hold1\_\{\textcolor{keyword}{true}\};}
+\DoxyCodeLine{00232\ \ \ \ \ V1*\ view1\_\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00233\ \ \ \ \ V2*\ view2\_\{\textcolor{keyword}{nullptr}\};}
+\DoxyCodeLine{00234\ \ \ \};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00240\ \ \ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_ac03720b675122e0326c0637deb8781f6}{MergedTwoDiffView}}(V1\ \mbox{\hyperlink{classcpark_1_1_base_split}{view1}},\ V2\ \mbox{\hyperlink{classcpark_1_1_base_split}{view2}})\ :\ view1\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{view1}})\},\ view2\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{view2}})\}\ \{\}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{MergedTwoDiffView}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_a2810764e7587cd1ab9458de0b8b39491}{begin}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}}\{std::ranges::begin(view1\_),\ \textcolor{keyword}{const\_cast<}V1*\textcolor{keyword}{>}(\&view1\_),\ \textcolor{keyword}{const\_cast<}V2*\textcolor{keyword}{>}(\&view2\_),}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true}\};}
+\DoxyCodeLine{00248\ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00251\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_abdecfde289753be6f1822616a6f373ab}{end}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}}\{std::ranges::end(view2\_),\ \textcolor{keyword}{const\_cast<}V1*\textcolor{keyword}{>}(\&view1\_),\ \textcolor{keyword}{const\_cast<}V2*\textcolor{keyword}{>}(\&view2\_),}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false}\};}
+\DoxyCodeLine{00254\ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00257\ \ \ V1\ view1\_;}
+\DoxyCodeLine{00258\ \ \ V2\ view2\_;}
+\DoxyCodeLine{00259\ \};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{keyword}{template}\ <std::ranges::view\ FirstView>}
+\DoxyCodeLine{00262\ \textcolor{keyword}{auto}\ MergedDiffView(\textcolor{keyword}{const}\ FirstView\&\ view)\ \{}
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordflow}{return}\ view;}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00267\ \textcolor{keyword}{template}\ <std::ranges::view\ FirstView,\ std::ranges::view...\ OtherViews>}
+\DoxyCodeLine{00268\ \textcolor{keyword}{auto}\ MergedDiffView(\textcolor{keyword}{const}\ FirstView\&\ first\_view,\ \textcolor{keyword}{const}\ OtherViews\&...\ other\_views)\ \{}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{return}\ MergedTwoDiffView\{first\_view,\ MergedDiffView(other\_views...)\};}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \}\ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CPARK\_MERGED\_VIEW\_H}}
+
+\end{DoxyCode}

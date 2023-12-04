@@ -1,0 +1,59 @@
+\doxysection{cpark\+::Transformed\+Rdd\texorpdfstring{$<$}{<} R, Func, T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_transformed_rdd}{}\label{classcpark_1_1_transformed_rdd}\index{cpark::TransformedRdd$<$ R, Func, T $>$@{cpark::TransformedRdd$<$ R, Func, T $>$}}
+
+
+{\ttfamily \#include $<$transformed\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Transformed\+Rdd\texorpdfstring{$<$}{<} R, Func, T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.901528cm]{classcpark_1_1_transformed_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_transformed_rdd_a06bec699635a1b7d32aab1439f31b7a6}\label{classcpark_1_1_transformed_rdd_a06bec699635a1b7d32aab1439f31b7a6} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{Transformed\+Rdd}}$<$ R, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_transformed_rdd_adf3774e5fae02eed5511a5ab33d7d897}\label{classcpark_1_1_transformed_rdd_adf3774e5fae02eed5511a5ab33d7d897} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Transformed\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \mbox{\hyperlink{classcpark_1_1_base_split}{func}})
+\item 
+\Hypertarget{classcpark_1_1_transformed_rdd_a231630edb1594af74ece71991b0abdd2}\label{classcpark_1_1_transformed_rdd_a231630edb1594af74ece71991b0abdd2} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Transformed\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{Transformed\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\Hypertarget{classcpark_1_1_transformed_rdd_aeef811825299e15ea837904404d39bf8}\label{classcpark_1_1_transformed_rdd_aeef811825299e15ea837904404d39bf8} 
+\mbox{\hyperlink{classcpark_1_1_transformed_rdd}{Transformed\+Rdd}} \& {\bfseries operator=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_transformed_rdd}{Transformed\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_transformed_rdd_a669f0ceb165e7359dd9609eb8b359c9a}\label{classcpark_1_1_transformed_rdd_a669f0ceb165e7359dd9609eb8b359c9a} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, utils\+::\+Rdd\+Element\+Type$<$\+R$>$$>$$>$\newline
+requires std\+::invocable$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, utils\+::\+Rdd\+Element\+Type$<$R$>$$>$\&\& std\+::convertible\+\_\+to$<$ std\+::invoke\+\_\+result\+\_\+t$<$\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, utils\+::\+Rdd\+Element\+Type$<$R$>$$>$, \mbox{\hyperlink{classcpark_1_1_base_split}{T}}$>$\newline
+class cpark\+::\+Transformed\+Rdd$<$ R, Func, T $>$}
+An Rdd holding the data transformed from an old rdd by some function. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R} & Type of the old Rdd. \\
+\hline
+{\em Func} & Type of the transformation function. \\
+\hline
+{\em T} & Type of the data hold in this Rdd. The type of the old Rdd {\ttfamily R}\textquotesingle{}s elements should be able to invoke function {\ttfamily Func}, and the result type should be able to convert to type {\ttfamily T}. \\
+\hline
+\end{DoxyTemplParams}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}.\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/transformed\+\_\+rdd.\+h\end{DoxyCompactItemize}

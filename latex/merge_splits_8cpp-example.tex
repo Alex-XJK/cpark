@@ -1,0 +1,68 @@
+\doxysection{merge\+\_\+splits.\+cpp}
+\hypertarget{merge_splits_8cpp-example}{}\label{merge_splits_8cpp-example}This is an example use case of merge the splits of different Rdds into one, and union different Rdds together.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}plain\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}union\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}merge\_rdd.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{template}\ <cpark::concepts::Rdd\ R>}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ printRdd(R\ rdd)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{cpark::concepts::Split}}\ \textcolor{keyword}{auto}\&\ split\ :\ rdd)\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Split\ \#"{}}\ <<\ split.id()\ <<\ \textcolor{stringliteral}{"{}\ :\(\backslash\)t"{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}(len:\ "{}\ <<\ split.size()\ <<\ "{})\(\backslash\)t"{};}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x\ :\ split)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}};}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{using\ namespace\ }cpark;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ execution\ contexts.}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_config}{Config}}\ default\_config;}
+\DoxyCodeLine{\ \ default\_config.\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}();}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{ExecutionContext}}\ default\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ plain\ Rdd\ from\ a\ view,\ which\ contains\ the\ same\ data\ as\ the\ view.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iota\_view\_1\ =}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::iota(1,\ 50);}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ plain\_rdd\_1\ =\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(iota\_view\_1,\ \&default\_context);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ iota\_view\_2\ =}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::iota(50,\ 100);}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ plain\_rdd\_2\ =\ \mbox{\hyperlink{classcpark_1_1_plain_rdd}{PlainRdd}}(iota\_view\_2,\ \&default\_context);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Print\ out\ original\ splits\ inside\ the\ rdd.}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ plain\ Rdd\ 1\ has\ "{}}\ <<\ plain\_rdd\_1.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ printRdd(plain\_rdd\_1);}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ plain\ Rdd\ 2\ has\ "{}}\ <<\ plain\_rdd\_2.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ printRdd(plain\_rdd\_2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Filter\ rdd}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ even\ =\ [](\textcolor{keywordtype}{int}\ i)\ \{\ \textcolor{keywordflow}{return}\ 0\ ==\ i\ \%\ 2;\ \};}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ filter\_rdd\_1\ =\ plain\_rdd\_1\ |\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(even);}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ filter\_rdd\_2\ =\ plain\_rdd\_2\ |\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(even);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Union\ rdd}}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ union\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_union_rdd}{UnionRdd}}(filter\_rdd\_1,\ filter\_rdd\_2);}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ union\ Rdd\ has\ "{}}\ <<\ union\_rdd.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ printRdd(union\_rdd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Merge\ splits}}
+\DoxyCodeLine{\ \ concepts::Rdd\ \textcolor{keyword}{auto}\ merge\_rdd\ =\ union\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_merge}{Merge}}();}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ merge\ Rdd\ has\ "{}}\ <<\ merge\_rdd.size()\ <<\ \textcolor{stringliteral}{"{}\ splits."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ printRdd(merge\_rdd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

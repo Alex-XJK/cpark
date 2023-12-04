@@ -1,0 +1,10 @@
+\doxysection{cpark\+::concepts\+::Range\+Of\+View Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_range_of_view}{}\label{conceptcpark_1_1concepts_1_1_range_of_view}\index{cpark::concepts::RangeOfView@{cpark::concepts::RangeOfView}}
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ R>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_range_of_view}{cpark::concepts::RangeOfView}}\ =\ }
+\DoxyCodeLine{\ \ \ \ std::ranges::forward\_range<R>\ \&\&\ std::ranges::view<std::ranges::range\_value\_t<R>>}
+
+\end{DoxyCode}

@@ -1,0 +1,142 @@
+\doxysection{cpark\+::Base\+Split\texorpdfstring{$<$}{<} Derived\+Split \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_base_split}{}\label{classcpark_1_1_base_split}\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Base\+Split\texorpdfstring{$<$}{<} Derived\+Split \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classcpark_1_1_base_split}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split_a1b6e205d459b14d5afca16f2d1d6d29c}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+{\footnotesize template$<$concepts\+::\+Split S$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split_a8b3c4da2714228facaae9ee472852826}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$concepts\+::\+Split S$>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}} \& \mbox{\hyperlink{classcpark_1_1_base_split_a2b0aa4e868814c7c5886d1817ca26ac9}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split_a735d6769c05ac267ef284033a9f4a09c}{Base\+Split}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+dependencies}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split_ac94272217a3011cd50691c405d539e2c}{dependencies}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split_a89ba13953d1435212f7fff77c1db4801}{add\+Dependency}} (\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{split\+\_\+id}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ }\\\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split_ab062630b68f7d96f966f5f30f32b14f1}{add\+Dependency}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{split}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split_abdd0d616a28057809cf9d62ea89494cf}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_base_split_a4ea5d135a08b35a46c9559d4ca1cb25b}\label{classcpark_1_1_base_split_a4ea5d135a08b35a46c9559d4ca1cb25b} 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+} \{\}
+\item 
+\Hypertarget{classcpark_1_1_base_split_a172efcbd2aad97fda4d84259c0136460}\label{classcpark_1_1_base_split_a172efcbd2aad97fda4d84259c0136460} 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} {\bfseries split\+\_\+id\+\_\+} \{\}
+\item 
+\Hypertarget{classcpark_1_1_base_split_aa16368186e2478232c2909368cc16224}\label{classcpark_1_1_base_split_aa16368186e2478232c2909368cc16224} 
+std\+::vector$<$ \mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} $>$ {\bfseries dependencies\+\_\+} \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived\+Split$>$\newline
+class cpark\+::\+Base\+Split$<$ Derived\+Split $>$}
+A base Split class containing common data and interfaces for different Splits. This class uses CRTP to achieve compile-\/time polymorphism to avoid the run-\/time cost of virtual functions. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived\+Split} & The type of the derived split. Derived split class should implement these functions\+: begin\+Impl(), end\+Impl(). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_base_split_a1b6e205d459b14d5afca16f2d1d6d29c}\label{classcpark_1_1_base_split_a1b6e205d459b14d5afca16f2d1d6d29c} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!BaseSplit@{BaseSplit}}
+\index{BaseSplit@{BaseSplit}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{BaseSplit()}{BaseSplit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::\+Base\+Split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Initialize the split with {\ttfamily context} and assign a unique split id to it. \Hypertarget{classcpark_1_1_base_split_a8b3c4da2714228facaae9ee472852826}\label{classcpark_1_1_base_split_a8b3c4da2714228facaae9ee472852826} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!BaseSplit@{BaseSplit}}
+\index{BaseSplit@{BaseSplit}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{BaseSplit()}{BaseSplit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+template$<$concepts\+::\+Split S$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::\+Base\+Split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor for each kind of \doxylink{classcpark_1_1_base_split}{Base\+Split} class. \Hypertarget{classcpark_1_1_base_split_a735d6769c05ac267ef284033a9f4a09c}\label{classcpark_1_1_base_split_a735d6769c05ac267ef284033a9f4a09c} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!BaseSplit@{BaseSplit}}
+\index{BaseSplit@{BaseSplit}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{BaseSplit()}{BaseSplit()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::\+Base\+Split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&}]{other,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{copy\+\_\+id,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}}]{copy\+\_\+dependencies }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy from another \doxylink{classcpark_1_1_base_split}{Base\+Split} (possibly with different Derived\+Split type). The new \doxylink{classcpark_1_1_base_split}{Base\+Split} will have the same context. If {\ttfamily copy\+\_\+id} is true, the new split will have the same split id, otherwise it will have a new unique split id. if {\ttfamily copy\+\_\+dependencies} is true, the dependencies will also be copied. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_base_split_ab062630b68f7d96f966f5f30f32b14f1}\label{classcpark_1_1_base_split_ab062630b68f7d96f966f5f30f32b14f1} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!addDependency@{addDependency}}
+\index{addDependency@{addDependency}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{addDependency()}{addDependency()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::add\+Dependency (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \&}]{split }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds {\ttfamily split}\textquotesingle{}s id to the dependencies of the current split. \Hypertarget{classcpark_1_1_base_split_a89ba13953d1435212f7fff77c1db4801}\label{classcpark_1_1_base_split_a89ba13953d1435212f7fff77c1db4801} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!addDependency@{addDependency}}
+\index{addDependency@{addDependency}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{addDependency()}{addDependency()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{void}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::add\+Dependency (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}}}]{split\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds {\ttfamily split\+\_\+id} to the dependencies of the current split. \Hypertarget{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}\label{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!begin@{begin}}
+\index{begin@{begin}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the iterator pointing to the first element in the Split. This function is only an interface. The execution of this function is totally delegated to Derived\+Split\+::begin\+Impl(). \Hypertarget{classcpark_1_1_base_split_ac94272217a3011cd50691c405d539e2c}\label{classcpark_1_1_base_split_ac94272217a3011cd50691c405d539e2c} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!dependencies@{dependencies}}
+\index{dependencies@{dependencies}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{dependencies()}{dependencies()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::dependencies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns a range that contains the split id-\/s of all the {\itshape direct} dependency of the current split. \Hypertarget{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8}\label{classcpark_1_1_base_split_a0d89e81ae8be3cc87f11791036e10ef8} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!end@{end}}
+\index{end@{end}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an iterator sentinel that marks the end of the split\textquotesingle{}s element iterator. This function is only an interface. The execution of this function is totally delegated to Derived\+Split\+::end\+Impl(). \Hypertarget{classcpark_1_1_base_split_abdd0d616a28057809cf9d62ea89494cf}\label{classcpark_1_1_base_split_abdd0d616a28057809cf9d62ea89494cf} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!id@{id}}
+\index{id@{id}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{id()}{id()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_execution_context_a5a35a8bc1d532aedd230c66d43fff6b8}{Execution\+Context\+::\+Split\+Id}} \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Returns the split id. \Hypertarget{classcpark_1_1_base_split_a2b0aa4e868814c7c5886d1817ca26ac9}\label{classcpark_1_1_base_split_a2b0aa4e868814c7c5886d1817ca26ac9} 
+\index{cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!cpark::BaseSplit$<$ DerivedSplit $>$@{cpark::BaseSplit$<$ DerivedSplit $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$ \\
+template$<$concepts\+::\+Split S$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}} \& \mbox{\hyperlink{classcpark_1_1_base_split}{cpark\+::\+Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Base\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{S}} $>$ \&}]{prev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assignment operator for each kind of \doxylink{classcpark_1_1_base_split}{Base\+Split} class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/base\+\_\+rdd.\+h\end{DoxyCompactItemize}

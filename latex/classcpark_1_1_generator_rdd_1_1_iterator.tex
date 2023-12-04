@@ -1,0 +1,88 @@
+\doxysection{cpark\+::Generator\+Rdd\texorpdfstring{$<$}{<} Num, Func, T \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_generator_rdd_1_1_iterator}{}\label{classcpark_1_1_generator_rdd_1_1_iterator}\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+
+
+{\ttfamily \#include $<$generator\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Generator\+Rdd\texorpdfstring{$<$}{<} Num, Func, T \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_generator_rdd_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_a0c556658e58e6935243e0376351932c4}\label{classcpark_1_1_generator_rdd_1_1_iterator_a0c556658e58e6935243e0376351932c4} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_acfcbadb5b9dbac48f10ff492f1d11b2c}\label{classcpark_1_1_generator_rdd_1_1_iterator_acfcbadb5b9dbac48f10ff492f1d11b2c} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = \mbox{\hyperlink{classcpark_1_1_base_split}{T}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_a58c264bec796d449948d4eeaafa38ce5}{Iterator}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} \mbox{\hyperlink{classcpark_1_1_base_split}{i}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{value\+\_\+type}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_ab812b785f301db7d8ffa3c74a1973a47}{operator\texorpdfstring{$\ast$}{*}}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_abd652d271e8b1b0f9ad24e0d9b3832b6}{operator++}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_ab6c835147179aec2bbc0bb8e7aad6fa2}{operator++}} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_aca1de06e533d0bcfc3987d14a486923d}{operator==}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_af52dda1df23e168be2fb1046120550c0}\label{classcpark_1_1_generator_rdd_1_1_iterator_af52dda1df23e168be2fb1046120550c0} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator!=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}} = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$\newline
+class cpark\+::\+Generator\+Rdd$<$ Num, Func, T $>$\+::\+Iterator}
+An iterator that can be used to compute the value of a function {\ttfamily Func} invoked by a {\ttfamily Num}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_a58c264bec796d449948d4eeaafa38ce5}\label{classcpark_1_1_generator_rdd_1_1_iterator_a58c264bec796d449948d4eeaafa38ce5} 
+\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark\+::\+Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} \texorpdfstring{$\ast$}{*}}]{func,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{Num}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates the iterator with function {\ttfamily func} and starting argument value {\ttfamily i}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_ab812b785f301db7d8ffa3c74a1973a47}\label{classcpark_1_1_generator_rdd_1_1_iterator_ab812b785f301db7d8ffa3c74a1973a47} 
+\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{value\+\_\+type}} \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark\+::\+Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$\+::\+Iterator\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the current value {\ttfamily func\+\_\+(i\+\_\+)}. \Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_abd652d271e8b1b0f9ad24e0d9b3832b6}\label{classcpark_1_1_generator_rdd_1_1_iterator_abd652d271e8b1b0f9ad24e0d9b3832b6} 
+\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark\+::\+Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increments the function argument. \Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_ab6c835147179aec2bbc0bb8e7aad6fa2}\label{classcpark_1_1_generator_rdd_1_1_iterator_ab6c835147179aec2bbc0bb8e7aad6fa2} 
+\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark\+::\+Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{int}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increments the function argument. \Hypertarget{classcpark_1_1_generator_rdd_1_1_iterator_aca1de06e533d0bcfc3987d14a486923d}\label{classcpark_1_1_generator_rdd_1_1_iterator_aca1de06e533d0bcfc3987d14a486923d} 
+\index{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator@{cpark::GeneratorRdd$<$ Num, Func, T $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Num}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Func}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = std\+::invoke\+\_\+result\+\_\+t$<$\+Func, Num$>$$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark\+::\+Generator\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}, \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$\+::\+Iterator\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Two iterators equal each other if and only if they have the same function and argument. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/generator\+\_\+rdd.\+h\end{DoxyCompactItemize}

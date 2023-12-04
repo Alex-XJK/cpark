@@ -1,0 +1,17 @@
+\doxysection{cpark\+::concepts\+::Split Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_split}{}\label{conceptcpark_1_1concepts_1_1_split}\index{cpark::concepts::Split@{cpark::concepts::Split}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ S>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{cpark::concepts::Split}}\ =\ \ std::ranges::input\_range<S>\ \&\&\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_has_dependency}{concepts::HasDependency<S>}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+Split is a sub-\/partition of data from an Rdd, and is the smallest computing unit in cpark\textquotesingle{}s computing tasks, It is an input\+\_\+range whose objects have some dependency relationship between each other. 

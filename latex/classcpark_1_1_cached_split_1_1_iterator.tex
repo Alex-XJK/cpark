@@ -1,0 +1,190 @@
+\doxysection{cpark\+::Cached\+Split\texorpdfstring{$<$}{<} Derived\+Split, Derived\+Split\+Iterator \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_cached_split_1_1_iterator}{}\label{classcpark_1_1_cached_split_1_1_iterator}\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Cached\+Split\texorpdfstring{$<$}{<} Derived\+Split, Derived\+Split\+Iterator \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_cached_split_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a46e520689f3029031fb08fd4dbf4eabb}\label{classcpark_1_1_cached_split_1_1_iterator_a46e520689f3029031fb08fd4dbf4eabb} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a625c7b9f8d8a5d2047ed580a5288758f}\label{classcpark_1_1_cached_split_1_1_iterator_a625c7b9f8d8a5d2047ed580a5288758f} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = Value\+Type
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a07b874fa8f5d4931afd0b1523e0e6905}\label{classcpark_1_1_cached_split_1_1_iterator_a07b874fa8f5d4931afd0b1523e0e6905} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Cache\+Iterator} = std\+::ranges\+::iterator\+\_\+t$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{const}} Cache\+Type $>$
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a7505152a0c92d5e36c773212c867aafa}\label{classcpark_1_1_cached_split_1_1_iterator_a7505152a0c92d5e36c773212c867aafa} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Original\+Iterator} = \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a3ae54af6b9b95877476939a17ed0f5c9}{Iterator}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} Cache\+Iterator \&\mbox{\hyperlink{classcpark_1_1_base_split}{iterator}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a846300a518ad069d8eebe268a0cc8f09}{Iterator}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} Original\+Iterator \&\mbox{\hyperlink{classcpark_1_1_base_split}{iterator}})
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_af86cfcb1b4e41d6235aa8b4113c52a0d}\label{classcpark_1_1_cached_split_1_1_iterator_af86cfcb1b4e41d6235aa8b4113c52a0d} 
+value\+\_\+type {\bfseries operator\texorpdfstring{$\ast$}{*}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_af7a2b227a1e98ef378b33a77aca54f68}{operator++}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_ac7b90f52ff8943c31639015166fb640d}{operator++}} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a58fe5dd0c7937d39d798bffc0fc97bc8}{operator==}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a054a6a4a28b8a519f2214fa5ff341b19}\label{classcpark_1_1_cached_split_1_1_iterator_a054a6a4a28b8a519f2214fa5ff341b19} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator!=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a14f47e78d265be22492afae66d12eef0}{operator-\/-\/}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a531182ab2d2331c848961a73d75133cc}{operator-\/-\/}} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_af020efa1af3dc92f413d4eda3e3dd2d2}{operator+=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_a72671fba2bc88f6e97aefc28d465f977}{operator-\/=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_afcb29ae574146651f9c444bf34c086d8}{operator+}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a61829947bb99d4fe496551e5298d901d}\label{classcpark_1_1_cached_split_1_1_iterator_a61829947bb99d4fe496551e5298d901d} 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} {\bfseries operator-\/} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+value\+\_\+type \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_ad97ac92ada7248f85b955dd414313ab9}{operator\mbox{[}$\,$\mbox{]}}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_ac698d3b9258a4456287f1147a28dd77a}{operator-\/}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_aaab2849a38c04043717a29eeda6737fa}\label{classcpark_1_1_cached_split_1_1_iterator_aaab2849a38c04043717a29eeda6737fa} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator$<$} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a340bfc79a60c9672fca94b2dd68160e1}\label{classcpark_1_1_cached_split_1_1_iterator_a340bfc79a60c9672fca94b2dd68160e1} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator$>$} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_ab6d5b055793416450ef02e96376739a8}\label{classcpark_1_1_cached_split_1_1_iterator_ab6d5b055793416450ef02e96376739a8} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator$<$=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a8675da5d9b7914f0f398e76b9d3ddd6e}\label{classcpark_1_1_cached_split_1_1_iterator_a8675da5d9b7914f0f398e76b9d3ddd6e} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} {\bfseries operator$>$=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator_ab3cf71bdc6a9e33db7269b3ada4bf3c1}{operator+}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&\mbox{\hyperlink{classcpark_1_1_base_split}{n}}, \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{iter}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}}$>$\newline
+class cpark\+::\+Cached\+Split$<$ Derived\+Split, Derived\+Split\+Iterator $>$\+::\+Iterator}
+A special kind of iterator, who will possibly read the data using the iterator from Derived\+Split, or read the data from the execution context\textquotesingle{}s cache, depending on how this iterator is initialized. This iterator is a random\+\_\+access\+\_\+iterator. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a3ae54af6b9b95877476939a17ed0f5c9}\label{classcpark_1_1_cached_split_1_1_iterator_a3ae54af6b9b95877476939a17ed0f5c9} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} Cache\+Iterator \&}]{iterator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+If the iterator is initialized from this constructor, it will read values from cache. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a846300a518ad069d8eebe268a0cc8f09}\label{classcpark_1_1_cached_split_1_1_iterator_a846300a518ad069d8eebe268a0cc8f09} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!Iterator@{Iterator}}
+\index{Iterator@{Iterator}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{Iterator()}{Iterator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::\+Iterator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} Original\+Iterator \&}]{iterator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+If the iterator is initialized from this constructor, it will read values from Derived\+Split. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_afcb29ae574146651f9c444bf34c086d8}\label{classcpark_1_1_cached_split_1_1_iterator_afcb29ae574146651f9c444bf34c086d8} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator+@{operator+}}
+\index{operator+@{operator+}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+See \doxylink{classcpark_1_1_cached_split_1_1_iterator_af020efa1af3dc92f413d4eda3e3dd2d2}{operator+=()}. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_af7a2b227a1e98ef378b33a77aca54f68}\label{classcpark_1_1_cached_split_1_1_iterator_af7a2b227a1e98ef378b33a77aca54f68} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Moves the iterator to point to the next element, returns the incremented iterator. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_ac7b90f52ff8943c31639015166fb640d}\label{classcpark_1_1_cached_split_1_1_iterator_ac7b90f52ff8943c31639015166fb640d} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{int}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Moves the iterator to point to the next element, returns the original iterator. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_af020efa1af3dc92f413d4eda3e3dd2d2}\label{classcpark_1_1_cached_split_1_1_iterator_af020efa1af3dc92f413d4eda3e3dd2d2} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator+= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Forward the iterator to the next n-\/th element. It has a calculate-\/cache-\/on-\/miss behavior. See {\ttfamily Cache\+Split}\textquotesingle{}s docs for more details. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_ac698d3b9258a4456287f1147a28dd77a}\label{classcpark_1_1_cached_split_1_1_iterator_ac698d3b9258a4456287f1147a28dd77a} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the difference between iterators. calculate-\/cache-\/on-\/miss behavior. Throws if two iterators are not of the same actual type (cached or original). \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a14f47e78d265be22492afae66d12eef0}\label{classcpark_1_1_cached_split_1_1_iterator_a14f47e78d265be22492afae66d12eef0} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator-\/-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Moves the iterator to point to the previous element, returns the decremented iterator. It has a calculate-\/cache-\/on-\/miss behavior. See {\ttfamily Cache\+Split}\textquotesingle{}s docs for more details. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a531182ab2d2331c848961a73d75133cc}\label{classcpark_1_1_cached_split_1_1_iterator_a531182ab2d2331c848961a73d75133cc} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator-\/-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{int}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Moves the iterator to point to the previous element, returns the old iterator. It has a calculate-\/cache-\/on-\/miss behavior. See {\ttfamily Cache\+Split}\textquotesingle{}s docs for more details. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a72671fba2bc88f6e97aefc28d465f977}\label{classcpark_1_1_cached_split_1_1_iterator_a72671fba2bc88f6e97aefc28d465f977} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator-\/= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Move the iterator to the previous n-\/th element. It has a calculate-\/cache-\/on-\/miss behavior. See {\ttfamily Cache\+Split}\textquotesingle{}s docs for more details. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_a58fe5dd0c7937d39d798bffc0fc97bc8}\label{classcpark_1_1_cached_split_1_1_iterator_a58fe5dd0c7937d39d798bffc0fc97bc8} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Two Iterator-\/s are equal if and only if they read the elements from the same source (both are reading from cache, or both are reading from original iterator), and they also point to the same value. \Hypertarget{classcpark_1_1_cached_split_1_1_iterator_ad97ac92ada7248f85b955dd414313ab9}\label{classcpark_1_1_cached_split_1_1_iterator_ad97ac92ada7248f85b955dd414313ab9} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+value\+\_\+type \mbox{\hyperlink{classcpark_1_1_cached_split}{cpark\+::\+Cached\+Split}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}}, \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$\+::\+Iterator\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the next n-\/th element. calculate-\/cache-\/on-\/miss. 
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classcpark_1_1_cached_split_1_1_iterator_ab3cf71bdc6a9e33db7269b3ada4bf3c1}\label{classcpark_1_1_cached_split_1_1_iterator_ab3cf71bdc6a9e33db7269b3ada4bf3c1} 
+\index{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}!operator+@{operator+}}
+\index{operator+@{operator+}!cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator@{cpark::CachedSplit$<$ DerivedSplit, DerivedSplitIterator $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator+}{operator+}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split}} , \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{Derived\+Split\+Iterator}} $>$ \\
+\mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_base_split}{operator}}+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} difference\+\_\+type \&}]{n,  }\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_cached_split_1_1_iterator}{Iterator}} \&}]{iter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+See \doxylink{classcpark_1_1_cached_split_1_1_iterator_ab3cf71bdc6a9e33db7269b3ada4bf3c1}{operator+()}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/base\+\_\+rdd.\+h\end{DoxyCompactItemize}

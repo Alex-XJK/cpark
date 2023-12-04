@@ -1,0 +1,184 @@
+\doxysection{cpark\+::Merge\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator Class Reference}
+\hypertarget{classcpark_1_1_merge_rdd_1_1_iterator}{}\label{classcpark_1_1_merge_rdd_1_1_iterator}\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+Inheritance diagram for cpark\+::Merge\+Rdd\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+::Iterator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_merge_rdd_1_1_iterator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a9c47f04afbef2f72288dffc3d0da593f}\label{classcpark_1_1_merge_rdd_1_1_iterator_a9c47f04afbef2f72288dffc3d0da593f} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a1669385cc7baf1a4769bba08eb944968}\label{classcpark_1_1_merge_rdd_1_1_iterator_a1669385cc7baf1a4769bba08eb944968} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries iterator\+\_\+category} = std\+::forward\+\_\+iterator\+\_\+tag
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a06f71627cb25f16b784baf7f71a5fa05}\label{classcpark_1_1_merge_rdd_1_1_iterator_a06f71627cb25f16b784baf7f71a5fa05} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries value\+\_\+type} = utils\+::\+Rdd\+Element\+Type$<$ R $>$
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_abfdd27618f5796cfed6d6a2ed589db37}\label{classcpark_1_1_merge_rdd_1_1_iterator_abfdd27618f5796cfed6d6a2ed589db37} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Original\+Iterator} = std\+::ranges\+::iterator\+\_\+t$<$ std\+::ranges\+::range\+\_\+value\+\_\+t$<$ R $>$ $>$
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a8b7b58a2d5f1d57bea1f4a064e64617e}\label{classcpark_1_1_merge_rdd_1_1_iterator_a8b7b58a2d5f1d57bea1f4a064e64617e} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Original\+Sentinel} = std\+::ranges\+::sentinel\+\_\+t$<$ std\+::ranges\+::range\+\_\+value\+\_\+t$<$ R $>$ $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a34b319dbd1799353e0844666ba40ddcb}\label{classcpark_1_1_merge_rdd_1_1_iterator_a34b319dbd1799353e0844666ba40ddcb} 
+{\bfseries Iterator} (std\+::vector$<$ Original\+Iterator $>$ \mbox{\hyperlink{classcpark_1_1_base_split}{begins}}, std\+::vector$<$ Original\+Iterator $>$ \mbox{\hyperlink{classcpark_1_1_base_split}{ends}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} is\+End=\mbox{\hyperlink{classcpark_1_1_base_split}{false}})
+\item 
+value\+\_\+type \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab085f8aa035670b8da0ab21d9f4aa6e4}{operator\texorpdfstring{$\ast$}{*}}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+value\+\_\+type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a02eb5095fb201ddce1a26a4e5866ddf1}{operator-\/$>$}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a0600f80c90b982020ecbff7179baae4b}{operator++}} ()
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aa2932c5c13ee0ebebae1f0698dfe0adc}{operator++}} (\mbox{\hyperlink{classcpark_1_1_base_split}{int}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_aaba86aef62790031d736725c5f6d70f7}{operator+=}} (difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{n}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a704d4b61ca1f906156644fe099733b80}{operator-\/=}} (difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{n}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_abdfff2a13646ef3b10863b44b0ec5799}{operator+}} (difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ab8f5b84401439e18f40cc48a7cc867e5}{operator-\/}} (difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+value\+\_\+type \& \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_ad7854084db2dcf8dca72ef232ef0c0e2}{operator\mbox{[}$\,$\mbox{]}}} (difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_base_split}{n}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a2c1c4c393c4d063f26690947c916a094}{operator==}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a69ec94db84bf10f6fb216a268e4df66d}{operator!=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a15777196ec9ded0abcc54309bb2cecf0}{operator$<$}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_afdb09153401aa4a554d0344c7cbc3759}{operator$>$}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a9ec2ac972e069cda1849f7aed1cab133}{operator$<$=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a6d5ce76fb04460557fd99d5073e699ba}{operator$>$=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator_a1d6fcd3faf62cb8c08ff6d45c2ca8542}{operator-\/}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{other}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a69ec94db84bf10f6fb216a268e4df66d}\label{classcpark_1_1_merge_rdd_1_1_iterator_a69ec94db84bf10f6fb216a268e4df66d} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator!= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Inequality operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_ab085f8aa035670b8da0ab21d9f4aa6e4}\label{classcpark_1_1_merge_rdd_1_1_iterator_ab085f8aa035670b8da0ab21d9f4aa6e4} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+value\+\_\+type \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the current value. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_abdfff2a13646ef3b10863b44b0ec5799}\label{classcpark_1_1_merge_rdd_1_1_iterator_abdfff2a13646ef3b10863b44b0ec5799} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator+@{operator+}}
+\index{operator+@{operator+}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator+ (\begin{DoxyParamCaption}\item[{difference\+\_\+type}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Addition operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a0600f80c90b982020ecbff7179baae4b}\label{classcpark_1_1_merge_rdd_1_1_iterator_a0600f80c90b982020ecbff7179baae4b} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increments the iterator to the next element. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_aa2932c5c13ee0ebebae1f0698dfe0adc}\label{classcpark_1_1_merge_rdd_1_1_iterator_aa2932c5c13ee0ebebae1f0698dfe0adc} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator++@{operator++}}
+\index{operator++@{operator++}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator++ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{int}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Increments the iterator to the next element. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_aaba86aef62790031d736725c5f6d70f7}\label{classcpark_1_1_merge_rdd_1_1_iterator_aaba86aef62790031d736725c5f6d70f7} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator+= (\begin{DoxyParamCaption}\item[{difference\+\_\+type}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compound addition operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a1d6fcd3faf62cb8c08ff6d45c2ca8542}\label{classcpark_1_1_merge_rdd_1_1_iterator_a1d6fcd3faf62cb8c08ff6d45c2ca8542} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+difference\+\_\+type \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator-\/ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Difference operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_ab8f5b84401439e18f40cc48a7cc867e5}\label{classcpark_1_1_merge_rdd_1_1_iterator_ab8f5b84401439e18f40cc48a7cc867e5} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator-\/ (\begin{DoxyParamCaption}\item[{difference\+\_\+type}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subtraction operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a704d4b61ca1f906156644fe099733b80}\label{classcpark_1_1_merge_rdd_1_1_iterator_a704d4b61ca1f906156644fe099733b80} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \& \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator-\/= (\begin{DoxyParamCaption}\item[{difference\+\_\+type}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compound subtraction operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a02eb5095fb201ddce1a26a4e5866ddf1}\label{classcpark_1_1_merge_rdd_1_1_iterator_a02eb5095fb201ddce1a26a4e5866ddf1} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator-\/$>$()}{operator->()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+value\+\_\+type \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator-\/$>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Arrow operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a15777196ec9ded0abcc54309bb2cecf0}\label{classcpark_1_1_merge_rdd_1_1_iterator_a15777196ec9ded0abcc54309bb2cecf0} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Less than operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a9ec2ac972e069cda1849f7aed1cab133}\label{classcpark_1_1_merge_rdd_1_1_iterator_a9ec2ac972e069cda1849f7aed1cab133} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator$<$= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Less than or equal to operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a2c1c4c393c4d063f26690947c916a094}\label{classcpark_1_1_merge_rdd_1_1_iterator_a2c1c4c393c4d063f26690947c916a094} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator==@{operator==}}
+\index{operator==@{operator==}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Equality operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_afdb09153401aa4a554d0344c7cbc3759}\label{classcpark_1_1_merge_rdd_1_1_iterator_afdb09153401aa4a554d0344c7cbc3759} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator$>$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Greater than operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_a6d5ce76fb04460557fd99d5073e699ba}\label{classcpark_1_1_merge_rdd_1_1_iterator_a6d5ce76fb04460557fd99d5073e699ba} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator$>$= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_merge_rdd_1_1_iterator}{Iterator}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Greater than or equal to operator. \Hypertarget{classcpark_1_1_merge_rdd_1_1_iterator_ad7854084db2dcf8dca72ef232ef0c0e2}\label{classcpark_1_1_merge_rdd_1_1_iterator_ad7854084db2dcf8dca72ef232ef0c0e2} 
+\index{cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!cpark::MergeRdd$<$ R $>$::Iterator@{cpark::MergeRdd$<$ R $>$::Iterator}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R$>$ \\
+value\+\_\+type \& \mbox{\hyperlink{classcpark_1_1_merge_rdd}{cpark\+::\+Merge\+Rdd}}$<$ R $>$\+::\+Iterator\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{difference\+\_\+type}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Subscript operator. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/merge\+\_\+rdd.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,92 @@
+\doxysection{speed\+\_\+check.\+cpp}
+\hypertarget{speed_check_8cpp-example}{}\label{speed_check_8cpp-example}This is an example program to compare the running speed and code complexity difference between C++ standard ranges operations and cpark operations with different execution cores.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}transformed\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}merge\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ std::chrono::time\_point<std::chrono::high\_resolution\_clock>\ getCurrentTime()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ \textcolor{keywordtype}{long}\ getTimeDifference(}
+\DoxyCodeLine{\ \ \ \ std::chrono::time\_point<std::chrono::high\_resolution\_clock>\ t0,}
+\DoxyCodeLine{\ \ \ \ std::chrono::time\_point<std::chrono::high\_resolution\_clock>\ t1)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ std::chrono::duration\_cast<std::chrono::microseconds>(t1\ -\/\ t0).count();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ N\ =\ 500000;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ Using\ the\ ranges\ and\ views\ in\ standard\ C++,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ generate\ values\ from\ 1\ to\ N,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ compute\ its\ square\ value,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ filter\ all\ numbers\ that\ can\ be\ divided\ by\ 5,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ add\ 2\ to\ each\ of\ them,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ filter\ all\ numbers\ that\ can\ be\ divided\ by\ 3.}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ */}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ std\_begin\_ts\ =\ getCurrentTime();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ cpp\_std\_view\ =}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::iota(1,\ N\ +\ 1)\ |}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \});}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ cpp\_result\ =\ std::reduce(cpp\_std\_view.begin(),\ cpp\_std\_view.end(),\ 0,\ [](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ return\ x\ +\ y;\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ std\_end\_ts\ =\ getCurrentTime();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ cpp\_time\ =\ getTimeDifference(std\_begin\_ts,\ std\_end\_ts);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::cout\ <<\ cpp\_result\ <<\ std::endl;}
+\DoxyCodeLine{\ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}C++\ standard\ way\ uses\ "{}}\ <<\ cpp\_time\ <<\ \textcolor{stringliteral}{"{}\ ms\(\backslash\)n"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ Using\ our\ CPARK\ method\ to\ repeat\ everything\ again.}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ hardware\_concurrency\ =\ std::thread::hardware\_concurrency();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ cores\ =\ 1;\ cores\ <\ 2\ *\ hardware\_concurrency;\ cores\ +=\ 2)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_config}{cpark::Config}}\ default\_config;}
+\DoxyCodeLine{\ \ \ \ default\_config.\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}(cores);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{cpark::ExecutionContext}}\ default\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ cpark\_begin\_ts\ =\ getCurrentTime();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ cpark\_result\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark::GeneratorRdd}}(1,\ N\ +\ 1,\ [\&](\textcolor{keyword}{auto}\ i)\ -\/>\ \textcolor{keyword}{auto}\ \{\ \textcolor{keywordflow}{return}\ i;\ \},\ \&default\_context)\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_reduce}{cpark::Reduce}}([](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ cpark\_end\_ts\ =\ getCurrentTime();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{long}\ temp\_time\ =\ getTimeDifference(cpark\_begin\_ts,\ cpark\_end\_ts);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ cpark\_result\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CPARK\ ("{}}\ <<\ cores\ <<\textcolor{stringliteral}{"{}\ cores)\ uses\ "{}}\ <<\ temp\_time\ <<\ \textcolor{stringliteral}{"{}\ ms\ ["{}}\ <<\ (double)temp\_time\ /\ cpp\_time\ <<\ \textcolor{stringliteral}{"{}x]\(\backslash\)n"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (cores\ ==\ hardware\_concurrency\ ||\ cores\ ==\ hardware\_concurrency\ -\/\ 1)}
+\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Hardware\ concurrency\ :\ "{}}\ <<\ hardware\_concurrency\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

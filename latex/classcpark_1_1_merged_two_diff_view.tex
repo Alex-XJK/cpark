@@ -1,0 +1,64 @@
+\doxysection{cpark\+::Merged\+Two\+Diff\+View\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_merged_two_diff_view}{}\label{classcpark_1_1_merged_two_diff_view}\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}}
+
+
+{\ttfamily \#include $<$merged\+\_\+view.\+h$>$}
+
+Inheritance diagram for cpark\+::Merged\+Two\+Diff\+View\texorpdfstring{$<$}{<} V1, V2 \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_merged_two_diff_view}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_1_1_iterator}{Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_ac03720b675122e0326c0637deb8781f6}{Merged\+Two\+Diff\+View}} (V1 \mbox{\hyperlink{classcpark_1_1_base_split}{view1}}, V2 \mbox{\hyperlink{classcpark_1_1_base_split}{view2}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_a2810764e7587cd1ab9458de0b8b39491}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view_abdecfde289753be6f1822616a6f373ab}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$\newline
+requires std\+::same\+\_\+as$<$std\+::ranges\+::range\+\_\+value\+\_\+t$<$V1$>$, std\+::ranges\+::range\+\_\+value\+\_\+t$<$V2$>$$>$\newline
+class cpark\+::\+Merged\+Two\+Diff\+View$<$ V1, V2 $>$}
+A helper class that combines two views of different types into one. Their element types must be the same. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_merged_two_diff_view_ac03720b675122e0326c0637deb8781f6}\label{classcpark_1_1_merged_two_diff_view_ac03720b675122e0326c0637deb8781f6} 
+\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}!MergedTwoDiffView@{MergedTwoDiffView}}
+\index{MergedTwoDiffView@{MergedTwoDiffView}!cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}}
+\doxysubsubsection{\texorpdfstring{MergedTwoDiffView()}{MergedTwoDiffView()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{cpark\+::\+Merged\+Two\+Diff\+View}}$<$ V1, V2 $>$\+::\+Merged\+Two\+Diff\+View (\begin{DoxyParamCaption}\item[{V1}]{view1,  }\item[{V2}]{view2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Creates \doxylink{classcpark_1_1_merged_two_diff_view}{Merged\+Two\+Diff\+View} from two views of possibily different types. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_merged_two_diff_view_a2810764e7587cd1ab9458de0b8b39491}\label{classcpark_1_1_merged_two_diff_view_a2810764e7587cd1ab9458de0b8b39491} 
+\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}!begin@{begin}}
+\index{begin@{begin}!cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{cpark\+::\+Merged\+Two\+Diff\+View}}$<$ V1, V2 $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+The iterator to the first element of the combined views. \Hypertarget{classcpark_1_1_merged_two_diff_view_abdecfde289753be6f1822616a6f373ab}\label{classcpark_1_1_merged_two_diff_view_abdecfde289753be6f1822616a6f373ab} 
+\index{cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}!end@{end}}
+\index{end@{end}!cpark::MergedTwoDiffView$<$ V1, V2 $>$@{cpark::MergedTwoDiffView$<$ V1, V2 $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$std\+::ranges\+::view V1, std\+::ranges\+::view V2$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_two_diff_view}{cpark\+::\+Merged\+Two\+Diff\+View}}$<$ V1, V2 $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+The sentinel pass the last element of the combined views. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/merged\+\_\+view.\+h\end{DoxyCompactItemize}

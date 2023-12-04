@@ -1,0 +1,74 @@
+\doxysection{cpark\+::Merged\+Same\+View\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_merged_same_view}{}\label{classcpark_1_1_merged_same_view}\index{cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}}
+
+
+{\ttfamily \#include $<$merged\+\_\+view.\+h$>$}
+
+Inheritance diagram for cpark\+::Merged\+Same\+View\texorpdfstring{$<$}{<} R \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcpark_1_1_merged_same_view}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcpark_1_1_merged_same_view_1_1_iterator}{Iterator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_merged_same_view_a97832b0ae7dff2d3e7070699345c48c5}\label{classcpark_1_1_merged_same_view_a97832b0ae7dff2d3e7070699345c48c5} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries View\+Type} = std\+::ranges\+::range\+\_\+value\+\_\+t$<$ R $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_merged_same_view_a7160d8ef8137278918d6d8f15246c583}{Merged\+Same\+View}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{views}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_a565538ea63b00f8498bd853223e5fa9c}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_same_view_a4dc854ef2520bf436c7ad48a26338379}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Range\+Of\+View R$>$\newline
+class cpark\+::\+Merged\+Same\+View$<$ R $>$}
+A view combined from any number of views of the same type. It contains all the elements in these views with their original order. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R} & A range of views to be combined. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_merged_same_view_a7160d8ef8137278918d6d8f15246c583}\label{classcpark_1_1_merged_same_view_a7160d8ef8137278918d6d8f15246c583} 
+\index{cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}!MergedSameView@{MergedSameView}}
+\index{MergedSameView@{MergedSameView}!cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}}
+\doxysubsubsection{\texorpdfstring{MergedSameView()}{MergedSameView()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Range\+Of\+View R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_merged_same_view}{cpark\+::\+Merged\+Same\+View}}$<$ R $>$\+::\+Merged\+Same\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&}]{views }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Creates \doxylink{classcpark_1_1_merged_same_view}{Merged\+Same\+View} from a range of views to be combined. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_merged_same_view_a565538ea63b00f8498bd853223e5fa9c}\label{classcpark_1_1_merged_same_view_a565538ea63b00f8498bd853223e5fa9c} 
+\index{cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}!begin@{begin}}
+\index{begin@{begin}!cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Range\+Of\+View R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_same_view}{cpark\+::\+Merged\+Same\+View}}$<$ R $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+The iterator to the first element of the combined views. \Hypertarget{classcpark_1_1_merged_same_view_a4dc854ef2520bf436c7ad48a26338379}\label{classcpark_1_1_merged_same_view_a4dc854ef2520bf436c7ad48a26338379} 
+\index{cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}!end@{end}}
+\index{end@{end}!cpark::MergedSameView$<$ R $>$@{cpark::MergedSameView$<$ R $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Range\+Of\+View R$>$ \\
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} \mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_merged_same_view}{cpark\+::\+Merged\+Same\+View}}$<$ R $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+The sentinel pass the last element of the combined views. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/merged\+\_\+view.\+h\end{DoxyCompactItemize}

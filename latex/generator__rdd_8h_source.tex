@@ -1,0 +1,95 @@
+\doxysection{generator\+\_\+rdd.\+h}
+\hypertarget{generator__rdd_8h_source}{}\label{generator__rdd_8h_source}\index{include/generator\_rdd.h@{include/generator\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_GENERATOR\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_GENERATOR\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Num,\ \textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ T\ =\ std::invoke\_result\_t<Func,\ Num>>}
+\DoxyCodeLine{00025\ \textcolor{keyword}{requires}\ std::is\_arithmetic\_v<Num>\&\&\ std::invocable<Func,\ Num>\&\&}
+\DoxyCodeLine{00026\ \ \ \ \ std::convertible\_to<std::invoke\_result\_t<Func,\ Num>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_generator_rdd}{GeneratorRdd}}}
+\DoxyCodeLine{00027\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<GeneratorRdd<Num,\ Func,\ T>>\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_split}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<GeneratorRdd<Num,\ Func,\ T>}}>;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Base}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}\ :\ std::forward\_iterator\_tag\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }difference\_type\ =\ std::ptrdiff\_t;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_split}{value\_type}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_a58c264bec796d449948d4eeaafa38ce5}{Iterator}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{i}})\ :\ func\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{func}}\},\ i\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{i}}\}\ \{\}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//\ Not\ sure\ if\ returning\ value\_type\ would\ satisfy\ input\_range\ requirements.}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Works\ for\ now.}}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{value\_type}}\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_ab812b785f301db7d8ffa3c74a1973a47}{operator*}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (*func\_)(i\_);\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_abd652d271e8b1b0f9ad24e0d9b3832b6}{operator++}}()\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ ++i\_;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_ab6c835147179aec2bbc0bb8e7aad6fa2}{operator++}}(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}}\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ ++i\_;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{old}};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator_aca1de06e533d0bcfc3987d14a486923d}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ func\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.func\_\ \&\&\ i\_\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}}.i\_;\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_generator_rdd_1_1_iterator}{Iterator}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ \mbox{\hyperlink{classcpark_1_1_base_split}{other}});\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{Func}}*\ func\_;}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{Num}}\ i\_\{\};}
+\DoxyCodeLine{00071\ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{constexpr}\ GeneratorRdd(Num\ \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}},\ Num\ \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}},\ Func\ func,\ ExecutionContext*\ context)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ :\ Base\{context\},\ func\_\{std::move(func)\},\ begin\_\{\mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}}\},\ end\_\{\mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}}\}\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static\_assert}(concepts::Rdd<GeneratorRdd<Num,\ Func,\ T>>,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ GeneratorRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Creates\ the\ splits\ for\ this\ Rdd.\ Each\ split\ contains\ two\ iterators\ that\ can\ be\ used\ to}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ compute\ the\ corresponding\ value.}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ :\ std::views::iota(size\_t\{0\},\ Base::splits\_num\_))\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\_size\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(end\_\ -\/\ begin\_);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ split\_size\ =\ (total\_size\ +\ Base::splits\_num\_\ -\/\ 1)\ /\ Base::splits\_num\_;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ b\ =\ Iterator\{\&func,\ begin\_\ +\ \textcolor{keyword}{static\_cast<}Num\textcolor{keyword}{>}(std::min(total\_size,\ i\ *\ split\_size))\};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ e\ =}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ Iterator\{\&func,\ begin\_\ +\ \textcolor{keyword}{static\_cast<}Num\textcolor{keyword}{>}(std::min(total\_size,\ (i\ +\ 1)\ *\ split\_size))\};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ splits\_.emplace\_back(std::ranges::subrange\{b,\ e\},\ Base::context\_);}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00093\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00094\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{constexpr}\ GeneratorRdd(\textcolor{keyword}{const}\ GeneratorRdd\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00096\ \ \ GeneratorRdd\&\ operator=(\textcolor{keyword}{const}\ GeneratorRdd\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00104\ \ \ Func\ func\_;}
+\DoxyCodeLine{00105\ \ \ Num\ begin\_,\ end\_;}
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ A\ vector\ holding\ the\ splits\ for\ this\ rdd.}}
+\DoxyCodeLine{00107\ \ \ std::vector<ViewSplit<std::ranges::subrange<Iterator>>>\ splits\_\{\};}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+ \textcolor{comment}{// end of c\_Generator}\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_GENERATOR\_RDD\_H}}
+
+\end{DoxyCode}

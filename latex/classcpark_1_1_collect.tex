@@ -1,0 +1,43 @@
+\doxysection{cpark\+::Collect Class Reference}
+\hypertarget{classcpark_1_1_collect}{}\label{classcpark_1_1_collect}\index{cpark::Collect@{cpark::Collect}}
+
+
+{\ttfamily \#include $<$collect.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_collect_ae5f83cd5fb8ecc1ce4227d9740c94ea1}{Collect}} ()=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+{\footnotesize template$<$concepts\+::\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = utils\+::\+Rdd\+Element\+Type$<$\+R$>$$>$ }\\std\+::vector$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ \mbox{\hyperlink{classcpark_1_1_collect_a06576f07622f244e598e1c58c87205f8}{operator()}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&\mbox{\hyperlink{classcpark_1_1_base_split}{rdd}}) \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that collects all the partitions in an Rdd into a single vector. \begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{collect_partitions_8cpp-example}{collect\+\_\+partitions.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classcpark_1_1_collect_ae5f83cd5fb8ecc1ce4227d9740c94ea1}\label{classcpark_1_1_collect_ae5f83cd5fb8ecc1ce4227d9740c94ea1} 
+\index{cpark::Collect@{cpark::Collect}!Collect@{Collect}}
+\index{Collect@{Collect}!cpark::Collect@{cpark::Collect}}
+\doxysubsubsection{\texorpdfstring{Collect()}{Collect()}}
+{\footnotesize\ttfamily cpark\+::\+Collect\+::\+Collect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [default]}}
+
+Initialize the \doxylink{classcpark_1_1_collect}{Collect} class 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcpark_1_1_collect_a06576f07622f244e598e1c58c87205f8}\label{classcpark_1_1_collect_a06576f07622f244e598e1c58c87205f8} 
+\index{cpark::Collect@{cpark::Collect}!operator()@{operator()}}
+\index{operator()@{operator()}!cpark::Collect@{cpark::Collect}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$concepts\+::\+Rdd R, \mbox{\hyperlink{classcpark_1_1_base_split}{typename}} \mbox{\hyperlink{classcpark_1_1_base_split}{T}}  = utils\+::\+Rdd\+Element\+Type$<$\+R$>$$>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{T}} $>$ cpark\+::\+Collect\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcpark_1_1_base_split}{const}} R \&}]{rdd }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\doxylink{classcpark_1_1_collect}{Collect} the elements of the Rdd {\ttfamily rdd} into a vector. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/collect.\+h\end{DoxyCompactItemize}

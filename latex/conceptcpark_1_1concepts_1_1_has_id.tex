@@ -1,0 +1,20 @@
+\doxysection{cpark\+::concepts\+::Has\+Id Concept Reference}
+\hypertarget{conceptcpark_1_1concepts_1_1_has_id}{}\label{conceptcpark_1_1concepts_1_1_has_id}\index{cpark::concepts::HasId@{cpark::concepts::HasId}}
+
+
+{\ttfamily \#include $<$base\+\_\+rdd.\+h$>$}
+
+\doxysubsection{Concept definition}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{concept\ }\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_has_id}{cpark::concepts::HasId}}\ =\ \ \textcolor{keyword}{requires}(\textcolor{keyword}{const}\ T\&\ t)\ \{}
+\DoxyCodeLine{\ \ t.id();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{requires}\ std::is\_arithmetic\_v<\textcolor{keyword}{decltype}(t.id())>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Detailed Description}
+A concept that requires its classes\textquotesingle{} objects are id-\/able, which means these objects can be identified by a numerical id. These classes should have an {\ttfamily id()} member function returning a numerical id. 
