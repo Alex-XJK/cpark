@@ -7,7 +7,7 @@
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
-\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}sample\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{keyword}{template}\ <cpark::concepts::Rdd\ R>}
 \DoxyCodeLine{\textcolor{keywordtype}{void}\ printRdd(R\ rdd)\ \{}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{cpark::concepts::Split}}\ \textcolor{keyword}{auto}\&\ split\ :\ rdd)\ \{}
@@ -34,7 +34,7 @@
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0\ ==\ i\ \%\ 2;}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ Test\ for\ FilterRdd(const\ R1\&\ prev,\ Func\ func)\ constructor}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Test\ for\ FilterRdd(const\ R\&\ prev,\ Func\ func)\ constructor}}
 \DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Filter\ rdd\ (basic):\ "{}}\ <<\ std::endl;}
 \DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ filter\_rdd\_1\ =\ \mbox{\hyperlink{classcpark_1_1_filter_rdd}{FilterRdd}}(generator\_rdd,\ even);}
 \DoxyCodeLine{\ \ printRdd(filter\_rdd\_1);}
@@ -43,6 +43,16 @@
 \DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Filter\ rdd\ (operators):\ "{}}\ <<\ std::endl;}
 \DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ filter\_rdd\_2\ =\ generator\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_filter}{Filter}}(even);}
 \DoxyCodeLine{\ \ printRdd(filter\_rdd\_2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ sample\ rdd\ with\ sample\ ratio\ of\ 0.5\ using\ class\ constructor\ style}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Sample\ rdd:\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ sample\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}(generator\_rdd,\ 0.5);}
+\DoxyCodeLine{\ \ printRdd(sample\_rdd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ sample\ rdd\ with\ sample\ ratio\ of\ 0.5\ using\ pipeline\ style}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Sample\ rdd\ (operators):\ "{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ sample\_rdd\_2\ =\ generator\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_sample}{Sample}}(0.5);}
+\DoxyCodeLine{\ \ printRdd(sample\_rdd\_2);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{\}}

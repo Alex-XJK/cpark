@@ -1,0 +1,81 @@
+\doxysection{sample\+\_\+rdd.\+h}
+\hypertarget{sample__rdd_8h_source}{}\label{sample__rdd_8h_source}\index{include/sample\_rdd.h@{include/sample\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_SAMPLE\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_SAMPLE\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{requires}\ std::invocable<std::function<bool(\textcolor{keywordtype}{int})>,\ utils::RddElementType<R>>\&\&\ std::is\_convertible\_v<}
+\DoxyCodeLine{00028\ \ \ \ \ std::invoke\_result\_t<std::function<\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}(\textcolor{keywordtype}{int})>,\ utils::RddElementType<R>>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}}
+\DoxyCodeLine{00029\ \ \ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<SampleRdd<R>>\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<SampleRdd<R>}}>;}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_sample_rdd_aebe3135a91a87588b08ee38f6bd03251}{SampleRdd}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcpark_1_1_base_split}{fraction}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{false}}\},\ fraction\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{fraction}}\}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<SampleRdd<R>}}>,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ SampleRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ sampled\ splits.}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev}})\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_filter_view}{FilterView}}(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}},\ func),\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split}});}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ Explicitly\ define\ default\ copy\ constrictor\ and\ assignment\ operator,}}
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ because\ some\ linters\ or\ compilers\ can\ not\ define\ implicit\ copy\ constructors\ for\ this\ class,}}
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ though\ they\ are\ supposed\ to\ do\ so.}}
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ TODO:\ find\ out\ why.}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{double}\ fraction\_;}
+\DoxyCodeLine{00064\ \ \ std::function<bool(\textcolor{keywordtype}{int})>\ func\ =\ [\textcolor{keyword}{this}](\textcolor{keywordtype}{int}\ i)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ std::random\_device\ rd;}
+\DoxyCodeLine{00066\ \ \ \ \ std::mt19937\ gen(rd());}
+\DoxyCodeLine{00067\ \ \ \ \ std::bernoulli\_distribution\ d(fraction\_);}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ d(gen);}
+\DoxyCodeLine{00069\ \ \ \};}
+\DoxyCodeLine{00070\ \ \ std::vector<ViewSplit<FilterView<std::ranges::range\_value\_t<R>,\ std::function<bool(\textcolor{keywordtype}{int})>>>>}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ splits\_\{\};}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_sample}{Sample}}\ \{}
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_sample}{Sample}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{classcpark_1_1_base_split}{fraction}})\ :\ fraction\_\{\mbox{\hyperlink{classcpark_1_1_base_split}{fraction}}\}\ \{\}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{requires}\ std::invocable<std::function<\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}(\textcolor{keywordtype}{int})>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\&\&}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ std::is\_same\_v<std::invoke\_result\_t<std::function<\mbox{\hyperlink{classcpark_1_1_base_split}{bool}}(\textcolor{keywordtype}{int})>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>,\ \textcolor{keywordtype}{bool}>\ \textcolor{keyword}{auto}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ operator()(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_sample_rdd}{SampleRdd}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ fraction\_);}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{double}\ fraction\_;}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{template}\ <concepts::Rdd\ R>}
+\DoxyCodeLine{00095\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{group__a___collect_gaa40cba4493cf11591a8aca6332879f11}{operator|}}(\textcolor{keyword}{const}\ R\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{r}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_sample}{Sample}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{sample}})\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcpark_1_1_base_split}{sample}}(\mbox{\hyperlink{classcpark_1_1_base_split}{r}});}
+\DoxyCodeLine{00097\ \}}
+\DoxyCodeLine{00098\ }
+ \textcolor{comment}{// end of t\_Sample}\DoxyCodeLine{00100\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//CPARK\_SAMPLE\_RDD\_H}}
+
+\end{DoxyCode}

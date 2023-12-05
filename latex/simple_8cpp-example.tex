@@ -11,7 +11,7 @@
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}plain\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}transformed\_rdd.h"{}}}
-\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}zipped\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
 \DoxyCodeLine{\ \ \textcolor{keyword}{using\ namespace\ }cpark;}
 \DoxyCodeLine{}
@@ -88,6 +88,15 @@
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Calculate\ the\ sum\ of\ the\ plain\ rdd\ by\ reduce.}}
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ res\ =\ plain\_rdd\ |\ \mbox{\hyperlink{classcpark_1_1_reduce}{Reduce}}([](\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
 \DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ sum\ of\ the\ plain\ rdd\ is\ "{}}\ <<\ res\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Creates\ a\ zipped\ rdd.}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zipped\_rdd\ =\ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}(generator\_rdd,\ transformed\_rdd);}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ elements\ in\ the\ first\ split\ of\ zipped\ rdd\ are:\ "{}};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ x\ :\ zipped\_rdd[0])\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}("{}}\ <<\ x.first\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ x.second\ <<\ \textcolor{stringliteral}{"{})"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ std::cout\ <<\ std::endl;}
 \DoxyCodeLine{\}}
 
 \end{DoxyCodeInclude}

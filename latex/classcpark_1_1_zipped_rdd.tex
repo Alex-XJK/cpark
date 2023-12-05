@@ -1,0 +1,89 @@
+\doxysection{cpark\+::Zipped\+Rdd\texorpdfstring{$<$}{<} R1, R2 \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classcpark_1_1_zipped_rdd}{}\label{classcpark_1_1_zipped_rdd}\index{cpark::ZippedRdd$<$ R1, R2 $>$@{cpark::ZippedRdd$<$ R1, R2 $>$}}
+
+
+{\ttfamily \#include $<$zipped\+\_\+rdd.\+h$>$}
+
+Inheritance diagram for cpark\+::Zipped\+Rdd\texorpdfstring{$<$}{<} R1, R2 \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classcpark_1_1_zipped_rdd}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a6183d26ec2db4b4d55820c533ed67cad}\label{classcpark_1_1_zipped_rdd_a6183d26ec2db4b4d55820c533ed67cad} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries Base} = \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{Zipped\+Rdd}}$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{R1}}, \mbox{\hyperlink{classcpark_1_1_base_split}{R2}} $>$ $>$
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a69e2900914fe1aa748f3169914d890d0}\label{classcpark_1_1_zipped_rdd_a69e2900914fe1aa748f3169914d890d0} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries V1} = utils\+::\+Rdd\+Element\+Type$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{R1}} $>$
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a6b1675f8b9be91b4505cc726c5da2f94}\label{classcpark_1_1_zipped_rdd_a6b1675f8b9be91b4505cc726c5da2f94} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{using}} {\bfseries V2} = utils\+::\+Rdd\+Element\+Type$<$ \mbox{\hyperlink{classcpark_1_1_base_split}{R2}} $>$
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a815df80ed896ddd4bc2479e66ef75c89}\label{classcpark_1_1_zipped_rdd_a815df80ed896ddd4bc2479e66ef75c89} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Zipped\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{R1}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev1}}, \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{R2}} \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev2}})
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a3fce89762be3601be8fedc093f85a3f9}\label{classcpark_1_1_zipped_rdd_a3fce89762be3601be8fedc093f85a3f9} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{constexpr}} {\bfseries Zipped\+Rdd} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{Zipped\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a8f59be28b160b291a2ca5d2329be270b}\label{classcpark_1_1_zipped_rdd_a8f59be28b160b291a2ca5d2329be270b} 
+\mbox{\hyperlink{classcpark_1_1_zipped_rdd}{Zipped\+Rdd}} \& {\bfseries operator=} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{Zipped\+Rdd}} \&)=\mbox{\hyperlink{classcpark_1_1_base_split}{default}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Zipped\+Rdd$<$ R1, R2 $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_a55c508df3af94bf76d75569ee29d6194}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}}, \mbox{\hyperlink{classcpark_1_1_base_split}{bool}} \mbox{\hyperlink{classcpark_1_1_base_split}{copy\+\_\+id}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_ac5b848e3c57a3a93b57fc709bf19a9ba}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd_aa217f343b73755564ee7002f8a493c24}{Base\+Rdd}} (\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classcpark_1_1_base_split}{context}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}} \& \mbox{\hyperlink{classcpark_1_1_base_rdd_a930342dbb5f66ce06cf7cf7618c6a4e0}{operator=}} (\mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base\+Rdd}}$<$ R $>$ \&\mbox{\hyperlink{classcpark_1_1_base_split}{prev}})
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_aab3d1120728cd17383cef60317d58e1d}{begin}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{auto}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a7256a5a095170fb470a19dd3b6cc7815}{end}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} \mbox{\hyperlink{classcpark_1_1_base_rdd_a2ccccb3b4086026f9c4bb1d15619369c}{id}} () \mbox{\hyperlink{classcpark_1_1_base_split}{const}} \mbox{\hyperlink{classcpark_1_1_base_split}{noexcept}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcpark_1_1_zipped_rdd_a692ba385bea62904f6e8ebb8d6a9de23}\label{classcpark_1_1_zipped_rdd_a692ba385bea62904f6e8ebb8d6a9de23} 
+\mbox{\hyperlink{classcpark_1_1_base_split}{friend}} {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcpark_1_1_base_rdd}{cpark\+::\+Base\+Rdd$<$ Zipped\+Rdd$<$ R1, R2 $>$ $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context}{Execution\+Context}} \texorpdfstring{$\ast$}{*} {\bfseries context\+\_\+}
+\item 
+\mbox{\hyperlink{classcpark_1_1_execution_context_a836ffd6d70849d14ead3ff6595abd9ca}{Execution\+Context\+::\+Rdd\+Id}} {\bfseries rdd\+\_\+id\+\_\+}
+\item 
+\mbox{\hyperlink{classcpark_1_1_base_split}{size\+\_\+t}} {\bfseries splits\+\_\+num\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$concepts\+::\+Rdd R1, concepts\+::\+Rdd R2$>$\newline
+class cpark\+::\+Zipped\+Rdd$<$ R1, R2 $>$}
+An Rdd holding the zipped data from two old rdds 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em R1} & Type of the first old Rdd. \\
+\hline
+{\em R2} & Type of the second old Rdd. \\
+\hline
+\end{DoxyTemplParams}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{simple_8cpp-example}{simple.\+cpp}}.\end{Desc}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/zipped\+\_\+rdd.\+h\end{DoxyCompactItemize}

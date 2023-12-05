@@ -16,7 +16,7 @@
 \DoxyCodeLine{00023\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func>}
 \DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_reduce}{Reduce}}\ \{}
 \DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_reduce_acbc7a43fb4deb664656af56f2aae1d2c}{Reduce}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ \mbox{\hyperlink{classcpark_1_1_base_split}{func}})\ :\ func\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(\mbox{\hyperlink{classcpark_1_1_base_split}{func}})\}\ \{\}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classcpark_1_1_reduce_acbc7a43fb4deb664656af56f2aae1d2c}{Reduce}}(\mbox{\hyperlink{classcpark_1_1_base_split}{Func}}\ func)\ :\ func\_\{std::\mbox{\hyperlink{classcpark_1_1_base_split}{move}}(func)\}\ \{\}}
 \DoxyCodeLine{00028\ }
 \DoxyCodeLine{00030\ \ \ \textcolor{keyword}{template}\ <concepts::Rdd\ R,\ \textcolor{keyword}{typename}\ T\ =\ utils::RddElementType<R>>}
 \DoxyCodeLine{00031\ \ \ \textcolor{keyword}{requires}\ std::invocable<Func,\ T,\ T>\&\&\ std::convertible\_to<std::invoke\_result\_t<Func,\ T,\ T>,\ \mbox{\hyperlink{classcpark_1_1_base_split}{T}}>\&\&}

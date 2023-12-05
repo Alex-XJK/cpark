@@ -1,0 +1,66 @@
+\doxysection{zipped\+\_\+rdd.\+h}
+\hypertarget{zipped__rdd_8h_source}{}\label{zipped__rdd_8h_source}\index{include/zipped\_rdd.h@{include/zipped\_rdd.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CPARK\_ZIPPED\_RDD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CPARK\_ZIPPED\_RDD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iterator>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}base\_rdd.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}utils.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{namespace\ }cpark\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{template}\ <concepts::Rdd\ R1,\ concepts::Rdd\ R2>}
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{BaseRdd}}<ZippedRdd<R1,\ R2>>\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{BaseRdd<ZippedRdd<R1,\ R2>}}>;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{using\ }V1\ =\ utils::RddElementType<R1>;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{using\ }V2\ =\ utils::RddElementType<R2>;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{R1}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev1}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_base_split}{R2}}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev2}})\ :\ \mbox{\hyperlink{classcpark_1_1_base_rdd}{Base}}\{\mbox{\hyperlink{classcpark_1_1_base_split}{prev1}},\ \textcolor{keyword}{false}\}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{conceptcpark_1_1concepts_1_1_rdd}{concepts::Rdd<ZippedRdd<R1,\ R2>}}>,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Instance\ of\ ZippedRdd\ does\ not\ satisfy\ Rdd\ concept."{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{if}\ (std::ranges::distance(\mbox{\hyperlink{classcpark_1_1_base_split}{prev1}})\ !=\ std::ranges::distance(\mbox{\hyperlink{classcpark_1_1_base_split}{prev2}}))\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}R1\ and\ R2\ do\ not\ have\ the\ same\ number\ of\ splits."{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcpark_1_1_base_split}{cnt}}\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{conceptcpark_1_1concepts_1_1_split}{concepts::Split}}\ \textcolor{keyword}{auto}\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split\_1}}\ :\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev1}})\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{targeted\_split}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev2}}[\mbox{\hyperlink{classcpark_1_1_base_split}{cnt}}].\mbox{\hyperlink{classcpark_1_1_base_split_ab8cb92cebe5912e1314fe250c6944cf9}{begin}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ std::function<std::pair<V1,\ V2>(\textcolor{keyword}{const}\ V1\&)>\ func\ =\ [\mbox{\hyperlink{classcpark_1_1_base_split}{cnt}},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{targeted\_split}}](\textcolor{keyword}{const}\ V1\&\ \mbox{\hyperlink{classcpark_1_1_base_split}{x}})\ \textcolor{keyword}{mutable}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::make\_pair(\mbox{\hyperlink{classcpark_1_1_base_split}{x}},\ *(\mbox{\hyperlink{classcpark_1_1_base_split}{targeted\_split}}++));}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{classcpark_1_1_base_split}{zippedView}}\ =\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split\_1}}\ |\ std::views::transform(func);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ splits\_.emplace\_back(\mbox{\hyperlink{classcpark_1_1_base_split}{zippedView}},\ \mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split\_1}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ splits\_.back().addDependency(\mbox{\hyperlink{classcpark_1_1_base_split}{prev\_split\_1}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_base_split}{cnt}}++;}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classcpark_1_1_zipped_rdd}{ZippedRdd}}\&)\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ beginImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::begin(splits\_);\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{auto}\ endImpl()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ std::ranges::end(splits\_);\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{using\ }ZippedViewType\ =}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \textcolor{keyword}{decltype}(std::declval<R1>().front()\ |}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::views::transform(std::declval<std::function<std::pair<V1,\ V2>(\textcolor{keyword}{const}\ V1\&)>>()));}
+\DoxyCodeLine{00068\ \ \ std::vector<ViewSplit<ZippedViewType>>\ splits\_\{\};}
+\DoxyCodeLine{00069\ \};}
+ \textcolor{comment}{// end of t\_Zip}\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \}\ \ \textcolor{comment}{//\ namespace\ cpark}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ CPARK\_TRANSFORMED\_RDD\_H}}
+
+\end{DoxyCode}
