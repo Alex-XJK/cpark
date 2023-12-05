@@ -26,15 +26,22 @@ int main() {
    * Using the ranges and views in standard C++,
    * generate values from 1 to N,
    * compute its square value,
+   * sum up from 1 to this value,
    * filter all numbers that can be divided by 5,
    * add 2 to each of them,
-   * filter all numbers that can be divided by 3.
+   * filter all numbers that can be divided by 3,
+   * compute reduce on this sequence.
    */
   auto std_begin_ts = getCurrentTime();
 
   auto cpp_std_view =
       std::views::iota(1, N + 1) |
       std::views::transform([](auto x) { return x * x; }) |
+      std::views::transform([](auto x) {
+        int res = 0;
+        for (int i = 1; i <= x; i++) res += x;
+        return res;
+      }) |
       std::views::filter([](auto x) { return x % 5 == 0; }) |
       std::views::transform([](auto x) { return x + 2; }) |
       std::views::filter([](auto x) { return x % 3 == 0; });
@@ -64,6 +71,11 @@ int main() {
     auto cpark_result =
         cpark::GeneratorRdd(1, N + 1, [&](auto i) -> auto { return i; }, &default_context) |
         cpark::Transform([](auto x) { return x * x; }) |
+        cpark::Transform([](auto x) {
+          int res = 0;
+          for (int i = 1; i <= x; i++) res += x;
+          return res;
+        }) |
         cpark::Filter([](auto x) { return x % 5 == 0; }) |
         cpark::Transform([](auto x) { return x + 2; }) |
         cpark::Filter([](auto x) { return x % 3 == 0; }) |
