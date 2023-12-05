@@ -27,16 +27,20 @@ public:
   constexpr ZippedRdd(const R1& prev1, const R2& prev2) : Base{prev1, false} {
     static_assert(concepts::Rdd<ZippedRdd<R1, R2>>,
                   "Instance of ZippedRdd does not satisfy Rdd concept.");
+    if (std::ranges::distance(prev1) != std::ranges::distance(prev2)) {
+      throw std::runtime_error("R1 and R2 do not have the same number of splits.");
+    }
+
     int cnt = 0;
-    for (const concepts::Split auto& prev_split : prev1) {
+    for (const concepts::Split auto& prev_split_1 : prev1) {
       auto targeted_split = prev2[cnt].begin();
       std::function<std::pair<V1, V2>(const V1&)> func = [cnt,
                                                           targeted_split](const V1& x) mutable {
         return std::make_pair(x, *(targeted_split++));
       };
-      auto zippedView = prev_split | std::views::transform(func);
-      splits_.emplace_back(zippedView, prev_split);
-      splits_.back().addDependency(prev_split);
+      auto zippedView = prev_split_1 | std::views::transform(func);
+      splits_.emplace_back(zippedView, prev_split_1);
+      splits_.back().addDependency(prev_split_1);
       cnt++;
     }
   }
