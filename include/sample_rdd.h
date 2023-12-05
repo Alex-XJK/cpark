@@ -96,6 +96,7 @@ auto operator|(const R& r, const Sample& sample) {
   return sample(r);
 }
 
+/** @} */ // end of t_Sample
 }  // namespace cpark
 
 #endif  //CPARK_SAMPLE_RDD_H
