@@ -10,6 +10,14 @@
 
 namespace cpark {
 
+/** @ingroup g_trans
+ *  @defgroup t_Zip Zip
+ *  This forms the Zip Transformation of our cpark library
+ *  @image html zip.drawio.png "ZippedRdd diagram" width=50%
+ *  @image latex zip.drawio.png "ZippedRdd diagram" width=10cm
+ *  @see ZippedRdd
+ *  @{
+ */
 /**
  * An Rdd holding the zipped data from two old rdds
  * @tparam R1 Type of the first old Rdd.
