@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CPARK: cpark::FilterRdd&lt; R, Func &gt; Class Template Reference</title>
+<title>CPARK: cpark::ZippedRdd&lt; R1, R2 &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,7 +71,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>cpark</b></li><li class="navelem"><a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a></li>  </ul>
+<li class="navelem"><b>cpark</b></li><li class="navelem"><a class="el" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -79,39 +79,46 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="classcpark_1_1_filter_rdd-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">cpark::FilterRdd&lt; R, Func &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__g__trans.html">Transformations</a> &raquo; <a class="el" href="group__t___filter.html">Filter</a></div></div></div>
+<a href="classcpark_1_1_zipped_rdd-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">cpark::ZippedRdd&lt; R1, R2 &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__g__trans.html">Transformations</a> &raquo; <a class="el" href="group__t___zip.html">Zip</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="zipped__rdd_8h_source.html">zipped_rdd.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for cpark::FilterRdd&lt; R, Func &gt;:</div>
+Inheritance diagram for cpark::ZippedRdd&lt; R1, R2 &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classcpark_1_1_filter_rdd.png" usemap="#cpark::FilterRdd_3C_20R_2C_20Func_20_3E_map" alt=""/>
-  <map id="cpark::FilterRdd_3C_20R_2C_20Func_20_3E_map" name="cpark::FilterRdd_3C_20R_2C_20Func_20_3E_map">
-<area href="classcpark_1_1_base_rdd.html" alt="cpark::BaseRdd&lt; FilterRdd&lt; R, Func &gt; &gt;" shape="rect" coords="0,56,381,80"/>
+  <img src="classcpark_1_1_zipped_rdd.png" usemap="#cpark::ZippedRdd_3C_20R1_2C_20R2_20_3E_map" alt=""/>
+  <map id="cpark::ZippedRdd_3C_20R1_2C_20R2_20_3E_map" name="cpark::ZippedRdd_3C_20R1_2C_20R2_20_3E_map">
+<area href="classcpark_1_1_base_rdd.html" alt="cpark::BaseRdd&lt; ZippedRdd&lt; R1, R2 &gt; &gt;" shape="rect" coords="0,56,385,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a41f81a035c7f15c0b7d2d67f7489c2c2" id="r_a41f81a035c7f15c0b7d2d67f7489c2c2"><td class="memItemLeft" align="right" valign="top"><a id="a41f81a035c7f15c0b7d2d67f7489c2c2" name="a41f81a035c7f15c0b7d2d67f7489c2c2"></a>
-<a class="el" href="classcpark_1_1_base_split.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Base</b> = <a class="el" href="classcpark_1_1_base_rdd.html">BaseRdd</a>&lt; <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a>&lt; R, <a class="el" href="classcpark_1_1_base_split.html">Func</a> &gt; &gt;</td></tr>
-<tr class="separator:a41f81a035c7f15c0b7d2d67f7489c2c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6183d26ec2db4b4d55820c533ed67cad" id="r_a6183d26ec2db4b4d55820c533ed67cad"><td class="memItemLeft" align="right" valign="top"><a id="a6183d26ec2db4b4d55820c533ed67cad" name="a6183d26ec2db4b4d55820c533ed67cad"></a>
+<a class="el" href="classcpark_1_1_base_split.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Base</b> = <a class="el" href="classcpark_1_1_base_rdd.html">BaseRdd</a>&lt; <a class="el" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a>&lt; <a class="el" href="classcpark_1_1_base_split.html">R1</a>, <a class="el" href="classcpark_1_1_base_split.html">R2</a> &gt; &gt;</td></tr>
+<tr class="separator:a6183d26ec2db4b4d55820c533ed67cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69e2900914fe1aa748f3169914d890d0" id="r_a69e2900914fe1aa748f3169914d890d0"><td class="memItemLeft" align="right" valign="top"><a id="a69e2900914fe1aa748f3169914d890d0" name="a69e2900914fe1aa748f3169914d890d0"></a>
+<a class="el" href="classcpark_1_1_base_split.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>V1</b> = utils::RddElementType&lt; <a class="el" href="classcpark_1_1_base_split.html">R1</a> &gt;</td></tr>
+<tr class="separator:a69e2900914fe1aa748f3169914d890d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1675f8b9be91b4505cc726c5da2f94" id="r_a6b1675f8b9be91b4505cc726c5da2f94"><td class="memItemLeft" align="right" valign="top"><a id="a6b1675f8b9be91b4505cc726c5da2f94" name="a6b1675f8b9be91b4505cc726c5da2f94"></a>
+<a class="el" href="classcpark_1_1_base_split.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>V2</b> = utils::RddElementType&lt; <a class="el" href="classcpark_1_1_base_split.html">R2</a> &gt;</td></tr>
+<tr class="separator:a6b1675f8b9be91b4505cc726c5da2f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acbe79f6f22f9806a94117c26c18614db" id="r_acbe79f6f22f9806a94117c26c18614db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_filter_rdd.html#acbe79f6f22f9806a94117c26c18614db">FilterRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>, <a class="el" href="classcpark_1_1_base_split.html">Func</a> func)</td></tr>
-<tr class="separator:acbe79f6f22f9806a94117c26c18614db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac79eedd270b66fc78c1372b19e6debbe" id="r_ac79eedd270b66fc78c1372b19e6debbe"><td class="memItemLeft" align="right" valign="top"><a id="ac79eedd270b66fc78c1372b19e6debbe" name="ac79eedd270b66fc78c1372b19e6debbe"></a>
-<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FilterRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
-<tr class="separator:ac79eedd270b66fc78c1372b19e6debbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa688e95854dcb9993a8ec541d3ddfb7d" id="r_aa688e95854dcb9993a8ec541d3ddfb7d"><td class="memItemLeft" align="right" valign="top"><a id="aa688e95854dcb9993a8ec541d3ddfb7d" name="aa688e95854dcb9993a8ec541d3ddfb7d"></a>
-<a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
-<tr class="separator:aa688e95854dcb9993a8ec541d3ddfb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classcpark_1_1_base_rdd"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcpark_1_1_base_rdd')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcpark_1_1_base_rdd.html">cpark::BaseRdd&lt; FilterRdd&lt; R, Func &gt; &gt;</a></td></tr>
+<tr class="memitem:a815df80ed896ddd4bc2479e66ef75c89" id="r_a815df80ed896ddd4bc2479e66ef75c89"><td class="memItemLeft" align="right" valign="top"><a id="a815df80ed896ddd4bc2479e66ef75c89" name="a815df80ed896ddd4bc2479e66ef75c89"></a>
+<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ZippedRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">R1</a> &amp;<a class="el" href="classcpark_1_1_base_split.html">prev1</a>, <a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_split.html">R2</a> &amp;<a class="el" href="classcpark_1_1_base_split.html">prev2</a>)</td></tr>
+<tr class="separator:a815df80ed896ddd4bc2479e66ef75c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fce89762be3601be8fedc093f85a3f9" id="r_a3fce89762be3601be8fedc093f85a3f9"><td class="memItemLeft" align="right" valign="top"><a id="a3fce89762be3601be8fedc093f85a3f9" name="a3fce89762be3601be8fedc093f85a3f9"></a>
+<a class="el" href="classcpark_1_1_base_split.html">constexpr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ZippedRdd</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
+<tr class="separator:a3fce89762be3601be8fedc093f85a3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f59be28b160b291a2ca5d2329be270b" id="r_a8f59be28b160b291a2ca5d2329be270b"><td class="memItemLeft" align="right" valign="top"><a id="a8f59be28b160b291a2ca5d2329be270b" name="a8f59be28b160b291a2ca5d2329be270b"></a>
+<a class="el" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a> &amp;)=<a class="el" href="classcpark_1_1_base_split.html">default</a></td></tr>
+<tr class="separator:a8f59be28b160b291a2ca5d2329be270b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcpark_1_1_base_rdd"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classcpark_1_1_base_rdd')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classcpark_1_1_base_rdd.html">cpark::BaseRdd&lt; ZippedRdd&lt; R1, R2 &gt; &gt;</a></td></tr>
 <tr class="memitem:a55c508df3af94bf76d75569ee29d6194 inherit pub_methods_classcpark_1_1_base_rdd" id="r_a55c508df3af94bf76d75569ee29d6194"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_base_rdd.html#a55c508df3af94bf76d75569ee29d6194">BaseRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_rdd.html">BaseRdd</a>&lt; R &gt; &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>, <a class="el" href="classcpark_1_1_base_split.html">bool</a> <a class="el" href="classcpark_1_1_base_split.html">copy_id</a>)</td></tr>
 <tr class="separator:a55c508df3af94bf76d75569ee29d6194 inherit pub_methods_classcpark_1_1_base_rdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5b848e3c57a3a93b57fc709bf19a9ba inherit pub_methods_classcpark_1_1_base_rdd" id="r_ac5b848e3c57a3a93b57fc709bf19a9ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcpark_1_1_base_rdd.html#ac5b848e3c57a3a93b57fc709bf19a9ba">BaseRdd</a> (<a class="el" href="classcpark_1_1_base_split.html">const</a> <a class="el" href="classcpark_1_1_base_rdd.html">BaseRdd</a>&lt; R &gt; &amp;<a class="el" href="classcpark_1_1_base_split.html">prev</a>)</td></tr>
@@ -129,13 +136,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a29eeedc5ed2dc1e2b705dac831327086" id="r_a29eeedc5ed2dc1e2b705dac831327086"><td class="memItemLeft" align="right" valign="top"><a id="a29eeedc5ed2dc1e2b705dac831327086" name="a29eeedc5ed2dc1e2b705dac831327086"></a>
+<tr class="memitem:a692ba385bea62904f6e8ebb8d6a9de23" id="r_a692ba385bea62904f6e8ebb8d6a9de23"><td class="memItemLeft" align="right" valign="top"><a id="a692ba385bea62904f6e8ebb8d6a9de23" name="a692ba385bea62904f6e8ebb8d6a9de23"></a>
 <a class="el" href="classcpark_1_1_base_split.html">friend</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Base</b></td></tr>
-<tr class="separator:a29eeedc5ed2dc1e2b705dac831327086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a692ba385bea62904f6e8ebb8d6a9de23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_classcpark_1_1_base_rdd"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcpark_1_1_base_rdd')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classcpark_1_1_base_rdd.html">cpark::BaseRdd&lt; FilterRdd&lt; R, Func &gt; &gt;</a></td></tr>
+<tr class="inherit_header pro_attribs_classcpark_1_1_base_rdd"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classcpark_1_1_base_rdd')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classcpark_1_1_base_rdd.html">cpark::BaseRdd&lt; ZippedRdd&lt; R1, R2 &gt; &gt;</a></td></tr>
 <tr class="memitem:a739799b4dd8f7c8bdd24a2f45773b4f6 inherit pro_attribs_classcpark_1_1_base_rdd" id="r_a739799b4dd8f7c8bdd24a2f45773b4f6"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classcpark_1_1_execution_context.html">ExecutionContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>context_</b></td></tr>
 <tr class="separator:a739799b4dd8f7c8bdd24a2f45773b4f6 inherit pro_attribs_classcpark_1_1_base_rdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,65 +154,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:aa573d25118ac779e6d5a14a1b6ba40dc inherit pro_attribs_classcpark_1_1_base_rdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a>&gt;<br />
-requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, utils::RddElementType&lt;R&gt;&gt;&amp;&amp; std::is_convertible_v&lt; std::invoke_result_t&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, utils::RddElementType&lt;R&gt;&gt;, <a class="el" href="classcpark_1_1_base_split.html">bool</a>&gt;<br />
-class cpark::FilterRdd&lt; R, Func &gt;</div><p>An Rdd holding the data filtered from an old rdd by some function. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+<div class="textblock"><div class="compoundTemplParams">template&lt;concepts::Rdd R1, concepts::Rdd R2&gt;<br />
+class cpark::ZippedRdd&lt; R1, R2 &gt;</div><p>An Rdd holding the zipped data from two old rdds </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">R</td><td>Type of the old Rdd. </td></tr>
-    <tr><td class="paramname">Func</td><td>Type of the filter function. The type of the old Rdd <code>R</code>'s elements should be able to invoke function <code>Func</code>, the invoke result must be in boolean, and the element type shouldn't change after filter. </td></tr>
+    <tr><td class="paramname">R1</td><td>Type of the first old Rdd. </td></tr>
+    <tr><td class="paramname">R2</td><td>Type of the second old Rdd. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="filter_even_8cpp-example.html#_a2">filter_even.cpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="simple_8cpp-example.html#_a11">simple.cpp</a>.</dd>
 </dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="acbe79f6f22f9806a94117c26c18614db" name="acbe79f6f22f9806a94117c26c18614db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbe79f6f22f9806a94117c26c18614db">&#9670;&#160;</a></span>FilterRdd()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classcpark_1_1_base_split.html">constexpr</a> <a class="el" href="classcpark_1_1_filter_rdd.html">cpark::FilterRdd</a>&lt; R, <a class="el" href="classcpark_1_1_base_split.html">Func</a> &gt;::FilterRdd </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;&#160;</td>
-          <td class="paramname"><em>prev</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classcpark_1_1_base_split.html">Func</a>&#160;</td>
-          <td class="paramname"><em>func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Main constructor of <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a>. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">prev</td><td>Reference to previous Rdd of type R </td></tr>
-    <tr><td class="paramname">func</td><td>The filter function which takes an element from prev and returns a boolean value </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a></li>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/<a class="el" href="zipped__rdd_8h_source.html">zipped_rdd.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

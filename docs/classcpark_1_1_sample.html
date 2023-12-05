@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CPARK: cpark::Filter&lt; Func &gt; Class Template Reference</title>
+<title>CPARK: cpark::Sample Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,37 +71,36 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>cpark</b></li><li class="navelem"><a class="el" href="classcpark_1_1_filter.html">Filter</a></li>  </ul>
+<li class="navelem"><b>cpark</b></li><li class="navelem"><a class="el" href="classcpark_1_1_sample.html">Sample</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classcpark_1_1_filter-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">cpark::Filter&lt; Func &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__g__trans.html">Transformations</a> &raquo; <a class="el" href="group__t___filter.html">Filter</a></div></div></div>
+<a href="classcpark_1_1_sample-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">cpark::Sample Class Reference<div class="ingroups"><a class="el" href="group__g__trans.html">Transformations</a> &raquo; <a class="el" href="group__t___sample.html">Sample</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="sample__rdd_8h_source.html">sample_rdd.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a893f43472717ec091b1e0bf3b3e8c6fe" id="r_a893f43472717ec091b1e0bf3b3e8c6fe"><td class="memItemLeft" align="right" valign="top"><a id="a893f43472717ec091b1e0bf3b3e8c6fe" name="a893f43472717ec091b1e0bf3b3e8c6fe"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> (<a class="el" href="classcpark_1_1_base_split.html">Func</a> func)</td></tr>
-<tr class="separator:a893f43472717ec091b1e0bf3b3e8c6fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8750932a635640f5841eb292bf4ef0" id="r_a1e8750932a635640f5841eb292bf4ef0"><td class="memTemplParams" colspan="2"><a id="a1e8750932a635640f5841eb292bf4ef0" name="a1e8750932a635640f5841eb292bf4ef0"></a>
+<tr class="memitem:a1d3db2ae5bd2a5ad8af77d6b8fe8ebf8" id="r_a1d3db2ae5bd2a5ad8af77d6b8fe8ebf8"><td class="memItemLeft" align="right" valign="top"><a id="a1d3db2ae5bd2a5ad8af77d6b8fe8ebf8" name="a1d3db2ae5bd2a5ad8af77d6b8fe8ebf8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Sample</b> (<a class="el" href="classcpark_1_1_base_split.html">double</a> <a class="el" href="classcpark_1_1_base_split.html">fraction</a>)</td></tr>
+<tr class="separator:a1d3db2ae5bd2a5ad8af77d6b8fe8ebf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b5ad74b90336ea1b00ad3feda7f8886" id="r_a8b5ad74b90336ea1b00ad3feda7f8886"><td class="memTemplParams" colspan="2"><a id="a8b5ad74b90336ea1b00ad3feda7f8886" name="a8b5ad74b90336ea1b00ad3feda7f8886"></a>
 template&lt;concepts::Rdd R, <a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">T</a>  = utils::RddElementType&lt;R&gt;&gt; <br />
-requires std::invocable&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;&amp;&amp; std::is_same_v&lt;std::invoke_result_t&lt;<a class="el" href="classcpark_1_1_base_split.html">Func</a>, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;, <a class="el" href="classcpark_1_1_base_split.html">bool</a>&gt;</td></tr>
-<tr class="memitem:a1e8750932a635640f5841eb292bf4ef0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">r</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
-<tr class="separator:a1e8750932a635640f5841eb292bf4ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+requires std::invocable&lt;std::function&lt;<a class="el" href="classcpark_1_1_base_split.html">bool</a>(<a class="el" href="classcpark_1_1_base_split.html">int</a>)&gt;, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;&amp;&amp; std::is_same_v&lt;std::invoke_result_t&lt;std::function&lt;<a class="el" href="classcpark_1_1_base_split.html">bool</a>(<a class="el" href="classcpark_1_1_base_split.html">int</a>)&gt;, <a class="el" href="classcpark_1_1_base_split.html">T</a>&gt;, <a class="el" href="classcpark_1_1_base_split.html">bool</a>&gt;</td></tr>
+<tr class="memitem:a8b5ad74b90336ea1b00ad3feda7f8886"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classcpark_1_1_base_split.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator()</b> (<a class="el" href="classcpark_1_1_base_split.html">const</a> R &amp;<a class="el" href="classcpark_1_1_base_split.html">r</a>) <a class="el" href="classcpark_1_1_base_split.html">const</a></td></tr>
+<tr class="separator:a8b5ad74b90336ea1b00ad3feda7f8886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classcpark_1_1_base_split.html">typename</a> <a class="el" href="classcpark_1_1_base_split.html">Func</a>&gt;<br />
-class cpark::Filter&lt; Func &gt;</div><p>Helper class to create <a class="el" href="classcpark_1_1_filter_rdd.html">FilterRdd</a> with pipeline operator <code>|</code>. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="filter_even_8cpp-example.html#_a3">filter_even.cpp</a>, <a class="el" href="merge_splits_8cpp-example.html#_a4">merge_splits.cpp</a>, and <a class="el" href="speed_check_8cpp-example.html#_a5">speed_check.cpp</a>.</dd>
+<div class="textblock"><p>Helper class to create <a class="el" href="classcpark_1_1_sample.html">Sample</a> Rdd with pipeline operator <code>|</code>. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="filter_even_8cpp-example.html#_a5">filter_even.cpp</a>.</dd>
 </dl>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/<a class="el" href="filter__rdd_8h_source.html">filter_rdd.h</a></li>
+<li>include/<a class="el" href="sample__rdd_8h_source.html">sample_rdd.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

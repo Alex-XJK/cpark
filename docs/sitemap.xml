@@ -59,6 +59,9 @@
     <loc>https://www.alexxu.tech/cpark/reduce_8h_source.html</loc>
   </url>
   <url>
+    <loc>https://www.alexxu.tech/cpark/sample__rdd_8h_source.html</loc>
+  </url>
+  <url>
     <loc>https://www.alexxu.tech/cpark/transformed__rdd_8h_source.html</loc>
   </url>
   <url>
@@ -66,6 +69,9 @@
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/utils_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/zipped__rdd_8h_source.html</loc>
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/md_style__agreements.html</loc>
@@ -107,10 +113,16 @@
     <loc>https://www.alexxu.tech/cpark/group__a___reduce.html</loc>
   </url>
   <url>
+    <loc>https://www.alexxu.tech/cpark/group__t___sample.html</loc>
+  </url>
+  <url>
     <loc>https://www.alexxu.tech/cpark/group__t___transform.html</loc>
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/group__t___union.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/group__t___zip.html</loc>
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/classcpark_1_1_base_rdd.html</loc>
@@ -284,6 +296,18 @@
     <loc>https://www.alexxu.tech/cpark/classcpark_1_1_reduce-members.html</loc>
   </url>
   <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_sample.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_sample-members.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_sample_rdd.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_sample_rdd-members.html</loc>
+  </url>
+  <url>
     <loc>https://www.alexxu.tech/cpark/classcpark_1_1_transform.html</loc>
   </url>
   <url>
@@ -306,6 +330,12 @@
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/classcpark_1_1_view_split-members.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_zipped_rdd.html</loc>
+  </url>
+  <url>
+    <loc>https://www.alexxu.tech/cpark/classcpark_1_1_zipped_rdd-members.html</loc>
   </url>
   <url>
     <loc>https://www.alexxu.tech/cpark/conceptcpark_1_1concepts_1_1_has_id.html</loc>

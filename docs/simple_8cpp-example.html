@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><span class="preprocessor">#include &quot;plain_rdd.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;reduce.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;transformed_rdd.h&quot;</span></div>
-<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;zipped_rdd.h&quot;</span></div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">  <span class="keyword">using namespace </span>cpark;</div>
 <div class="line"> </div>
@@ -160,6 +160,15 @@ $(function() {
 <div class="line">  <span class="comment">// Calculate the sum of the plain rdd by reduce.</span></div>
 <div class="line">  <span class="keywordtype">int</span> res = plain_rdd | <a id="_a10" name="_a10"></a><a class="code hl_class" href="classcpark_1_1_reduce.html">Reduce</a>([](<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) { <span class="keywordflow">return</span> x + y; });</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;The sum of the plain rdd is &quot;</span> &lt;&lt; res &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Creates a zipped rdd.</span></div>
+<div class="line">  <span class="keyword">auto</span> zipped_rdd = <a id="_a11" name="_a11"></a><a class="code hl_class" href="classcpark_1_1_zipped_rdd.html">ZippedRdd</a>(generator_rdd, transformed_rdd);</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;The elements in the first split of zipped rdd are: &quot;</span>;</div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; x : zipped_rdd[0]) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; x.first &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; x.second &lt;&lt; <span class="stringliteral">&quot;)&quot;</span></div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; std::endl;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasscpark_1_1_config_html"><div class="ttname"><a href="classcpark_1_1_config.html">cpark::Config</a></div><div class="ttdef"><b>Definition</b> cpark.h:35</div></div>
 <div class="ttc" id="aclasscpark_1_1_config_html_a0463ce1e02a8cea29e685544b8813e7f"><div class="ttname"><a href="classcpark_1_1_config.html#a0463ce1e02a8cea29e685544b8813e7f">cpark::Config::setParallelTaskNum</a></div><div class="ttdeci">Config &amp; setParallelTaskNum(size_t num=0) noexcept</div><div class="ttdef"><b>Definition</b> cpark.h:82</div></div>
@@ -172,6 +181,7 @@ $(function() {
 <div class="ttc" id="aclasscpark_1_1_reduce_html"><div class="ttname"><a href="classcpark_1_1_reduce.html">cpark::Reduce</a></div><div class="ttdef"><b>Definition</b> reduce.h:24</div></div>
 <div class="ttc" id="aclasscpark_1_1_transform_html"><div class="ttname"><a href="classcpark_1_1_transform.html">cpark::Transform</a></div><div class="ttdef"><b>Definition</b> transformed_rdd.h:71</div></div>
 <div class="ttc" id="aclasscpark_1_1_transformed_rdd_html"><div class="ttname"><a href="classcpark_1_1_transformed_rdd.html">cpark::TransformedRdd</a></div><div class="ttdef"><b>Definition</b> transformed_rdd.h:33</div></div>
+<div class="ttc" id="aclasscpark_1_1_zipped_rdd_html"><div class="ttname"><a href="classcpark_1_1_zipped_rdd.html">cpark::ZippedRdd</a></div><div class="ttdef"><b>Definition</b> zipped_rdd.h:27</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

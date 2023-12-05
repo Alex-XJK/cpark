@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['transform_0',['Transform',['../classcpark_1_1_transform.html',1,'cpark']]],
-  ['transformedrdd_1',['TransformedRdd',['../classcpark_1_1_transformed_rdd.html',1,'cpark']]]
+  ['sample_0',['Sample',['../classcpark_1_1_sample.html',1,'cpark']]],
+  ['samplerdd_1',['SampleRdd',['../classcpark_1_1_sample_rdd.html',1,'cpark']]]
 ];
