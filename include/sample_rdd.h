@@ -8,6 +8,15 @@
 #include "utils.h"
 namespace cpark {
 
+/** @ingroup g_trans
+ *  @defgroup t_Sample Sample
+ *  This forms the Sample Transformation of our cpark library
+ *  @image html sample.drawio.png "SampleRdd diagram" width=50%
+ *  @image latex sample.drawio.png "SampleRdd diagram" width=10cm
+ *  @see SampleRdd
+ *  @see Sample
+ *  @{
+ */
 /**
  * An Rdd holding the sampled data from an old rdd by a specific sample fraction
  * @tparam R Type of the old Rdd.
