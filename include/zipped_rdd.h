@@ -67,6 +67,8 @@ private:
                std::views::transform(std::declval<std::function<std::pair<V1, V2>(const V1&)>>()));
   std::vector<ViewSplit<ZippedViewType>> splits_{};
 };
+/** @} */ // end of t_Zip
+
 }  // namespace cpark
 
 #endif  // CPARK_TRANSFORMED_RDD_H
