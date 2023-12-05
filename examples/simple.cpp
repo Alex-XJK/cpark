@@ -6,7 +6,7 @@
 #include "plain_rdd.h"
 #include "reduce.h"
 #include "transformed_rdd.h"
-
+#include "zipped_rdd.h"
 int main() {
   using namespace cpark;
 
@@ -83,4 +83,13 @@ int main() {
   // Calculate the sum of the plain rdd by reduce.
   int res = plain_rdd | Reduce([](int x, int y) { return x + y; });
   std::cout << "The sum of the plain rdd is " << res << std::endl;
+
+  // Creates a zipped rdd.
+  auto zipped_rdd = ZippedRdd(generator_rdd, transformed_rdd);
+  std::cout << "The elements in the first split of zipped rdd are: ";
+  for (const auto& x : zipped_rdd[0]) {
+    std::cout << "(" << x.first << ", " << x.second << ")"
+              << ", ";
+  }
+  std::cout << std::endl;
 }

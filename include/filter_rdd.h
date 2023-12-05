@@ -2,7 +2,6 @@
 #define CPARK_FILTER_RDD_H
 
 #include <vector>
-
 #include "base_rdd.h"
 #include "utils.h"
 
@@ -186,7 +185,7 @@ auto operator|(const R& r, const Filter<Func>& filter) {
  * Get all the even numbers from 0 to 50.
  */
 
-/** @} */ // end of t_Filter
+/** @} */  // end of t_Filter
 
 }  // namespace cpark
 
