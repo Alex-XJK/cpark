@@ -27,7 +27,7 @@ TEST(SampleRdd, SamplewithFraction0) {
   auto sample_rdd = SampleRdd(generator_rdd, 0);
   int size = 0;
   for (const cpark::concepts::Split auto& split : sample_rdd) {
-    for (const auto& x : split) {
+       EXPECT_TRUE(split.begin() == split.end());
       size += 1;
     }
   }
