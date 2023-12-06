@@ -19,8 +19,10 @@ inline long getTimeDifference(
   return std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count();
 }
 
-int main() {
-  int N = 500000;
+int main(int argc, char** argv) {
+  int N = 5000;
+  if (argc > 1)
+    N = atoi(argv[1]);
 
   /*
    * Using the ranges and views in standard C++,
