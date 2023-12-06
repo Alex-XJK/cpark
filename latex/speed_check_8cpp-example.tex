@@ -4,6 +4,7 @@
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iomanip>}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ <ranges>}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ <chrono>}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ <thread>}}
@@ -11,7 +12,6 @@
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}transformed\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}merge\_rdd.h"{}}}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{inline}\ std::chrono::time\_point<std::chrono::high\_resolution\_clock>\ getCurrentTime()\ \{}
@@ -24,22 +24,34 @@
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ std::chrono::duration\_cast<std::chrono::microseconds>(t1\ -\/\ t0).count();}
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ N\ =\ 500000;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (argc\ !=\ 2)\ \{}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Wrong\ command\ line\ arguments."{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Usage:\ "{}}\ <<\ argv[0]\ <<\ \textcolor{stringliteral}{"{}\ <N>"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ exit(1);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ N\ =\ atoi(argv[1]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{/*}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ *\ Using\ the\ ranges\ and\ views\ in\ standard\ C++,}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ *\ generate\ values\ from\ 1\ to\ N,}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ *\ compute\ its\ square\ value,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ sum\ up\ from\ 1\ to\ this\ value,}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ *\ filter\ all\ numbers\ that\ can\ be\ divided\ by\ 5,}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ *\ add\ 2\ to\ each\ of\ them,}}
-\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ filter\ all\ numbers\ that\ can\ be\ divided\ by\ 3.}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ filter\ all\ numbers\ that\ can\ be\ divided\ by\ 3,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ *\ compute\ reduce\ on\ this\ sequence.}}
 \DoxyCodeLine{\textcolor{comment}{\ \ \ */}}
 \DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ std\_begin\_ts\ =\ getCurrentTime();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ cpp\_std\_view\ =}
 \DoxyCodeLine{\ \ \ \ \ \ std::views::iota(1,\ N\ +\ 1)\ |}
 \DoxyCodeLine{\ \ \ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \ \ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \});}
@@ -69,6 +81,11 @@
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{auto}\ cpark\_result\ =}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark::GeneratorRdd}}(1,\ N\ +\ 1,\ [\&](\textcolor{keyword}{auto}\ i)\ -\/>\ \textcolor{keyword}{auto}\ \{\ \textcolor{keywordflow}{return}\ i;\ \},\ \&default\_context)\ |}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \})\ |}
@@ -79,10 +96,11 @@
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{long}\ temp\_time\ =\ getTimeDifference(cpark\_begin\_ts,\ cpark\_end\_ts);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ std::cout\ <<\ cpark\_result\ <<\ std::endl;}
-\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CPARK\ ("{}}\ <<\ cores\ <<\textcolor{stringliteral}{"{}\ cores)\ uses\ "{}}\ <<\ temp\_time\ <<\ \textcolor{stringliteral}{"{}\ ms\ ["{}}\ <<\ (double)temp\_time\ /\ cpp\_time\ <<\ \textcolor{stringliteral}{"{}x]\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}CPARK\ ("{}}\ <<\ cores\ <<\textcolor{stringliteral}{"{}\ cores)\ uses\ "{}}\ <<\ temp\_time\ <<\ \textcolor{stringliteral}{"{}\ ms\(\backslash\)t"{}};}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ std::fixed\ <<\ std::setprecision(4)\ <<\ \textcolor{stringliteral}{"{}["{}}\ <<\ (double)temp\_time\ /\ cpp\_time\ <<\ \textcolor{stringliteral}{"{}x]\(\backslash\)n"{}};}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (cores\ ==\ hardware\_concurrency\ ||\ cores\ ==\ hardware\_concurrency\ -\/\ 1)}
-\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Hardware\ concurrency\ :\ "{}}\ <<\ hardware\_concurrency\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}=====\ Hardware\ concurrency\ :\ "{}}\ <<\ hardware\_concurrency\ <<\ \textcolor{stringliteral}{"{}\ =====\(\backslash\)n"{}};}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}

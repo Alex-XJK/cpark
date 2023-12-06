@@ -11,7 +11,7 @@ var searchData=
   ['splitid_8',['SplitId',['../classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8',1,'cpark::ExecutionContext']]],
   ['splitshouldcache_9',['splitShouldCache',['../classcpark_1_1_execution_context.html#ae3fe6f7e1e87eb9732b6f2f08e2b5a23',1,'cpark::ExecutionContext']]],
   ['started_10',['Getting Started',['../index.html#autotoc_md4',1,'']]],
-  ['status_11',['Current Status',['../index.html#autotoc_md6',1,'']]],
+  ['status_11',['Test Status',['../index.html#autotoc_md6',1,'']]],
   ['style_12',['Naming Style',['../md_style__agreements.html#autotoc_md10',1,'']]],
   ['style_20agreements_13',['Code Style Agreements',['../md_style__agreements.html',1,'']]],
   ['supercharge_20your_20parallel_20computing_20in_20c_14',['Welcome to cpark: Supercharge Your Parallel Computing in C++',['../index.html',1,'']]],

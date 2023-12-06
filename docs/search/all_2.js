@@ -5,7 +5,7 @@ var searchData=
   ['cachedsplit_3c_20viewsplit_3c_20v_20_3e_2c_20std_3a_3aranges_3a_3aiterator_5ft_3c_20const_20v_20_3e_20_3e_2',['CachedSplit&lt; ViewSplit&lt; V &gt;, std::ranges::iterator_t&lt; const V &gt; &gt;',['../classcpark_1_1_cached_split.html',1,'cpark']]],
   ['code_20coverage_3',['Code Coverage',['../index.html#autotoc_md7',1,'']]],
   ['code_20style_20agreements_4',['Code Style Agreements',['../md_style__agreements.html',1,'']]],
-  ['collect_5',['collect',['../classcpark_1_1_collect.html#ae5f83cd5fb8ecc1ce4227d9740c94ea1',1,'cpark::Collect::Collect()'],['../classcpark_1_1_collect.html',1,'cpark::Collect'],['../group__a___collect.html',1,'Collect']]],
+  ['collect_5',['collect',['../classcpark_1_1_collect.html#ae5f83cd5fb8ecc1ce4227d9740c94ea1',1,'cpark::Collect::Collect()'],['../group__a___collect.html',1,'Collect'],['../classcpark_1_1_collect.html',1,'cpark::Collect']]],
   ['community_20and_20support_6',['Community and Support',['../index.html#autotoc_md5',1,'']]],
   ['computing_20in_20c_7',['Welcome to cpark: Supercharge Your Parallel Computing in C++',['../index.html',1,'']]],
   ['config_8',['Config',['../classcpark_1_1_config.html',1,'cpark']]],
@@ -22,6 +22,5 @@ var searchData=
   ['cpark_3a_3aconcepts_3a_3arangeofview_19',['RangeOfView',['../conceptcpark_1_1concepts_1_1_range_of_view.html',1,'cpark::concepts']]],
   ['cpark_3a_3aconcepts_3a_3ardd_20',['Rdd',['../conceptcpark_1_1concepts_1_1_rdd.html',1,'cpark::concepts']]],
   ['cpark_3a_3aconcepts_3a_3asplit_21',['Split',['../conceptcpark_1_1concepts_1_1_split.html',1,'cpark::concepts']]],
-  ['creations_22',['Creations',['../group__g__creates.html',1,'']]],
-  ['current_20status_23',['Current Status',['../index.html#autotoc_md6',1,'']]]
+  ['creations_22',['Creations',['../group__g__creates.html',1,'']]]
 ];
