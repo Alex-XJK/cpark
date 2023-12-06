@@ -1,0 +1,81 @@
+\chapter{Real-\/world Use Cases}
+\hypertarget{md_use__cases}{}\label{md_use__cases}\index{Real-\/world Use Cases@{Real-\/world Use Cases}}
+\label{md_use__cases_autotoc_md12}%
+\Hypertarget{md_use__cases_autotoc_md12}%
+\hypertarget{md_use__cases_autotoc_md13}{}\doxysection{\texorpdfstring{Build a simple program}{Build a simple program}}\label{md_use__cases_autotoc_md13}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Home\ >>\ ll}
+\DoxyCodeLine{total\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ git\ clone\ https://github.com/Alex-\/XJK/cpark.git}
+\DoxyCodeLine{Cloning\ into\ 'cpark'...}
+\DoxyCodeLine{remote:\ Enumerating\ objects:\ 3087,\ done.}
+\DoxyCodeLine{remote:\ Counting\ objects:\ 100\%\ (911/911),\ done.}
+\DoxyCodeLine{remote:\ Compressing\ objects:\ 100\%\ (320/320),\ done.}
+\DoxyCodeLine{remote:\ Total\ 3087\ (delta\ 608),\ reused\ 806\ (delta\ 590),\ pack-\/reused\ 2176}
+\DoxyCodeLine{Receiving\ objects:\ 100\%\ (3087/3087),\ 2.98\ MiB\ |\ 6.69\ MiB/s,\ done.}
+\DoxyCodeLine{Resolving\ deltas:\ 100\%\ (2246/2246),\ done.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ vim\ cpark.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ cat\ cpark.cpp\ }
+\DoxyCodeLine{\#include\ <iostream>}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#include\ "{}generator\_rdd.h"{}}
+\DoxyCodeLine{\#include\ "{}transformed\_rdd.h"{}}
+\DoxyCodeLine{\#include\ "{}filter\_rdd.h"{}}
+\DoxyCodeLine{\#include\ "{}reduce.h"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{int\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ cpark::Config\ default\_config;}
+\DoxyCodeLine{\ \ \ \ default\_config.setParallelTaskNum(4);}
+\DoxyCodeLine{\ \ \ \ cpark::ExecutionContext\ default\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ auto\ cpark\_result\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cpark::GeneratorRdd(1,\ 100,\ [\&](auto\ i)\ -\/>\ auto\ \{\ return\ i;\ \},\ \&default\_context)\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cpark::Transform([](auto\ x)\ \{\ return\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cpark::Transform([](auto\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ int\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ for\ (int\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ res;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cpark::Filter([](auto\ x)\ \{\ return\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cpark::Reduce([](auto\ x,\ auto\ y)\ \{\ return\ x\ +\ y;\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ cpark\_result\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ return\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ ll}
+\DoxyCodeLine{total\ 8}
+\DoxyCodeLine{drwxr-\/xr-\/x\ \ 14\ alex\ \ staff\ \ \ 448B\ Dec\ \ 6\ 10:27\ cpark}
+\DoxyCodeLine{-\/rw-\/r-\/-\/r-\/-\/\ \ \ 1\ alex\ \ staff\ \ \ 773B\ Dec\ \ 6\ 10:43\ cpark.cpp}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ ls\ ./cpark/include/}
+\DoxyCodeLine{base\_rdd.h\ \ \ \ \ \ \ \ \ cpark.h\ \ \ \ \ \ \ \ \ \ \ \ group\_by\_key\_rdd.h\ partition\_by\_rdd.h\ sample\_rdd.h\ \ \ \ \ \ \ utils.h}
+\DoxyCodeLine{collect.h\ \ \ \ \ \ \ \ \ \ filter\_rdd.h\ \ \ \ \ \ \ merge\_rdd.h\ \ \ \ \ \ \ \ plain\_rdd.h\ \ \ \ \ \ \ \ transformed\_rdd.h\ \ zipped\_rdd.h}
+\DoxyCodeLine{count.h\ \ \ \ \ \ \ \ \ \ \ \ generator\_rdd.h\ \ \ \ merged\_view.h\ \ \ \ \ \ reduce.h\ \ \ \ \ \ \ \ \ \ \ union\_rdd.h}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ g++\ -\/-\/version}
+\DoxyCodeLine{Apple\ clang\ version\ 15.0.0\ (clang-\/1500.0.40.1)}
+\DoxyCodeLine{Target:\ arm64-\/apple-\/darwin23.1.0}
+\DoxyCodeLine{Thread\ model:\ posix}
+\DoxyCodeLine{InstalledDir:\ /Library/Developer/CommandLineTools/usr/bin}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ g++\ cpark.cpp\ -\/std=c++20\ -\/Wall\ -\/Wpedantic\ -\/O3\ -\/I./cpark/include\ -\/o\ cpark\_example\ }
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ ll}
+\DoxyCodeLine{total\ 232}
+\DoxyCodeLine{drwxr-\/xr-\/x\ \ 14\ alex\ \ staff\ \ \ 448B\ Dec\ \ 6\ 10:27\ cpark}
+\DoxyCodeLine{-\/rw-\/r-\/-\/r-\/-\/\ \ \ 1\ alex\ \ staff\ \ \ 773B\ Dec\ \ 6\ 10:43\ cpark.cpp}
+\DoxyCodeLine{-\/rwxr-\/xr-\/x\ \ \ 1\ alex\ \ staff\ \ \ 108K\ Dec\ \ 6\ 10:43\ cpark\_example}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ ./cpark\_example\ }
+\DoxyCodeLine{351666250}
+\DoxyCodeLine{}
+\DoxyCodeLine{Home\ >>\ \string^D}
+
+\end{DoxyCode}
+ 
