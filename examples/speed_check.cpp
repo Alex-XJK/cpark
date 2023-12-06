@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <ranges>
 #include <chrono>
 #include <thread>
@@ -6,7 +7,6 @@
 #include "generator_rdd.h"
 #include "transformed_rdd.h"
 #include "filter_rdd.h"
-#include "merge_rdd.h"
 #include "reduce.h"
 
 inline std::chrono::time_point<std::chrono::high_resolution_clock> getCurrentTime() {
@@ -20,9 +20,12 @@ inline long getTimeDifference(
 }
 
 int main(int argc, char** argv) {
-  int N = 5000;
-  if (argc > 1)
-    N = atoi(argv[1]);
+  if (argc != 2) {
+    std::cerr << "Wrong command line arguments." << std::endl;
+    std::cerr << "Usage: " << argv[0] << " <N>" << std::endl;
+    exit(1);
+  }
+  int N = atoi(argv[1]);
 
   /*
    * Using the ranges and views in standard C++,
@@ -88,10 +91,11 @@ int main(int argc, char** argv) {
     long temp_time = getTimeDifference(cpark_begin_ts, cpark_end_ts);
 
     std::cout << cpark_result << std::endl;
-    std::cerr << "CPARK (" << cores <<" cores) uses " << temp_time << " ms [" << (double)temp_time / cpp_time << "x]\n";
+    std::cerr << "CPARK (" << cores <<" cores) uses " << temp_time << " ms\t";
+    std::cerr << std::fixed << std::setprecision(4) << "[" << (double)temp_time / cpp_time << "x]\n";
 
     if (cores == hardware_concurrency || cores == hardware_concurrency - 1)
-      std::cerr << "Hardware concurrency : " << hardware_concurrency << "\n";
+      std::cerr << "===== Hardware concurrency : " << hardware_concurrency << " =====\n";
   }
 
   return 0;
