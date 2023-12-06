@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <ranges>
 #include <chrono>
 #include <thread>
@@ -6,7 +7,6 @@
 #include "generator_rdd.h"
 #include "transformed_rdd.h"
 #include "filter_rdd.h"
-#include "merge_rdd.h"
 #include "reduce.h"
 
 inline std::chrono::time_point<std::chrono::high_resolution_clock> getCurrentTime() {
@@ -19,22 +19,34 @@ inline long getTimeDifference(
   return std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count();
 }
 
-int main() {
-  int N = 500000;
+int main(int argc, char** argv) {
+  if (argc != 2) {
+    std::cerr << "Wrong command line arguments." << std::endl;
+    std::cerr << "Usage: " << argv[0] << " <N>" << std::endl;
+    exit(1);
+  }
+  int N = atoi(argv[1]);
 
   /*
    * Using the ranges and views in standard C++,
    * generate values from 1 to N,
    * compute its square value,
+   * sum up from 1 to this value,
    * filter all numbers that can be divided by 5,
    * add 2 to each of them,
-   * filter all numbers that can be divided by 3.
+   * filter all numbers that can be divided by 3,
+   * compute reduce on this sequence.
    */
   auto std_begin_ts = getCurrentTime();
 
   auto cpp_std_view =
       std::views::iota(1, N + 1) |
       std::views::transform([](auto x) { return x * x; }) |
+      std::views::transform([](auto x) {
+        int res = 0;
+        for (int i = 1; i <= x; i++) res += x;
+        return res;
+      }) |
       std::views::filter([](auto x) { return x % 5 == 0; }) |
       std::views::transform([](auto x) { return x + 2; }) |
       std::views::filter([](auto x) { return x % 3 == 0; });
@@ -64,6 +76,11 @@ int main() {
     auto cpark_result =
         cpark::GeneratorRdd(1, N + 1, [&](auto i) -> auto { return i; }, &default_context) |
         cpark::Transform([](auto x) { return x * x; }) |
+        cpark::Transform([](auto x) {
+          int res = 0;
+          for (int i = 1; i <= x; i++) res += x;
+          return res;
+        }) |
         cpark::Filter([](auto x) { return x % 5 == 0; }) |
         cpark::Transform([](auto x) { return x + 2; }) |
         cpark::Filter([](auto x) { return x % 3 == 0; }) |
@@ -74,10 +91,11 @@ int main() {
     long temp_time = getTimeDifference(cpark_begin_ts, cpark_end_ts);
 
     std::cout << cpark_result << std::endl;
-    std::cerr << "CPARK (" << cores <<" cores) uses " << temp_time << " ms [" << (double)temp_time / cpp_time << "x]\n";
+    std::cerr << "CPARK (" << cores <<" cores) uses " << temp_time << " ms\t";
+    std::cerr << std::fixed << std::setprecision(4) << "[" << (double)temp_time / cpp_time << "x]\n";
 
     if (cores == hardware_concurrency || cores == hardware_concurrency - 1)
-      std::cerr << "Hardware concurrency : " << hardware_concurrency << "\n";
+      std::cerr << "===== Hardware concurrency : " << hardware_concurrency << " =====\n";
   }
 
   return 0;
