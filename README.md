@@ -16,22 +16,22 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
 
 ## Features
 
-- **Blazing Fast:** Benchmark-proven to be 50% faster than the standard C++ ranges library.
+- **Blazing Fast:** Benchmark-proven to be 80% faster than the standard C++ ranges library.
 - **Local Multi-threading:** Harness the power of parallel computing on your local machine with multi-threading support.
 - **Ease of Use:** Simple and intuitive API, making parallel computing accessible to all developers.
 - **Scalability:** Designed to scale effortlessly on a single machine.
 
 ## Getting Started
 
-1. **Check Documentation:**  
+1. **Check Documentation Website:**  
   [www.alexxu.tech/cpark](https://www.alexxu.tech/cpark/)
 
-2. **Clone the Repository:**
+2. **Get our CPARK:**
    ```bash
    git clone https://github.com/Alex-XJK/cpark.git
    ```
 
-3. **Example Usage:**
+3. **Write your Code:**
    ```cpp
     #include <iostream>
    
@@ -57,12 +57,19 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
     }
    ```
 
+4. **Config Compiler**  
+    Since our project makes the use of the standard library <ranges> in C++20. Your local compiler has to be able to support C++20, with correct compilation flag set to this or newer version, for example, `-std=c++20`.
+
+5. **Include the Headers**  
+    Manage your compiler to look for the correct header file location, for example, `-I <path_to_cpark>/include`.
+
 ## Community and Support
 
 - **Issue Tracker:** Found a bug or have a feature request? [Create an issue](https://github.com/Alex-XJK/cpark/issues) and let us know.
-- **Contact:** You can also contact us by e-mail: [cpark@alexxu.tech](mailto:cpark@alexxu.tech)
+- **Contact:** For administration issue, you can contact us by e-mail: [cpark@alexxu.tech](mailto:cpark@alexxu.tech).
+- **Contribute:** If you are interested in our [project](https://github.com/Alex-XJK/cpark), we would appreciate it if you star our project and submit a pull request for your code.
 
-## Current Status
+## Test Status
 
 ### Code Coverage
 ![Coverage](https://codecov.io/gh/Alex-XJK/cpark/graphs/icicle.svg?token=L0FVLL29MN)
