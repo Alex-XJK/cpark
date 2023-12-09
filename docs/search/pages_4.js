@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['real_20world_20use_20cases_0',['Real-world Use Cases',['../md_use__cases.html',1,'']]]
+  ['in_20c_0',['Welcome to cpark: Supercharge Your Parallel Computing in C++',['../index.html',1,'']]]
 ];

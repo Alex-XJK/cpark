@@ -1,0 +1,128 @@
+\chapter{Getting Started with cpark\+: A Step-\/by-\/\+Step Tutorial}
+\hypertarget{md_tutorial}{}\label{md_tutorial}\index{Getting Started with cpark: A Step-\/by-\/Step Tutorial@{Getting Started with cpark: A Step-\/by-\/Step Tutorial}}
+\label{md_tutorial_autotoc_md18}%
+\Hypertarget{md_tutorial_autotoc_md18}%
+ \begin{quote}
+CPARK develop team -\/ December 7, 2023 \end{quote}
+\hypertarget{md_tutorial_autotoc_md19}{}\doxysection{\texorpdfstring{1. Check Documentation Website}{1. Check Documentation Website}}\label{md_tutorial_autotoc_md19}
+Visit the \href{https://www.alexxu.tech/cpark/}{\texttt{ cpark documentation website}} for comprehensive information, guides, and examples. ~\newline
+
+
+Especially, on the \href{https://www.alexxu.tech/cpark/index.html}{\texttt{ homepage}}, there is a general introduction of the whole project and a brief version of how to get started with this project. On the \href{https://www.alexxu.tech/cpark/md_use__cases.html}{\texttt{ Related Pages}}, there is a screenshot of a real-\/world shell session to build your first program from scratch. The \href{https://www.alexxu.tech/cpark/topics.html}{\texttt{ Topics}} page is the main user entry for detailed technical documentation of different types of Creations, Transformations, and Actions, as explained in our design documentation.\hypertarget{md_tutorial_autotoc_md20}{}\doxysection{\texorpdfstring{2. Get cpark}{2. Get cpark}}\label{md_tutorial_autotoc_md20}
+Clone the cpark repository to your local machine\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/Alex-\/XJK/cpark.git}
+
+\end{DoxyCode}
+
+
+Make sure you are in the main-\/branch, which has been passing all the automation tests enforced by our branch policy everytime a pull request is trying to merge into main-\/branch.\hypertarget{md_tutorial_autotoc_md21}{}\doxysection{\texorpdfstring{3. Write Your First cpark Code}{3. Write Your First cpark Code}}\label{md_tutorial_autotoc_md21}
+With our delicate cpark library on your computer, we can now build some great program using it. ~\newline
+ First, please create a C++ file, for example, {\ttfamily cpark.\+cpp}, and add the following code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{comment}{//\ Include\ the\ cpark\ header\ files\ you\ used}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}generator\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}transformed\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}filter\_rdd.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}reduce.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Set\ up\ configuration\ and\ execution\ context}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_config}{cpark::Config}}\ default\_config;}
+\DoxyCodeLine{\ \ default\_config.\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}(2);\ \textcolor{comment}{//\ Set\ to\ use\ 2\ cores\ first}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classcpark_1_1_execution_context}{cpark::ExecutionContext}}\ default\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Define\ a\ cpark\ computation\ pipeline}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ cpark\_result\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark::GeneratorRdd}}(1,\ 5000000,\ [\&](\textcolor{keyword}{auto}\ i)\ -\/>\ \textcolor{keyword}{auto}\ \{\ \textcolor{keywordflow}{return}\ i;\ \},\ \&default\_context)\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \ \ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classcpark_1_1_reduce}{cpark::Reduce}}([](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Print\ the\ result}}
+\DoxyCodeLine{\ \ std::cout\ <<\ \textcolor{stringliteral}{"{}The\ computation\ result\ is\ "{}}\ <<\ cpark\_result\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_tutorial_autotoc_md22}{}\doxysection{\texorpdfstring{4. Configure Your Compiler}{4. Configure Your Compiler}}\label{md_tutorial_autotoc_md22}
+Since our project makes the use of the C++ 20 standard library $<$ranges$>$ and other new features, you have to ensure that your local compiler supports C++20 and set the correct compilation flag. For example\+: {\ttfamily -\/std=c++20}. ~\newline
+
+
+You also have to manage your compiler to look for header files in the correct location. ~\newline
+
+
+So, for this example program, I can compile with {\ttfamily g++} on my local computer with the following command\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ cpark.cpp\ -\/std=c++20\ -\/Wall\ -\/Wpedantic\ -\/O2\ -\/I./cpark/include\ -\/o\ cpark\_example}
+
+\end{DoxyCode}
+\hypertarget{md_tutorial_autotoc_md23}{}\doxysection{\texorpdfstring{5. Run Your cpark Code}{5. Run Your cpark Code}}\label{md_tutorial_autotoc_md23}
+Execute the compiled example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./cpark\_example}
+
+\end{DoxyCode}
+
+
+And you can see the running result as
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{The\ computation\ result\ is\ -\/322035642}
+
+\end{DoxyCode}
+
+
+While this result number doesn\textquotesingle{}t make sense, because it gets overflow, thus the running result is an undefined behavior, we purposely choose such a large number here for performance comparison below.\hypertarget{md_tutorial_autotoc_md24}{}\doxysection{\texorpdfstring{6. Modify Running Configuration}{6. Modify Running Configuration}}\label{md_tutorial_autotoc_md24}
+Noticed that, in your previous code, we were very conservative in choosing 2 cpu cores for the calculation. So now let\textquotesingle{}s run the executable again and see how well it performs\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Home\ >>\ time\ ./cpark\_example}
+\DoxyCodeLine{The\ computation\ result\ is\ -\/322035642}
+\DoxyCodeLine{./cpark\_example\ \ 0.06s\ user\ 0.00s\ system\ 173\%\ cpu\ 0.036\ total}
+
+\end{DoxyCode}
+ the {\ttfamily time} command reports to us that it used 173\% CPU, which is very close to the parameter we set for 2 cores, at which the program took a total of 0.\+036 seconds. ~\newline
+
+
+If your computer has more CPU cores, you can also change this parameter to try other parallelism levels. ~\newline
+
+
+Of course, there is another trick here. If we check the documentation for \href{https://www.alexxu.tech/cpark/classcpark_1_1_config.html\#a0463ce1e02a8cea29e685544b8813e7f}{\texttt{ this function}}, we can see that if we use the default value for this function, we can have cpark library automatically check the number of parallelisms supported by the current hardware setup. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Set\ up\ configuration\ and\ execution\ context}}
+\DoxyCodeLine{\mbox{\hyperlink{classcpark_1_1_config}{cpark::Config}}\ default\_config;}
+\DoxyCodeLine{default\_config.\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}();\ \textcolor{comment}{//\ Default\ to\ physical\ supported\ thread\ number.}}
+\DoxyCodeLine{\mbox{\hyperlink{classcpark_1_1_execution_context}{cpark::ExecutionContext}}\ default\_context\{default\_config\};}
+\DoxyCodeLine{\textcolor{comment}{//\ Other\ code\ ...}}
+
+\end{DoxyCode}
+ So after we changed the relevant parameters, we can experiment again. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Home\ >>\ g++\ cpark.cpp\ -\/std=c++20\ -\/Wall\ -\/Wpedantic\ -\/O2\ -\/I./cpark/include\ -\/o\ cpark\_example}
+\DoxyCodeLine{Home\ >>\ time\ ./cpark\_example}
+\DoxyCodeLine{The\ computation\ result\ is\ -\/322035642}
+\DoxyCodeLine{./cpark\_example\ \ 0.06s\ user\ 0.00s\ system\ 665\%\ cpu\ 0.009\ total}
+
+\end{DoxyCode}
+ It is obvious that it runs significantly faster and the CPU usage is really close to what my computer expected.\hypertarget{md_tutorial_autotoc_md25}{}\doxysection{\texorpdfstring{Conclusion\+: Unleash the Power of Parallel Computing with cpark}{Conclusion: Unleash the Power of Parallel Computing with cpark}}\label{md_tutorial_autotoc_md25}
+Congratulations! You\textquotesingle{}ve successfully embarked on your journey with cpark, a high-\/performance parallel computing library. As you explore the documentation, you\textquotesingle{}ll discover a wealth of features and capabilities that empower you to tackle complex computations with ease. From parallelized data generation to seamless result reduction, cpark is designed to streamline your code and unlock the full potential of your machine\textquotesingle{}s capabilities.
+
+Whether you\textquotesingle{}re a seasoned developer or new to parallel computing, cpark offers a user-\/friendly yet powerful framework to elevate your C++ projects. Dive into the documentation, experiment with different pipelines, and leverage the flexibility of cpark to optimize your computations.
+
+Happy coding, and may your parallel computations be as efficient as they are exciting! 

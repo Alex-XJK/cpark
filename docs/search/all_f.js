@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['test_20status_0',['Test Status',['../index.html#autotoc_md6',1,'']]],
-  ['to_20cpark_3a_20supercharge_20your_20parallel_20computing_20in_20c_1',['Welcome to cpark: Supercharge Your Parallel Computing in C++',['../index.html',1,'']]],
-  ['transform_2',['transform',['../group__t___transform.html',1,'Map(Transform)'],['../classcpark_1_1_transform.html',1,'cpark::Transform&lt; Func &gt;']]],
-  ['transformations_3',['Transformations',['../group__g__trans.html',1,'']]],
-  ['transformedrdd_4',['TransformedRdd',['../classcpark_1_1_transformed_rdd.html',1,'cpark']]]
+  ['map_20transform_0',['Map(Transform)',['../group__t___transform.html',1,'']]],
+  ['merge_1',['merge',['../classcpark_1_1_merge.html',1,'cpark::Merge'],['../group__t___merge.html',1,'Merge']]],
+  ['mergedsameview_2',['mergedsameview',['../classcpark_1_1_merged_same_view.html',1,'cpark::MergedSameView&lt; R &gt;'],['../classcpark_1_1_merged_same_view.html#a7160d8ef8137278918d6d8f15246c583',1,'cpark::MergedSameView::MergedSameView()']]],
+  ['mergedtwodiffview_3',['mergedtwodiffview',['../classcpark_1_1_merged_two_diff_view.html#ac03720b675122e0326c0637deb8781f6',1,'cpark::MergedTwoDiffView::MergedTwoDiffView()'],['../classcpark_1_1_merged_two_diff_view.html',1,'cpark::MergedTwoDiffView&lt; V1, V2 &gt;']]],
+  ['mergerdd_4',['mergerdd',['../classcpark_1_1_merge_rdd.html#aecb13959bad44f8f816b22b6a49129d3',1,'cpark::MergeRdd::MergeRdd()'],['../classcpark_1_1_merge_rdd.html',1,'cpark::MergeRdd&lt; R &gt;']]],
+  ['modify_20running_20configuration_5',['6. Modify Running Configuration',['../md_tutorial.html#autotoc_md24',1,'']]]
 ];

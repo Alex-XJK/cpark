@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dependencies_0',['dependencies',['../classcpark_1_1_base_split.html#ac94272217a3011cd50691c405d539e2c',1,'cpark::BaseSplit']]]
+  ['4_20configure_20your_20compiler_0',['4. Configure Your Compiler',['../md_tutorial.html#autotoc_md22',1,'']]]
 ];

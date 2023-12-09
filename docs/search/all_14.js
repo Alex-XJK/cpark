@@ -1,5 +1,26 @@
 var searchData=
 [
-  ['zip_0',['Zip',['../group__t___zip.html',1,'']]],
-  ['zippedrdd_1',['ZippedRdd',['../classcpark_1_1_zipped_rdd.html',1,'cpark']]]
+  ['sample_0',['sample',['../classcpark_1_1_sample.html',1,'cpark::Sample'],['../group__t___sample.html',1,'Sample']]],
+  ['samplerdd_1',['samplerdd',['../classcpark_1_1_sample_rdd.html#aebe3135a91a87588b08ee38f6bd03251',1,'cpark::SampleRdd::SampleRdd()'],['../classcpark_1_1_sample_rdd.html',1,'cpark::SampleRdd&lt; R &gt;']]],
+  ['scripting_2',['Real-world Use Cases (Shell Scripting)',['../md_use__cases.html',1,'']]],
+  ['setconfig_3',['setConfig',['../classcpark_1_1_execution_context.html#a625fbac1305c63aecba295182a64b1c6',1,'cpark::ExecutionContext']]],
+  ['setdebugname_4',['setDebugName',['../classcpark_1_1_config.html#ac54efb7365f92bcf0f903d69e3f60b75',1,'cpark::Config']]],
+  ['setlogger_5',['setLogger',['../classcpark_1_1_config.html#acff9b4e90789780e4f7dff6aa887ffea',1,'cpark::Config']]],
+  ['setparallelpolicy_6',['setParallelPolicy',['../classcpark_1_1_config.html#a24b32467194d3d2de8d478b991e62679',1,'cpark::Config']]],
+  ['setparalleltasknum_7',['setParallelTaskNum',['../classcpark_1_1_config.html#a0463ce1e02a8cea29e685544b8813e7f',1,'cpark::Config']]],
+  ['shell_20scripting_8',['Real-world Use Cases (Shell Scripting)',['../md_use__cases.html',1,'']]],
+  ['showcase_9',['Performance Showcase',['../md_performance.html',1,'']]],
+  ['simple_20program_10',['Build a simple program',['../md_use__cases.html#autotoc_md27',1,'']]],
+  ['splitcached_11',['splitCached',['../classcpark_1_1_execution_context.html#a4b1642118dcb073e95a85c46b5fbcc1a',1,'cpark::ExecutionContext']]],
+  ['splitid_12',['SplitId',['../classcpark_1_1_execution_context.html#a5a35a8bc1d532aedd230c66d43fff6b8',1,'cpark::ExecutionContext']]],
+  ['splitshouldcache_13',['splitShouldCache',['../classcpark_1_1_execution_context.html#ae3fe6f7e1e87eb9732b6f2f08e2b5a23',1,'cpark::ExecutionContext']]],
+  ['started_14',['Getting Started',['../index.html#autotoc_md10',1,'']]],
+  ['started_20with_20cpark_3a_20a_20step_20by_20step_20tutorial_15',['Getting Started with cpark: A Step-by-Step Tutorial',['../md_tutorial.html',1,'']]],
+  ['status_16',['Test Status',['../index.html#autotoc_md12',1,'']]],
+  ['step_20by_20step_20tutorial_17',['Getting Started with cpark: A Step-by-Step Tutorial',['../md_tutorial.html',1,'']]],
+  ['stl_20version_18',['C++ STL Version',['../md_performance.html#autotoc_md3',1,'']]],
+  ['style_19',['Naming Style',['../md_style__agreements.html#autotoc_md16',1,'']]],
+  ['style_20agreements_20',['Code Style Agreements',['../md_style__agreements.html',1,'']]],
+  ['supercharge_20your_20parallel_20computing_20in_20c_21',['Welcome to cpark: Supercharge Your Parallel Computing in C++',['../index.html',1,'']]],
+  ['support_22',['Community and Support',['../index.html#autotoc_md11',1,'']]]
 ];

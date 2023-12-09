@@ -1,0 +1,64 @@
+\chapter{Performance Showcase}
+\hypertarget{md_performance}{}\label{md_performance}\index{Performance Showcase@{Performance Showcase}}
+\label{md_performance_autotoc_md0}%
+\Hypertarget{md_performance_autotoc_md0}%
+Located in the examples folder in our source code, we provided a performance showcase program, {\ttfamily speed\+\_\+check.\+cpp}, to demonstrate the performance of our cpark library.\hypertarget{md_performance_autotoc_md1}{}\doxysection{\texorpdfstring{Performance Test}{Performance Test}}\label{md_performance_autotoc_md1}
+\hypertarget{md_performance_autotoc_md2}{}\doxysubsection{\texorpdfstring{Program Purpose}{Program Purpose}}\label{md_performance_autotoc_md2}
+Generate values from 1 to N, compute its square value, sum up from 1 to this value, filter all numbers that can be divided by 5, add 2 to each of them, filter all numbers that can be divided by 3, compute reduce on this sequence.\hypertarget{md_performance_autotoc_md3}{}\doxysubsection{\texorpdfstring{C++ STL Version}{C++ STL Version}}\label{md_performance_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ cpp\_std\_view\ =}
+\DoxyCodeLine{\ \ \ \ std::views::iota(1,\ N\ +\ 1)\ |}
+\DoxyCodeLine{\ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \})\ |}
+\DoxyCodeLine{\ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ std::views::transform([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ std::views::filter([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \});}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ cpp\_result\ =\ std::reduce(cpp\_std\_view.begin(),\ cpp\_std\_view.end(),\ 0,\ [](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ return\ x\ +\ y;\ \});}
+
+\end{DoxyCode}
+\hypertarget{md_performance_autotoc_md4}{}\doxysubsection{\texorpdfstring{cpark Version}{cpark Version}}\label{md_performance_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classcpark_1_1_config}{cpark::Config}}\ default\_config;}
+\DoxyCodeLine{default\_config.\mbox{\hyperlink{classcpark_1_1_config_a0463ce1e02a8cea29e685544b8813e7f}{setParallelTaskNum}}(C);}
+\DoxyCodeLine{\mbox{\hyperlink{classcpark_1_1_execution_context}{cpark::ExecutionContext}}\ default\_context\{default\_config\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ cpark\_result\ =}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_generator_rdd}{cpark::GeneratorRdd}}(1,\ N\ +\ 1,\ [\&](\textcolor{keyword}{auto}\ i)\ -\/>\ \textcolor{keyword}{auto}\ \{\ \textcolor{keywordflow}{return}\ i;\ \},\ \&default\_context)\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ *\ x;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 1;\ i\ <=\ x;\ i++)\ res\ +=\ x;}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\ \ \ \ \})\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 5\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_transform}{cpark::Transform}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ 2;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_filter}{cpark::Filter}}([](\textcolor{keyword}{auto}\ x)\ \{\ \textcolor{keywordflow}{return}\ x\ \%\ 3\ ==\ 0;\ \})\ |}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classcpark_1_1_reduce}{cpark::Reduce}}([](\textcolor{keyword}{auto}\ x,\ \textcolor{keyword}{auto}\ y)\ \{\ \textcolor{keywordflow}{return}\ x\ +\ y;\ \});}
+
+\end{DoxyCode}
+\hypertarget{md_performance_autotoc_md5}{}\doxysubsection{\texorpdfstring{Result}{Result}}\label{md_performance_autotoc_md5}
+Tested on a 12-\/core machine and compiled with -\/O3 flag using a clang-\/1500.\+0.\+40.\+1 compiler, when N = 5000000, we got the following timing result\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{C++\ standard\ way\ uses\ 29979\ ms}
+\DoxyCodeLine{CPARK\ (1\ core)\ uses\ 54311\ ms\ \ \ \ [1.8116x]}
+\DoxyCodeLine{CPARK\ (3\ cores)\ uses\ 15752\ ms\ \ \ [0.5254x]}
+\DoxyCodeLine{CPARK\ (5\ cores)\ uses\ 9412\ ms\ \ \ \ [0.3140x]}
+\DoxyCodeLine{CPARK\ (7\ cores)\ uses\ 6777\ ms\ \ \ \ [0.2261x]}
+\DoxyCodeLine{CPARK\ (9\ cores)\ uses\ 7821\ ms\ \ \ \ [0.2609x]}
+\DoxyCodeLine{CPARK\ (11\ cores)\ uses\ 7004\ ms\ \ \ [0.2336x]}
+\DoxyCodeLine{Hardware\ concurrency\ :\ 12}
+\DoxyCodeLine{CPARK\ (13\ cores)\ uses\ 7162\ ms\ \ \ [0.2389x]}
+\DoxyCodeLine{CPARK\ (15\ cores)\ uses\ 6449\ ms\ \ \ [0.2151x]}
+\DoxyCodeLine{CPARK\ (17\ cores)\ uses\ 6783\ ms\ \ \ [0.2263x]}
+\DoxyCodeLine{CPARK\ (19\ cores)\ uses\ 5945\ ms\ \ \ [0.1983x]}
+\DoxyCodeLine{CPARK\ (21\ cores)\ uses\ 5727\ ms\ \ \ [0.1910x]}
+\DoxyCodeLine{CPARK\ (23\ cores)\ uses\ 5908\ ms\ \ \ [0.1971x]}
+
+\end{DoxyCode}
+ (The last column is the speedup ratio compared to the C++ standard version) 
