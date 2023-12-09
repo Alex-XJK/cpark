@@ -23,6 +23,9 @@ Inspired by Apache Spark, our goal is to empower developers with a lightning-fas
 
 ## Getting Started
 
+Here is a quick guide to get you started with **cpark**.
+For more detailed information, please refer to our [step-by-step guide](https://www.alexxu.tech/cpark/md_tutorial.html).
+
 1. **Check Documentation Website:**  
   [www.alexxu.tech/cpark](https://www.alexxu.tech/cpark/)
 
