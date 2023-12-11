@@ -2,6 +2,7 @@
 
 [![CMake on multiple platforms](https://github.com/Alex-XJK/cpark/actions/workflows/cmake-multi-platform.yml/badge.svg?branch=main)](https://github.com/Alex-XJK/cpark/actions/workflows/cmake-multi-platform.yml)
 [![codecov](https://codecov.io/gh/Alex-XJK/cpark/graph/badge.svg?token=L0FVLL29MN)](https://codecov.io/gh/Alex-XJK/cpark)
+[![CodeQL](https://github.com/Alex-XJK/cpark/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Alex-XJK/cpark/actions/workflows/github-code-scanning/codeql)
 
 ## About cpark
 
